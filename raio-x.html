@@ -125,6 +125,9 @@ button:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
 .btn-ghost:hover{border-color:var(--ink);background:var(--card)}
 .btn-ghost[disabled]{opacity:.5;cursor:progress}
 .save-note{font-size:14px;color:var(--muted);text-align:center;margin-top:14px}
+.link-wa{display:block;text-align:center;margin-top:24px;font-size:16px;font-weight:600;
+  color:var(--plum);text-decoration:underline;text-underline-offset:4px}
+.link-wa:hover{color:var(--plum-deep)}
 
 /* ---------- portão ---------- */
 .gate{background:var(--plum);color:var(--cream);border-radius:20px;padding:36px 28px;margin-top:36px;
@@ -348,6 +351,24 @@ footer small{font-family:var(--display);font-size:12px;font-weight:700;letter-sp
   </div>
 </div>
 
+<!-- IMERSÃO (aparece depois do resultado) -->
+<div id="modal-imersao" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="imersao-title">
+  <div class="modal-card">
+    <span class="mark" aria-hidden="true"></span>
+    <div class="eyebrow">26 de setembro · Lisboa</div>
+    <h2 id="imersao-title">Isto não se resolve com mais uma dica.</h2>
+    <p>O teu relatório aponta o buraco. Tapá-lo exige um sistema — e um sistema não se monta a ler posts.</p>
+    <ul>
+      <li>Um dia inteiro, presencial, em Lisboa</li>
+      <li>As cinco engrenagens aplicadas ao teu negócio</li>
+      <li>Sais com a tua máquina de vendas montada</li>
+      <li>Bilhetes desde 27€</li>
+    </ul>
+    <button class="btn-main" id="btn-quero-imersao">Ver os bilhetes <i>&rarr;</i></button>
+    <button class="btn-link" id="btn-fechar-imersao">Agora não</button>
+  </div>
+</div>
+
 <!-- ETAPA 4 -->
 <section id="result-step" class="hidden">
   <div class="score-block">
@@ -373,11 +394,13 @@ footer small{font-family:var(--display);font-size:12px;font-weight:700;letter-sp
   </div>
 
   <div class="cta reveal">
-    <h2>Sabes o problema. Falta resolvê-lo.</h2>
-    <p>Este diagnóstico mostra-te onde está a fuga. Na Imersão Impacto fechamo-la contigo ao lado, com o teu perfil em cima da mesa.</p>
-    <a class="btn-wa" id="btn-wa" href="#" target="_blank" rel="noopener">Marcar a sessão de diagnóstico</a>
+    <div class="eyebrow">26 de setembro · Lisboa</div>
+    <h2 style="margin-top:10px">Sabes o problema. Falta o sistema.</h2>
+    <p>Um diagnóstico mostra a fuga. Não a tapa. Na <b>Imersão Impacto</b> passamos um dia a montar a tua máquina de vendas — as cinco engrenagens que levam uma seguidora até à marcação. Bilhetes desde 27€.</p>
+    <a class="btn-wa" id="btn-imersao" href="#" target="_blank" rel="noopener">Quero o meu lugar na Imersão</a>
     <button class="btn-ghost" id="btn-save">Guardar o meu relatório</button>
     <p class="save-note">Sai uma imagem vertical, pronta para os stories.</p>
+    <a class="link-wa" id="btn-wa" href="#" target="_blank" rel="noopener">Preferes falar comigo primeiro? Manda mensagem.</a>
   </div>
 </section>
 
@@ -422,6 +445,10 @@ const CONFIG = {
   SUPABASE_URL: '',            // https://xxxxxxxx.supabase.co
   SUPABASE_KEY: '',            // chave anon public
   SUPABASE_TABELA: 'leads_raiox',
+
+  // Imersão Impacto — desliga a false depois de 26 de setembro.
+  IMERSAO: true,
+  LINK_IMERSAO: 'https://www.imersaoimpacto.store/',
 
   // Aparecem no rodapé da imagem descarregada.
   URL_FERRAMENTA: 'hubadvance.pt/raio-x.html',
@@ -765,6 +792,7 @@ function fecharConvite(){
 }
 
 $('btn-sim').addEventListener('click', () => {
+  aceitouSessao = true;
   marcarInteresse();
   avisarInteresse();
   window.open(linkSessao(ultimo.pontuacao), '_blank', 'noopener');
@@ -776,7 +804,50 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && !$('modal').classList.contains('hidden')) fecharConvite();
 });
 
-// Avisa-te por email (via Make) que esta pessoa quer a sessão.
+/* ---------- convite da Imersão ---------- */
+let jaViuImersao = false;
+let aceitouSessao = false;
+
+function abrirImersao(){
+  if (jaViuImersao || !CONFIG.IMERSAO) return;
+  if (aceitouSessao) return;              // já está a falar contigo: não insistas
+  if (!$('modal').classList.contains('hidden')) return;
+  jaViuImersao = true;
+  $('btn-quero-imersao').href = CONFIG.LINK_IMERSAO;
+  show('modal-imersao');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => $('btn-quero-imersao').focus(), 350);
+}
+
+function fecharImersao(){
+  hide('modal-imersao');
+  document.body.style.overflow = '';
+}
+
+$('btn-quero-imersao').addEventListener('click', () => {
+  window.open(CONFIG.LINK_IMERSAO, '_blank', 'noopener');
+  fecharImersao();
+});
+$('btn-fechar-imersao').addEventListener('click', fecharImersao);
+$('modal-imersao').addEventListener('click', e => { if (e.target.id === 'modal-imersao') fecharImersao(); });
+
+// Aparece quando ela chega ao fim do relatório
+function vigiarFim(){
+  if (!CONFIG.IMERSAO) return;
+  const alvo = document.querySelector('#result-step .cta');
+  if (!alvo || !('IntersectionObserver' in window)) return;
+  const olho = new IntersectionObserver(entradas => {
+    entradas.forEach(e => {
+      if (e.isIntersecting){
+        olho.disconnect();
+        setTimeout(abrirImersao, 1500);
+      }
+    });
+  }, { threshold: .5 });
+  olho.observe(alvo);
+}
+
+// Avisa-te por email que esta pessoa quer a sessão.
 // Funciona mesmo sem base de dados.
 function avisarInteresse(){
   if (!CONFIG.WEBHOOK_URL) return;
@@ -821,6 +892,7 @@ function render(d){
   $('r-acoes').innerHTML = d.acoes.map((a,i) => `<div class="action"><em>${i+1}</em><div>${a}</div></div>`).join('');
   $('r-buraco').textContent = d.buraco;
   $('btn-wa').href = linkSessao(d.pontuacao);
+  $('btn-imersao').href = CONFIG.LINK_IMERSAO;
 
   $('result-step').scrollIntoView({behavior:'smooth', block:'start'});
 
