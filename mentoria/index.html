@@ -123,6 +123,9 @@
   .svc-head .grow{flex:1 1 160px}
   .svc-body{padding:16px 18px}
   .svc-inputs{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-bottom:16px}
+  .svc-comp{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink);margin:-4px 0 14px;cursor:pointer;font-weight:500}
+  .svc-comp input{width:16px;height:16px;accent-color:var(--plum);cursor:pointer;flex:0 0 auto}
+  .comp-hint{color:var(--ink-soft);font-weight:400;font-size:12px}
   .btn-x{border:1px solid var(--line);background:#fff;color:var(--red);border-radius:9px;width:38px;height:38px;cursor:pointer;font-size:17px;line-height:1;flex:0 0 auto}
   .btn-x:hover{background:var(--red-soft)}
 
@@ -481,7 +484,7 @@ function calc(s){
   const valorSemIva = preco/(1+iva);
   const c = state.comAtiva ? (+state.comPct||0)/100 : 0;
   const comissao = state.comAtiva ? (state.comBase==="comiva" ? preco*c : valorSemIva*c) : 0;
-  const custoFixoProp = tempo*cfh;
+  const custoFixoProp = s.complementar ? 0 : tempo*cfh;
   const lucro = valorSemIva - comissao - material - custoFixoProp;
   const lucroHora = tempo>0 ? lucro/tempo : 0;
 
@@ -602,6 +605,7 @@ function svcCardHTML(s){
         <label class="field">Preço atual (com IVA)<div class="inwrap"><input class="s-preco" type="number" min="0" value="${s.preco}"><span class="unit">€</span></div></label>
         <label class="field">Tempo de execução<div class="inwrap"><input class="s-tempo" type="number" min="0" step="0.25" value="${s.tempo}"><span class="unit">h</span></div></label>
       </div>
+      <label class="svc-comp"><input type="checkbox" class="s-comp"${s.complementar?' checked':''}> Serviço complementar <span class="comp-hint">(feito durante outro atendimento — não conta custo fixo)</span></label>
 
       <div class="diag">
         <span class="badge b-${r.cls}"><span class="d"></span>${r.txt}</span>
@@ -753,7 +757,7 @@ function bind(){
   document.getElementById('comBase').addEventListener('change',e=>{state.comBase=e.target.value;renderServicos();});
 
   // serviços (delegação)
-  document.getElementById('add').addEventListener('click',()=>{state.servicos.push({id:sid++,nome:"",cat:"",preco:0,tempo:1,material:0});renderServicos();});
+  document.getElementById('add').addEventListener('click',()=>{state.servicos.push({id:sid++,nome:"",cat:"",preco:0,tempo:1,material:0,complementar:false});renderServicos();});
   document.getElementById('svc-list').addEventListener('click',e=>{const d=e.target.closest('[data-del]');if(d){state.servicos=state.servicos.filter(s=>s.id!=d.dataset.del);renderServicos();}});
   document.getElementById('svc-list').addEventListener('input',e=>{
     const card=e.target.closest('.svc'); if(!card)return; const id=+card.dataset.id; const s=state.servicos.find(x=>x.id===id); if(!s)return;
@@ -762,6 +766,7 @@ function bind(){
     else if(t.classList.contains('s-cat'))s.cat=t.value;
     else if(t.classList.contains('s-preco'))s.preco=+t.value||0;
     else if(t.classList.contains('s-tempo'))s.tempo=+t.value||0;
+    else if(t.classList.contains('s-comp'))s.complementar=t.checked;
     // atualizar só o diagnóstico deste cartão sem re-render total (mantém foco no input)
     updateCard(card,s);
   });
