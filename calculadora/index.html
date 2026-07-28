@@ -126,6 +126,15 @@
   .svc-comp{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink);margin:-4px 0 14px;cursor:pointer;font-weight:500}
   .svc-comp input{width:16px;height:16px;accent-color:var(--plum);cursor:pointer;flex:0 0 auto}
   .comp-hint{color:var(--ink-soft);font-weight:400;font-size:12px}
+  .strategy{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:14px;font-size:13px;line-height:1.55;color:var(--ink)}
+  .strategy.s-red{background:var(--red-soft);border-color:#eecacd}
+  .strategy.s-amber{background:var(--amber-soft);border-color:#f0dcb4}
+  .strategy.s-green{background:var(--green-soft);border-color:#c9e5d6}
+  .strategy .st-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;margin-bottom:6px}
+  .strategy ol{margin:6px 0 0;padding-left:20px}
+  .strategy li{margin-bottom:4px}
+  .strategy b{color:var(--ink)}
+  .strategy .st-extra{margin-top:9px;padding-top:9px;border-top:1px solid rgba(0,0,0,.08)}
   .btn-x{border:1px solid var(--line);background:#fff;color:var(--red);border-radius:9px;width:38px;height:38px;cursor:pointer;font-size:17px;line-height:1;flex:0 0 auto}
   .btn-x:hover{background:var(--red-soft)}
 
@@ -501,7 +510,7 @@ function calc(s){
   const premMult=Math.max(1.10, posMult*zonaMult);
   let premium=isFinite(ideal)? ideal*premMult : Infinity;
 
-  const round=v=>isFinite(v)?Math.max(0,Math.round(v)):v;
+  const round=v=>isFinite(v)?Math.max(0,Math.round(v*100)/100):v;
   minimo=round(minimo); ideal=round(ideal); premium=round(premium);
 
   // diagnóstico
@@ -574,15 +583,46 @@ function meterHTML(r){
     </div>`;
 }
 
+function strategyHTML(r){
+  const ideal=eur2(r.ideal), premium=eur2(r.premium);
+  if(!isFinite(r.ideal)){
+    return `<div class="strategy s-red"><div class="st-title">🔴 Diagnóstico: comissão inviável</div>Com esta comissão é <b>impossível</b> a empresa lucrar — a profissional fica com mais do que o negócio recebe. Aqui o preço não resolve: o que tens de rever é o <b>modelo de comissão</b> (baixar a %, ou calcular sobre o valor sem IVA).</div>`;
+  }
+  let title, body;
+  if(r.cls==='red'){
+    title='🔴 Diagnóstico: preço prejudicial';
+    body=`Ao preço atual, este serviço não paga o tempo, o material e a estrutura — está a tirar margem ao negócio. Por ordem:
+      <ol>
+        <li>Sobe até ao <b>ideal (${ideal})</b> — é o mínimo para lucrares o alvo por hora.</li>
+        <li>Se o mercado não aceitar, <b>reduz o tempo</b> de execução ou o <b>custo de material</b>.</li>
+        <li>Se mesmo assim não fecha, torna-o <b>premium</b>: junta um extra (spa, acabamento, design) e vende a experiência, não o procedimento.</li>
+      </ol>`;
+  } else if(r.cls==='amber'){
+    title='🟡 Diagnóstico: precisa de ajuste';
+    body=`Estás perto de uma margem saudável — falta pouco. O que fazer:
+      <ol>
+        <li>Sobe até ao <b>ideal (${ideal})</b> — uma subida pequena costuma passar despercebida à cliente.</li>
+        <li>Ou cria uma versão <b>premium (${premium})</b> e deixa esta como opção de entrada.</li>
+        <li>Junta um <b>complementar</b> (nail art, spa) para subir o ticket sem perder margem.</li>
+      </ol>`;
+  } else {
+    title='🟢 Diagnóstico: saudável';
+    body=`Este serviço já paga tudo e dá lucro. Agora a jogada é <b>ganhar mais por cliente</b>:
+      <ol>
+        <li>Oferece o <b>upgrade premium (${premium})</b> como opção de topo.</li>
+        <li>Junta um <b>complementar</b> no mesmo atendimento — sobe o ticket sem gastar mais tempo nem estrutura.</li>
+        <li>Usa-o como âncora para valorizar os serviços à volta.</li>
+      </ol>`;
+  }
+  let extra='';
+  if(r.preco>0 && r.ideal>r.preco*1.8) extra=`<div class="st-extra"><b>Nota:</b> o ideal está bem acima do preço atual. Antes de subir tudo de uma vez, revê o tempo, o material ou a comissão — pode não ser só o preço.</div>`;
+  return `<div class="strategy s-${r.cls}"><div class="st-title">${title}</div>${body}${extra}</div>`;
+}
+
 function svcCardHTML(s){
+
   const r=calc(s);
   const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
-  let note="";
-  if(!isFinite(r.ideal)){
-    note=`<div class="note">⚠ Com esta comissão é matematicamente impossível lucrar — a profissional fica com mais do que a empresa recebe. O problema está no modelo de comissão, não no preço.</div>`;
-  } else if(r.preco>0 && r.ideal>r.preco*1.8){
-    note=`<div class="note">⚠ O preço ideal é bem acima do atual. Antes de subir tudo de uma vez, revê o tempo de execução, o custo de material ou a comissão — pode não ser só o preço.</div>`;
-  }
   return `
   <div class="svc" data-id="${s.id}">
     <div class="svc-head">
@@ -607,11 +647,11 @@ function svcCardHTML(s){
       ${meterHTML(r)}
 
       <div class="prices">
-        <div class="pchip"><div class="l">Mínimo</div><div class="p">${eur(r.minimo)}</div></div>
-        <div class="pchip ideal"><div class="l">Ideal</div><div class="p">${eur(r.ideal)}</div></div>
-        <div class="pchip"><div class="l">Premium</div><div class="p">${eur(r.premium)}</div></div>
+        <div class="pchip"><div class="l">Mínimo</div><div class="p">${eur2(r.minimo)}</div></div>
+        <div class="pchip ideal"><div class="l">Ideal</div><div class="p">${eur2(r.ideal)}</div></div>
+        <div class="pchip"><div class="l">Premium</div><div class="p">${eur2(r.premium)}</div></div>
       </div>
-      ${note}
+      ${strategyHTML(r)}
     </div>
   </div>`;
 }
@@ -657,9 +697,9 @@ function renderRelatorio(){
         ${sorted.map(x=>`<tr>
           <td><span class="dot-cell" style="background:${dotCol(x.r.cls)}"></span></td>
           <td>${escapeHtml(x.s.nome||"(sem nome)")}</td>
-          <td class="num">${eur(x.r.preco)}</td>
+          <td class="num">${eur2(x.r.preco)}</td>
           <td class="num">${x.r.lucroHora<0?"−"+eur2(Math.abs(x.r.lucroHora)):eur2(x.r.lucroHora)}/h</td>
-          <td class="num"><b>${eur(x.r.ideal)}</b></td>
+          <td class="num"><b>${eur2(x.r.ideal)}</b></td>
         </tr>`).join('')}
       </tbody>
     </table>`;
@@ -673,7 +713,7 @@ function renderRelatorio(){
           ? "ocupa mais tempo do que devolve em lucro"
           : "está perto do limite; uma pequena subida dá margem";
         return `<div class="rev-item"><span class="dot-cell" style="background:${dotCol(x.r.cls)};margin-right:8px"></span>
-          <b>${escapeHtml(x.s.nome||"(sem nome)")}</b> — ${motivo}. De <b>${eur(x.r.preco)}</b> para <b>${eur(x.r.ideal)}</b>${isFinite(dif)&&dif>0?` (+${eur(dif)})`:''}.</div>`;
+          <b>${escapeHtml(x.s.nome||"(sem nome)")}</b> — ${motivo}. De <b>${eur2(x.r.preco)}</b> para <b>${eur2(x.r.ideal)}</b>${isFinite(dif)&&dif>0?` (+${eur2(dif)})`:''}.</div>`;
       }).join('');
 }
 
@@ -771,19 +811,14 @@ function updateCard(card,s){
   card.querySelector('.lh').innerHTML=`Lucro da empresa: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b> por serviço`;
   const bd=card.querySelector('.breakdown'); if(bd) bd.outerHTML=breakdownHTML(r);
   const chips=card.querySelectorAll('.pchip .p');
-  if(chips[0])chips[0].textContent=eur(r.minimo);
-  if(chips[1])chips[1].textContent=eur(r.ideal);
-  if(chips[2])chips[2].textContent=eur(r.premium);
+  if(chips[0])chips[0].textContent=eur2(r.minimo);
+  if(chips[1])chips[1].textContent=eur2(r.ideal);
+  if(chips[2])chips[2].textContent=eur2(r.premium);
   // meter
   const meterWrap=card.querySelector('.meter');
   if(meterWrap) meterWrap.outerHTML=meterHTML(r);
-  // nota
-  const body=card.querySelector('.svc-body');
-  const oldNote=body.querySelector('.note'); if(oldNote)oldNote.remove();
-  let note="";
-  if(!isFinite(r.ideal)) note=`⚠ Com esta comissão é matematicamente impossível lucrar — a profissional fica com mais do que a empresa recebe. O problema está no modelo de comissão, não no preço.`;
-  else if(r.preco>0 && r.ideal>r.preco*1.8) note=`⚠ O preço ideal é bem acima do atual. Antes de subir tudo de uma vez, revê o tempo de execução, o custo de material ou a comissão — pode não ser só o preço.`;
-  if(note){const div=document.createElement('div');div.className='note';div.textContent=note;body.appendChild(div);}
+  // estratégia
+  const strat=card.querySelector('.strategy'); if(strat) strat.outerHTML=strategyHTML(r);
 }
 
 // ---------- Supabase (fase 2) — preenche para gravar contactos ----------
