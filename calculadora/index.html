@@ -138,6 +138,18 @@
   .st-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
   .st-add{border:1px solid var(--plum);background:#fff;color:var(--plum);border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
   .st-add:hover{background:var(--plum-soft)}
+  .ver-tag{display:inline-block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:10px}
+  .ver-tag.orig{background:var(--ink);color:#fff}
+  .ver-tag.premium{background:var(--plum-soft);color:var(--plum)}
+  .ver-tag.complementar{background:var(--gold-soft);color:var(--gold)}
+  .ver-list{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+  .ver{border:1px solid var(--line);border-left:3px solid var(--plum);border-radius:12px;padding:14px;background:#fbf9fc}
+  .ver.complementar{border-left-color:var(--gold)}
+  .ver-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .ver-head .ver-tag{margin-bottom:0}
+  .ver-head .v-nome{flex:1;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:8px 11px;background:#fff}
+  .ver-head .v-nome:focus{outline:none;border-color:var(--plum);box-shadow:0 0 0 3px var(--plum-soft)}
+  .btn-x.sm{width:32px;height:32px;font-size:14px;flex:0 0 auto}
   .btn-x{border:1px solid var(--line);background:#fff;color:var(--red);border-radius:9px;width:38px;height:38px;cursor:pointer;font-size:17px;line-height:1;flex:0 0 auto}
   .btn-x:hover{background:var(--red-soft)}
 
@@ -624,7 +636,7 @@ function strategyHTML(r, s){
 }
 
 function svcCardHTML(s){
-
+  if(!s.versoes) s.versoes=[];
   const r=calc(s);
   const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
   return `
@@ -632,30 +644,57 @@ function svcCardHTML(s){
     <div class="svc-head">
       <label class="field grow">Nome do serviço<input class="s-nome" type="text" value="${escapeHtml(s.nome)}" placeholder="Ex: Alongamento em gel"></label>
       <label class="field" style="flex:0 0 150px">Categoria<input class="s-cat" type="text" value="${escapeHtml(s.cat)}" placeholder="Ex: Alongamento"></label>
-      <button class="btn-x" data-del="${s.id}" title="Remover">✕</button>
+      <button class="btn-x" data-del="${s.id}" title="Remover serviço">✕</button>
     </div>
     <div class="svc-body">
-      <div class="svc-inputs">
-        <label class="field">Preço atual (com IVA)<div class="inwrap"><input class="s-preco" type="number" min="0" value="${s.preco}"><span class="unit">€</span></div></label>
-        <label class="field">Tempo de execução<div class="inwrap"><input class="s-tempo" type="number" min="0" step="0.25" value="${s.tempo}"><span class="unit">h</span></div></label>
+      <div class="ver-main">
+        <div class="ver-tag orig">Versão original</div>
+        <div class="svc-inputs">
+          <label class="field">Preço atual (com IVA)<div class="inwrap"><input class="s-preco" type="number" min="0" value="${s.preco}"><span class="unit">€</span></div></label>
+          <label class="field">Tempo de execução<div class="inwrap"><input class="s-tempo" type="number" min="0" step="0.25" value="${s.tempo}"><span class="unit">h</span></div></label>
+        </div>
+        <label class="svc-comp"><input type="checkbox" class="s-comp"${s.complementar?' checked':''}> Serviço complementar <span class="comp-hint">(feito durante outro atendimento — não conta custo fixo)</span></label>
+        <div class="diag">
+          <span class="badge b-${r.cls}"><span class="d"></span>${r.txt}</span>
+          <span class="lh">Lucro da empresa: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b> por serviço</span>
+        </div>
+        ${breakdownHTML(r)}
+        ${meterHTML(r)}
+        <div class="prices">
+          <div class="pchip"><div class="l">Mínimo</div><div class="p">${eur2(r.minimo)}</div></div>
+          <div class="pchip ideal"><div class="l">Ideal</div><div class="p">${eur2(r.ideal)}</div></div>
+          <div class="pchip"><div class="l">Premium</div><div class="p">${eur2(r.premium)}</div></div>
+        </div>
+        ${strategyHTML(r, s)}
       </div>
-      <label class="svc-comp"><input type="checkbox" class="s-comp"${s.complementar?' checked':''}> Serviço complementar <span class="comp-hint">(feito durante outro atendimento — não conta custo fixo)</span></label>
+      ${s.versoes.length ? `<div class="ver-list">${s.versoes.map(v=>versionHTML(s,v)).join('')}</div>` : ''}
+    </div>
+  </div>`;
+}
 
-      <div class="diag">
-        <span class="badge b-${r.cls}"><span class="d"></span>${r.txt}</span>
-        <span class="lh">Lucro da empresa: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b> por serviço</span>
-      </div>
-
-      ${breakdownHTML(r)}
-
-      ${meterHTML(r)}
-
-      <div class="prices">
-        <div class="pchip"><div class="l">Mínimo</div><div class="p">${eur2(r.minimo)}</div></div>
-        <div class="pchip ideal"><div class="l">Ideal</div><div class="p">${eur2(r.ideal)}</div></div>
-        <div class="pchip"><div class="l">Premium</div><div class="p">${eur2(r.premium)}</div></div>
-      </div>
-      ${strategyHTML(r, s)}
+function versionHTML(s, v){
+  const r=calc(v);
+  const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
+  const tag = v.kind==='premium' ? 'Premium' : 'Complementar';
+  return `
+  <div class="ver ${v.kind}" data-vid="${v.id}">
+    <div class="ver-head">
+      <span class="ver-tag ${v.kind}">${tag}</span>
+      <input class="v-nome" type="text" value="${escapeHtml(v.nome)}" placeholder="Nome da versão">
+      <button class="btn-x sm" data-vdel="${v.id}" title="Remover versão">✕</button>
+    </div>
+    <div class="svc-inputs">
+      <label class="field">Preço (com IVA)<div class="inwrap"><input class="v-preco" type="number" min="0" value="${v.preco}"><span class="unit">€</span></div></label>
+      <label class="field">Tempo<div class="inwrap"><input class="v-tempo" type="number" min="0" step="0.25" value="${v.tempo}"><span class="unit">h</span></div></label>
+    </div>
+    <div class="diag">
+      <span class="badge b-${r.cls}"><span class="d"></span>${r.txt}</span>
+      <span class="lh">Lucro: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b></span>
+    </div>
+    <div class="prices">
+      <div class="pchip"><div class="l">Mínimo</div><div class="p">${eur2(r.minimo)}</div></div>
+      <div class="pchip ideal"><div class="l">Ideal</div><div class="p">${eur2(r.ideal)}</div></div>
+      <div class="pchip"><div class="l">Premium</div><div class="p">${eur2(r.premium)}</div></div>
     </div>
   </div>`;
 }
@@ -791,18 +830,26 @@ function bind(){
   document.getElementById('comBase').addEventListener('change',e=>{state.comBase=e.target.value;renderServicos();});
 
   // serviços (delegação)
-  document.getElementById('add').addEventListener('click',()=>{state.servicos.push({id:sid++,nome:"",cat:"",preco:0,tempo:1,material:0,complementar:false});renderServicos();});
+  document.getElementById('add').addEventListener('click',()=>{state.servicos.push({id:sid++,nome:"",cat:"",preco:0,tempo:1,material:0,complementar:false,versoes:[]});renderServicos();});
   document.getElementById('svc-list').addEventListener('click',e=>{
     const d=e.target.closest('[data-del]');
     if(d){state.servicos=state.servicos.filter(s=>s.id!=d.dataset.del);renderServicos();return;}
+    const vd=e.target.closest('[data-vdel]');
+    if(vd){
+      const card=vd.closest('.svc'); const s=state.servicos.find(x=>x.id==card.dataset.id);
+      if(s){ s.versoes=(s.versoes||[]).filter(v=>v.id!=vd.dataset.vdel); renderServicos(); }
+      return;
+    }
     const ex=e.target.closest('[data-extra]');
     if(ex){
-      const src=state.servicos.find(x=>x.id==ex.dataset.src);
-      if(ex.dataset.extra==='premium' && src){
-        const rr=calc(src);
-        state.servicos.push({id:sid++,nome:(src.nome||'Serviço')+' — Premium',cat:src.cat||'',preco:isFinite(rr.premium)?rr.premium:0,tempo:src.tempo||1,complementar:false});
+      const s=state.servicos.find(x=>x.id==ex.dataset.src);
+      if(!s)return;
+      if(!s.versoes)s.versoes=[];
+      if(ex.dataset.extra==='premium'){
+        const rr=calc(s);
+        s.versoes.push({id:sid++,kind:'premium',nome:(s.nome||'Serviço')+' Premium',preco:isFinite(rr.premium)?rr.premium:0,tempo:s.tempo||1,complementar:false});
       } else {
-        state.servicos.push({id:sid++,nome:'Complementar (ex: nail art, spa)',cat:(src&&src.cat)||'',preco:0,tempo:0.5,complementar:true});
+        s.versoes.push({id:sid++,kind:'complementar',nome:'Complementar (ex: nail art, spa)',preco:0,tempo:0.5,complementar:true});
       }
       renderServicos();
       return;
@@ -811,33 +858,50 @@ function bind(){
   document.getElementById('svc-list').addEventListener('input',e=>{
     const card=e.target.closest('.svc'); if(!card)return; const id=+card.dataset.id; const s=state.servicos.find(x=>x.id===id); if(!s)return;
     const t=e.target;
+    const verEl=t.closest('.ver');
+    if(verEl){
+      const vid=+verEl.dataset.vid; const v=(s.versoes||[]).find(x=>x.id===vid); if(!v)return;
+      if(t.classList.contains('v-nome'))v.nome=t.value;
+      else if(t.classList.contains('v-preco'))v.preco=+t.value||0;
+      else if(t.classList.contains('v-tempo'))v.tempo=+t.value||0;
+      updateVersion(verEl, v);
+      return;
+    }
     if(t.classList.contains('s-nome'))s.nome=t.value;
     else if(t.classList.contains('s-cat'))s.cat=t.value;
     else if(t.classList.contains('s-preco'))s.preco=+t.value||0;
     else if(t.classList.contains('s-tempo'))s.tempo=+t.value||0;
     else if(t.classList.contains('s-comp'))s.complementar=t.checked;
-    // atualizar só o diagnóstico deste cartão sem re-render total (mantém foco no input)
     updateCard(card,s);
   });
 }
 
 function updateCard(card,s){
+  const main=card.querySelector('.ver-main')||card;
   const r=calc(s);
   const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
-  const badge=card.querySelector('.badge');
-  badge.className='badge b-'+r.cls;
-  badge.innerHTML='<span class="d"></span>'+r.txt;
-  card.querySelector('.lh').innerHTML=`Lucro da empresa: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b> por serviço`;
-  const bd=card.querySelector('.breakdown'); if(bd) bd.outerHTML=breakdownHTML(r);
-  const chips=card.querySelectorAll('.pchip .p');
+  const badge=main.querySelector('.badge');
+  if(badge){badge.className='badge b-'+r.cls;badge.innerHTML='<span class="d"></span>'+r.txt;}
+  const lh=main.querySelector('.lh'); if(lh) lh.innerHTML=`Lucro da empresa: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b> por serviço`;
+  const bd=main.querySelector('.breakdown'); if(bd) bd.outerHTML=breakdownHTML(r);
+  const chips=main.querySelectorAll('.prices .pchip .p');
   if(chips[0])chips[0].textContent=eur2(r.minimo);
   if(chips[1])chips[1].textContent=eur2(r.ideal);
   if(chips[2])chips[2].textContent=eur2(r.premium);
-  // meter
-  const meterWrap=card.querySelector('.meter');
-  if(meterWrap) meterWrap.outerHTML=meterHTML(r);
-  // estratégia
-  const strat=card.querySelector('.strategy'); if(strat) strat.outerHTML=strategyHTML(r, s);
+  const meterWrap=main.querySelector('.meter'); if(meterWrap) meterWrap.outerHTML=meterHTML(r);
+  const strat=main.querySelector('.strategy'); if(strat) strat.outerHTML=strategyHTML(r, s);
+}
+
+function updateVersion(verEl, v){
+  const r=calc(v);
+  const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
+  const badge=verEl.querySelector('.badge');
+  if(badge){badge.className='badge b-'+r.cls;badge.innerHTML='<span class="d"></span>'+r.txt;}
+  const lh=verEl.querySelector('.lh'); if(lh) lh.innerHTML=`Lucro: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b>`;
+  const chips=verEl.querySelectorAll('.prices .pchip .p');
+  if(chips[0])chips[0].textContent=eur2(r.minimo);
+  if(chips[1])chips[1].textContent=eur2(r.ideal);
+  if(chips[2])chips[2].textContent=eur2(r.premium);
 }
 
 // ---------- Supabase (fase 2) — preenche para gravar contactos ----------
