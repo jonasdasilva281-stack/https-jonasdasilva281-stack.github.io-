@@ -150,6 +150,11 @@
   .ver-head .v-nome{flex:1;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:8px 11px;background:#fff}
   .ver-head .v-nome:focus{outline:none;border-color:var(--plum);box-shadow:0 0 0 3px var(--plum-soft)}
   .btn-x.sm{width:32px;height:32px;font-size:14px;flex:0 0 auto}
+  .val-note{font-size:12px;color:var(--gold);background:var(--gold-soft);border-radius:9px;padding:9px 12px;margin:2px 0 12px;line-height:1.5}
+  .val-note b{color:var(--gold)}
+  .combo{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .combo .lh{font-size:13px;color:var(--ink-soft)}
+  .combo .lh b{color:var(--ink)}
   .btn-x{border:1px solid var(--line);background:#fff;color:var(--red);border-radius:9px;width:38px;height:38px;cursor:pointer;font-size:17px;line-height:1;flex:0 0 auto}
   .btn-x:hover{background:var(--red-soft)}
 
@@ -682,12 +687,26 @@ function svcCardHTML(s){
   </div>`;
 }
 
+function combinedCalc(s, v){
+  const iva=(+state.iva||0)/100;
+  const base=calc(s);
+  const c=state.comAtiva?(+state.comPct||0)/100:0;
+  const vSemIva=(+v.preco||0)/(1+iva);
+  const vCom=state.comAtiva?(state.comBase==='comiva'?(+v.preco||0)*c:vSemIva*c):0;
+  const addLucro=vSemIva - vCom;
+  const precoTotal=(+s.preco||0)+(+v.preco||0);
+  const lucroTotal=base.lucro+addLucro;
+  const tempoTotal=(+s.tempo||0)+(+v.tempo||0);
+  const lucroHoraTotal=tempoTotal>0?lucroTotal/tempoTotal:lucroTotal;
+  const alvo=+state.alvo||0; let cls,txt;
+  if(alvo>0){const ratio=lucroHoraTotal/alvo; if(ratio>=1){cls='green';txt='Saudável';}else if(ratio>=0.5){cls='amber';txt='A ajustar';}else{cls='red';txt='Baixo';}}
+  else{ if(lucroHoraTotal>0){cls='green';txt='Saudável';}else if(lucroHoraTotal===0){cls='amber';txt='No limiar';}else{cls='red';txt='Baixo';} }
+  return {precoTotal,lucroTotal,lucroHoraTotal,cls,txt};
+}
+
 function versionHTML(s, v){
-  const r=calc(v);
-  const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
   const tag = v.kind==='premium' ? 'Premium' : 'Complementar';
-  return `
-  <div class="ver ${v.kind}" data-vid="${v.id}">
+  const head = `
     <div class="ver-head">
       <span class="ver-tag ${v.kind}">${tag}</span>
       <input class="v-nome" type="text" value="${escapeHtml(v.nome)}" placeholder="Nome da versão">
@@ -695,8 +714,26 @@ function versionHTML(s, v){
     </div>
     <div class="svc-inputs">
       <label class="field">Preço (com IVA)<div class="inwrap"><input class="v-preco" type="number" min="0" value="${v.preco}"><span class="unit">€</span></div></label>
-      <label class="field">Tempo<div class="inwrap"><input class="v-tempo" type="number" min="0" step="0.25" value="${v.tempo}"><span class="unit">h</span></div></label>
+      <label class="field">Tempo extra<div class="inwrap"><input class="v-tempo" type="number" min="0" step="0.25" value="${v.tempo}"><span class="unit">h</span></div></label>
+    </div>`;
+  if(v.kind==='complementar'){
+    const cc=combinedCalc(s,v);
+    const lh=cc.lucroHoraTotal<0?("−"+eur2(Math.abs(cc.lucroHoraTotal))):eur2(cc.lucroHoraTotal);
+    return `
+  <div class="ver complementar" data-vid="${v.id}">
+    ${head}
+    <div class="val-note">💡 Preço por <b>valor</b>, não por custo. Este extra vende-se <b>junto com o serviço principal</b>, não sozinho — define o preço pelo que a cliente valoriza.</div>
+    <div class="combo">
+      <span class="badge b-${cc.cls}"><span class="d"></span>${cc.txt}</span>
+      <span class="lh">Serviço + extra: <b>${eur2(cc.precoTotal)}</b> · lucro <b>${eur2(cc.lucroTotal)}</b> (<b>${lh}/h</b>)</span>
     </div>
+  </div>`;
+  }
+  const r=calc(v);
+  const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
+  return `
+  <div class="ver premium" data-vid="${v.id}">
+    ${head}
     <div class="diag">
       <span class="badge b-${r.cls}"><span class="d"></span>${r.txt}</span>
       <span class="lh">Lucro: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b></span>
@@ -874,7 +911,7 @@ function bind(){
       if(t.classList.contains('v-nome'))v.nome=t.value;
       else if(t.classList.contains('v-preco'))v.preco=+t.value||0;
       else if(t.classList.contains('v-tempo'))v.tempo=+t.value||0;
-      updateVersion(verEl, v);
+      updateVersion(verEl, s, v);
       return;
     }
     if(t.classList.contains('s-nome'))s.nome=t.value;
@@ -900,13 +937,20 @@ function updateCard(card,s){
   if(chips[2])chips[2].textContent=eur2(r.premium);
   const meterWrap=main.querySelector('.meter'); if(meterWrap) meterWrap.outerHTML=meterHTML(r);
   const strat=main.querySelector('.strategy'); if(strat) strat.outerHTML=strategyHTML(r, s);
+  card.querySelectorAll('.ver.complementar').forEach(verEl=>{ const v=(s.versoes||[]).find(x=>x.id==verEl.dataset.vid); if(v) updateVersion(verEl, s, v); });
 }
 
-function updateVersion(verEl, v){
+function updateVersion(verEl, s, v){
+  if(v.kind==='complementar'){
+    const cc=combinedCalc(s,v);
+    const lh=cc.lucroHoraTotal<0?("−"+eur2(Math.abs(cc.lucroHoraTotal))):eur2(cc.lucroHoraTotal);
+    const badge=verEl.querySelector('.badge'); if(badge){badge.className='badge b-'+cc.cls;badge.innerHTML='<span class="d"></span>'+cc.txt;}
+    const lhel=verEl.querySelector('.combo .lh'); if(lhel) lhel.innerHTML=`Serviço + extra: <b>${eur2(cc.precoTotal)}</b> · lucro <b>${eur2(cc.lucroTotal)}</b> (<b>${lh}/h</b>)`;
+    return;
+  }
   const r=calc(v);
   const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
-  const badge=verEl.querySelector('.badge');
-  if(badge){badge.className='badge b-'+r.cls;badge.innerHTML='<span class="d"></span>'+r.txt;}
+  const badge=verEl.querySelector('.badge'); if(badge){badge.className='badge b-'+r.cls;badge.innerHTML='<span class="d"></span>'+r.txt;}
   const lh=verEl.querySelector('.lh'); if(lh) lh.innerHTML=`Lucro: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b>`;
   const chips=verEl.querySelectorAll('.prices .pchip .p');
   if(chips[0])chips[0].textContent=eur2(r.minimo);
