@@ -135,6 +135,9 @@
   .strategy li{margin-bottom:4px}
   .strategy b{color:var(--ink)}
   .strategy .st-extra{margin-top:9px;padding-top:9px;border-top:1px solid rgba(0,0,0,.08)}
+  .st-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .st-add{border:1px solid var(--plum);background:#fff;color:var(--plum);border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+  .st-add:hover{background:var(--plum-soft)}
   .btn-x{border:1px solid var(--line);background:#fff;color:var(--red);border-radius:9px;width:38px;height:38px;cursor:pointer;font-size:17px;line-height:1;flex:0 0 auto}
   .btn-x:hover{background:var(--red-soft)}
 
@@ -583,7 +586,7 @@ function meterHTML(r){
     </div>`;
 }
 
-function strategyHTML(r){
+function strategyHTML(r, s){
   const ideal=eur2(r.ideal), premium=eur2(r.premium);
   if(!isFinite(r.ideal)){
     return `<div class="strategy s-red"><div class="st-title">🔴 Diagnóstico: comissão inviável</div>Com esta comissão é <b>impossível</b> a empresa lucrar — a profissional fica com mais do que o negócio recebe. Aqui o preço não resolve: o que tens de rever é o <b>modelo de comissão</b> (baixar a %, ou calcular sobre o valor sem IVA).</div>`;
@@ -616,7 +619,8 @@ function strategyHTML(r){
   }
   let extra='';
   if(r.preco>0 && r.ideal>r.preco*1.8) extra=`<div class="st-extra"><b>Nota:</b> o ideal está bem acima do preço atual. Antes de subir tudo de uma vez, revê o tempo, o material ou a comissão — pode não ser só o preço.</div>`;
-  return `<div class="strategy s-${r.cls}"><div class="st-title">${title}</div>${body}${extra}</div>`;
+  const actions=`<div class="st-actions"><button class="st-add" data-extra="premium" data-src="${s.id}">+ Criar versão premium</button><button class="st-add" data-extra="complementar" data-src="${s.id}">+ Adicionar complementar</button></div>`;
+  return `<div class="strategy s-${r.cls}"><div class="st-title">${title}</div>${body}${extra}${actions}</div>`;
 }
 
 function svcCardHTML(s){
@@ -651,7 +655,7 @@ function svcCardHTML(s){
         <div class="pchip ideal"><div class="l">Ideal</div><div class="p">${eur2(r.ideal)}</div></div>
         <div class="pchip"><div class="l">Premium</div><div class="p">${eur2(r.premium)}</div></div>
       </div>
-      ${strategyHTML(r)}
+      ${strategyHTML(r, s)}
     </div>
   </div>`;
 }
@@ -788,7 +792,22 @@ function bind(){
 
   // serviços (delegação)
   document.getElementById('add').addEventListener('click',()=>{state.servicos.push({id:sid++,nome:"",cat:"",preco:0,tempo:1,material:0,complementar:false});renderServicos();});
-  document.getElementById('svc-list').addEventListener('click',e=>{const d=e.target.closest('[data-del]');if(d){state.servicos=state.servicos.filter(s=>s.id!=d.dataset.del);renderServicos();}});
+  document.getElementById('svc-list').addEventListener('click',e=>{
+    const d=e.target.closest('[data-del]');
+    if(d){state.servicos=state.servicos.filter(s=>s.id!=d.dataset.del);renderServicos();return;}
+    const ex=e.target.closest('[data-extra]');
+    if(ex){
+      const src=state.servicos.find(x=>x.id==ex.dataset.src);
+      if(ex.dataset.extra==='premium' && src){
+        const rr=calc(src);
+        state.servicos.push({id:sid++,nome:(src.nome||'Serviço')+' — Premium',cat:src.cat||'',preco:isFinite(rr.premium)?rr.premium:0,tempo:src.tempo||1,complementar:false});
+      } else {
+        state.servicos.push({id:sid++,nome:'Complementar (ex: nail art, spa)',cat:(src&&src.cat)||'',preco:0,tempo:0.5,complementar:true});
+      }
+      renderServicos();
+      return;
+    }
+  });
   document.getElementById('svc-list').addEventListener('input',e=>{
     const card=e.target.closest('.svc'); if(!card)return; const id=+card.dataset.id; const s=state.servicos.find(x=>x.id===id); if(!s)return;
     const t=e.target;
@@ -818,7 +837,7 @@ function updateCard(card,s){
   const meterWrap=card.querySelector('.meter');
   if(meterWrap) meterWrap.outerHTML=meterHTML(r);
   // estratégia
-  const strat=card.querySelector('.strategy'); if(strat) strat.outerHTML=strategyHTML(r);
+  const strat=card.querySelector('.strategy'); if(strat) strat.outerHTML=strategyHTML(r, s);
 }
 
 // ---------- Supabase (fase 2) — preenche para gravar contactos ----------
