@@ -2,220 +2,324 @@
 <html lang="pt-PT">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kit Agenda Cheia — Recupere clientes antigas em 7 dias</title>
-<meta name="description" content="15 mensagens de WhatsApp, 10 scripts e 10 prompts de IA para trazer de volta clientes antigas em 7 dias. Para esteticistas e negócios de serviços. 17 €.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kit Agenda Cheia — Clientes antigas de volta em 7 dias</title>
+<meta name="description" content="15 mensagens de WhatsApp prontas a enviar, 10 scripts e um plano de 7 dias para trazer de volta clientes antigas. Para esteticistas e negócios de serviços. 17 €.">
 <link rel="canonical" href="https://hubadvance.pt/agenda-cheia/">
 <meta property="og:type" content="product">
-<meta property="og:title" content="Kit Agenda Cheia — Recupere clientes antigas em 7 dias">
-<meta property="og:description" content="Mensagens prontas, scripts e plano de 7 dias para encher a agenda com quem já é sua cliente.">
+<meta property="og:title" content="Kit Agenda Cheia — Clientes antigas de volta em 7 dias">
+<meta property="og:description" content="Mensagens de WhatsApp prontas a enviar para encher a agenda com quem já é sua cliente. 17 €.">
 <meta property="og:url" content="https://hubadvance.pt/agenda-cheia/">
-<!-- <meta property="og:image" content="https://hubadvance.pt/agenda-cheia/capa.jpg"> -->
-<meta name="theme-color" content="#2b2320">
+<meta property="og:image" content="https://hubadvance.pt/agenda-cheia/img/og.jpg">
+<meta name="theme-color" content="#0d0b0a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <!-- Meta Pixel: cole aqui o código do seu Pixel -->
-<!-- Google Analytics: cole aqui o código gtag -->
 <style>
-:root{--ink:#2b2320;--acc:#b5654a;--acc2:#e7a98f;--cream:#faf5ef;--soft:#f4ebe2;--line:#e6d7c9;--mute:#7d6b5f;--green:#eaf3e4;--green-line:#d3e4c8}
+:root{--bg:#0d0b0a;--bg2:#15110f;--line:rgba(255,255,255,.12);--glass:rgba(255,255,255,.06);--mute:rgba(255,255,255,.64);--o1:#ffb13b;--o2:#ff5a36;--o3:#ff2d87;--grad:linear-gradient(90deg,var(--o1),var(--o2) 45%,var(--o3))}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--cream);color:var(--ink);font:300 17px/1.6 Poppins,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
-h1,h2,h3{font-family:Lora,Georgia,serif;font-weight:600;line-height:1.15;margin:0}
-b,strong{font-weight:600}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:#fff;font:400 17px/1.6 "Inter Tight",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.035em;line-height:1}
+b{font-weight:700}
 a{color:inherit}
-.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-.narrow{max-width:720px}
-.kicker{font:500 12px Poppins;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:12px}
-section{padding:72px 0}
-.btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;font-weight:500;padding:17px 30px;border-radius:999px;font-size:17px;transition:transform .15s,background .15s;box-shadow:0 8px 24px -10px rgba(181,101,74,.7)}
-.btn:hover{background:#a2573e;transform:translateY(-1px)}
-.btn small{font-weight:300;opacity:.85;margin-left:6px}
-.note{font-size:13px;color:var(--mute);margin-top:12px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px;position:relative}
+.narrow{max-width:760px}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
+.gtxt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
+.kicker::before{content:"";width:22px;height:2px;background:var(--grad);border-radius:2px}
+h2{font-size:clamp(36px,5.4vw,64px)}
+section{padding:96px 0;position:relative}
+.lead{font-size:clamp(18px,2vw,21px);color:var(--mute);max-width:640px;margin:20px 0 0}
+
+/* fundo */
+.blob{position:absolute;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.06;z-index:50;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--bg);text-decoration:none;font-weight:800;font-size:18px;letter-spacing:-.01em;padding:20px 30px;border-radius:999px;box-shadow:0 18px 50px -12px rgba(255,90,54,.75);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn .pr{background:var(--bg);color:#fff;border-radius:999px;padding:5px 12px;font-size:15px}
+.trust{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:20px;font-size:14.5px;color:var(--mute);font-weight:500}
+
+/* nav */
+.nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:22px 0}
+.logo{font-weight:800;font-size:17px;letter-spacing:-.02em}
+.logo span{color:var(--mute);font-weight:500}
+.nav a.mini{white-space:nowrap;font-weight:700;font-size:14px;text-decoration:none;border:1px solid var(--line);background:var(--glass);border-radius:999px;padding:9px 16px}
 
 /* hero */
-.hero{background:var(--ink);color:#f4ebe2;padding:28px 0 80px;overflow:hidden}
-.top{display:flex;justify-content:space-between;align-items:center;font:500 12px Poppins;letter-spacing:.2em;text-transform:uppercase;color:#d9a48d;margin-bottom:56px}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
-.hero h1{font-size:clamp(38px,6vw,62px);color:#fff;letter-spacing:-.01em}
-.hero h1 em{color:var(--acc2);font-weight:500}
-.hero p.sub{font-size:19px;color:#e2d4c7;margin:20px 0 30px;max-width:520px}
-.hero .price{font-family:Lora;font-size:15px;color:#bca99b;margin-top:14px}
-.hero .price b{color:#fff;font-size:22px;font-weight:600}
-.phone{background:#1d1714;border-radius:34px;padding:14px;max-width:320px;margin:0 auto;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);border:1px solid #4a3c35}
-.screen{background:#efe7dd;border-radius:24px;padding:18px 14px;min-height:400px;display:flex;flex-direction:column;gap:10px}
-.chat-top{font:500 13px Poppins;color:#2b2320;padding:0 4px 8px;border-bottom:1px solid #ddd0c3}
-.bub{max-width:86%;padding:9px 12px;border-radius:14px;font-size:13.5px;line-height:1.45;color:#1f2a1b}
-.bub.me{background:#d9f2c9;align-self:flex-end;border-bottom-right-radius:4px}
-.bub.her{background:#fff;align-self:flex-start;border-bottom-left-radius:4px}
-.bub .t{display:block;text-align:right;font-size:10px;color:#8a8a8a;margin-top:2px}
+.hero{padding:10px 0 90px;overflow:hidden;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative;z-index:1;margin-top:40px}
+.pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(10px);border-radius:999px;padding:7px 16px 7px 7px;font-weight:600;font-size:15px}
+.pill i{font-style:normal;background:var(--grad);border-radius:999px;padding:3px 10px;font-weight:800;font-size:12px;letter-spacing:.08em}
+.hero h1{font-size:clamp(50px,7vw,90px);font-weight:900;letter-spacing:-.055em;line-height:.9;margin-top:26px}
+.hero h1 .serif{font-size:1.1em;letter-spacing:-.02em}
+.hero .lead{margin-bottom:34px}
+
+/* telemóvel */
+.stage{position:relative;height:600px}
+.phone{position:absolute;left:50%;top:10px;width:300px;height:580px;margin-left:-150px;border-radius:52px;background:#161311;border:8px solid #2a2522;box-shadow:0 60px 120px -30px rgba(0,0,0,.85),inset 0 0 0 2px rgba(255,255,255,.07);transform:rotate(-5deg);overflow:hidden}
+.notch{width:96px;height:26px;border-radius:16px;background:#000;margin:12px auto 0}
+.wh{display:flex;align-items:center;gap:10px;padding:16px 16px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--o1),var(--o2))}
+.wh b{display:block;font-size:17px}.wh small{font-size:13px;color:#6fd18a}
+.msgs{padding:16px 14px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:86%;padding:10px 13px;border-radius:17px;font-weight:500;font-size:14.5px;line-height:1.35;opacity:0;transform:translateY(8px);animation:pop .5s forwards}
+.me{align-self:flex-end;background:#1f7a4c;border-bottom-right-radius:5px}
+.her{align-self:flex-start;background:#2a2522;border-bottom-left-radius:5px}
+.m:nth-child(1){animation-delay:.3s}.m:nth-child(2){animation-delay:1.1s}.m:nth-child(3){animation-delay:1.9s}.m:nth-child(4){animation-delay:2.7s}
+@keyframes pop{to{opacity:1;transform:none}}
+.gcard{position:absolute;display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.1);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.22);border-radius:22px;padding:14px 18px;box-shadow:0 24px 50px -18px rgba(0,0,0,.6);z-index:3}
+.gcard .ic{width:44px;height:44px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:23px;flex:0 0 auto}
+.gcard b{display:block;font-weight:800;font-size:16.5px;line-height:1.2}.gcard small{font-size:13.5px;color:var(--mute)}
+.g1{left:0;top:130px;transform:rotate(-3deg)}.g1 .ic{background:#25d366}
+.g2{right:0;top:390px;transform:rotate(3deg)}.g2 .ic{background:linear-gradient(135deg,var(--o1),var(--o2))}
+
+/* faixa */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 0;overflow:hidden;white-space:nowrap;background:var(--bg2)}
+.strip div{display:inline-block;animation:mar 28s linear infinite;font-weight:700;font-size:18px;color:var(--mute)}
+.strip span{margin:0 26px}.strip em{font-style:normal;background:var(--grad);-webkit-background-clip:text;color:transparent}
+@keyframes mar{to{transform:translateX(-50%)}}
 
 /* problema */
-.problem h2{font-size:clamp(28px,4vw,40px)}
-.problem p{font-size:18px;color:#4d3f36}
-.pull{font-family:Lora;font-style:italic;font-size:24px;color:var(--acc);border-left:3px solid var(--acc);padding-left:18px;margin:28px 0}
+.pain{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+.pain div{border:1px solid var(--line);background:var(--glass);border-radius:24px;padding:26px}
+.pain b{display:block;font-size:30px;margin-bottom:10px}
+.pain p{margin:0;color:var(--mute);font-size:16px}
+.big-quote{font-size:clamp(30px,4.4vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1.05;margin:70px 0 0;max-width:900px}
 
 /* inclui */
-.inc{background:#fff}
-.inc h2{font-size:clamp(28px,4vw,40px);margin-bottom:36px}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.card{background:var(--soft);border-radius:18px;padding:26px}
-.card .n{font:600 44px Lora;color:var(--acc);line-height:1}
-.card h3{font-size:21px;margin:8px 0 6px}
-.card p{margin:0;color:#5c4c42;font-size:15.5px}
-.sample{margin-top:28px;background:var(--cream);border:1px dashed var(--line);border-radius:18px;padding:24px}
-.sample .lab{font:500 13px Poppins;color:var(--acc);margin-bottom:8px}
-.sample .b{background:var(--green);border:1px solid var(--green-line);border-radius:14px 14px 14px 4px;padding:14px 16px;font-weight:400;font-size:16px}
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:44px}
+.bx{border:1px solid var(--line);background:var(--glass);border-radius:28px;padding:30px;position:relative;overflow:hidden}
+.bx .n{font-weight:900;font-size:72px;letter-spacing:-.06em;line-height:.9}
+.bx h3{font-size:24px;margin:12px 0 8px;letter-spacing:-.02em}
+.bx p{margin:0;color:var(--mute);font-size:16px}
+.s3{grid-column:span 3}.s2{grid-column:span 2}.s4{grid-column:span 4}
+.pages{display:flex;justify-content:center;gap:0;margin-top:24px;height:250px;position:relative}
+.pages img{width:170px;border-radius:10px;border:3px solid #fff;box-shadow:0 30px 50px -15px rgba(0,0,0,.7);position:absolute;top:10px}
+.pages img:nth-child(1){transform:rotate(-10deg);left:calc(50% - 250px)}
+.pages img:nth-child(2){transform:rotate(-2deg);left:calc(50% - 90px);z-index:2;top:0}
+.pages img:nth-child(3){transform:rotate(8deg);left:calc(50% + 70px)}
+.sample{margin-top:14px;background:#0f2a1c;border:1px solid #1f5a3a;border-radius:20px 20px 20px 6px;padding:18px 20px;font-weight:500;font-size:17px}
+.sample small{display:block;color:#6fd18a;font-weight:700;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+
+/* valor */
+.value{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.vcard{border-radius:28px;padding:34px;border:1px solid var(--line)}
+.vcard.dim{background:var(--glass)}
+.vcard.hot{background:linear-gradient(135deg,rgba(255,177,59,.16),rgba(255,45,135,.14));border-color:rgba(255,120,80,.45)}
+.vcard small{font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.vcard .num{font-weight:900;font-size:clamp(56px,7vw,84px);letter-spacing:-.06em;line-height:1;margin:14px 0 10px}
+.vcard p{margin:0;color:var(--mute)}
+.vcard ul{margin:14px 0 0;padding:0;list-style:none;color:var(--mute);font-size:16px}
+.vcard li{padding:5px 0}.vcard li::before{content:"✕  ";color:#ff6b6b;font-weight:700}
+.vcard.hot li::before{content:"✓  ";color:#6fd18a}
 
 /* plano */
-.days{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:32px}
-.days div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 12px}
-.days b{display:block;font:600 22px Lora;color:var(--acc)}
-.days span{font-size:13.5px;color:#4d3f36;line-height:1.4;display:block;margin-top:4px}
-.goal{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap}
-.goal div{flex:1;min-width:150px;background:var(--ink);color:#e9dccf;border-radius:14px;padding:18px;text-align:center}
-.goal b{display:block;font:600 34px Lora;color:var(--acc2)}
-.goal small{font-size:14px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;margin-top:44px}
+.days div{border:1px solid var(--line);background:var(--glass);border-radius:20px;padding:18px 14px;min-height:150px}
+.days b{display:block;font-weight:900;font-size:34px;letter-spacing:-.05em}
+.days b.gtxt{display:inline-block}
+.days span{display:block;font-size:14.5px;color:var(--mute);line-height:1.4;margin-top:6px}
+.note{font-size:13.5px;color:rgba(255,255,255,.45);margin-top:16px}
 
 /* para quem */
-.who{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
-.who > div{background:#fff;border-radius:18px;padding:26px;border:1px solid var(--line)}
-.who h3{font-size:20px;margin-bottom:12px}
+.who{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:44px}
+.who>div{border:1px solid var(--line);background:var(--glass);border-radius:28px;padding:30px}
+.who h3{font-size:24px;margin-bottom:14px}
 .who ul{list-style:none;padding:0;margin:0}
-.who li{padding:7px 0 7px 28px;position:relative;font-size:15.5px;border-top:1px solid var(--soft)}
-.who li::before{position:absolute;left:0;top:7px;font-weight:600}
-.yes li::before{content:"✓";color:#4f8a3d}
-.no li::before{content:"✕";color:var(--acc)}
+.who li{padding:11px 0 11px 34px;position:relative;border-top:1px solid var(--line);font-size:16.5px}
+.who li::before{position:absolute;left:0;top:10px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.yes li::before{content:"✓";background:#1f7a4c}
+.no li::before{content:"✕";background:#4a2a26;color:#ff8a7a}
 
-/* sobre */
-.about{background:var(--ink);color:#e9dccf}
-.about h2{color:#fff;font-size:32px;margin-bottom:14px}
-.about p{color:#cdbdb0}
+/* autor */
+.author{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;border:1px solid var(--line);background:var(--glass);border-radius:32px;padding:34px}
+.author .mono{width:110px;height:110px;border-radius:30px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:40px;letter-spacing:-.04em}
+.author h3{font-size:30px}.author p{color:var(--mute);margin:10px 0 0}
 
 /* faq */
-.faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:10px}
-.faq summary{font:600 18px Lora;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq details{border-bottom:1px solid var(--line);padding:22px 0}
+.faq summary{font-weight:700;font-size:20px;letter-spacing:-.02em;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";color:var(--acc);font:500 22px Poppins;line-height:1}
-.faq details[open] summary::after{content:"–"}
-.faq details p{margin:12px 0 0;color:#4d3f36;font-size:16px}
+.faq summary::after{content:"+";font-weight:500;font-size:26px;line-height:1;color:var(--o2);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:12px 0 0;color:var(--mute)}
 
 /* final */
-.final{text-align:center;background:var(--soft)}
-.final h2{font-size:clamp(30px,4.5vw,44px);margin-bottom:14px}
-.final p{max-width:560px;margin:0 auto 28px;color:#4d3f36}
-.pricebox{display:inline-block;background:#fff;border-radius:22px;padding:30px 34px;border:1px solid var(--line);box-shadow:0 20px 50px -30px rgba(43,35,32,.5)}
-.pricebox .big{font:600 58px Lora;color:var(--ink);line-height:1}
-.pricebox .big small{font-size:22px}
-.pricebox ul{text-align:left;list-style:none;padding:0;margin:18px 0 24px;font-size:15px}
-.pricebox li{padding:4px 0}
-.pricebox li::before{content:"✓  ";color:#4f8a3d;font-weight:600}
+.final{text-align:center;overflow:hidden;position:relative}
+.final h2{font-size:clamp(40px,6.4vw,80px);max-width:900px;margin:0 auto}
+.offer{max-width:520px;margin:44px auto 0;text-align:left;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.07);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:34px;padding:34px;box-shadow:0 40px 90px -30px rgba(255,90,54,.5)}
+.offer .tag{display:inline-block;background:var(--grad);border-radius:999px;padding:5px 14px;font-weight:800;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase}
+.offer .price{display:flex;align-items:baseline;gap:6px;margin:16px 0 4px}
+.offer .price b{font-weight:900;font-size:96px;letter-spacing:-.06em;line-height:1}
+.offer .price span{font-weight:800;font-size:40px}
+.offer .per{color:var(--mute);font-size:15px}
+.offer ul{list-style:none;padding:0;margin:22px 0 26px}
+.offer li{padding:9px 0;border-top:1px solid var(--line);font-weight:500}
+.offer li::before{content:"✓";display:inline-flex;width:22px;height:22px;border-radius:50%;background:#1f7a4c;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-right:12px}
+.offer .btn{width:100%;justify-content:center}
+.guar{display:flex;gap:14px;align-items:center;margin-top:20px;padding-top:20px;border-top:1px solid var(--line);font-size:14.5px;color:var(--mute)}
+.guar b{color:#fff}
+.guar .sh{font-size:30px}
 
-footer{padding:34px 0 110px;font-size:13px;color:var(--mute);text-align:center}
-footer a{color:var(--mute)}
+footer{border-top:1px solid var(--line);padding:30px 0 120px;font-size:14px;color:rgba(255,255,255,.45);text-align:center}
 
 /* CTA fixo mobile */
-.sticky{position:fixed;left:0;right:0;bottom:0;background:rgba(43,35,32,.97);padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:none;align-items:center;justify-content:space-between;gap:12px;z-index:10;transform:translateY(100%);transition:transform .25s}
+.sticky{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));display:none;align-items:center;justify-content:space-between;gap:12px;background:rgba(20,16,14,.8);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:10px 10px 10px 18px;z-index:40;transform:translateY(140%);transition:transform .3s}
 .sticky.show{transform:none}
-.sticky span{color:#e9dccf;font-size:14px;line-height:1.3}
-.sticky span b{color:#fff;font-size:17px}
-.sticky .btn{padding:12px 20px;font-size:15px;box-shadow:none;white-space:nowrap}
+.sticky span{font-size:13.5px;color:var(--mute);line-height:1.25}.sticky span b{display:block;color:#fff;font-size:19px;font-weight:900}
+.sticky .btn{padding:14px 20px;font-size:16px;box-shadow:none}
 
-@media (max-width:820px){
-  body{font-size:16px}
-  section{padding:56px 0}
-  .hero{padding-bottom:56px}
-  .top{margin-bottom:36px}
-  .hero-grid{grid-template-columns:1fr;gap:40px}
-  .cards,.who{grid-template-columns:1fr}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  section{padding:72px 0}
+  .hero-grid{grid-template-columns:1fr;gap:10px}
+  .stage{height:560px;max-width:420px;margin:0 auto;width:100%}
+  .pain,.value,.who{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}
+  .s2,.s3,.s4{grid-column:auto}
   .days{grid-template-columns:1fr 1fr}
+  .days div{min-height:0}
+  .author{grid-template-columns:1fr}
   .sticky{display:flex}
-  .pricebox{padding:26px 22px;width:100%}
+  .logo span{display:none}
+  .btn{padding:18px 26px}
+  .hero .btn{width:100%;justify-content:center}
 }
+@media (max-width:420px){
+  .g1{left:-6px}.g2{right:-6px}
+  .pages img{width:140px}
+  .pages img:nth-child(1){left:calc(50% - 200px)}.pages img:nth-child(2){left:calc(50% - 72px)}.pages img:nth-child(3){left:calc(50% + 55px)}
+  .pages{height:210px}
+}
+@media (prefers-reduced-motion:reduce){.m{animation:none;opacity:1;transform:none}.strip div{animation:none}.reveal{opacity:1;transform:none}}
 </style>
 </head>
 <body>
+<div class="grain"></div>
 
 <header class="hero">
+  <div class="blob" style="width:700px;height:700px;right:-200px;top:-100px;background:var(--o3);opacity:.32"></div>
+  <div class="blob" style="width:700px;height:700px;left:-280px;top:260px;background:var(--o2);opacity:.38"></div>
+  <div class="blob" style="width:500px;height:500px;left:40%;top:520px;background:var(--o1);opacity:.22"></div>
   <div class="wrap">
-    <div class="top"><span>Hub Advance</span><span>Kit prático</span></div>
+    <nav class="nav"><div class="logo">Hub Advance <span>· Kit Agenda Cheia</span></div><a class="mini buy" href="#comprar">Comprar · 17 €</a></nav>
     <div class="hero-grid">
       <div>
-        <div class="kicker" style="color:#d9a48d">Kit Agenda Cheia</div>
-        <h1>Encha a agenda com quem <em>já é sua cliente</em>.</h1>
-        <p class="sub">15 mensagens de WhatsApp prontas a copiar, 10 scripts para fechar marcações e um plano de 7 dias para trazer de volta 5 clientes antigas. Sem anúncios, sem descontos, sem ter de aparecer mais nas redes.</p>
-        <a class="btn buy" href="#comprar">Quero o kit <small>· 17 €</small></a>
-        <div class="price">Preço de lançamento · guia digital em PDF · acesso imediato</div>
+        <div class="pill"><i>KIT</i>Tem vagas vazias esta semana?</div>
+        <h1>Clientes antigas <span class="serif gtxt">de volta</span> em 7 dias.</h1>
+        <p class="lead">15 mensagens de WhatsApp prontas a enviar, 10 respostas para fechar marcações e um plano dia a dia. Sem anúncios. Sem descontos. Sem ter de aparecer mais nas redes.</p>
+        <a class="btn buy" href="#comprar">Quero encher a agenda <span class="pr">17 €</span></a>
+        <div class="trust"><span>⚡ Acesso imediato</span><span>🛡 Garantia de 7 dias</span><span>🔒 Pagamento seguro Hotmart</span></div>
       </div>
-      <div class="phone" aria-hidden="true">
-        <div class="screen">
-          <div class="chat-top">Ana · cliente desde 2025</div>
-          <div class="bub me">Olá Ana! Tenho saudades de a ver por cá 😊 Está tudo bem consigo?<span class="t">10:14 ✓✓</span></div>
-          <div class="bub her">Olá!! Está sim 🙈 andei cheia de trabalho e acabei por deixar passar<span class="t">10:31</span></div>
-          <div class="bub me">Imagino! Abri horários ao sábado de manhã — lembro-me de que o horário era complicado para si. Quer que lhe guarde um?<span class="t">10:33 ✓✓</span></div>
-          <div class="bub her">Sábado dava-me imenso jeito! Pode ser às 10h? 💛<span class="t">10:35</span></div>
+      <div class="stage" aria-hidden="true">
+        <div class="phone"><div class="notch"></div>
+          <div class="wh"><div class="av"></div><div><b>Ana</b><small>online</small></div></div>
+          <div class="msgs">
+            <div class="m me">Olá Ana! Tenho saudades de a ver por cá 😊 Está tudo bem consigo?</div>
+            <div class="m her">Olá!! Andei cheia de trabalho e deixei passar 🙈</div>
+            <div class="m me">Abri horários ao sábado — lembro-me de que o horário era complicado para si. Quer que lhe guarde um?</div>
+            <div class="m her">Sim!! Sábado às 10h 💛</div>
+          </div>
         </div>
+        <div class="gcard g1"><div class="ic">💬</div><div><b>Ana respondeu</b><small>“Sábado às 10h 💛”</small></div></div>
+        <div class="gcard g2"><div class="ic">📅</div><div><b>Nova marcação</b><small>Sábado · 10h00</small></div></div>
       </div>
     </div>
   </div>
 </header>
 
-<section class="problem">
-  <div class="wrap narrow">
-    <div class="kicker">O problema</div>
-    <h2>A agenda tem buracos. E as clientes que já tinha deixaram de aparecer.</h2>
-    <p>Todos os meses há clientes que se afastam. Não é porque deixaram de gostar do seu trabalho. Foi a vida, o horário, o dinheiro apertado naquele mês… e ninguém as chamou de volta.</p>
-    <p>Entretanto, anda a gastar energia a tentar conquistar clientes novas, que custam muito mais a convencer.</p>
-    <div class="pull">O dinheiro mais rápido do seu negócio já está no seu telemóvel.</div>
-    <p>Uma cliente antiga já a conhece, já confiou em si e já pagou. Só precisa da mensagem certa, à hora certa. É isso que este kit lhe dá, já escrito.</p>
+<div class="strip" aria-hidden="true"><div>
+  <span>Estética</span><span><em>✦</em></span><span>Cabelo</span><span><em>✦</em></span><span>Unhas</span><span><em>✦</em></span><span>Massagens</span><span><em>✦</em></span><span>Pestanas</span><span><em>✦</em></span><span>Sobrancelhas</span><span><em>✦</em></span><span>Depilação</span><span><em>✦</em></span>
+  <span>Estética</span><span><em>✦</em></span><span>Cabelo</span><span><em>✦</em></span><span>Unhas</span><span><em>✦</em></span><span>Massagens</span><span><em>✦</em></span><span>Pestanas</span><span><em>✦</em></span><span>Sobrancelhas</span><span><em>✦</em></span><span>Depilação</span><span><em>✦</em></span>
+</div></div>
+
+<section>
+  <div class="wrap">
+    <div class="reveal">
+      <div class="kicker">O problema</div>
+      <h2>A agenda tem buracos.<br><span class="serif gtxt">E a culpa não é sua.</span></h2>
+      <p class="lead">Todos os meses há clientes que se afastam. Não deixaram de gostar do seu trabalho. Simplesmente ninguém as chamou de volta.</p>
+    </div>
+    <div class="pain reveal">
+      <div><b>😶</b><p>Não sabe o que escrever sem parecer insistente ou desesperada.</p></div>
+      <div><b>💸</b><p>Gasta tempo e dinheiro a tentar clientes novas, que custam muito mais a convencer.</p></div>
+      <div><b>📉</b><p>Quando a agenda esvazia, a solução parece ser baixar o preço.</p></div>
+    </div>
+    <p class="big-quote reveal">O dinheiro mais rápido do seu negócio <span class="serif gtxt">já está no seu telemóvel.</span></p>
   </div>
 </section>
 
-<section class="inc" id="inclui">
+<section id="inclui" style="padding-top:20px">
   <div class="wrap">
-    <div class="kicker">O que recebe</div>
-    <h2>Tudo pronto a usar esta semana</h2>
-    <div class="cards">
-      <div class="card"><div class="n">15</div><h3>Mensagens de reativação</h3><p>Divididas por três tipos de cliente: a que veio uma vez, a que vinha sempre e desapareceu e a fiel que espaçou as visitas. Com a ordem certa de envio.</p></div>
-      <div class="card"><div class="n">10</div><h3>Scripts de resposta</h3><p>Para “quanto custa?”, “está caro”, “vou pensar”, “não tenho tempo”, “faz desconto?” e para quem visualiza e não responde.</p></div>
-      <div class="card"><div class="n">10</div><h3>Prompts de IA</h3><p>Para o ChatGPT, o Claude ou o Gemini personalizarem as mensagens no seu tom, criarem mimos de regresso e ideias de Stories.</p></div>
-      <div class="card"><div class="n">7</div><h3>Dias de plano + tabela</h3><p>O que fazer em cada dia, em menos de 30 minutos, e uma tabela para registar respostas, marcações e faturação recuperada.</p></div>
+    <div class="reveal">
+      <div class="kicker">O que recebe</div>
+      <h2>Tudo escrito. <span class="serif gtxt">Só tem de enviar.</span></h2>
     </div>
-    <div class="sample">
-      <div class="lab">Exemplo · mensagem B5 — vaga reservada</div>
-      <div class="b">[Nome], tenho uma vaga na [dia] às [hora] e pensei primeiro em si. Fica reservada até amanhã às [hora] — quer?</div>
+    <div class="bento reveal">
+      <div class="bx s4">
+        <div class="n gtxt">15</div><h3>Mensagens de reativação</h3>
+        <p>Para três tipos de cliente: a que veio uma vez, a que vinha sempre e desapareceu e a fiel que espaçou as visitas. Com a ordem certa de envio.</p>
+        <div class="sample"><small>Exemplo · vaga reservada</small>[Nome], tenho uma vaga na [dia] às [hora] e pensei primeiro em si. Fica reservada até amanhã às [hora] — quer?</div>
+      </div>
+      <div class="bx s2"><div class="n gtxt">10</div><h3>Scripts de resposta</h3><p>“Quanto custa?”, “está caro”, “vou pensar”, “faz desconto?” e quem visualiza e não responde.</p></div>
+      <div class="bx s2"><div class="n gtxt">10</div><h3>Prompts de IA</h3><p>Para o ChatGPT adaptar as mensagens ao seu tom, criar mimos de regresso e ideias de Stories.</p></div>
+      <div class="bx s4">
+        <div class="n gtxt">7</div><h3>Dias de plano + tabela de registo</h3><p>O que fazer em cada dia, em menos de 30 minutos. Tudo num guia de 17 páginas.</p>
+        <div class="pages"><img src="img/mensagens.jpg" alt="Página das mensagens do grupo A"><img src="img/capa.jpg" alt="Capa do Kit Agenda Cheia"><img src="img/scripts.jpg" alt="Página de abertura dos prompts de IA"></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="plano">
+<section style="padding-top:20px">
   <div class="wrap">
-    <div class="kicker">Como funciona</div>
-    <h2 style="font-size:clamp(28px,4vw,40px)">Uma semana. Menos de 30 minutos por dia.</h2>
-    <div class="days">
-      <div><b>1</b><span>Faz a sua lista de 30 clientes antigas</span></div>
-      <div><b>2</b><span>Envia as primeiras 10 mensagens</span></div>
-      <div><b>3</b><span>Responde com os scripts e envia às outras 20</span></div>
-      <div><b>4</b><span>Segunda mensagem a quem não respondeu</span></div>
-      <div><b>5</b><span>Oferta com prazo a quem hesitou</span></div>
-      <div><b>6</b><span>Follow-up e confirmação das marcações</span></div>
-      <div><b>7</b><span>Balanço e próxima ronda</span></div>
+    <div class="reveal">
+      <div class="kicker">As contas</div>
+      <h2>Basta <span class="serif gtxt">1 cliente voltar</span><br>e o kit já se pagou.</h2>
     </div>
-    <div class="goal">
-      <div><b>30</b><small>clientes contactadas</small></div>
-      <div><b>~10</b><small>respondem</small></div>
-      <div><b>5</b><small>voltam a marcar — a meta</small></div>
+    <div class="value reveal">
+      <div class="vcard dim"><small>Conquistar uma cliente nova</small><div class="num">€€€</div>
+        <ul><li>Anúncios pagos</li><li>Horas a criar conteúdo</li><li>Ela ainda não a conhece nem confia em si</li><li>Muitas vezes, só vem com desconto</li></ul></div>
+      <div class="vcard hot"><small>Recuperar uma cliente antiga</small><div class="num gtxt">17 €</div>
+        <ul><li>Uma mensagem no WhatsApp</li><li>Ela já a conhece e já pagou</li><li>Sem baixar o preço</li><li>Serve para este mês e para todos os seguintes</li></ul></div>
     </div>
-    <p class="note">Os números são uma meta de trabalho, não uma garantia: dependem da sua base de clientes e de seguir o plano.</p>
   </div>
 </section>
 
-<section style="padding-top:0">
+<section style="padding-top:20px">
   <div class="wrap">
-    <div class="kicker">Para quem é</div>
-    <h2 style="font-size:clamp(28px,4vw,40px)">Feito para negócios que vivem da agenda</h2>
-    <div class="who">
+    <div class="reveal">
+      <div class="kicker">Como funciona</div>
+      <h2>Uma semana. <span class="serif gtxt">30 minutos por dia.</span></h2>
+    </div>
+    <div class="days reveal">
+      <div><b class="gtxt">01</b><span>Faz a lista das 30 clientes antigas</span></div>
+      <div><b class="gtxt">02</b><span>Envia as primeiras 10 mensagens</span></div>
+      <div><b class="gtxt">03</b><span>Responde com os scripts e envia às outras 20</span></div>
+      <div><b class="gtxt">04</b><span>Segunda mensagem a quem não respondeu</span></div>
+      <div><b class="gtxt">05</b><span>Oferta com prazo a quem hesitou</span></div>
+      <div><b class="gtxt">06</b><span>Follow-up e confirmação das marcações</span></div>
+      <div><b class="gtxt">07</b><span>Balanço e próxima ronda</span></div>
+    </div>
+    <p class="note">Meta de trabalho do plano: 30 clientes contactadas, 5 de volta. Não é uma garantia de resultados — depende da sua base de clientes e de seguir o plano.</p>
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="kicker">Para quem é</div>
+      <h2>Feito para quem <span class="serif gtxt">vive da agenda.</span></h2>
+    </div>
+    <div class="who reveal">
       <div class="yes"><h3>É para si se…</h3><ul>
         <li>É esteticista, cabeleireira, manicure, massagista ou tem outro negócio de serviços</li>
         <li>Já tem clientes antigas no telemóvel</li>
@@ -232,35 +336,38 @@ footer a{color:var(--mute)}
   </div>
 </section>
 
-<section class="about">
+<section style="padding-top:20px">
   <div class="wrap narrow">
-    <div class="kicker" style="color:#d9a48d">Quem criou</div>
-    <h2>Jonas da Silva</h2>
-    <p>Fundador da Hub Advance, empresa de consultoria e formação com clientes na Europa e nas Américas. Mentor de empreendedores e de profissionais da área da beleza e dos serviços, a quem ajuda a vender mais com preços certos e processos simples.</p>
-    <p>Este kit reúne as mensagens e os scripts que uso na mentoria para ajudar as minhas mentoradas a recuperar clientes, em formato curto e pronto a usar.</p>
+    <div class="author reveal">
+      <div class="mono">JS</div>
+      <div><div class="kicker" style="margin-bottom:8px">Quem criou</div><h3>Jonas da Silva</h3>
+      <p>Fundador da Hub Advance e mentor de profissionais da beleza e dos serviços, com clientes na Europa e nas Américas. Este kit reúne as mensagens e os scripts que uso na mentoria para ajudar as minhas mentoradas a recuperar clientes, num formato curto e pronto a usar.</p></div>
+    </div>
   </div>
 </section>
 
-<section class="faq">
+<section class="faq" style="padding-top:20px">
   <div class="wrap narrow">
     <div class="kicker">Perguntas frequentes</div>
-    <h2 style="font-size:clamp(28px,4vw,40px);margin-bottom:24px">Dúvidas antes de comprar</h2>
+    <h2 style="margin-bottom:20px">Dúvidas?</h2>
     <details><summary>Como recebo o kit?</summary><p>O pagamento é feito pela Hotmart. Logo a seguir recebe um email com o acesso para descarregar o guia em PDF (17 páginas). Pode guardá-lo no telemóvel e no computador.</p></details>
     <details><summary>E se não gostar?</summary><p>Tem 7 dias de garantia. Se o kit não for para si, pede o reembolso diretamente na Hotmart e recebe o valor de volta, sem perguntas.</p></details>
     <details><summary>Funciona para a minha área?</summary><p>Funciona para qualquer negócio de serviços com marcações: estética, cabelo, unhas, massagens, pestanas, sobrancelhas, fisioterapia, entre outros. Só tem de trocar o nome do tratamento nas mensagens.</p></details>
     <details><summary>Preciso de saber usar inteligência artificial?</summary><p>Não. As 15 mensagens e os 10 scripts estão prontos a copiar. Os prompts de IA são um extra para quem quiser personalizar ainda mais — basta copiar e colar.</p></details>
     <details><summary>E se tiver poucas clientes antigas?</summary><p>Com 10 ou 15 contactos já consegue aplicar o plano. Os scripts de resposta também servem para qualquer pessoa que lhe pergunte o preço, seja cliente antiga ou nova.</p></details>
-    <details><summary>Tenho uma dúvida que não está aqui. Como falo consigo?</summary><p>Envie uma mensagem para <b>@jonassilva.pt</b> no Instagram. Respondo em até 24 horas úteis.</p></details>
+    <details><summary>Tenho uma dúvida que não está aqui.</summary><p>Envie uma mensagem para <b>@jonassilva.pt</b> no Instagram. Respondo em até 24 horas úteis.</p></details>
   </div>
 </section>
 
 <section class="final" id="comprar">
+  <div class="blob" style="width:700px;height:700px;left:50%;top:200px;margin-left:-350px;background:var(--o2);opacity:.3"></div>
   <div class="wrap">
     <div class="kicker">Comece hoje</div>
-    <h2>A próxima marcação pode estar a uma mensagem de distância.</h2>
-    <p>Por menos do que o preço de um tratamento, fica com o sistema para recuperar clientes este mês e em todos os meses seguintes.</p>
-    <div class="pricebox">
-      <div class="big">17 <small>€</small></div>
+    <h2>A próxima marcação está a <span class="serif gtxt">uma mensagem</span> de distância.</h2>
+    <div class="offer">
+      <span class="tag">Preço de lançamento</span>
+      <div class="price"><b>17</b><span>€</span></div>
+      <div class="per">Pagamento único · menos do que um tratamento</div>
       <ul>
         <li>15 mensagens de reativação</li>
         <li>10 scripts de resposta e fecho</li>
@@ -268,29 +375,32 @@ footer a{color:var(--mute)}
         <li>Plano de 7 dias e tabela de registo</li>
         <li>Guia digital em PDF · 17 páginas</li>
       </ul>
-      <a class="btn buy" href="#comprar">Comprar agora</a>
-      <div class="note">Pagamento seguro pela Hotmart · Garantia de 7 dias</div>
+      <a class="btn buy" href="#comprar">Quero o meu kit agora →</a>
+      <div class="guar"><span class="sh">🛡</span><div><b>Garantia de 7 dias.</b> Se não for para si, recebe o dinheiro de volta pela Hotmart. O risco é todo meu.</div></div>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="wrap">© 2026 Hub Advance · <a href="https://hubadvance.pt/">hubadvance.pt</a></div>
-</footer>
+<footer><div class="wrap">© 2026 Hub Advance · <a href="https://hubadvance.pt/">hubadvance.pt</a></div></footer>
 
-<div class="sticky" id="sticky"><span>Kit Agenda Cheia<br><b>17 €</b></span><a class="btn buy" href="#comprar">Quero o kit</a></div>
+<div class="sticky" id="sticky"><span>Kit Agenda Cheia<b>17 €</b></span><a class="btn buy" href="#comprar">Quero o kit →</a></div>
 
 <script>
-// ⬇️ Cole aqui o link de checkout da Hotmart (ex.: https://pay.hotmart.com/XXXXXXXX)
+// Link de checkout da Hotmart
 const CHECKOUT_LINK = "https://pay.hotmart.com/C107805772Y?off=vt1f9s4t";
-
 if (CHECKOUT_LINK.startsWith("https://")) {
   document.querySelectorAll(".buy").forEach(a => a.href = CHECKOUT_LINK);
 }
 const sticky = document.getElementById("sticky");
-const onScroll = () => sticky.classList.toggle("show", window.scrollY > 500);
+const onScroll = () => sticky.classList.toggle("show", window.scrollY > 600);
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .12 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+} else {
+  document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+}
 </script>
 </body>
 </html>
