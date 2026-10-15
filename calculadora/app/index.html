@@ -245,6 +245,11 @@
   .g-btn:disabled{opacity:.6;cursor:default}
   .g-priv{font-size:11px;color:#a89bb2;text-align:center;margin-top:13px;line-height:1.5}
   .g-priv a{color:var(--plum)}
+  .g-or{display:flex;align-items:center;gap:10px;color:#a89bb2;font-size:12px;margin:14px 0 10px}
+  .g-or:before,.g-or:after{content:"";flex:1;height:1px;background:var(--line)}
+  .g-google{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:12px;padding:12px;font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;cursor:pointer}
+  .g-google:hover{background:#faf7f2}
+  .g-google svg{width:18px;height:18px}
   .userbar{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink-soft);margin-left:auto}
   .userbar button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-weight:600;cursor:pointer;color:var(--ink);font-family:'Inter',sans-serif}
   .userbar button:hover{background:var(--plum-soft)}
@@ -285,6 +290,9 @@
       <label class="field" id="au-pass-wrap">Palavra-passe<input id="au-pass" type="password" placeholder="mínimo 6 caracteres" autocomplete="current-password"></label>
       <div class="gate-err" id="au-err"></div>
       <button class="g-btn" id="au-go">Entrar</button>
+      <div class="g-or">ou</div>
+      <button class="g-google" id="au-google" type="button"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Entrar com Google</button>
+      <p class="g-priv" style="margin-top:6px">Usa a conta Google com o mesmo email da compra.</p>
       <p class="g-priv"><a href="#" id="au-forgot">Esqueci-me da palavra-passe</a></p>
       <p class="g-priv">Ainda não tens acesso? <a href="../">Experimenta grátis ou desbloqueia por 17€</a></p>
     </div>
@@ -980,7 +988,7 @@ const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 let currentUser=null, dirty=false, authMode='in';
 // tipo de link vindo do email (convite ou recuperação) — lido antes de o Supabase limpar o endereço
 const AUTH_LINK = (()=>{ const h=new URLSearchParams(location.hash.replace(/^#/,'')); const q=new URLSearchParams(location.search); return h.get('type')||q.get('type')||''; })();
-const AUTH_LINK_ERR = new URLSearchParams(location.hash.replace(/^#/,'')).get('error_description')||'';
+const AUTH_LINK_ERR = new URLSearchParams(location.hash.replace(/^#/,'')).get('error_description')||new URLSearchParams(location.search).get('error_description')||'';
 
 function applySegments(){
   [['seg-tipo','tipo'],['seg-zona','zona'],['seg-pos','pos']].forEach(([id,key])=>{
@@ -1060,6 +1068,15 @@ function bindAuth(){
   go.addEventListener('click',submit);
   document.getElementById('au-pass').addEventListener('keydown',e=>{ if(e.key==='Enter') submit(); });
 
+  // entrar com Google
+  document.getElementById('au-google').addEventListener('click',async()=>{
+    if(!sb){ showErr(err,'Sem ligação ao servidor. Tenta outra vez dentro de momentos.'); return; }
+    try{
+      const {error}=await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo: location.origin+location.pathname}});
+      if(error) throw error;
+    }catch(e){ showErr(err,(e && e.message) ? traduzErro(e.message) : 'Não foi possível entrar com Google.'); }
+  });
+
   // esqueci-me da palavra-passe
   document.getElementById('au-forgot').addEventListener('click',async e=>{
     e.preventDefault();
@@ -1097,7 +1114,10 @@ function bindAuth(){
 async function checkSession(){
   if(!sb) return;
   if(AUTH_LINK_ERR){
-    showErr(document.getElementById('au-err'),'Este link de acesso já expirou ou já foi usado. Escreve o teu email e carrega em "Esqueci-me da palavra-passe" para receberes um novo.');
+    const semAcesso=/signup|not allowed|disabled/i.test(AUTH_LINK_ERR);
+    showErr(document.getElementById('au-err'), semAcesso
+      ? 'Esta conta Google ainda não tem acesso. Entra com o mesmo email que usaste na compra, ou desbloqueia a versão completa por 17€.'
+      : 'Este link de acesso já expirou ou já foi usado. Escreve o teu email e carrega em "Esqueci-me da palavra-passe" para receberes um novo.');
     history.replaceState(null,'',location.pathname);
     return;
   }
