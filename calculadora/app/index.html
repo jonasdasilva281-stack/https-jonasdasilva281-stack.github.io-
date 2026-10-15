@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda Lucrativa — Versão completa</title>
+<link rel="icon" type="image/svg+xml" href="../logo-icone.svg">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#221a2e;
+    --ink-soft:#4a3f57;
+    --paper:#f6f2ec;
+    --card:#ffffff;
+    --line:#e6ddd2;
+    --plum:#6b3f8f;
+    --plum-soft:#efe7f5;
+    --gold:#a97b2f;
+    --gold-soft:#f5ecdb;
+    --green:#2f7d5b;
+    --green-soft:#e4f1ea;
+    --amber:#c07c15;
+    --amber-soft:#fbeed6;
+    --red:#b23a48;
+    --red-soft:#f8e3e5;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(34,26,46,.05), 0 8px 30px rgba(34,26,46,.06);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:15px;
+    line-height:1.5;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px 80px}
+
+  /* header */
+  header.top{padding:34px 0 22px}
+  .brandrow{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .logo{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;letter-spacing:-.01em;
+    color:var(--ink);line-height:1;
+  }
+  .logo b{color:var(--gold);font-weight:600}
+  .tagline{color:var(--ink-soft);font-size:14px;max-width:520px;margin-top:8px}
+  .kicker{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--plum);
+    font-weight:600;border:1px solid var(--line);border-radius:999px;padding:4px 11px;background:var(--card);
+  }
+
+  /* tabs */
+  nav.tabs{
+    display:flex;gap:4px;background:var(--card);border:1px solid var(--line);
+    border-radius:999px;padding:5px;margin:6px 0 28px;position:sticky;top:12px;z-index:20;
+    box-shadow:var(--shadow);
+  }
+  nav.tabs button{
+    flex:1;border:0;background:transparent;color:var(--ink-soft);cursor:pointer;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:14px;padding:11px 8px;border-radius:999px;
+    transition:background .18s,color .18s;display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  nav.tabs button .n{font-family:'Space Grotesk',sans-serif;font-size:13px;opacity:.6}
+  nav.tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+  nav.tabs button[aria-selected="true"] .n{opacity:.55;color:var(--gold)}
+
+  section.tab{display:none}
+  section.tab.active{display:block;animation:rise .3s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* cards */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:18px}
+  .card h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;margin:0 0 3px;letter-spacing:-.01em}
+  .card .sub{color:var(--ink-soft);font-size:13px;margin:0 0 18px}
+  .eyebrow{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:0 0 14px}
+
+  /* forms */
+  .grid{display:grid;gap:14px 16px}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:1fr 1fr 1fr}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  label.field{display:flex;flex-direction:column;gap:5px;font-size:12.5px;font-weight:600;color:var(--ink-soft)}
+  label.field .hint{font-weight:400;color:#9a8ea6;font-size:11.5px}
+  input,select{
+    font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);background:#fdfbf8;
+    border:1px solid var(--line);border-radius:10px;padding:10px 12px;width:100%;transition:border .15s,box-shadow .15s;
+  }
+  input:focus,select:focus{outline:none;border-color:var(--plum);box-shadow:0 0 0 3px var(--plum-soft)}
+  .inwrap{position:relative}
+  .inwrap .unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:#a89bb2;font-size:13px;pointer-events:none}
+  .inwrap input{padding-right:34px}
+
+  .seg{display:flex;flex-wrap:wrap;gap:8px}
+  .seg button{
+    border:1px solid var(--line);background:#fdfbf8;border-radius:999px;padding:8px 13px;font-size:13px;
+    font-weight:500;color:var(--ink-soft);cursor:pointer;font-family:'Inter',sans-serif;transition:.15s;
+  }
+  .seg button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .toggle{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:var(--ink)}
+  .switch{position:relative;width:44px;height:25px;flex:0 0 auto}
+  .switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:2}
+  .switch .track{position:absolute;inset:0;background:var(--line);border-radius:999px;transition:.2s;pointer-events:none}
+  .switch .dot{position:absolute;top:3px;left:3px;width:19px;height:19px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 3px rgba(0,0,0,.2);pointer-events:none}
+  .switch input:checked + .track{background:var(--plum)}
+  .switch input:checked + .track + .dot{transform:translateX(19px)}
+
+  /* readout tiles */
+  .tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px}
+  .tile{background:var(--gold-soft);border:1px solid #eaddc4;border-radius:12px;padding:14px 16px}
+  .tile .lab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .tile .val{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:700;margin-top:4px;color:var(--ink);font-variant-numeric:tabular-nums}
+  .tile .val small{font-size:13px;color:var(--ink-soft);font-family:'Inter',sans-serif;font-weight:500}
+
+  /* services */
+  .svc{border:1px solid var(--line);border-radius:var(--radius);padding:0;margin-bottom:16px;overflow:hidden;background:var(--card)}
+  .svc-head{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;padding:16px 18px;background:#fbf8f3;border-bottom:1px solid var(--line)}
+  .svc-head .grow{flex:1 1 160px}
+  .svc-body{padding:16px 18px}
+  .svc-inputs{display:grid;grid-template-columns:1.4fr 1fr;gap:12px;margin-bottom:16px}
+  .svc-comp{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink);margin:-4px 0 14px;cursor:pointer;font-weight:500}
+  .svc-comp input{width:16px;height:16px;accent-color:var(--plum);cursor:pointer;flex:0 0 auto}
+  .comp-hint{color:var(--ink-soft);font-weight:400;font-size:12px}
+  .strategy{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:14px;font-size:13px;line-height:1.55;color:var(--ink)}
+  .strategy.s-red{background:var(--red-soft);border-color:#eecacd}
+  .strategy.s-amber{background:var(--amber-soft);border-color:#f0dcb4}
+  .strategy.s-green{background:var(--green-soft);border-color:#c9e5d6}
+  .strategy .st-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;margin-bottom:6px}
+  .strategy ol{margin:6px 0 0;padding-left:20px}
+  .strategy li{margin-bottom:4px}
+  .strategy b{color:var(--ink)}
+  .strategy .st-extra{margin-top:9px;padding-top:9px;border-top:1px solid rgba(0,0,0,.08)}
+  .st-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .st-add{border:1px solid var(--plum);background:#fff;color:var(--plum);border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif}
+  .st-add:hover{background:var(--plum-soft)}
+  .ver-tag{display:inline-block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:3px 10px;border-radius:999px;margin-bottom:10px}
+  .ver-tag.orig{background:var(--ink);color:#fff}
+  .ver-tag.premium{background:var(--plum-soft);color:var(--plum)}
+  .ver-tag.complementar{background:var(--gold-soft);color:var(--gold)}
+  .ver-list{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+  .ver{border:1px solid var(--line);border-left:3px solid var(--plum);border-radius:12px;padding:14px;background:#fbf9fc}
+  .ver.complementar{border-left-color:var(--gold)}
+  .ver-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .ver-head .ver-tag{margin-bottom:0}
+  .ver-head .v-nome{flex:1;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:8px 11px;background:#fff}
+  .ver-head .v-nome:focus{outline:none;border-color:var(--plum);box-shadow:0 0 0 3px var(--plum-soft)}
+  .btn-x.sm{width:32px;height:32px;font-size:14px;flex:0 0 auto}
+  .val-note{font-size:12px;color:var(--gold);background:var(--gold-soft);border-radius:9px;padding:9px 12px;margin:2px 0 12px;line-height:1.5}
+  .val-note b{color:var(--gold)}
+  .combo{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .combo .lh{font-size:13px;color:var(--ink-soft)}
+  .combo .lh b{color:var(--ink)}
+  .btn-x{border:1px solid var(--line);background:#fff;color:var(--red);border-radius:9px;width:38px;height:38px;cursor:pointer;font-size:17px;line-height:1;flex:0 0 auto}
+  .btn-x:hover{background:var(--red-soft)}
+
+  .diag{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px}
+  .badge .d{width:9px;height:9px;border-radius:50%}
+  .b-green{background:var(--green-soft);color:var(--green)} .b-green .d{background:var(--green)}
+  .b-amber{background:var(--amber-soft);color:var(--amber)} .b-amber .d{background:var(--amber)}
+  .b-red{background:var(--red-soft);color:var(--red)} .b-red .d{background:var(--red)}
+  .diag .lh{font-size:13px;color:var(--ink-soft)}
+  .diag .lh b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+  /* meter */
+  .meter{margin:6px 0 16px}
+  .meter .bar{position:relative;height:12px;background:#eee6da;border-radius:999px;overflow:hidden}
+  .meter .fill{position:absolute;left:0;top:0;bottom:0;border-radius:999px;transition:width .4s ease,background .3s}
+  .meter .target{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink)}
+  .meter .scale{display:flex;justify-content:space-between;font-size:11px;color:#a89bb2;margin-top:5px}
+
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .pchip{border:1px solid var(--line);border-radius:11px;padding:12px 14px;text-align:center}
+  .pchip.ideal{border-color:var(--plum);background:var(--plum-soft)}
+  .pchip .l{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--ink-soft)}
+  .pchip.ideal .l{color:var(--plum)}
+  .pchip .p{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;margin-top:3px;font-variant-numeric:tabular-nums}
+  .note{font-size:12.5px;color:var(--amber);background:var(--amber-soft);border-radius:9px;padding:9px 12px;margin-top:12px;display:flex;gap:8px}
+
+  .addbtn{width:100%;border:1.5px dashed #cbb8d6;background:#fff;color:var(--plum);border-radius:var(--radius);
+    padding:15px;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;cursor:pointer;transition:.15s}
+  .addbtn:hover{background:var(--plum-soft)}
+
+  .custos-list{display:flex;flex-direction:column;gap:10px}
+  .custo-row{display:grid;grid-template-columns:1fr 140px 42px;gap:10px;align-items:center}
+  .btn-mini{border:1px solid var(--line);background:#fff;color:var(--red);border-radius:9px;height:41px;cursor:pointer;font-size:15px}
+  .btn-mini:hover{background:var(--red-soft)}
+  .addcusto{margin-top:12px;border:1.5px dashed #cbb8d6;background:#fff;color:var(--plum);border-radius:10px;padding:11px;font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;cursor:pointer;width:100%}
+  .addcusto:hover{background:var(--plum-soft)}
+  .breakdown{display:flex;flex-wrap:wrap;gap:5px 16px;background:#fbf8f3;border:1px solid var(--line);border-radius:11px;padding:11px 14px;margin:0 0 14px;font-size:12.5px}
+  .breakdown span{color:var(--ink-soft)}
+  .breakdown b{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+  .breakdown .minus b{color:var(--red)}
+  .breakdown .eq b{color:var(--green)}
+
+  .help{font-size:12.5px;color:var(--ink-soft);background:var(--plum-soft);border-left:3px solid var(--plum);border-radius:8px;padding:10px 13px;margin:14px 0 0;line-height:1.5;display:none}
+  .help.open{display:block;animation:rise .2s ease}
+  .help b{color:var(--plum)}
+  .qbtn{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--plum);font-size:11px;font-weight:700;cursor:pointer;margin-left:7px;vertical-align:middle;line-height:1;font-family:'Inter',sans-serif;padding:0}
+  .qbtn:hover{background:var(--plum-soft)}
+  .qbtn[aria-expanded="true"]{background:var(--plum);color:#fff;border-color:var(--plum)}
+
+  .empty{text-align:center;color:var(--ink-soft);padding:34px 20px;font-size:14px}
+
+  /* report */
+  .rep-hero{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+  .rep-hero .tile{background:var(--plum-soft);border-color:#e0d0ec}
+  .rep-hero .tile .lab{color:var(--plum)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+  th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line)}
+  th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:0}
+  .dot-cell{display:inline-flex;width:10px;height:10px;border-radius:50%;vertical-align:middle}
+  .rev-item{padding:12px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+  .rev-item:last-child{border-bottom:0}
+  .rev-item b{color:var(--ink)}
+  .print{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border:0;border-radius:999px;
+    padding:11px 20px;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;cursor:pointer;margin-top:8px}
+  .print:hover{background:#332545}
+
+  .footnote{color:#a89bb2;font-size:12px;text-align:center;margin-top:26px}
+
+  .gate-logo{display:block;width:72px;border-radius:16px;height:auto;margin:2px auto 16px}
+  .brand-mark{width:38px;height:38px;border-radius:9px;flex:0 0 auto;box-shadow:0 2px 8px rgba(34,26,46,.15)}
+  .brandrow{align-items:center}
+  body.locked{overflow:hidden}
+  .gate{position:fixed;inset:0;background:rgba(20,12,28,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:100}
+  .gate-card{background:var(--card);border-radius:18px;max-width:430px;width:100%;padding:30px 28px;box-shadow:0 24px 70px rgba(0,0,0,.32);animation:rise .3s ease}
+  .gate-card .g-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;letter-spacing:-.01em;margin-bottom:4px}
+  .gate-card .g-logo b{color:var(--gold)}
+  .gate-card .g-sub{color:var(--ink-soft);font-size:13.5px;margin:0 0 20px;line-height:1.5}
+  .gate-card label.field{margin-bottom:13px}
+  .gate-err{color:var(--red);font-size:12.5px;margin:-4px 0 8px;display:none}
+  .gate-err.show{display:block}
+  .g-btn{width:100%;border:0;background:var(--ink);color:#fff;border-radius:12px;padding:13px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;cursor:pointer;margin-top:6px}
+  .g-btn:hover{background:#332545}
+  .g-btn:disabled{opacity:.6;cursor:default}
+  .g-priv{font-size:11px;color:#a89bb2;text-align:center;margin-top:13px;line-height:1.5}
+  .g-priv a{color:var(--plum)}
+  .userbar{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink-soft);margin-left:auto}
+  .userbar button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-weight:600;cursor:pointer;color:var(--ink);font-family:'Inter',sans-serif}
+  .userbar button:hover{background:var(--plum-soft)}
+
+  @media (max-width:720px){
+    .g2,.g3,.g4,.svc-inputs,.tiles,.prices,.rep-hero{grid-template-columns:1fr 1fr}
+    .rep-hero{grid-template-columns:1fr 1fr}
+    .logo{font-size:26px}
+    nav.tabs button{font-size:13px;padding:10px 4px}
+    .wrap{padding:0 14px 70px}
+  }
+  @media (max-width:440px){
+    .g2,.g3,.g4,.svc-inputs,.tiles,.prices{grid-template-columns:1fr}
+    .rep-hero{grid-template-columns:1fr 1fr}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  /* print / PDF */
+  @media print{
+    body{background:#fff}
+    nav.tabs,.addbtn,.print,.footnote,#tab-negocio,#tab-servicos{display:none!important}
+    section.tab{display:block!important}
+    .card{box-shadow:none;break-inside:avoid}
+    header.top{padding-top:0}
+    .kicker{display:none}
+  }
+</style>
+</head>
+<body class="locked">
+
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <img class="gate-logo" src="../logo-icone.svg" alt="Agenda Lucrativa">
+    <div class="g-logo" style="text-align:center;font-size:26px">Agenda <b>Lucrativa</b></div>
+    <div id="au-login">
+      <p class="g-sub" id="au-sub">Entra com o email que usaste na compra. O teu negócio fica guardado na tua conta.</p>
+      <label class="field">Email<input id="au-email" type="email" placeholder="nome@email.com" autocomplete="email"></label>
+      <label class="field" id="au-pass-wrap">Palavra-passe<input id="au-pass" type="password" placeholder="mínimo 6 caracteres" autocomplete="current-password"></label>
+      <div class="gate-err" id="au-err"></div>
+      <button class="g-btn" id="au-go">Entrar</button>
+      <p class="g-priv"><a href="#" id="au-forgot">Esqueci-me da palavra-passe</a></p>
+      <p class="g-priv">Ainda não tens acesso? <a href="../">Experimenta grátis ou desbloqueia por 17€</a></p>
+    </div>
+    <div id="au-set" style="display:none">
+      <p class="g-sub" id="au-set-sub">Bem-vinda! Cria a tua palavra-passe para entrares na Agenda Lucrativa.</p>
+      <label class="field">Nova palavra-passe<input id="au-new" type="password" placeholder="mínimo 6 caracteres" autocomplete="new-password"></label>
+      <label class="field">Repetir palavra-passe<input id="au-new2" type="password" placeholder="repete a palavra-passe" autocomplete="new-password"></label>
+      <div class="gate-err" id="au-set-err"></div>
+      <button class="g-btn" id="au-set-go">Guardar e entrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="brandrow">
+      <img class="brand-mark" src="../logo-icone.svg" alt="Agenda Lucrativa">
+      <span class="logo">Agenda <b>Lucrativa</b></span>
+      <span class="kicker">Versão completa</span>
+      <div class="userbar" id="userbar" style="display:none"><span id="user-email"></span><button id="logout" type="button">Sair</button></div>
+    </div>
+    <p class="tagline">Define o preço pela matemática do teu negócio — custo real, tempo e margem — e não pelo que o vizinho cobra.</p>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="negocio"><span class="n">01</span> Negócio</button>
+    <button role="tab" aria-selected="false" data-tab="servicos"><span class="n">02</span> Serviços</button>
+    <button role="tab" aria-selected="false" data-tab="relatorio"><span class="n">03</span> Relatório</button>
+  </nav>
+
+  <!-- ========== NEGÓCIO ========== -->
+  <section id="tab-negocio" class="tab active">
+
+    <div class="card">
+      <p class="eyebrow">Identificação</p>
+      <div class="grid g2">
+        <label class="field">Nome do negócio
+          <input id="nome" type="text" placeholder="Ex: Atelier Maria">
+        </label>
+        <label class="field">Cidade / zona
+          <input id="cidade" type="text" placeholder="Ex: Lisboa">
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Perfil e posicionamento</h2>
+      <p class="sub">Isto não muda a conta dos custos — ajusta a sugestão de preço premium ao mercado.</p>
+
+      <p class="eyebrow" style="margin-top:4px">Tipo de negócio</p>
+      <div class="seg" id="seg-tipo" style="margin-bottom:18px">
+        <button data-v="autonoma" aria-pressed="true">Autónoma</button>
+        <button data-v="espaco" aria-pressed="false">Espaço próprio</button>
+        <button data-v="salao" aria-pressed="false">Salão com equipa</button>
+        <button data-v="premium" aria-pressed="false">Clínica / estúdio premium</button>
+      </div>
+
+      <p class="eyebrow">Zona de mercado</p>
+      <div class="seg" id="seg-zona" style="margin-bottom:18px">
+        <button data-v="baixo" aria-pressed="false">Baixo poder de compra</button>
+        <button data-v="media" aria-pressed="true">Média</button>
+        <button data-v="premium" aria-pressed="false">Premium</button>
+      </div>
+
+      <p class="eyebrow">Posicionamento</p>
+      <div class="seg" id="seg-pos">
+        <button data-v="entrada" aria-pressed="false">Entrada / volume</button>
+        <button data-v="qualidade" aria-pressed="true">Profissional / qualidade</button>
+        <button data-v="luxo" aria-pressed="false">Premium / experiência</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Custos fixos mensais <button class="qbtn" data-help="help-custos" aria-expanded="false" title="Ajuda">?</button></h2>
+      <p class="sub">Tudo o que pagas todos os meses, tenhas ou não clientes.</p>
+      <div class="custos-list" id="custos-list"></div>
+      <button class="addcusto" id="add-custo">+ Acrescentar custo fixo</button>
+      <div class="help" id="help-custos"><b>Só entra aqui</b> o que pagas todos os meses tenhas ou não clientes: renda, luz, marketing, contabilidade, software... <b>Materiais e comissão não</b> — esses têm o seu próprio sítio, senão contas o mesmo euro duas vezes.</div>
+    </div>
+
+    <div class="card">
+      <h2>Materiais <button class="qbtn" data-help="help-mat" aria-expanded="false" title="Ajuda">?</button></h2>
+      <p class="sub">Custo variável. Mete o total gasto em material no mês e o nº de atendimentos — a ferramenta divide para saber quanto de material entra em cada serviço.</p>
+      <div class="grid g2">
+        <label class="field">Materiais — total do mês<div class="inwrap"><input id="matMes" type="number" min="0" placeholder="0"><span class="unit">€</span></div></label>
+        <label class="field">Atendimentos no mês<input id="atend" type="number" min="1" placeholder="0"></label>
+      </div>
+      <div class="tiles" style="grid-template-columns:1fr;margin-top:16px">
+        <div class="tile"><div class="lab">Material por atendimento</div><div class="val" id="t-matat">—</div></div>
+      </div>
+      <div class="help" id="help-mat"><b>Custo variável.</b> Total gasto em material no mês ÷ nº de atendimentos = quanto de material pesa em cada serviço. Ex: 200€ ÷ 100 atendimentos = <b>2€ por serviço</b>.</div>
+    </div>
+
+    <div class="card">
+      <h2>Capacidade e regras</h2>
+      <p class="sub">Quantas horas a equipa tem para vender por mês, e como o dinheiro se reparte. É isto que transforma os custos fixos num custo por hora.</p>
+
+      <p class="eyebrow" style="margin-top:4px">Capacidade de trabalho <button class="qbtn" data-help="help-cap" aria-expanded="false" title="Ajuda">?</button></p>
+      <div class="grid g3">
+        <label class="field">Profissionais<span class="hint">quantas pessoas atendem</span><input id="nprof" type="number" min="1" placeholder="1"></label>
+        <label class="field">Dias por mês<span class="hint">de trabalho, por pessoa</span><input id="dias" type="number" min="1" placeholder="22"></label>
+        <label class="field">Horas por dia<span class="hint">de atendimento</span><input id="horas" type="number" min="1" placeholder="8"></label>
+      </div>
+      <div class="help" id="help-cap"><b>Como conta:</b> profissionais × dias × horas = horas vendáveis no mês. Ex: 2 × 22 × 8 = <b>352 h</b>. Quantas mais horas, mais os custos fixos se diluem e menor fica o custo por hora.</div>
+
+      <p class="eyebrow" style="margin-top:22px">Imposto <button class="qbtn" data-help="help-iva" aria-expanded="false" title="Ajuda">?</button></p>
+      <div class="grid g3">
+        <label class="field">IVA<span class="hint">taxa sobre o preço</span><div class="inwrap"><input id="iva" type="number" min="0" placeholder="23"><span class="unit">%</span></div></label>
+      </div>
+      <div class="help" id="help-iva">Em Portugal a estética costuma ter <b>IVA a 23%</b>. O preço que a cliente paga já inclui o IVA — a ferramenta retira-o para saber o que fica mesmo para o negócio.</div>
+
+      <p class="eyebrow" style="margin-top:22px">Comissão <button class="qbtn" data-help="help-com" aria-expanded="false" title="Ajuda">?</button></p>
+      <label class="toggle" style="margin-bottom:6px;cursor:pointer">
+        <span class="switch"><input id="comAtiva" type="checkbox"><span class="track"></span><span class="dot"></span></span>
+        Pagas comissão a uma profissional / colaboradora?
+      </label>
+      <p class="sub" style="margin:0 0 12px">Liga se quem executa o serviço recebe uma percentagem.</p>
+      <div class="grid g2" id="comBox" style="display:none">
+        <label class="field">Comissão da profissional<span class="hint">% que ela recebe</span><div class="inwrap"><input id="comPct" type="number" min="0" max="100" placeholder="50"><span class="unit">%</span></div></label>
+        <label class="field">Calculada sobre
+          <select id="comBase">
+            <option value="semiva">O valor sem IVA</option>
+            <option value="comiva">O preço com IVA</option>
+          </select>
+        </label>
+      </div>
+      <div class="help" id="help-com">A comissão é um <b>custo variável</b>: só a pagas quando o serviço acontece, por isso é descontada em cada serviço — não a metas nos custos fixos.</div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">O que este negócio precisa de produzir</p>
+      <div class="tiles">
+        <div class="tile"><div class="lab">Custos fixos / mês</div><div class="val" id="t-custos">—</div></div>
+        <div class="tile"><div class="lab">Horas vendáveis / mês</div><div class="val" id="t-horas">—</div></div>
+        <div class="tile"><div class="lab">Custo fixo por hora</div><div class="val" id="t-cfh">—</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVIÇOS ========== -->
+  <section id="tab-servicos" class="tab">
+    <div class="card">
+      <h2>Objetivo de lucro <button class="qbtn" data-help="help-alvo" aria-expanded="false" title="Ajuda">?</button></h2>
+      <p class="sub">Quanto queres que a empresa lucre por cada hora de agenda ocupada — depois de pagar tudo, incluindo comissões.</p>
+      <label class="field" style="max-width:260px">Lucro-alvo por hora (empresa)
+        <div class="inwrap"><input id="alvo" type="number" min="0" placeholder="12"><span class="unit">€/h</span></div>
+      </label>
+      <div class="help" id="help-alvo">É o lucro da <b>empresa</b> por hora, já depois de pagar material, comissão e custos fixos. Um valor saudável costuma andar entre <b>8€ e 15€/h</b> — ajusta ao teu mercado e posicionamento. Em cada serviço só precisas de meter o <b>preço</b> e o <b>tempo</b>; o resto já vem do separador Negócio.</div>
+    </div>
+
+    <div id="svc-list"></div>
+    <button class="addbtn" id="add">+ Adicionar serviço</button>
+  </section>
+
+  <!-- ========== RELATÓRIO ========== -->
+  <section id="tab-relatorio" class="tab">
+    <div class="card">
+      <h2 id="rep-title">Relatório de precificação</h2>
+      <p class="sub" id="rep-sub">Resumo do teu negócio e o que ajustar.</p>
+      <div class="rep-hero">
+        <div class="tile"><div class="lab">Custo fixo / hora</div><div class="val" id="r-cfh">—</div></div>
+        <div class="tile"><div class="lab">Ticket médio atual</div><div class="val" id="r-ticket">—</div></div>
+        <div class="tile"><div class="lab">Lucro/hora médio</div><div class="val" id="r-lh">—</div></div>
+        <div class="tile"><div class="lab">Serviços a rever</div><div class="val" id="r-rever">—</div></div>
+      </div>
+      <button class="print" onclick="window.print()">⬇ Guardar / imprimir em PDF</button>
+    </div>
+
+    <div class="card" id="rep-table-card">
+      <p class="eyebrow">Serviços por rentabilidade</p>
+      <div id="rep-table"></div>
+    </div>
+
+    <div class="card" id="rep-actions-card">
+      <p class="eyebrow">A rever com prioridade</p>
+      <div id="rep-actions"></div>
+    </div>
+
+    <div style="text-align:center;margin-top:4px">
+      <button class="print" onclick="window.print()">⬇ Guardar / imprimir relatório em PDF</button>
+    </div>
+  </section>
+
+  <p class="footnote">Agenda Lucrativa · calculadora de preços para profissionais de beleza. Os teus dados ficam guardados na tua conta.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+"use strict";
+
+// ---------- estado ----------
+const state = {
+  nome:"", cidade:"",
+  tipo:"autonoma", zona:"media", pos:"qualidade",
+  custos:[],
+  dias:22, horas:8, nprof:1, iva:23,
+  matMes:0, atend:0,
+  comAtiva:false, comPct:50, comBase:"semiva",
+  alvo:12,
+  servicos:[]
+};
+let sid = 1;
+
+// ---------- dados de exemplo ----------
+function seed(){
+  state.nome="Atelier Maria"; state.cidade="Lisboa";
+  state.custos=[
+    {nome:"Operacional",valor:350},{nome:"Marketing",valor:100},{nome:"Limpeza",valor:40},
+    {nome:"Ordenados",valor:0},{nome:"Segurança Social",valor:40},{nome:"Impostos",valor:60},
+    {nome:"Extras",valor:50},{nome:"Mercado",valor:30},{nome:"Investimentos",valor:100},
+    {nome:"Manutenção",valor:30},{nome:"Dívidas",valor:200}
+  ];
+  state.matMes=200; state.atend=100;
+  state.servicos=[
+    {id:sid++, nome:"Alongamento em gel", cat:"Alongamento", preco:32, tempo:2, material:2},
+    {id:sid++, nome:"Manutenção", cat:"Manutenção", preco:26, tempo:1.5, material:1.5},
+    {id:sid++, nome:"Pedicure + gelinho", cat:"Pés", preco:27, tempo:1.25, material:2}
+  ];
+}
+
+// ---------- cálculo ----------
+function totalCustos(){ return state.custos.reduce((a,c)=>a+(+c.valor||0),0); }
+function horasMes(){ return (+state.dias||0)*(+state.horas||0)*(+state.nprof||1); }
+function custoFixoHora(){ const h=horasMes(); return h>0 ? totalCustos()/h : 0; }
+
+function calc(s){
+  const iva=(+state.iva||0)/100;
+  const preco=+s.preco||0, tempo=+s.tempo||0;
+  const material = (+state.atend||0)>0 ? (+state.matMes||0)/(+state.atend) : 0;
+  const cfh=custoFixoHora();
+  const valorSemIva = preco/(1+iva);
+  const c = state.comAtiva ? (+state.comPct||0)/100 : 0;
+  const comissao = state.comAtiva ? (state.comBase==="comiva" ? preco*c : valorSemIva*c) : 0;
+  const custoFixoProp = s.complementar ? 0 : tempo*cfh;
+  const lucro = valorSemIva - comissao - material - custoFixoProp;
+  const lucroHora = tempo>0 ? lucro/tempo : 0;
+
+  // preço para atingir um dado lucro/hora-alvo
+  function precoParaAlvo(alvo){
+    const R = alvo*tempo + material + custoFixoProp; // valorSemIva líquido de comissão necessário
+    if(!state.comAtiva) return R*(1+iva);
+    if(state.comBase==="semiva"){
+      if(c>=1) return Infinity;
+      return R*(1+iva)/(1-c);
+    } else {
+      const den = 1 - c*(1+iva);
+      if(den<=0) return Infinity;
+      return R*(1+iva)/den;
+    }
+  }
+  const alvo=+state.alvo||0;
+  let minimo=precoParaAlvo(0);
+  let ideal=precoParaAlvo(alvo);
+
+  // multiplicador premium por posicionamento + zona
+  const posMult={entrada:1.0,qualidade:1.08,luxo:1.16}[state.pos]||1;
+  const zonaMult={baixo:0.97,media:1.0,premium:1.09}[state.zona]||1;
+  const premMult=Math.max(1.10, posMult*zonaMult);
+  let premium=isFinite(ideal)? ideal*premMult : Infinity;
+
+  const round=v=>isFinite(v)?Math.max(0,Math.round(v*100)/100):v;
+  minimo=round(minimo); ideal=round(ideal); premium=round(premium);
+
+  // diagnóstico
+  let cls, txt;
+  if(alvo>0){
+    const ratio=lucroHora/alvo;
+    if(ratio>=1){cls="green";txt="Saudável";}
+    else if(ratio>=0.5){cls="amber";txt="Precisa de ajuste";}
+    else {cls="red";txt="Preço prejudicial";}
+  } else {
+    if(lucroHora>0){cls="green";txt="Saudável";}
+    else if(lucroHora===0){cls="amber";txt="No limiar";}
+    else {cls="red";txt="Preço prejudicial";}
+  }
+
+  return {valorSemIva,comissao,custoFixoProp,lucro,lucroHora,minimo,ideal,premium,cls,txt,material,tempo,preco};
+}
+
+// ---------- formatação ----------
+const eur=v=>isFinite(v)?(v).toLocaleString('pt-PT',{style:'currency',currency:'EUR',minimumFractionDigits:0,maximumFractionDigits:0}):"—";
+const eur2=v=>isFinite(v)?(v).toLocaleString('pt-PT',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2}):"—";
+
+// ---------- render negócio ----------
+function renderCustos(){
+  const el=document.getElementById('custos-list');
+  if(!el)return;
+  el.innerHTML=state.custos.map((c,i)=>`
+    <div class="custo-row" data-i="${i}">
+      <input class="cnome" type="text" value="${escapeHtml(c.nome)}" placeholder="Nome do custo (ex: Renda)">
+      <div class="inwrap"><input class="cval" type="number" min="0" value="${c.valor||''}" placeholder="0"><span class="unit">€</span></div>
+      <button class="btn-mini" data-delc="${i}" title="Remover">✕</button>
+    </div>`).join('');
+}
+
+function breakdownHTML(r){
+  return `<div class="breakdown">
+    <span>Valor s/ IVA <b>${eur2(r.valorSemIva)}</b></span>
+    <span class="minus">− Comissão <b>${eur2(r.comissao)}</b></span>
+    <span class="minus">− Material <b>${eur2(r.material)}</b></span>
+    <span class="minus">− Custo fixo <b>${eur2(r.custoFixoProp)}</b></span>
+    <span class="eq">= Lucro <b>${eur2(r.lucro)}</b></span>
+  </div>`;
+}
+
+function renderNegocio(){
+  document.getElementById('t-custos').textContent=eur(totalCustos());
+  document.getElementById('t-horas').innerHTML=horasMes()+' <small>h</small>';
+  const cfh=custoFixoHora();
+  document.getElementById('t-cfh').innerHTML=cfh>0?eur2(cfh)+' <small>/h</small>':'—';
+  const matat=(+state.atend||0)>0?(+state.matMes||0)/(+state.atend):0;
+  const matEl=document.getElementById('t-matat');
+  if(matEl) matEl.innerHTML=(+state.atend||0)>0?eur2(matat)+' <small>/atend.</small>':'—';
+}
+
+// ---------- render serviços ----------
+function meterHTML(r){
+  const alvo=+state.alvo||0;
+  const scaleMax=Math.max(alvo*1.5, r.lucroHora, 1);
+  const pct=Math.max(0,Math.min(100, r.lucroHora/scaleMax*100));
+  const targetPct=alvo>0?Math.min(100, alvo/scaleMax*100):0;
+  const col=r.cls==="green"?"var(--green)":r.cls==="amber"?"var(--amber)":"var(--red)";
+  const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
+  return `
+    <div class="meter">
+      <div class="bar">
+        <div class="fill" style="width:${pct}%;background:${col}"></div>
+        ${alvo>0?`<div class="target" style="left:${targetPct}%"></div>`:''}
+      </div>
+      <div class="scale"><span>0 €/h</span>${alvo>0?`<span>alvo ${eur(alvo)}/h</span>`:''}<span>${eur(scaleMax)}/h</span></div>
+    </div>`;
+}
+
+function strategyHTML(r, s){
+  const ideal=eur2(r.ideal), premium=eur2(r.premium);
+  if(!isFinite(r.ideal)){
+    return `<div class="strategy s-red"><div class="st-title">🔴 Diagnóstico: comissão inviável</div>Com esta comissão é <b>impossível</b> a empresa lucrar — a profissional fica com mais do que o negócio recebe. Aqui o preço não resolve: o que tens de rever é o <b>modelo de comissão</b> (baixar a %, ou calcular sobre o valor sem IVA).</div>`;
+  }
+  let title, body;
+  if(r.cls==='red'){
+    title='🔴 Diagnóstico: preço prejudicial';
+    body=`Ao preço atual, este serviço não paga o tempo, o material e a estrutura — está a tirar margem ao negócio. Por ordem:
+      <ol>
+        <li>Sobe até ao <b>ideal (${ideal})</b> — é o mínimo para lucrares o alvo por hora.</li>
+        <li>Se o mercado não aceitar, <b>reduz o tempo</b> de execução ou o <b>custo de material</b>.</li>
+        <li>Se mesmo assim não fecha, torna-o <b>premium</b>: junta um extra (spa, acabamento, design) e vende a experiência, não o procedimento.</li>
+      </ol>`;
+  } else if(r.cls==='amber'){
+    title='🟡 Diagnóstico: precisa de ajuste';
+    body=`Estás perto de uma margem saudável — falta pouco. O que fazer:
+      <ol>
+        <li>Sobe até ao <b>ideal (${ideal})</b> — uma subida pequena costuma passar despercebida à cliente.</li>
+        <li>Ou cria uma versão <b>premium (${premium})</b> e deixa esta como opção de entrada.</li>
+        <li>Junta um <b>complementar</b> (nail art, spa) para subir o ticket sem perder margem.</li>
+      </ol>`;
+  } else {
+    title='🟢 Diagnóstico: saudável';
+    body=`Este serviço já paga tudo e dá lucro. Agora a jogada é <b>ganhar mais por cliente</b>:
+      <ol>
+        <li>Oferece o <b>upgrade premium (${premium})</b> como opção de topo.</li>
+        <li>Junta um <b>complementar</b> no mesmo atendimento — sobe o ticket sem gastar mais tempo nem estrutura.</li>
+        <li>Usa-o como âncora para valorizar os serviços à volta.</li>
+      </ol>`;
+  }
+  let extra='';
+  if(r.preco>0 && r.ideal>r.preco*1.8) extra=`<div class="st-extra"><b>Nota:</b> o ideal está bem acima do preço atual. Antes de subir tudo de uma vez, revê o tempo, o material ou a comissão — pode não ser só o preço.</div>`;
+  const actions=`<div class="st-actions"><button class="st-add" data-extra="premium" data-src="${s.id}">+ Criar versão premium</button><button class="st-add" data-extra="complementar" data-src="${s.id}">+ Adicionar complementar</button></div>`;
+  return `<div class="strategy s-${r.cls}"><div class="st-title">${title}</div>${body}${extra}${actions}</div>`;
+}
+
+function svcCardHTML(s){
+  if(!s.versoes) s.versoes=[];
+  const r=calc(s);
+  const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
+  return `
+  <div class="svc" data-id="${s.id}">
+    <div class="svc-head">
+      <label class="field grow">Nome do serviço<input class="s-nome" type="text" value="${escapeHtml(s.nome)}" placeholder="Ex: Alongamento em gel"></label>
+      <label class="field" style="flex:0 0 150px">Categoria<input class="s-cat" type="text" value="${escapeHtml(s.cat)}" placeholder="Ex: Alongamento"></label>
+      <button class="btn-x" data-del="${s.id}" title="Remover serviço">✕</button>
+    </div>
+    <div class="svc-body">
+      <div class="ver-main">
+        <div class="ver-tag orig">Versão original</div>
+        <div class="svc-inputs">
+          <label class="field">Preço atual (com IVA)<div class="inwrap"><input class="s-preco" type="number" min="0" value="${s.preco}"><span class="unit">€</span></div></label>
+          <label class="field">Tempo de execução<div class="inwrap"><input class="s-tempo" type="number" min="0" step="0.25" value="${s.tempo}"><span class="unit">h</span></div></label>
+        </div>
+        <label class="svc-comp"><input type="checkbox" class="s-comp"${s.complementar?' checked':''}> Serviço complementar <span class="comp-hint">(feito durante outro atendimento — não conta custo fixo)</span></label>
+        <div class="diag">
+          <span class="badge b-${r.cls}"><span class="d"></span>${r.txt}</span>
+          <span class="lh">Lucro da empresa: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b> por serviço</span>
+        </div>
+        ${breakdownHTML(r)}
+        ${meterHTML(r)}
+        <div class="prices">
+          <div class="pchip"><div class="l">Mínimo</div><div class="p">${eur2(r.minimo)}</div></div>
+          <div class="pchip ideal"><div class="l">Ideal</div><div class="p">${eur2(r.ideal)}</div></div>
+          <div class="pchip"><div class="l">Premium</div><div class="p">${eur2(r.premium)}</div></div>
+        </div>
+        ${strategyHTML(r, s)}
+      </div>
+      ${s.versoes.length ? `<div class="ver-list">${s.versoes.map(v=>versionHTML(s,v)).join('')}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+function combinedCalc(s, v){
+  const iva=(+state.iva||0)/100;
+  const base=calc(s);
+  const c=state.comAtiva?(+state.comPct||0)/100:0;
+  const vSemIva=(+v.preco||0)/(1+iva);
+  const vCom=state.comAtiva?(state.comBase==='comiva'?(+v.preco||0)*c:vSemIva*c):0;
+  const addLucro=vSemIva - vCom;
+  const precoTotal=(+s.preco||0)+(+v.preco||0);
+  const lucroTotal=base.lucro+addLucro;
+  const tempoTotal=(+s.tempo||0)+(+v.tempo||0);
+  const lucroHoraTotal=tempoTotal>0?lucroTotal/tempoTotal:lucroTotal;
+  const alvo=+state.alvo||0; let cls,txt;
+  if(alvo>0){const ratio=lucroHoraTotal/alvo; if(ratio>=1){cls='green';txt='Saudável';}else if(ratio>=0.5){cls='amber';txt='A ajustar';}else{cls='red';txt='Baixo';}}
+  else{ if(lucroHoraTotal>0){cls='green';txt='Saudável';}else if(lucroHoraTotal===0){cls='amber';txt='No limiar';}else{cls='red';txt='Baixo';} }
+  return {precoTotal,lucroTotal,lucroHoraTotal,cls,txt};
+}
+
+function versionHTML(s, v){
+  const tag = v.kind==='premium' ? 'Premium' : 'Complementar';
+  const head = `
+    <div class="ver-head">
+      <span class="ver-tag ${v.kind}">${tag}</span>
+      <input class="v-nome" type="text" value="${escapeHtml(v.nome)}" placeholder="Nome da versão">
+      <button class="btn-x sm" data-vdel="${v.id}" title="Remover versão">✕</button>
+    </div>
+    <div class="svc-inputs">
+      <label class="field">Preço (com IVA)<div class="inwrap"><input class="v-preco" type="number" min="0" value="${v.preco}"><span class="unit">€</span></div></label>
+      <label class="field">Tempo extra<div class="inwrap"><input class="v-tempo" type="number" min="0" step="0.25" value="${v.tempo}"><span class="unit">h</span></div></label>
+    </div>`;
+  if(v.kind==='complementar'){
+    const cc=combinedCalc(s,v);
+    const lh=cc.lucroHoraTotal<0?("−"+eur2(Math.abs(cc.lucroHoraTotal))):eur2(cc.lucroHoraTotal);
+    return `
+  <div class="ver complementar" data-vid="${v.id}">
+    ${head}
+    <div class="val-note">💡 Preço por <b>valor</b>, não por custo. Este extra vende-se <b>junto com o serviço principal</b>, não sozinho — define o preço pelo que a cliente valoriza.</div>
+    <div class="combo">
+      <span class="badge b-${cc.cls}"><span class="d"></span>${cc.txt}</span>
+      <span class="lh">Serviço + extra: <b>${eur2(cc.precoTotal)}</b> · lucro <b>${eur2(cc.lucroTotal)}</b> (<b>${lh}/h</b>)</span>
+    </div>
+  </div>`;
+  }
+  const r=calc(v);
+  const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
+  return `
+  <div class="ver premium" data-vid="${v.id}">
+    ${head}
+    <div class="diag">
+      <span class="badge b-${r.cls}"><span class="d"></span>${r.txt}</span>
+      <span class="lh">Lucro: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b></span>
+    </div>
+    <div class="prices">
+      <div class="pchip"><div class="l">Mínimo</div><div class="p">${eur2(r.minimo)}</div></div>
+      <div class="pchip ideal"><div class="l">Ideal</div><div class="p">${eur2(r.ideal)}</div></div>
+      <div class="pchip"><div class="l">Premium</div><div class="p">${eur2(r.premium)}</div></div>
+    </div>
+  </div>`;
+}
+
+function renderServicos(){
+  const list=document.getElementById('svc-list');
+  if(state.servicos.length===0){
+    list.innerHTML=`<div class="card empty">Ainda não há serviços. Adiciona o primeiro para veres o diagnóstico e o preço recomendado.</div>`;
+    return;
+  }
+  list.innerHTML=state.servicos.map(svcCardHTML).join('');
+}
+
+// ---------- render relatório ----------
+function renderRelatorio(){
+  const cfh=custoFixoHora();
+  document.getElementById('r-cfh').innerHTML=cfh>0?eur2(cfh)+' <small>/h</small>':'—';
+  document.getElementById('rep-title').textContent = state.nome? `Relatório · ${state.nome}` : "Relatório de precificação";
+  document.getElementById('rep-sub').textContent = state.cidade? `${state.cidade} · ${state.servicos.length} serviço(s) analisados` : `${state.servicos.length} serviço(s) analisados`;
+
+  const rows=state.servicos.map(s=>({s,r:calc(s)}));
+  if(rows.length===0){
+    document.getElementById('r-ticket').textContent="—";
+    document.getElementById('r-lh').textContent="—";
+    document.getElementById('r-rever').textContent="0";
+    document.getElementById('rep-table').innerHTML=`<p class="empty">Sem serviços para mostrar.</p>`;
+    document.getElementById('rep-actions').innerHTML=`<p class="empty">Nada a rever ainda.</p>`;
+    return;
+  }
+  const ticket=rows.reduce((a,x)=>a+x.r.preco,0)/rows.length;
+  const lhMed=rows.reduce((a,x)=>a+x.r.lucroHora,0)/rows.length;
+  const rever=rows.filter(x=>x.r.cls!=="green").length;
+  document.getElementById('r-ticket').textContent=eur(ticket);
+  document.getElementById('r-lh').innerHTML=(lhMed<0?"−"+eur2(Math.abs(lhMed)):eur2(lhMed))+' <small>/h</small>';
+  document.getElementById('r-rever').textContent=rever;
+
+  const sorted=[...rows].sort((a,b)=>b.r.lucroHora-a.r.lucroHora);
+  const dotCol=c=>c==="green"?"var(--green)":c==="amber"?"var(--amber)":"var(--red)";
+  document.getElementById('rep-table').innerHTML=`
+    <table>
+      <thead><tr><th></th><th>Serviço</th><th class="num">Preço atual</th><th class="num">Lucro/hora</th><th class="num">Preço ideal</th></tr></thead>
+      <tbody>
+        ${sorted.map(x=>`<tr>
+          <td><span class="dot-cell" style="background:${dotCol(x.r.cls)}"></span></td>
+          <td>${escapeHtml(x.s.nome||"(sem nome)")}</td>
+          <td class="num">${eur2(x.r.preco)}</td>
+          <td class="num">${x.r.lucroHora<0?"−"+eur2(Math.abs(x.r.lucroHora)):eur2(x.r.lucroHora)}/h</td>
+          <td class="num"><b>${eur2(x.r.ideal)}</b></td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+
+  const problemas=sorted.filter(x=>x.r.cls!=="green");
+  document.getElementById('rep-actions').innerHTML = problemas.length===0
+    ? `<p class="empty">👏 Todos os serviços estão saudáveis face ao teu objetivo de lucro.</p>`
+    : problemas.map(x=>{
+        const dif=x.r.ideal-x.r.preco;
+        const motivo = x.r.cls==="red"
+          ? "ocupa mais tempo do que devolve em lucro"
+          : "está perto do limite; uma pequena subida dá margem";
+        return `<div class="rev-item"><span class="dot-cell" style="background:${dotCol(x.r.cls)};margin-right:8px"></span>
+          <b>${escapeHtml(x.s.nome||"(sem nome)")}</b> — ${motivo}. De <b>${eur2(x.r.preco)}</b> para <b>${eur2(x.r.ideal)}</b>${isFinite(dif)&&dif>0?` (+${eur2(dif)})`:''}.</div>`;
+      }).join('');
+}
+
+function renderAll(){ renderNegocio(); renderServicos(); renderRelatorio(); }
+
+// ---------- utils ----------
+function escapeHtml(s){return String(s||"").replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+// ---------- preencher inputs a partir do estado ----------
+function fillInputs(){
+  document.getElementById('nome').value=state.nome;
+  document.getElementById('cidade').value=state.cidade;
+  renderCustos();
+  document.getElementById('nprof').value=state.nprof;
+  document.getElementById('dias').value=state.dias;
+  document.getElementById('horas').value=state.horas;
+  document.getElementById('iva').value=state.iva;
+  document.getElementById('matMes').value=state.matMes||'';
+  document.getElementById('atend').value=state.atend||'';
+  document.getElementById('alvo').value=state.alvo;
+  document.getElementById('comAtiva').checked=state.comAtiva;
+  document.getElementById('comBox').style.display=state.comAtiva?'grid':'none';
+  document.getElementById('comPct').value=state.comPct;
+  document.getElementById('comBase').value=state.comBase;
+}
+
+// ---------- eventos ----------
+function bind(){
+  // botões "?" — abrir/fechar as explicações
+  document.querySelectorAll('.qbtn').forEach(b=>b.addEventListener('click',()=>{
+    const t=document.getElementById(b.dataset.help); if(!t)return;
+    const open=t.classList.toggle('open');
+    b.setAttribute('aria-expanded',open?'true':'false');
+  }));
+  // tabs
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('click',()=>{
+    document.querySelectorAll('nav.tabs button').forEach(x=>x.setAttribute('aria-selected','false'));
+    b.setAttribute('aria-selected','true');
+    document.querySelectorAll('section.tab').forEach(s=>s.classList.remove('active'));
+    document.getElementById('tab-'+b.dataset.tab).classList.add('active');
+    if(b.dataset.tab==='relatorio') renderRelatorio();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }));
+
+  // identificação
+  document.getElementById('nome').addEventListener('input',e=>{state.nome=e.target.value;});
+  document.getElementById('cidade').addEventListener('input',e=>{state.cidade=e.target.value;});
+
+  // segmentos
+  function seg(id,key){document.getElementById(id).addEventListener('click',e=>{const btn=e.target.closest('button');if(!btn)return;
+    document.querySelectorAll('#'+id+' button').forEach(x=>x.setAttribute('aria-pressed','false'));
+    btn.setAttribute('aria-pressed','true');state[key]=btn.dataset.v;renderServicos();});}
+  seg('seg-tipo','tipo'); seg('seg-zona','zona'); seg('seg-pos','pos');
+
+  // custos fixos (lista dinâmica) — editar sem re-render mantém o foco; só add/remove re-desenha a lista
+  const clist=document.getElementById('custos-list');
+  clist.addEventListener('input',e=>{
+    const row=e.target.closest('.custo-row'); if(!row)return; const i=+row.dataset.i; if(!state.custos[i])return;
+    if(e.target.classList.contains('cnome'))state.custos[i].nome=e.target.value;
+    else if(e.target.classList.contains('cval'))state.custos[i].valor=+e.target.value||0;
+    renderNegocio(); renderServicos();
+  });
+  clist.addEventListener('click',e=>{const d=e.target.closest('[data-delc]');if(d){state.custos.splice(+d.dataset.delc,1);renderCustos();renderNegocio();renderServicos();}});
+  document.getElementById('add-custo').addEventListener('click',()=>{state.custos.push({nome:"",valor:0});renderCustos();});
+
+  // capacidade / regras
+  ['nprof','dias','horas','iva','alvo'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{state[id]=+e.target.value||0;renderNegocio();renderServicos();}));
+  ['matMes','atend'].forEach(id=>document.getElementById(id).addEventListener('input',e=>{state[id]=+e.target.value||0;renderNegocio();renderServicos();}));
+  document.getElementById('comAtiva').addEventListener('change',e=>{state.comAtiva=e.target.checked;document.getElementById('comBox').style.display=e.target.checked?'grid':'none';renderServicos();});
+  document.getElementById('comPct').addEventListener('input',e=>{state.comPct=+e.target.value||0;renderServicos();});
+  document.getElementById('comBase').addEventListener('change',e=>{state.comBase=e.target.value;renderServicos();});
+
+  // serviços (delegação)
+  document.getElementById('add').addEventListener('click',()=>{state.servicos.push({id:sid++,nome:"",cat:"",preco:0,tempo:1,material:0,complementar:false,versoes:[]});renderServicos();});
+  document.getElementById('svc-list').addEventListener('click',e=>{
+    const d=e.target.closest('[data-del]');
+    if(d){state.servicos=state.servicos.filter(s=>s.id!=d.dataset.del);renderServicos();return;}
+    const vd=e.target.closest('[data-vdel]');
+    if(vd){
+      const card=vd.closest('.svc'); const s=state.servicos.find(x=>x.id==card.dataset.id);
+      if(s){ s.versoes=(s.versoes||[]).filter(v=>v.id!=vd.dataset.vdel); renderServicos(); }
+      return;
+    }
+    const ex=e.target.closest('[data-extra]');
+    if(ex){
+      const s=state.servicos.find(x=>x.id==ex.dataset.src);
+      if(!s)return;
+      if(!s.versoes)s.versoes=[];
+      if(ex.dataset.extra==='premium'){
+        const rr=calc(s);
+        s.versoes.push({id:sid++,kind:'premium',nome:(s.nome||'Serviço')+' Premium',preco:isFinite(rr.premium)?rr.premium:0,tempo:s.tempo||1,complementar:false});
+      } else {
+        s.versoes.push({id:sid++,kind:'complementar',nome:'Complementar (ex: nail art, spa)',preco:0,tempo:0.5,complementar:true});
+      }
+      renderServicos();
+      return;
+    }
+  });
+  document.getElementById('svc-list').addEventListener('input',e=>{
+    const card=e.target.closest('.svc'); if(!card)return; const id=+card.dataset.id; const s=state.servicos.find(x=>x.id===id); if(!s)return;
+    const t=e.target;
+    const verEl=t.closest('.ver');
+    if(verEl){
+      const vid=+verEl.dataset.vid; const v=(s.versoes||[]).find(x=>x.id===vid); if(!v)return;
+      if(t.classList.contains('v-nome'))v.nome=t.value;
+      else if(t.classList.contains('v-preco'))v.preco=+t.value||0;
+      else if(t.classList.contains('v-tempo'))v.tempo=+t.value||0;
+      updateVersion(verEl, s, v);
+      return;
+    }
+    if(t.classList.contains('s-nome'))s.nome=t.value;
+    else if(t.classList.contains('s-cat'))s.cat=t.value;
+    else if(t.classList.contains('s-preco'))s.preco=+t.value||0;
+    else if(t.classList.contains('s-tempo'))s.tempo=+t.value||0;
+    else if(t.classList.contains('s-comp'))s.complementar=t.checked;
+    updateCard(card,s);
+  });
+}
+
+function updateCard(card,s){
+  const main=card.querySelector('.ver-main')||card;
+  const r=calc(s);
+  const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
+  const badge=main.querySelector('.badge');
+  if(badge){badge.className='badge b-'+r.cls;badge.innerHTML='<span class="d"></span>'+r.txt;}
+  const lh=main.querySelector('.lh'); if(lh) lh.innerHTML=`Lucro da empresa: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b> por serviço`;
+  const bd=main.querySelector('.breakdown'); if(bd) bd.outerHTML=breakdownHTML(r);
+  const chips=main.querySelectorAll('.prices .pchip .p');
+  if(chips[0])chips[0].textContent=eur2(r.minimo);
+  if(chips[1])chips[1].textContent=eur2(r.ideal);
+  if(chips[2])chips[2].textContent=eur2(r.premium);
+  const meterWrap=main.querySelector('.meter'); if(meterWrap) meterWrap.outerHTML=meterHTML(r);
+  const strat=main.querySelector('.strategy'); if(strat) strat.outerHTML=strategyHTML(r, s);
+  card.querySelectorAll('.ver.complementar').forEach(verEl=>{ const v=(s.versoes||[]).find(x=>x.id==verEl.dataset.vid); if(v) updateVersion(verEl, s, v); });
+}
+
+function updateVersion(verEl, s, v){
+  if(v.kind==='complementar'){
+    const cc=combinedCalc(s,v);
+    const lh=cc.lucroHoraTotal<0?("−"+eur2(Math.abs(cc.lucroHoraTotal))):eur2(cc.lucroHoraTotal);
+    const badge=verEl.querySelector('.badge'); if(badge){badge.className='badge b-'+cc.cls;badge.innerHTML='<span class="d"></span>'+cc.txt;}
+    const lhel=verEl.querySelector('.combo .lh'); if(lhel) lhel.innerHTML=`Serviço + extra: <b>${eur2(cc.precoTotal)}</b> · lucro <b>${eur2(cc.lucroTotal)}</b> (<b>${lh}/h</b>)`;
+    return;
+  }
+  const r=calc(v);
+  const lhLabel=r.lucroHora<0?("−"+eur2(Math.abs(r.lucroHora))):eur2(r.lucroHora);
+  const badge=verEl.querySelector('.badge'); if(badge){badge.className='badge b-'+r.cls;badge.innerHTML='<span class="d"></span>'+r.txt;}
+  const lh=verEl.querySelector('.lh'); if(lh) lh.innerHTML=`Lucro: <b>${lhLabel}/h</b> · <b>${eur2(r.lucro)}</b>`;
+  const chips=verEl.querySelectorAll('.prices .pchip .p');
+  if(chips[0])chips[0].textContent=eur2(r.minimo);
+  if(chips[1])chips[1].textContent=eur2(r.ideal);
+  if(chips[2])chips[2].textContent=eur2(r.premium);
+}
+
+// ---------- Supabase (fase 2) — preenche para gravar contactos ----------
+const SUPABASE_URL = "https://dxfztuulbrivulmlgbut.supabase.co";
+const SUPABASE_KEY = "sb_publishable_28cdEDUt8bwOprFArL9bcA_2i_NJXrS";
+let sb = null;
+async function initSB(){
+  if(SUPABASE_URL && SUPABASE_KEY && window.supabase && window.supabase.createClient){
+    try{ sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); }
+    catch(e){ console.warn('Supabase indisponível, a porta continua a funcionar sem gravar:',e); }
+  } else if(SUPABASE_URL && SUPABASE_KEY){
+    console.warn('Biblioteca Supabase não carregou (sem acesso à rede externa neste ambiente). A porta funciona, mas não grava aqui — testa no site publicado.');
+  }
+}
+const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+let currentUser=null, dirty=false, authMode='in';
+// tipo de link vindo do email (convite ou recuperação) — lido antes de o Supabase limpar o endereço
+const AUTH_LINK = (()=>{ const h=new URLSearchParams(location.hash.replace(/^#/,'')); const q=new URLSearchParams(location.search); return h.get('type')||q.get('type')||''; })();
+const AUTH_LINK_ERR = new URLSearchParams(location.hash.replace(/^#/,'')).get('error_description')||'';
+
+function applySegments(){
+  [['seg-tipo','tipo'],['seg-zona','zona'],['seg-pos','pos']].forEach(([id,key])=>{
+    document.querySelectorAll('#'+id+' button').forEach(b=>b.setAttribute('aria-pressed', b.dataset.v===state[key]?'true':'false'));
+  });
+}
+
+async function loadProfile(){
+  if(!sb || !currentUser) return;
+  try{
+    const {data,error}=await sb.from('profiles').select('data').eq('user_id',currentUser.id).maybeSingle();
+    if(error) throw error;
+    if(data && data.data){
+      Object.assign(state, data.data);
+      if(Array.isArray(state.servicos)){ let mx=0; state.servicos.forEach(x=>{ mx=Math.max(mx,+x.id||0); (x.versoes||[]).forEach(v=>mx=Math.max(mx,+v.id||0)); }); sid=mx+1; }
+    }
+  }catch(e){ console.warn('Perfil não carregado:',e); }
+  fillInputs(); applySegments(); renderAll();
+}
+async function saveProfile(){
+  if(!sb || !currentUser) return;
+  try{ await sb.from('profiles').upsert({user_id:currentUser.id, data:state, updated_at:new Date().toISOString()}); }
+  catch(e){ console.warn('Perfil não guardado:',e); }
+}
+function startAutosave(){
+  document.addEventListener('input',()=>{ if(currentUser) dirty=true; });
+  document.addEventListener('change',()=>{ if(currentUser) dirty=true; });
+  setInterval(()=>{ if(dirty && currentUser){ dirty=false; saveProfile(); } }, 3000);
+}
+
+function showApp(user){
+  currentUser=user;
+  document.getElementById('gate').style.display='none';
+  document.body.classList.remove('locked');
+  const ub=document.getElementById('userbar');
+  if(ub){ ub.style.display='flex'; document.getElementById('user-email').textContent=user.email; }
+  loadProfile();
+}
+
+function traduzErro(m){
+  if(/Invalid login/i.test(m)) return 'Email ou palavra-passe errados.';
+  if(/Email not confirmed/i.test(m)) return 'Este email ainda não foi confirmado. Abre o email de acesso que recebeste.';
+  if(/at least 6/i.test(m)) return 'A palavra-passe precisa de pelo menos 6 caracteres.';
+  if(/rate limit|security purposes/i.test(m)) return 'Muitas tentativas seguidas. Espera um minuto e tenta outra vez.';
+  if(/same.*password|different from the old/i.test(m)) return 'Escolhe uma palavra-passe diferente da anterior.';
+  return m;
+}
+
+function showErr(el,msg){ el.textContent=msg; el.classList.add('show'); }
+
+function showSetPassword(kind){
+  document.getElementById('au-login').style.display='none';
+  document.getElementById('au-set').style.display='';
+  document.getElementById('au-set-sub').textContent = kind==='recovery'
+    ? 'Escolhe uma nova palavra-passe para a tua conta.'
+    : 'Bem-vinda! Cria a tua palavra-passe para entrares na Agenda Lucrativa.';
+}
+
+function bindAuth(){
+  const err=document.getElementById('au-err');
+  const go=document.getElementById('au-go');
+
+  const submit=async()=>{
+    const email=document.getElementById('au-email').value.trim();
+    const pass=document.getElementById('au-pass').value;
+    if(!validEmail(email) || pass.length<6){ showErr(err,'Verifica o email e a palavra-passe (mínimo 6 caracteres).'); return; }
+    if(!sb){ showErr(err,'Sem ligação ao servidor. Tenta outra vez dentro de momentos.'); return; }
+    err.classList.remove('show'); go.disabled=true; const t=go.textContent; go.textContent='A entrar…';
+    try{
+      const {data,error}=await sb.auth.signInWithPassword({email,password:pass});
+      if(error) throw error;
+      showApp(data.user);
+    }catch(e){
+      showErr(err,(e && e.message) ? traduzErro(e.message) : 'Não foi possível entrar.');
+    }finally{ go.disabled=false; go.textContent=t; }
+  };
+  go.addEventListener('click',submit);
+  document.getElementById('au-pass').addEventListener('keydown',e=>{ if(e.key==='Enter') submit(); });
+
+  // esqueci-me da palavra-passe
+  document.getElementById('au-forgot').addEventListener('click',async e=>{
+    e.preventDefault();
+    const email=document.getElementById('au-email').value.trim();
+    if(!validEmail(email)){ showErr(err,'Escreve primeiro o teu email no campo acima.'); return; }
+    if(!sb){ showErr(err,'Sem ligação ao servidor. Tenta outra vez dentro de momentos.'); return; }
+    try{
+      const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo: location.origin+location.pathname});
+      if(error) throw error;
+      showErr(err,'Se este email tiver acesso, vais receber um link para criares uma nova palavra-passe.');
+    }catch(ex){ showErr(err, ex && ex.message ? traduzErro(ex.message) : 'Não foi possível enviar o email.'); }
+  });
+
+  // criar / mudar palavra-passe (convite ou recuperação)
+  const setErr=document.getElementById('au-set-err');
+  const setGo=document.getElementById('au-set-go');
+  const setPass=async()=>{
+    const p1=document.getElementById('au-new').value, p2=document.getElementById('au-new2').value;
+    if(p1.length<6){ showErr(setErr,'A palavra-passe precisa de pelo menos 6 caracteres.'); return; }
+    if(p1!==p2){ showErr(setErr,'As duas palavras-passe não são iguais.'); return; }
+    setErr.classList.remove('show'); setGo.disabled=true; setGo.textContent='A guardar…';
+    try{
+      const {data,error}=await sb.auth.updateUser({password:p1});
+      if(error) throw error;
+      history.replaceState(null,'',location.pathname);
+      showApp(data.user);
+    }catch(e){
+      showErr(setErr,(e && e.message) ? traduzErro(e.message) : 'Não foi possível guardar.');
+    }finally{ setGo.disabled=false; setGo.textContent='Guardar e entrar'; }
+  };
+  setGo.addEventListener('click',setPass);
+  document.getElementById('au-new2').addEventListener('keydown',e=>{ if(e.key==='Enter') setPass(); });
+}
+
+async function checkSession(){
+  if(!sb) return;
+  if(AUTH_LINK_ERR){
+    showErr(document.getElementById('au-err'),'Este link de acesso já expirou ou já foi usado. Escreve o teu email e carrega em "Esqueci-me da palavra-passe" para receberes um novo.');
+    history.replaceState(null,'',location.pathname);
+    return;
+  }
+  try{
+    const {data}=await sb.auth.getSession();
+    if(data && data.session && data.session.user){
+      if(AUTH_LINK==='invite' || AUTH_LINK==='recovery'){ showSetPassword(AUTH_LINK); return; }
+      showApp(data.session.user);
+    }
+  }catch(e){}
+}
+function bindLogout(){
+  const b=document.getElementById('logout'); if(!b) return;
+  b.addEventListener('click',async()=>{
+    if(dirty && currentUser){ dirty=false; await saveProfile(); }
+    try{ if(sb) await sb.auth.signOut(); }catch(e){}
+    location.reload();
+  });
+}
+
+// ---------- arranque ----------
+initSB();
+bindAuth();
+bindLogout();
+seed();
+fillInputs();
+bind();
+renderAll();
+startAutosave();
+checkSession();
+</script>
+</body>
+</html>
