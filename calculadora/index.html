@@ -242,6 +242,27 @@
   .g-btn:hover{background:#332545}
   .g-btn:disabled{opacity:.6;cursor:default}
   .g-priv{font-size:11px;color:#a89bb2;text-align:center;margin-top:13px;line-height:1.5}
+  .g-priv a,.g-consent a{color:var(--plum)}
+  .g-consent{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--ink-soft);line-height:1.45;margin:2px 0 12px;cursor:pointer}
+  .g-consent input{width:16px;height:16px;margin-top:1px;flex:0 0 auto;accent-color:var(--plum);cursor:pointer}
+
+  /* versão grátis: desbloquear + mentoria */
+  .unlock{background:var(--ink);color:#fff;border-radius:var(--radius);padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
+  .unlock h3{font-family:'Space Grotesk',sans-serif;font-size:19px;margin:0 0 6px;letter-spacing:-.01em}
+  .unlock h3 b{color:var(--gold)}
+  .unlock p{margin:0 0 12px;font-size:13.5px;color:#d9cfe3}
+  .unlock ul{margin:0 0 16px;padding-left:18px;font-size:13.5px;color:#efe7f5}
+  .unlock li{margin-bottom:4px}
+  .btn-unlock{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#fff;border:0;border-radius:999px;padding:12px 22px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none}
+  .btn-unlock:hover{filter:brightness(1.08)}
+  .unlock .small{font-size:11.5px;color:#a89bb2;margin:10px 0 0}
+  .cta-mentoria{background:var(--plum-soft);border:1px solid #e0d0ec;border-radius:var(--radius);padding:22px;margin-bottom:18px}
+  .cta-mentoria h3{font-family:'Space Grotesk',sans-serif;font-size:18px;margin:0 0 6px;color:var(--ink)}
+  .cta-mentoria p{margin:0 0 14px;font-size:13.5px;color:var(--ink-soft)}
+  .btn-mentoria{display:inline-flex;align-items:center;gap:8px;background:var(--plum);color:#fff;border-radius:999px;padding:11px 20px;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;text-decoration:none}
+  .btn-mentoria:hover{background:#5a3479}
+  .limit-note{text-align:center;font-size:13px;color:var(--ink-soft);margin:10px 0 0}
+  .print-lock{display:none}
 
   @media (max-width:720px){
     .g2,.g3,.g4,.svc-inputs,.tiles,.prices,.rep-hero{grid-template-columns:1fr 1fr}
@@ -260,6 +281,8 @@
   @media print{
     body{background:#fff}
     nav.tabs,.addbtn,.print,.footnote,#tab-negocio,#tab-servicos{display:none!important}
+    .wrap,.gate{display:none!important}
+    .print-lock{display:block!important;font-family:'Inter',sans-serif;text-align:center;padding:80px 30px;font-size:16px;color:#221a2e}
     section.tab{display:block!important}
     .card{box-shadow:none;break-inside:avoid}
     header.top{padding-top:0}
@@ -277,9 +300,10 @@
     <label class="field">Nome<input id="g-nome" type="text" placeholder="O teu nome" autocomplete="name"></label>
     <label class="field">Email<input id="g-email" type="email" placeholder="nome@email.com" autocomplete="email"></label>
     <label class="field">Telefone<input id="g-tel" type="tel" placeholder="+351 ..." autocomplete="tel"></label>
-    <div class="gate-err" id="g-err">Preenche o nome, um email válido e o telefone.</div>
+    <label class="g-consent"><input id="g-ok" type="checkbox"> <span>Aceito que a Hub Advance use estes dados para me enviar o relatório e novidades da mentoria, como descrito na <a id="g-priv-link" href="#" target="_blank" rel="noopener">política de privacidade</a>. Posso cancelar quando quiser.</span></label>
+    <div class="gate-err" id="g-err">Preenche o nome, um email válido, o telefone e aceita a política de privacidade.</div>
     <button class="g-btn" id="g-go">Começar &rarr;</button>
-    <p class="g-priv">Usamos os teus dados apenas para contacto da mentoria.</p>
+    <p class="g-priv">Os teus dados não são partilhados com terceiros.</p>
   </div>
 </div>
 
@@ -289,7 +313,7 @@
     <div class="brandrow">
       <img class="brand-mark" src="data:image/png;base64,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" alt="Advance">
       <span class="logo">GPL <b>·</b> Gerador de Preços Lucrativos</span>
-      <span class="kicker">Mentoria</span>
+      <span class="kicker">Versão grátis</span>
     </div>
     <p class="tagline">Define o preço pela matemática do teu negócio — custo real, tempo e margem — e não pelo que o vizinho cobra.</p>
   </header>
@@ -391,8 +415,8 @@
         <label class="field">Comissão da profissional<span class="hint">% que ela recebe</span><div class="inwrap"><input id="comPct" type="number" min="0" max="100" placeholder="50"><span class="unit">%</span></div></label>
         <label class="field">Calculada sobre
           <select id="comBase">
-            <option value="semiva">O valor sem IVA</option>
-            <option value="comiva">O preço com IVA</option>
+            <option value="semiva">o valor sem IVA</option>
+            <option value="comiva">o preço com IVA</option>
           </select>
         </label>
       </div>
@@ -422,6 +446,7 @@
 
     <div id="svc-list"></div>
     <button class="addbtn" id="add">+ Adicionar serviço</button>
+    <p class="limit-note" id="limit-note" style="display:none">A versão grátis analisa até 3 serviços. <a href="#" class="js-unlock" style="color:var(--plum);font-weight:600">Desbloquear serviços ilimitados →</a></p>
   </section>
 
   <!-- ========== RELATÓRIO ========== -->
@@ -435,7 +460,6 @@
         <div class="tile"><div class="lab">Lucro/hora médio</div><div class="val" id="r-lh">—</div></div>
         <div class="tile"><div class="lab">Serviços a rever</div><div class="val" id="r-rever">—</div></div>
       </div>
-      <button class="print" onclick="window.print()">⬇ Guardar / imprimir em PDF</button>
     </div>
 
     <div class="card" id="rep-table-card">
@@ -448,13 +472,28 @@
       <div id="rep-actions"></div>
     </div>
 
-    <div style="text-align:center;margin-top:4px">
-      <button class="print" onclick="window.print()">⬇ Guardar / imprimir relatório em PDF</button>
+    <div class="unlock">
+      <h3>Desbloqueia o GPL completo por <b>17€</b></h3>
+      <p>Pagamento único, acesso para sempre. Volta sempre que os teus custos ou serviços mudarem.</p>
+      <ul>
+        <li>Serviços ilimitados</li>
+        <li>Os teus dados ficam guardados na tua conta</li>
+        <li>Relatório em PDF sempre que quiseres</li>
+      </ul>
+      <a class="btn-unlock js-unlock" href="#">Desbloquear por 17€ →</a>
+      <p class="small">Recebes o acesso por email logo após o pagamento.</p>
+    </div>
+
+    <div class="cta-mentoria">
+      <h3>Queres ajuda para aplicar estes preços?</h3>
+      <p>Na Mentoria Advance olhamos para o teu negócio em concreto: preços, oferta, números e estrutura, com acompanhamento de perto até o plano sair do papel.</p>
+      <a class="btn-mentoria js-mentoria" href="#" target="_blank" rel="noopener">Quero saber mais sobre a mentoria →</a>
     </div>
   </section>
 
-  <p class="footnote">GPL — Gerador de Preços Lucrativos · uma ferramenta Advance. Os dados ficam só neste dispositivo (versão sem login).</p>
+  <p class="footnote">GPL — Gerador de Preços Lucrativos · uma ferramenta Advance. Versão grátis: os dados não ficam guardados.</p>
 </div>
+<div class="print-lock">O relatório em PDF está disponível na versão completa do GPL.<br>Desbloqueia em hubadvance.pt/calculadora</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -737,6 +776,7 @@ function versionHTML(s, v){
 }
 
 function renderServicos(){
+  updateLimit();
   const list=document.getElementById('svc-list');
   if(state.servicos.length===0){
     list.innerHTML=`<div class="card empty">Ainda não há serviços. Adiciona o primeiro para veres o diagnóstico e o preço recomendado.</div>`;
@@ -867,7 +907,7 @@ function bind(){
   document.getElementById('comBase').addEventListener('change',e=>{state.comBase=e.target.value;renderServicos();});
 
   // serviços (delegação)
-  document.getElementById('add').addEventListener('click',()=>{state.servicos.push({id:sid++,nome:"",cat:"",preco:0,tempo:1,material:0,complementar:false,versoes:[]});renderServicos();});
+  document.getElementById('add').addEventListener('click',()=>{if(state.servicos.length>=MAX_SERVICOS){updateLimit();return;}state.servicos.push({id:sid++,nome:"",cat:"",preco:0,tempo:1,material:0,complementar:false,versoes:[]});renderServicos();});
   document.getElementById('svc-list').addEventListener('click',e=>{
     const d=e.target.closest('[data-del]');
     if(d){state.servicos=state.servicos.filter(s=>s.id!=d.dataset.del);renderServicos();return;}
@@ -948,6 +988,27 @@ function updateVersion(verEl, s, v){
   if(chips[2])chips[2].textContent=eur2(r.premium);
 }
 
+// ---------- LINKS (preencher) ----------
+const STRIPE_LINK   = "";   // link de pagamento Stripe (17€) — ex: https://buy.stripe.com/...
+const MENTORIA_URL  = "https://hubadvance.pt/mentoria";
+const PRIVACY_URL   = "/privacidade/";
+const MAX_SERVICOS  = 3;
+
+function bindLinks(){
+  document.querySelectorAll('.js-unlock').forEach(a=>{
+    if(STRIPE_LINK){ a.href=STRIPE_LINK; }
+    else { a.addEventListener('click',e=>{e.preventDefault();alert('Pagamento disponível em breve.');}); }
+  });
+  document.querySelectorAll('.js-mentoria').forEach(a=>a.href=MENTORIA_URL);
+  const pl=document.getElementById('g-priv-link'); if(pl) pl.href=PRIVACY_URL;
+}
+function updateLimit(){
+  const full=state.servicos.length>=MAX_SERVICOS;
+  const add=document.getElementById('add'), note=document.getElementById('limit-note');
+  if(add) add.style.display=full?'none':'';
+  if(note) note.style.display=full?'':'none';
+}
+
 // ---------- Supabase (fase 2) — preenche para gravar contactos ----------
 const SUPABASE_URL = "https://dxfztuulbrivulmlgbut.supabase.co";
 const SUPABASE_KEY = "sb_publishable_28cdEDUt8bwOprFArL9bcA_2i_NJXrS";
@@ -974,7 +1035,8 @@ function bindGate(){
     const email=document.getElementById('g-email').value.trim();
     const tel=document.getElementById('g-tel').value.trim();
     const err=document.getElementById('g-err');
-    if(!nome || !validEmail(email) || tel.replace(/\D/g,'').length<6){ err.classList.add('show'); return; }
+    const ok=document.getElementById('g-ok').checked;
+    if(!nome || !validEmail(email) || tel.replace(/\D/g,'').length<6 || !ok){ err.classList.add('show'); return; }
     err.classList.remove('show');
     go.disabled=true; go.textContent='A entrar…';
     await saveLead({nome,email,telefone:tel});
@@ -986,6 +1048,7 @@ function bindGate(){
 }
 
 // ---------- arranque ----------
+bindLinks();
 initSB();
 bindGate();
 seed();
