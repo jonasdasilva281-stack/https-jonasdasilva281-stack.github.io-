@@ -299,6 +299,7 @@
       <label class="field">Repetir palavra-passe<input id="au-new2" type="password" placeholder="repete a palavra-passe" autocomplete="new-password"></label>
       <div class="gate-err" id="au-set-err"></div>
       <button class="g-btn" id="au-set-go">Guardar e entrar</button>
+      <p class="g-priv" id="au-set-cancel" style="display:none"><a href="#">Cancelar</a></p>
     </div>
   </div>
 </div>
@@ -310,7 +311,7 @@
       <img class="brand-mark" src="../logo-icone.svg" alt="Agenda Lucrativa">
       <span class="logo">Agenda <b>Lucrativa</b></span>
       <span class="kicker">Versão completa</span>
-      <div class="userbar" id="userbar" style="display:none"><span id="user-email"></span><button id="logout" type="button">Sair</button></div>
+      <div class="userbar" id="userbar" style="display:none"><span id="user-email"></span><button id="chpass" type="button">Mudar palavra-passe</button><button id="logout" type="button">Sair</button></div>
     </div>
     <p class="tagline">Define o preço pela matemática do teu negócio — custo real, tempo e margem — e não pelo que o vizinho cobra.</p>
   </header>
@@ -1065,17 +1066,10 @@ function bindAuth(){
   go.addEventListener('click',submit);
   document.getElementById('au-pass').addEventListener('keydown',e=>{ if(e.key==='Enter') submit(); });
 
-  // esqueci-me da palavra-passe
-  document.getElementById('au-forgot').addEventListener('click',async e=>{
+  // esqueci-me da palavra-passe (por agora sem email automático: contacto direto)
+  document.getElementById('au-forgot').addEventListener('click',e=>{
     e.preventDefault();
-    const email=document.getElementById('au-email').value.trim();
-    if(!validEmail(email)){ showErr(err,'Escreve primeiro o teu email no campo acima.'); return; }
-    if(!sb){ showErr(err,'Sem ligação ao servidor. Tenta outra vez dentro de momentos.'); return; }
-    try{
-      const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo: location.origin+location.pathname});
-      if(error) throw error;
-      showErr(err,'Se este email tiver acesso, vais receber um link para criares uma nova palavra-passe.');
-    }catch(ex){ showErr(err, ex && ex.message ? traduzErro(ex.message) : 'Não foi possível enviar o email.'); }
+    showErr(err,'Escreve para geral@hubadvance.com com o email da tua compra e enviamos-te uma nova palavra-passe.');
   });
 
   // criar / mudar palavra-passe (convite ou recuperação)
@@ -1090,6 +1084,7 @@ function bindAuth(){
       const {data,error}=await sb.auth.updateUser({password:p1});
       if(error) throw error;
       history.replaceState(null,'',location.pathname);
+      if(currentUser){ document.getElementById('gate').style.display='none'; document.body.classList.remove('locked'); alert('Palavra-passe alterada.'); return; }
       showApp(data.user);
     }catch(e){
       showErr(setErr,(e && e.message) ? traduzErro(e.message) : 'Não foi possível guardar.');
@@ -1117,6 +1112,22 @@ async function checkSession(){
     }
   }catch(e){}
 }
+function bindChangePass(){
+  const b=document.getElementById('chpass'); if(!b) return;
+  b.addEventListener('click',()=>{
+    document.getElementById('au-new').value=''; document.getElementById('au-new2').value='';
+    document.getElementById('au-set-err').classList.remove('show');
+    showSetPassword('recovery');
+    document.getElementById('au-set-cancel').style.display='';
+    document.getElementById('gate').style.display='flex';
+    document.body.classList.add('locked');
+  });
+  document.getElementById('au-set-cancel').addEventListener('click',e=>{
+    e.preventDefault();
+    document.getElementById('gate').style.display='none';
+    document.body.classList.remove('locked');
+  });
+}
 function bindLogout(){
   const b=document.getElementById('logout'); if(!b) return;
   b.addEventListener('click',async()=>{
@@ -1130,6 +1141,7 @@ function bindLogout(){
 initSB();
 bindAuth();
 bindLogout();
+bindChangePass();
 seed();
 fillInputs();
 bind();
