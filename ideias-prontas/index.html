@@ -747,10 +747,10 @@ function saveHtml(ex){
    '<p>Fica com as '+(curr().plan.length)+' ideias num PDF: gancho, roteiro e legenda de cada dia, mais os ganchos extra. Pode imprimir ou guardar nos ficheiros do telemóvel.</p>'+
    '<div class="actions"><button class="btn" type="button" id="do-pdf"'+lock+'>Descarregar PDF</button></div>'+(ex?'<p class="tip">Responda primeiro às perguntas da agente para descarregar o seu calendário.</p>':'')+'</article>'+
    '<article class="card"><div class="lbl">Passo 3</div><h2>Cópia de segurança</h2>'+
-   '<p>Os seus dados ficam guardados neste telemóvel. Faça uma cópia para não perder nada se limpar o navegador ou mudar de telemóvel.</p>'+
-   '<div class="actions"><button class="btn" type="button" id="do-backup"'+lock+'>Descarregar cópia</button><button class="sec" type="button" id="do-code"'+lock+'>Copiar código de recuperação</button></div>'+
+   '<p>Os seus dados ficam guardados neste telemóvel. Faça uma cópia para não perder nada se limpar o navegador ou mudar de telemóvel. No telemóvel, escolha <b>Guardar em Ficheiros</b> ou envie para o seu email.</p>'+
+   '<div class="actions"><button class="btn" type="button" id="do-backup"'+lock+'>Guardar cópia</button><button class="sec" type="button" id="do-code"'+lock+'>Copiar código de recuperação</button></div>'+
    '<div class="lbl" style="margin-top:6px">Restaurar</div>'+
-   '<div class="actions"><label class="sec filebtn" for="restore-file">Escolher ficheiro de cópia</label><input type="file" id="restore-file" accept=".json,application/json" hidden></div>'+
+   '<div class="actions"><label class="sec filebtn" for="restore-file">Escolher ficheiro de cópia</label><input type="file" id="restore-file" accept=".json,application/json,text/plain" hidden></div>'+
    '<textarea id="restore-code" rows="3" placeholder="Ou cole aqui o código de recuperação"></textarea>'+
    '<div class="actions"><button class="sec" type="button" id="do-restore">Restaurar com o código</button></div>'+
    '<p class="msgline" id="save-msg" role="status"></p></article></div>';
@@ -774,8 +774,14 @@ function bindSave(){
   if(bi) bi.addEventListener('click',async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;renderDesk()});
   const bp=$('#do-pdf'); if(bp) bp.addEventListener('click',()=>makePdf(bp));
   const bb=$('#do-backup'); if(bb) bb.addEventListener('click',()=>{
-    const d=new Date();const ok=downloadBlob('ideias-prontas-copia-'+iso(d)+'.json',new Blob([backupJson()],{type:'application/json'}));
-    setMsg(ok?'Cópia descarregada. Guarde o ficheiro num sítio seguro (Ficheiros, Drive ou email).':'Não foi possível descarregar aqui. Use "Copiar código de recuperação".');
+    const name='ideias-prontas-copia-'+iso(new Date())+'.json', json=backupJson();
+    const fallback=()=>{const ok=downloadBlob(name,new Blob([json],{type:'application/octet-stream'}));
+      setMsg(ok?'Cópia guardada nas Transferências. Guarde o ficheiro num sítio seguro (Ficheiros, Drive ou email).':'Não foi possível guardar aqui. Use "Copiar código de recuperação".')};
+    let file=null;try{file=new File([json],name,{type:'application/json'})}catch(e){}
+    if(file&&navigator.canShare&&navigator.canShare({files:[file]})){
+      navigator.share({files:[file],title:'Cópia Ideias Prontas'}).then(()=>setMsg('Cópia guardada. Para restaurar, use "Escolher ficheiro de cópia".'))
+        .catch(e=>{if(e&&e.name==='AbortError')setMsg('Cancelou a cópia. Pode tentar de novo quando quiser.');else fallback()});
+    } else fallback();
   });
   const bc=$('#do-code'); if(bc) bc.addEventListener('click',()=>{
     const code='IDEIAS1:'+btoa(unescape(encodeURIComponent(backupJson())));

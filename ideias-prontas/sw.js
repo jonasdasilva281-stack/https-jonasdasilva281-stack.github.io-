@@ -1,5 +1,5 @@
 // Ideias Prontas — funciona sem internet depois da primeira visita
-const CACHE = 'ideias-prontas-v4';
+const CACHE = 'ideias-prontas-v5';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './favicon.svg', './favicon-32.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
