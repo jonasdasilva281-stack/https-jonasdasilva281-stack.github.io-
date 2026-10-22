@@ -1,0 +1,819 @@
+<title>Ideias Prontas</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#D92B55">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Ideias Prontas">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: agente em conversa à esquerda (fixa no desktop), mesa de trabalho com o calendário à direita; no telemóvel empilha. */
+:root{
+  --paper:#F3F4F8; --surface:#FFFFFF; --ink:#16182A; --muted:#5B5F76; --line:#DDE0EA;
+  --accent:#D92B55; --accent-ink:#FFFFFF; --sun:#FFD23F; --soft:#FBE7EC;
+  --pA:#D92B55; --pC:#C97700; --pE:#2C66E0; --pV:#11905F;
+  --shadow:0 10px 30px -18px rgba(22,24,42,.35);
+  --display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11121A; --surface:#1A1C28; --ink:#F0F1F7; --muted:#A3A7C0; --line:#2B2E42;
+  --accent:#FF5A80; --accent-ink:#1A0910; --sun:#F5C83A; --soft:#3A1A25;
+  --pA:#FF6B8E; --pC:#F0A93A; --pE:#6F9BFF; --pV:#3CCB91;
+  --shadow:0 10px 30px -18px rgba(0,0,0,.8); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11121A; --surface:#1A1C28; --ink:#F0F1F7; --muted:#A3A7C0; --line:#2B2E42;
+  --accent:#FF5A80; --accent-ink:#1A0910; --sun:#F5C83A; --soft:#3A1A25;
+  --pA:#FF6B8E; --pC:#F0A93A; --pE:#6F9BFF; --pV:#3CCB91;
+  --shadow:0 10px 30px -18px rgba(0,0,0,.8); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 40px}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto}
+
+/* topo */
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:20px 18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-weight:800;font-size:26px;letter-spacing:-.02em;line-height:1}
+.mark{width:38px;height:38px;flex:none;display:block}.mark svg,.avatar svg{width:100%;height:100%;display:block}
+.amp{color:var(--accent);font-weight:600}
+.logo mark{background:linear-gradient(transparent 55%, var(--sun) 55%, var(--sun) 92%, transparent 92%);color:inherit;padding:0 2px}
+.tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.ghost{background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.ghost:hover{color:var(--ink);border-color:var(--ink)}
+
+.grid{display:grid;grid-template-columns:minmax(0,370px) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+/* agente */
+.agent{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);display:flex;flex-direction:column;
+  position:sticky;top:calc(env(safe-area-inset-top, 0px) + 16px);max-height:calc(100vh - 40px);overflow:hidden}
+@media (max-width:900px){.agent{position:static;max-height:none}}
+.agent-head{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--line)}
+.avatar{width:40px;height:40px;flex:none}
+.agent-head b{font-family:var(--display);font-size:17px;display:block;line-height:1.1}
+.agent-head small{color:var(--muted);font-size:12.5px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--pV);margin-right:5px;vertical-align:1px}
+.log{padding:16px 18px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;min-height:180px}
+.msg{max-width:88%;padding:10px 14px;border-radius:16px;font-size:14.5px;animation:pop .25s ease-out both}
+.msg.bot{background:var(--paper);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.me{background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:4px;align-self:flex-end;font-weight:500}
+.msg .hint{display:block;color:var(--muted);font-size:12.5px;margin-top:4px}
+.typing{display:inline-flex;gap:4px;padding:12px 14px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes pop{from{transform:translateY(6px);opacity:.4}to{transform:none;opacity:1}}
+.composer{border-top:1px solid var(--line);padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:8px}
+.composer input{flex:1;min-width:0;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:11px 12px;font:inherit;font-size:14.5px}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:12px;padding:10px 16px;font-weight:700;font-size:14px;white-space:nowrap}
+.btn:hover{filter:brightness(1.05)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;font-weight:600;font-size:13.5px}
+.chip:hover{border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--soft);border-color:var(--accent);color:var(--accent)}
+.progress{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
+
+/* mesa de trabalho */
+.desk{min-width:0;display:flex;flex-direction:column;gap:16px}
+.banner{display:flex;gap:12px;align-items:center;background:var(--soft);border:1px dashed var(--accent);border-radius:14px;padding:12px 16px;font-size:14px}
+.banner b{color:var(--accent)}
+.summary{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:end}
+@media (max-width:600px){.summary{grid-template-columns:minmax(0,1fr)}}
+.summary h1{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.4vw,34px);line-height:1.05;letter-spacing:-.02em;margin:4px 0 8px;text-wrap:balance}
+.summary h1 em{font-style:normal;background:linear-gradient(transparent 60%, var(--sun) 60%);padding:0 2px}
+.summary p{margin:0;color:var(--muted);font-size:14px}
+.count{text-align:right;font-family:var(--display)}
+.count b{font-size:46px;line-height:.9;font-weight:800;display:block;font-variant-numeric:tabular-nums}
+.count span{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+@media (max-width:600px){.count{text-align:left}}
+.mix{grid-column:1/-1;display:flex;flex-direction:column;gap:8px}
+.bar{display:flex;height:10px;border-radius:999px;overflow:hidden;background:var(--line)}
+.bar i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;background:var(--c)}
+.legend b{color:var(--ink);font-variant-numeric:tabular-nums}
+
+.tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:4px;overflow-x:auto}
+.tabs button{border:0;background:transparent;border-radius:10px;padding:9px 14px;font-weight:600;font-size:14px;color:var(--muted);white-space:nowrap}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--surface)}
+.tabs .n{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:4px}
+
+.week{display:flex;flex-direction:column;gap:8px}
+.week h3{font-family:var(--mono);font-size:11.5px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:8px 0 2px}
+.item{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;text-align:left;width:100%;border-left:4px solid var(--c)}
+.item:hover{border-color:var(--c)}
+.item.done{opacity:.55}
+.item.done .ttl{text-decoration:line-through}
+.date{font-family:var(--mono);font-size:11.5px;line-height:1.3;color:var(--muted)}
+.date b{display:block;font-family:var(--display);font-size:22px;color:var(--ink);font-weight:800;line-height:1}
+.ttl{font-weight:700;font-size:15px;display:block}
+.hook{color:var(--muted);font-size:13.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.pill{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:999px;color:var(--c);border:1px solid var(--c);white-space:nowrap}
+.fmt{font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap}
+@media (max-width:520px){.item{grid-template-columns:50px minmax(0,1fr)}.meta{grid-column:2;flex-direction:row;align-items:center;justify-content:flex-start}}
+
+/* cartão de ideia */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:16px}
+.card .head{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.card h2{font-family:var(--display);font-size:24px;font-weight:800;letter-spacing:-.01em;line-height:1.1;margin:0;text-wrap:balance}
+.lbl{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+.big-hook{font-family:var(--display);font-size:20px;font-weight:600;line-height:1.25;background:var(--paper);border-radius:14px;padding:14px 16px;text-wrap:balance}
+ol.steps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+ol.steps li::marker{font-family:var(--mono);color:var(--accent);font-size:13px}
+.caption{white-space:pre-wrap;font-family:var(--body);font-size:14px;background:var(--paper);border-radius:14px;padding:14px 16px;margin:0;max-height:260px;overflow:auto}
+.tip{font-size:13.5px;color:var(--muted);border-left:3px solid var(--sun);padding-left:12px}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:9px 14px;font-weight:600;font-size:13.5px}
+.sec:hover{border-color:var(--ink)}
+.sec[aria-pressed="true"]{background:var(--soft);border-color:var(--accent);color:var(--accent)}
+
+.hooks{display:flex;flex-direction:column;gap:8px}
+.hookrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;border-left:4px solid var(--c)}
+.hookrow p{margin:0;font-weight:600}
+.savegrid{display:flex;flex-direction:column;gap:14px}
+.savegrid p{margin:0}
+.ok{color:var(--pV);font-weight:700}
+.filebtn{display:inline-block;cursor:pointer}
+textarea{width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:12px;padding:10px 12px;font:inherit;font-size:13px;resize:vertical}
+.msgline{font-size:13.5px;color:var(--muted);min-height:1.2em}
+.empty{background:var(--surface);border:1px dashed var(--line);border-radius:16px;padding:28px;text-align:center;color:var(--muted)}
+
+/* folha de detalhe */
+.sheet{position:fixed;inset:0;background:rgba(10,11,18,.5);display:grid;place-items:center;z-index:50;
+  padding:max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
+.sheet .card{width:min(640px,100%);max-height:100%;overflow:auto;box-shadow:0 30px 80px -30px rgba(0,0,0,.6)}
+.x{margin-left:auto;background:transparent;border:1px solid var(--line);border-radius:10px;width:34px;height:34px;font-size:18px;line-height:1}
+footer{margin-top:28px;text-align:center;font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#D92B55"/><circle cx="32" cy="27" r="15" fill="#FFD23F"/><path d="M24 33 h16 v8 a3 3 0 0 1-3 3 h-10 a3 3 0 0 1-3-3z" fill="#FFD23F"/><rect x="25" y="46" width="14" height="4" rx="2" fill="#fff"/><rect x="27.5" y="51.5" width="9" height="3.5" rx="1.75" fill="#fff"/><path d="M24.5 27.5 l5 5 l10-10.5" fill="none" stroke="#D92B55" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="logo">Ideias <mark>Prontas</mark></span>
+      <span class="tag">Agente de conteúdo · Beleza</span>
+    </div>
+    <button class="ghost" id="restart" type="button">Editar respostas</button>
+  </header>
+
+  <div class="grid">
+    <aside class="agent" aria-label="Conversa com a agente">
+      <div class="agent-head">
+        <div class="avatar"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#D92B55"/><circle cx="32" cy="27" r="15" fill="#FFD23F"/><path d="M24 33 h16 v8 a3 3 0 0 1-3 3 h-10 a3 3 0 0 1-3-3z" fill="#FFD23F"/><rect x="25" y="46" width="14" height="4" rx="2" fill="#fff"/><rect x="27.5" y="51.5" width="9" height="3.5" rx="1.75" fill="#fff"/><path d="M24.5 27.5 l5 5 l10-10.5" fill="none" stroke="#D92B55" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><b>Ideias Prontas</b><small><span class="dot"></span>A sua agente de conteúdo</small></div>
+      </div>
+      <div class="log" id="log" aria-live="polite"></div>
+      <div class="composer" id="composer"></div>
+    </aside>
+
+    <main class="desk" id="desk"></main>
+  </div>
+  <footer>Ideias Prontas · ferramenta desenvolvida pela Hub Advance</footer>
+</div>
+
+<div class="sheet" id="sheet" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+/* ---------- dados ---------- */
+const PILAR = {
+  A:{n:'Atrair', c:'var(--pA)', d:'chega a pessoas novas'},
+  C:{n:'Conectar', c:'var(--pC)', d:'cria confiança'},
+  E:{n:'Ensinar', c:'var(--pE)', d:'mostra que sabe'},
+  V:{n:'Vender', c:'var(--pV)', d:'transforma seguidores em clientes'}
+};
+const FMT = {R:'Reel', C:'Carrossel', S:'Stories', P:'Post'};
+const FMT_TIP = {
+  R:'Grave na vertical. Ponha o gancho escrito no ecrã nos primeiros 2 segundos e fique entre 20 e 45 segundos.',
+  C:'Use 6 a 8 slides, uma ideia por slide, letra grande. O primeiro slide é o gancho; o último, o pedido de ação.',
+  S:'Faça 4 a 6 stories seguidos. Use um autocolante de enquete ou caixa de perguntas para puxar respostas.',
+  P:'Uma imagem forte com uma frase curta por cima. O conteúdo principal vai na legenda.'
+};
+const MIX = {
+  agenda:{A:.30,C:.20,E:.25,V:.25},
+  crescer:{A:.45,C:.20,E:.25,V:.10},
+  autoridade:{A:.25,C:.20,E:.45,V:.10}
+};
+const AREAS = {
+  unhas:{l:'unhas',profissao:'nail designer',parte:'as unhas'},
+  estetica:{l:'estética',profissao:'esteticista',parte:'a pele'},
+  cabelo:{l:'cabelo',profissao:'cabeleireira',parte:'o cabelo'},
+  sobrancelhas:{l:'sobrancelhas',profissao:'designer de sobrancelhas',parte:'as sobrancelhas'},
+  pestanas:{l:'pestanas',profissao:'técnica de pestanas',parte:'as pestanas'},
+  maquilhagem:{l:'maquilhagem',profissao:'maquilhadora',parte:'a maquilhagem'},
+  massagem:{l:'massagem',profissao:'massagista',parte:'o resultado'},
+  outra:{l:'beleza',profissao:'profissional de beleza',parte:'o resultado'}
+};
+
+const TPL = [
+ // ATRAIR
+ {id:'a1',p:'A',f:['R','C'],t:'3 erros que estragam o resultado em casa',
+  g:'Está a estragar o resultado de {servico} sem saber. O 2.º erro é o mais comum.',
+  r:['Mostre o gancho escrito no ecrã nos primeiros 2 segundos','Erro 1: um hábito do dia a dia que parece inofensivo','Erro 2: o mais comum, e porque acontece','Erro 3: o que quase ninguém sabe','Feche com o cuidado certo, numa só frase'],
+  cta:'Guarde para não se esquecer e envie a uma amiga que precisa de ver isto.'},
+ {id:'a2',p:'A',f:['R'],t:'A frase que a sua cliente repete',
+  g:'«{dor}». Se já disse isto, este vídeo é para si.',
+  r:['Diga a frase em voz alta, a olhar para a câmara','Mostre que entende: "ouço isto todas as semanas"','Dê um cuidado simples que ajuda já hoje','Diga que no seu espaço resolve o resto e convide a seguir'],
+  cta:'Siga para mais dicas de {area}.'},
+ {id:'a3',p:'A',f:['R','C'],t:'Mito ou verdade',
+  g:'Mito ou verdade sobre {servico}: vamos acabar com esta dúvida hoje',
+  r:['Escreva no ecrã uma crença comum das suas clientes','Diga se é mito ou verdade com um gesto','Explique a causa real em 2 frases','Termine com o cuidado certo'],
+  cta:'Comente MITO se também acreditava nisto.'},
+ {id:'a4',p:'A',f:['R'],t:'Tendência da estação',
+  g:'A tendência deste mês que todas me estão a pedir',
+  r:['Use um áudio em tendência','Mostre 3 trabalhos seus com essa tendência','Diga para quem fica melhor','Termine com a sua opinião sincera'],
+  cta:'Guarde para mostrar na sua próxima marcação.'},
+ {id:'a5',p:'A',f:['R'],t:'POV do resultado',
+  g:'POV: saiu do meu espaço e não para de olhar para {parte}',
+  r:['Escolha um áudio em tendência','Mostre a cliente a admirar o resultado (com autorização) ou um grande plano do trabalho','Texto no ecrã com o serviço feito: {servico}'],
+  cta:'Guarde se é assim que se quer sentir.'},
+ {id:'a6',p:'A',f:['R','C'],t:'Pare de fazer isto',
+  g:'Pare de fazer isto se quer {desejo}',
+  r:['Comece com um "PARE" no ecrã','Mostre o hábito errado','Explique porque prejudica o resultado','Mostre o que fazer em vez disso'],
+  cta:'Envie a quem faz isto.'},
+ {id:'a7',p:'A',f:['R','C'],t:'O que ninguém conta',
+  g:'Ninguém me contou isto quando comecei como {profissao}',
+  r:['Abra com o gancho e uma pausa de 1 segundo','Revele o que aprendeu com a prática','Mostre como isso muda o resultado das clientes','Feche com o que faz hoje de forma diferente'],
+  cta:'Siga para mais bastidores de {area}.'},
+ {id:'a8',p:'A',f:['C','R'],t:'Sinais de que precisa',
+  g:'3 sinais de que está na altura de marcar {servico}',
+  r:['Capa com o gancho','Um sinal por slide, com foto ou exemplo','Explique o que acontece se adiar','Último slide: como marcar'],
+  cta:'Reconheceu algum? Envie mensagem e eu ajudo.'},
+ // CONECTAR
+ {id:'c1',p:'C',f:['R','P'],t:'Prazer, sou eu',
+  g:'Faço isto há anos e ainda me lembro da minha primeira cliente',
+  r:['Vídeo seu no espaço de trabalho, com boa luz','3 factos sobre si: um profissional, um pessoal, um curioso','O que mais gosta no seu trabalho','Convite para dizer olá'],
+  cta:'Diga olá nos comentários, gosto de saber quem está desse lado.'},
+ {id:'c2',p:'C',f:['R','C'],t:'Porque escolhi esta profissão',
+  g:'O dia em que decidi ser {profissao}',
+  r:['O momento em que decidiu','O que sentia nessa altura','A maior dificuldade do início','O que isso significa para as suas clientes hoje'],
+  cta:'E a si, o que a fez escolher o que faz hoje?'},
+ {id:'c3',p:'C',f:['R'],t:'O erro que cometi no início',
+  g:'O maior erro que cometi quando comecei como {profissao}',
+  r:['Assuma o erro logo no início','O que aconteceu por causa dele','O que aprendeu','Como isso protege hoje as suas clientes'],
+  cta:'Siga para mais histórias reais de quem está no terreno.'},
+ {id:'c4',p:'C',f:['R','C'],t:'As minhas regras',
+  g:'3 coisas que nunca faço com as minhas clientes',
+  r:['Regra 1, por exemplo: nunca apressar um atendimento','Regra 2, por exemplo: nunca usar material sem esterilizar','Regra 3, por exemplo: nunca fazer algo que não favorece a cliente','Feche com o que isto significa para quem marca consigo'],
+  cta:'Se se identifica, siga a conta.'},
+ {id:'c5',p:'C',f:['S','R'],t:'Bastidores da semana',
+  g:'Hoje é dia de preparar tudo para as clientes da semana',
+  r:['Limpeza e esterilização dos materiais','Arrumação do espaço','Produtos novos que chegaram','Caixa de perguntas no fim'],
+  cta:'Pergunte-me o que quiser na caixa de perguntas.'},
+ {id:'c6',p:'C',f:['S','R'],t:'Um dia comigo',
+  g:'Um dia normal no meu espaço, do primeiro café à última cliente',
+  r:['O café da manhã e a preparação','O primeiro atendimento','Um momento engraçado ou imprevisto','O fecho do dia'],
+  cta:'Reaja com um emoji se gosta de ver bastidores.'},
+ {id:'c7',p:'C',f:['S'],t:'Enquete de dúvidas',
+  g:'Qual é a sua maior dúvida sobre {servico}?',
+  r:['Story 1: enquete com 2 opções','Story 2: caixa de perguntas "conte-me mais"','Story 3: agradeça e diga que vai responder','Use as respostas para os conteúdos dos dias seguintes'],
+  cta:'Responda que eu explico tudo nos próximos dias.'},
+ {id:'c8',p:'C',f:['P','C'],t:'Obrigada por este mês',
+  g:'Este mês atendi muitas clientes. Obrigada a cada uma.',
+  r:['Foto sua ou colagem de trabalhos do mês','Agradecimento sincero','O que vem no próximo mês'],
+  cta:'Marque já e garanta o seu lugar no próximo mês.'},
+ // ENSINAR
+ {id:'e1',p:'E',f:['C'],t:'Quanto tempo dura',
+  g:'Quanto tempo dura o resultado de {servico}? Depende de 4 coisas.',
+  r:['Slide 1 com a pergunta','Fator 1: o tipo de pele, cabelo ou unha','Fator 2: os cuidados em casa','Fator 3: os produtos usados','Fator 4: a rotina do dia a dia','Último slide: o intervalo ideal entre marcações'],
+  cta:'Guarde e partilhe com quem faz sempre esta pergunta.'},
+ {id:'e2',p:'E',f:['C','R'],t:'Cuidados nas primeiras 48 horas',
+  g:'O que fazer (e não fazer) nas primeiras 48 horas depois de {servico}',
+  r:['Slide 1 com o gancho','3 slides com o que fazer','3 slides com o que evitar','Último slide com o contacto para dúvidas'],
+  cta:'Guarde para ter sempre à mão.'},
+ {id:'e3',p:'E',f:['R'],t:'Passo a passo do atendimento',
+  g:'Isto é o que acontece desde que chega até sair do meu espaço',
+  r:['A receção','A avaliação ou conversa inicial','O serviço em 3 cortes rápidos','O resultado final e os conselhos'],
+  cta:'Partilhe com quem ainda não teve coragem de marcar.'},
+ {id:'e4',p:'E',f:['C','S'],t:'Perguntas frequentes',
+  g:'As 5 perguntas que mais recebo sobre {servico}',
+  r:['Uma pergunta por slide (use as respostas das enquetes)','Resposta curta logo abaixo','Destaque a que mais surpreende','Último slide: convite para mais perguntas'],
+  cta:'Qual destas também tinha? Comente o número.'},
+ {id:'e5',p:'E',f:['C'],t:'Qual o serviço certo para si',
+  g:'Não sabe que serviço escolher? Veja isto antes de marcar',
+  r:['Slide 1 com a dúvida','Slides 2 e 3: para quem é cada opção','Slide 4: diferenças de duração e manutenção','Slide 5: convite para uma avaliação por mensagem'],
+  cta:'Envie uma foto por mensagem e digo-lhe o que se adequa.'},
+ {id:'e6',p:'E',f:['R','S'],t:'Uma dica de 30 segundos',
+  g:'Faça isto todos os dias e vai notar a diferença em 2 semanas',
+  r:['Diga a dica logo no início','Mostre como fazer','Explique porque funciona','Reforce que a consistência faz a diferença'],
+  cta:'Experimente e conte-me como correu.'},
+ {id:'e7',p:'E',f:['R','S','P'],t:'O meu produto favorito',
+  g:'O produto que mais uso no meu trabalho (e porquê)',
+  r:['Mostre o produto logo no início','Para que serve, numa frase','Porque o escolheu','Se é possível usá-lo em casa'],
+  cta:'Pergunte-me sobre produtos na caixa de perguntas.'},
+ {id:'e8',p:'E',f:['C'],t:'Checklist antes da marcação',
+  g:'Vai fazer {servico} pela primeira vez? Faça esta checklist antes.',
+  r:['6 pontos em formato ✓ (o que trazer, o que evitar no dia anterior, foto de referência)','Uma linha a explicar cada ponto','Último slide com o contacto'],
+  cta:'Guarde e envie a quem vai marcar consigo.'},
+ {id:'e9',p:'E',f:['R','S'],t:'Responder a uma seguidora',
+  g:'Recebi esta pergunta e quero responder aqui',
+  r:['Mostre a pergunta no ecrã (sem nome)','Agradeça a quem perguntou','Responda de forma simples','Convide a enviar mais perguntas'],
+  cta:'Tem outra dúvida? Envie por mensagem.'},
+ {id:'e10',p:'E',f:['R'],t:'Explicado em 30 segundos',
+  g:'Explico em 30 segundos porque é que «{dor}» acontece',
+  r:['Repita a frase da cliente','A causa real, sem termos técnicos','Um exemplo do dia a dia','O primeiro cuidado para mudar isto'],
+  cta:'Siga para mais explicações rápidas.'},
+ // VENDER
+ {id:'v1',p:'V',f:['S','P'],t:'Vagas da próxima semana',
+  g:'Abri a agenda da próxima semana e há poucas vagas para {servico}',
+  r:['Story 1: a agenda com as vagas marcadas','Story 2: um trabalho recente','Story 3: enquete "Quer uma vaga?"','Story 4: contacto ou link para marcar'],
+  cta:'Responda QUERO a este story e envio-lhe os horários.'},
+ {id:'v2',p:'V',f:['C','R'],t:'Antes e depois',
+  g:'Ela chegou a dizer: «{dor}». Veja o depois.',
+  r:['O antes (com autorização da cliente)','O que ela queria: {desejo}','O que foi feito','O depois, com um detalhe concreto','Convite para marcar'],
+  cta:'Quer um resultado assim? Envie mensagem com a palavra QUERO.'},
+ {id:'v3',p:'V',f:['P','S'],t:'Depoimento de cliente',
+  g:'Esta mensagem chegou ontem e fez-me o dia',
+  r:['Print da mensagem (tape o nome)','O contexto em 2 frases','O resultado que ela conseguiu','Convite para marcar'],
+  cta:'Quer ser a próxima? Restam poucas vagas esta semana.'},
+ {id:'v4',p:'V',f:['C','P'],t:'É para si se…',
+  g:'{Servico} é para si se…',
+  r:['5 situações em que a cliente se reconhece','Inclua a frase «{dor}»','Termine com o resultado: {desejo}','Último slide: como marcar'],
+  cta:'Envie mensagem com a palavra AGENDA e envio-lhe os horários.'},
+ {id:'v5',p:'V',f:['R'],t:'O custo de adiar',
+  g:'Quanto tempo mais vai continuar a dizer «{dor}»?',
+  r:['Repita a frase da cliente','O que acontece quando se adia','O resultado que pode ter já este mês: {desejo}','Convite para marcar'],
+  cta:'Comente QUERO e envio-lhe os horários disponíveis.'},
+ {id:'v6',p:'V',f:['S'],t:'Últimas vagas do mês',
+  g:'Últimas vagas do mês para {servico}',
+  r:['Story 1: a agenda com as vagas restantes','Story 2: um trabalho recente','Story 3: contagem decrescente até ao fim do mês','Story 4: o contacto'],
+  cta:'Responda QUERO para garantir a sua vaga.'},
+ {id:'v7',p:'V',f:['C','R'],t:'O que está incluído',
+  g:'O que está incluído quando marca {servico} comigo (e que poucos fazem)',
+  r:['Capa com o gancho','Cada detalhe do atendimento, um por slide','O cuidado extra que a distingue','Último slide: preço ou "peça o preço por mensagem"'],
+  cta:'Tem dúvidas? Pergunte por mensagem, respondo a todas.'},
+ {id:'v8',p:'V',f:['R','S'],t:'Comente QUERO',
+  g:'Comente QUERO e envio-lhe os horários para {servico}',
+  r:['Mostre um trabalho bonito logo no início','Diga para quem é','Diga quantas vagas tem','Repita: comente QUERO'],
+  cta:'Comente QUERO.'}
+];
+
+const HOOKS = [
+ ['A','Pare de fazer isto se quer {desejo}.'],
+ ['A','O erro n.º 1 de quem faz {servico} pela primeira vez.'],
+ ['A','Ninguém me contou isto quando comecei como {profissao}.'],
+ ['A','A verdade que ninguém quer ouvir sobre {servico}.'],
+ ['A','«{dor}». Já disse isto esta semana?'],
+ ['A','Se faz isto em casa, pare já.'],
+ ['A','O pedido mais estranho que já recebi no meu espaço.'],
+ ['A','A tendência deste mês que todas me estão a pedir.'],
+ ['C','Há uns anos não fazia ideia de que ia ser {profissao}.'],
+ ['C','Uma coisa que nunca contei aqui.'],
+ ['C','O dia em que quase desisti.'],
+ ['C','Bastidores reais de um dia cheio no meu espaço.'],
+ ['C','A cliente que mudou a forma como trabalho.'],
+ ['E','Como fazer o resultado de {servico} durar o dobro.'],
+ ['E','Explico em 30 segundos porque é que «{dor}» acontece.'],
+ ['E','A pergunta que mais recebo, respondida.'],
+ ['E','Guarde isto: os cuidados depois de {servico}.'],
+ ['E','O produto que uso todos os dias (e porquê).'],
+ ['E','Se só pudesse dar uma dica de {area}, seria esta.'],
+ ['E','Vai fazer {servico} pela primeira vez? Veja isto antes.'],
+ ['V','Abri a agenda e restam poucas vagas para {servico}.'],
+ ['V','Esta mensagem chegou ontem e fez-me o dia.'],
+ ['V','Antes e depois: ela chegou a dizer «{dor}».'],
+ ['V','{Servico} não é para toda a gente. É para si se…'],
+ ['V','Comente QUERO e envio-lhe os horários disponíveis.'],
+ ['V','Quanto tempo mais vai adiar cuidar de si?'],
+ ['V','Última semana para marcar com o preço atual.'],
+ ['V','Se quer {desejo}, este é o momento.']
+];
+
+const CORPO = {
+ A:['A maioria das clientes não faz por mal: ninguém lhes explicou. Com os cuidados certos, o resultado dura muito mais.','Ouço isto todas as semanas no meu espaço. A verdade é mais simples do que parece.'],
+ C:['Por trás de cada marcação há uma pessoa que gosta mesmo do que faz. É assim que trato cada cliente.','Nem sempre foi fácil, mas foi sempre por gosto. É isso que as minhas clientes sentem quando marcam comigo.'],
+ E:['Pequenos cuidados diários fazem mais do que grandes tratamentos de vez em quando.','Guarde este conteúdo e consulte-o sempre que precisar. Se ficar com dúvidas, envie mensagem.'],
+ V:['Trabalho a pensar em {publico}: o objetivo é {desejo}, sem complicações.','Se se identificou, está na altura de marcar. A agenda para {servico} está aberta e as vagas são poucas.']
+};
+
+const EXAMPLE = {area:'unhas',servico:'verniz gel',publico:'mulheres que trabalham fora e têm pouco tempo',
+  dor:'as minhas unhas partem sempre',desejo:'ter unhas bonitas durante 3 semanas',cidade:'Lisboa',obj:'agenda',freq:5,formatos:['R','C','S']};
+
+const STEPS = [
+ {k:'area',type:'one',q:'Em que área de beleza trabalha?',opts:[['unhas','Unhas'],['estetica','Estética'],['cabelo','Cabelo'],['sobrancelhas','Sobrancelhas'],['pestanas','Pestanas'],['maquilhagem','Maquilhagem'],['massagem','Massagem'],['outra','Outra']]},
+ {k:'servico',type:'text',q:'Qual é o serviço que mais quer vender?',ph:'ex.: verniz gel, limpeza de pele, madeixas'},
+ {k:'publico',type:'text',q:'Quem é a sua cliente ideal?',ph:'ex.: mulheres que trabalham fora e têm pouco tempo'},
+ {k:'dor',type:'text',q:'Que frase diz a sua cliente quando se queixa?',hint:'Escreva como ela diria, na primeira pessoa.',ph:'ex.: as minhas unhas partem sempre'},
+ {k:'desejo',type:'text',q:'E o que é que ela mais quer?',hint:'Comece por um verbo.',ph:'ex.: ter unhas bonitas durante 3 semanas'},
+ {k:'cidade',type:'text',q:'Em que cidade ou zona atende?',hint:'Serve para as hashtags locais.',ph:'ex.: Lisboa'},
+ {k:'obj',type:'one',q:'Qual é o seu objetivo principal nos próximos 30 dias?',opts:[['agenda','Encher a agenda'],['crescer','Ganhar seguidoras'],['autoridade','Ser referência na área']]},
+ {k:'freq',type:'one',q:'Quantas vezes por semana consegue publicar?',opts:[[3,'3 por semana'],[5,'5 por semana'],[7,'Todos os dias']]},
+ {k:'formatos',type:'multi',q:'Que formatos gosta de fazer? Pode escolher vários.',opts:[['R','Reels'],['C','Carrosséis'],['S','Stories'],['P','Posts']]}
+];
+
+/* ---------- utilidades ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const cap = s => s ? s[0].toUpperCase()+s.slice(1) : s;
+const WD = ['dom','seg','ter','qua','qui','sex','sáb'];
+const MES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function parseIso(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function shuffle(arr,rnd){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+function clean(k,v){
+  v=String(v).trim().replace(/^["'«“]+|["'»”.!]+$/g,'').trim();
+  if(k==='desejo') v=v.replace(/^(quero|queria|conseguir)\s+/i,'');
+  if(k!=='cidade' && v.length>1 && v[1]===v[1].toLowerCase()) v=v[0].toLowerCase()+v.slice(1);
+  return v;
+}
+function fill(s,prof){
+  const A=AREAS[prof.area]||AREAS.outra;
+  const vars=Object.assign({},prof,{area:A.l,profissao:A.profissao,parte:A.parte});
+  return s.replace(/\{(\w+)\}/g,(m,k)=>{const v=vars[k.toLowerCase()]||'';return k[0]===k[0].toUpperCase()?cap(v):v});
+}
+const tplById = id => TPL.find(t=>t.id===id);
+
+/* ---------- estado ---------- */
+const KEY='ideiasprontas.v1';
+let S={prof:null,plan:null,favs:[]};
+try{const raw=localStorage.getItem(KEY); if(raw) S=Object.assign(S,JSON.parse(raw));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+let tab='cal';
+
+/* ---------- plano ---------- */
+function buildPlan(prof,seed){
+  const rnd=mulberry(seed);
+  const slots={3:[1,3,5],5:[1,2,3,4,5],7:[0,1,2,3,4,5,6]}[prof.freq]||[1,3,5];
+  const start=new Date(); start.setHours(0,0,0,0);
+  const days=[];
+  for(let i=0;i<30;i++){const d=new Date(start);d.setDate(d.getDate()+i);if(slots.includes(d.getDay()))days.push(d)}
+  const mix=MIX[prof.obj]||MIX.agenda, used={A:0,C:0,E:0,V:0};
+  const pref=prof.formatos&&prof.formatos.length?prof.formatos:['R','C'];
+  const fits=t=>t.f.some(x=>pref.includes(x));
+  const pools={}, ptr={};
+  for(const p of 'ACEV'){
+    const sh=shuffle(TPL.filter(t=>t.p===p),rnd);
+    pools[p]=sh.filter(fits).concat(sh.filter(t=>!fits(t))); ptr[p]=0;
+  }
+  return days.map((d,k)=>{
+    let best='A',bv=-1e9;
+    for(const p of 'AECV'){const v=mix[p]*(k+1)-used[p];if(v>bv+1e-9){bv=v;best=p}}
+    used[best]++;
+    const t=pools[best][ptr[best]++%pools[best].length];
+    return {date:iso(d),id:t.id,fmt:pickFmt(t,pref,rnd),done:false};
+  });
+}
+function pickFmt(t,pref,rnd){
+  const o=t.f.filter(x=>pref.includes(x));
+  if(o.length) return o[Math.floor(rnd()*o.length)];
+  return pref[Math.floor(rnd()*pref.length)]||t.f[0];
+}
+
+function caption(t,prof,seedIdx){
+  const corpo=CORPO[t.p][seedIdx%2];
+  const sl=x=>String(x||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]/g,'');
+  const A=AREAS[prof.area]||AREAS.outra, a=sl(A.l), c=sl(prof.cidade), sv=sl(prof.servico);
+  const tags=[sv&&'#'+sv, '#'+a+c, '#'+sl(A.profissao)+c, c&&'#beleza'+c, '#'+{A:'dicasdebeleza',C:'bastidores',E:'cuidadosdebeleza',V:'antesedepois'}[t.p]].filter((x,i,arr)=>x&&x!=='#'&&arr.indexOf(x)===i).join(' ');
+  return fill(t.g,prof)+'\n\n'+fill(corpo,prof)+'\n\n'+fill(t.cta,prof)+'\n\n'+tags;
+}
+
+/* ---------- conversa ---------- */
+let step=-1, draft={};
+const log=$('#log'), composer=$('#composer');
+
+function say(html,cls='bot',hint){
+  const m=document.createElement('div');m.className='msg '+cls;
+  m.innerHTML=html+(hint?'<span class="hint">'+esc(hint)+'</span>':'');
+  log.appendChild(m);log.scrollTop=log.scrollHeight;
+}
+function typing(cb,ms=520){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){cb();return}
+  const t=document.createElement('div');t.className='msg bot typing';t.innerHTML='<i></i><i></i><i></i>';
+  log.appendChild(t);log.scrollTop=log.scrollHeight;
+  setTimeout(()=>{t.remove();cb()},ms);
+}
+
+function startChat(prefill){
+  log.innerHTML='';draft=Object.assign({},prefill||{});step=-1;composer.innerHTML='';
+  say('Olá! Sou a sua agente <b>Ideias Prontas</b>. Faço-lhe 9 perguntas rápidas sobre o seu trabalho e entrego-lhe 30 dias de ideias para o Instagram, cada uma com gancho, roteiro e legenda pronta a copiar, para encher a sua agenda.');
+  typing(next,700);
+}
+function next(){
+  step++;
+  if(step>=STEPS.length){finish();return}
+  const s=STEPS[step];
+  say(esc(s.q),'bot',s.hint);
+  renderComposer(s);
+}
+function renderComposer(s){
+  const prog='<div class="progress">PERGUNTA '+(step+1)+' DE '+STEPS.length+'</div>';
+  if(s.type==='text'){
+    composer.innerHTML=prog+'<form class="row" id="f"><input id="in-'+s.k+'" autocomplete="off" placeholder="'+esc(s.ph)+'" value="'+esc(draft[s.k]||'')+'" aria-label="'+esc(s.q)+'"><button class="btn" type="submit">Enviar</button></form>';
+    const inp=$('#in-'+s.k); inp.focus({preventScroll:true});
+    $('#f').addEventListener('submit',e=>{e.preventDefault();const v=clean(s.k,inp.value);if(!v){inp.focus();return}answer(s,v,esc(v))});
+  } else if(s.type==='one'){
+    composer.innerHTML=prog+'<div class="chips">'+s.opts.map(o=>'<button class="chip" type="button" data-v="'+o[0]+'">'+esc(o[1])+'</button>').join('')+'</div>';
+    composer.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+      const o=s.opts.find(x=>String(x[0])===b.dataset.v);answer(s,o[0],esc(o[1]));
+    }));
+  } else {
+    const sel=new Set(draft[s.k]||[]);
+    composer.innerHTML=prog+'<div class="chips">'+s.opts.map(o=>'<button class="chip" type="button" aria-pressed="'+sel.has(o[0])+'" data-v="'+o[0]+'">'+esc(o[1])+'</button>').join('')+'</div><button class="btn" type="button" id="ok"'+(sel.size?'':' disabled')+'>Gerar o meu plano</button>';
+    composer.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+      const v=b.dataset.v; sel.has(v)?sel.delete(v):sel.add(v);
+      b.setAttribute('aria-pressed',sel.has(v)); $('#ok').disabled=!sel.size;
+    }));
+    $('#ok').addEventListener('click',()=>{
+      const arr=s.opts.map(o=>o[0]).filter(v=>sel.has(v));
+      answer(s,arr,esc(arr.map(v=>FMT[v]+(v==='S'?'':'s')).join(', ').replace('Carrossels','Carrosséis')));
+    });
+  }
+}
+function answer(s,val,label){
+  draft[s.k]=val; composer.innerHTML='';
+  say(label,'me');
+  typing(next,420);
+}
+function finish(){
+  S.prof=Object.assign({},draft);
+  S.plan=buildPlan(S.prof,Date.now()%1e9);
+  save(); persistStorage(); tab='cal';
+  say('Pronto! Preparei <b>'+S.plan.length+' publicações</b> para os próximos 30 dias, a misturar conteúdos para atrair novas clientes, criar confiança, mostrar o que sabe e encher a agenda. Toque em cada ideia para ver o roteiro e copiar a legenda.');
+  welcomeBack(true);
+  renderDesk();
+  if(innerWidth<=900) $('#desk').scrollIntoView({behavior:'smooth'});
+}
+function welcomeBack(justDone){
+  composer.innerHTML='<div class="chips"><button class="chip" type="button" id="today">Não sei o que publicar hoje</button><button class="chip" type="button" id="regen">Gerar outro calendário</button><button class="chip" type="button" id="getapp">Instalar e descarregar</button></div>';
+  $('#getapp').addEventListener('click',()=>{tab='guardar';renderDesk();if(innerWidth<=900)$('#desk').scrollIntoView({behavior:'smooth'})});
+  $('#today').addEventListener('click',()=>{tab='hoje';renderDesk();say('Não sei o que publicar hoje','me');typing(()=>say('Aqui tem a ideia de hoje, ao lado. Se não gostar, peço-lhe que carregue em "Outra ideia".'),350)});
+  $('#regen').addEventListener('click',()=>{
+    say('Gerar outro calendário','me');
+    S.plan=buildPlan(S.prof,Date.now()%1e9);save();renderDesk();
+    typing(()=>say('Feito. Novo calendário com '+S.plan.length+' ideias, com as mesmas respostas.'),350);
+  });
+}
+
+/* ---------- mesa ---------- */
+function curr(){return S.prof&&S.plan?{prof:S.prof,plan:S.plan,ex:false}:{prof:EXAMPLE,plan:EXPLAN,ex:true}}
+const EXPLAN=buildPlan(EXAMPLE,7);
+
+function renderDesk(){
+  const {prof,plan,ex}=curr();
+  const cnt={A:0,C:0,E:0,V:0};plan.forEach(x=>cnt[tplById(x.id).p]++);
+  const done=plan.filter(x=>x.done).length;
+  let h='';
+  if(ex) h+='<div class="banner"><span><b>Exemplo:</b> plano de uma nail designer em Lisboa. Responda às perguntas da agente para gerar o seu.</span></div>';
+  h+='<section class="summary"><div><div class="tag">'+esc(cap((AREAS[prof.area]||AREAS.outra).profissao))+(prof.cidade?' · '+esc(prof.cidade):'')+' · '+esc({agenda:'objetivo: encher a agenda',crescer:'objetivo: crescer',autoridade:'objetivo: autoridade'}[prof.obj])+'</div>'+
+     '<h1>30 dias de conteúdo para <em>'+esc(prof.publico)+'</em></h1>'+
+     '<p>'+esc(cap(prof.servico))+' · '+prof.freq+' publicações por semana</p></div>'+
+     '<div class="count"><b>'+(ex?plan.length:done+'/'+plan.length)+'</b><span>'+(ex?'ideias':'publicadas')+'</span></div>'+
+     '<div class="mix"><div class="bar" role="img" aria-label="Distribuição por tipo de conteúdo">'+
+     Object.keys(cnt).map(p=>'<i style="width:'+(cnt[p]/plan.length*100)+'%;background:'+PILAR[p].c+'"></i>').join('')+'</div>'+
+     '<div class="legend">'+Object.keys(cnt).map(p=>'<span style="--c:'+PILAR[p].c+'">'+PILAR[p].n+' <b>'+cnt[p]+'</b></span>').join('')+'</div></div></section>';
+  h+='<nav class="tabs" role="tablist">'+[['cal','Calendário'],['hoje','Ideia de hoje'],['ganchos','Ganchos'],['fav','Guardadas'],['guardar','Instalar e descarregar']].map(t=>
+     '<button role="tab" type="button" data-t="'+t[0]+'" aria-selected="'+(tab===t[0])+'">'+t[1]+(t[0]==='fav'&&S.favs.length?'<span class="n">'+S.favs.length+'</span>':'')+'</button>').join('')+'</nav>';
+  h+='<div id="pane"></div>';
+  $('#desk').innerHTML=h;
+  $('#desk').querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.t;renderDesk()}));
+  const pane=$('#pane');
+  if(tab==='cal') pane.innerHTML=calHtml(plan,prof);
+  else if(tab==='hoje') pane.innerHTML=todayHtml(plan,prof,ex);
+  else if(tab==='ganchos') pane.innerHTML=hooksHtml(prof);
+  else if(tab==='guardar') pane.innerHTML=saveHtml(ex);
+  else pane.innerHTML=favHtml(prof);
+  bindPane(prof,ex);
+}
+
+function calHtml(plan,prof){
+  const start=parseIso(plan[0]?plan[0].date:iso(new Date()));
+  const today=new Date();today.setHours(0,0,0,0);
+  const weeks={};
+  plan.forEach((x,i)=>{const w=Math.floor((parseIso(x.date)-today)/864e5/7);(weeks[w]=weeks[w]||[]).push(i)});
+  return '<div class="week">'+Object.keys(weeks).map(w=>{
+    const idx=weeks[w], a=parseIso(plan[idx[0]].date), b=parseIso(plan[idx[idx.length-1]].date);
+    return '<h3>Semana '+(+w+1)+' · '+a.getDate()+' '+MES[a.getMonth()]+' – '+b.getDate()+' '+MES[b.getMonth()]+'</h3>'+idx.map(i=>itemHtml(plan[i],i,prof)).join('');
+  }).join('')+'</div>';
+}
+function itemHtml(x,i,prof){
+  const t=tplById(x.id),d=parseIso(x.date),P=PILAR[t.p];
+  return '<button type="button" class="item'+(x.done?' done':'')+'" style="--c:'+P.c+'" data-open="'+i+'">'+
+    '<span class="date">'+WD[d.getDay()]+'<b>'+d.getDate()+'</b>'+MES[d.getMonth()]+'</span>'+
+    '<span style="min-width:0"><span class="ttl">'+esc(t.t)+'</span><span class="hook">'+esc(fill(t.g,prof))+'</span></span>'+
+    '<span class="meta"><span class="pill">'+P.n+'</span><span class="fmt">'+FMT[x.fmt]+(x.done?' · ✓ publicado':'')+'</span></span></button>';
+}
+
+function ideaHtml(t,fmt,prof,ctx){
+  const P=PILAR[t.p];
+  const isFav=S.favs.some(f=>f.id===t.id&&f.fmt===fmt);
+  const cap_=caption(t,prof,(ctx.i||0));
+  let when='';
+  if(ctx.date){const d=parseIso(ctx.date);when='<span class="fmt">'+WD[d.getDay()]+' '+d.getDate()+' '+MES[d.getMonth()]+'</span>'}
+  return '<article class="card" style="--c:'+P.c+'">'+
+   '<div class="head"><span class="pill">'+P.n+'</span><span class="fmt">'+FMT[fmt]+'</span>'+when+(ctx.sheet?'<button class="x" type="button" data-close aria-label="Fechar">×</button>':'')+'</div>'+
+   '<h2>'+esc(t.t)+'</h2>'+
+   '<div><div class="lbl">Gancho · primeiros 2 segundos</div><div class="big-hook">'+esc(fill(t.g,prof))+'</div></div>'+
+   '<div><div class="lbl">Roteiro</div><ol class="steps">'+t.r.map(s=>'<li>'+esc(fill(s,prof))+'</li>').join('')+'</ol></div>'+
+   '<p class="tip"><b>'+FMT[fmt]+':</b> '+esc(FMT_TIP[fmt])+'</p>'+
+   '<div><div class="lbl">Legenda pronta</div><pre class="caption" data-cap>'+esc(cap_)+'</pre></div>'+
+   '<div class="actions">'+
+     '<button class="btn" type="button" data-copy>Copiar legenda</button>'+
+     (ctx.ex?'':'<button class="sec" type="button" data-fav="'+t.id+'|'+fmt+'" aria-pressed="'+isFav+'">'+(isFav?'Guardada':'Guardar')+'</button>')+
+     (ctx.i!=null&&!ctx.ex?'<button class="sec" type="button" data-done="'+ctx.i+'" aria-pressed="'+!!ctx.doneState+'">'+(ctx.doneState?'Publicado ✓':'Marcar como publicado')+'</button><button class="sec" type="button" data-swap="'+ctx.i+'">Trocar ideia</button>':'')+
+     (ctx.extra?'<button class="sec" type="button" data-another>Outra ideia</button>':'')+
+   '</div></article>';
+}
+
+let extraIdea=null;
+function todayHtml(plan,prof,ex){
+  const t=iso(new Date());
+  let i=plan.findIndex(x=>x.date===t), lead='Ideia planeada para hoje';
+  if(i<0){i=plan.findIndex(x=>x.date>t);lead='Hoje é dia de descanso. Esta é a próxima ideia do calendário'}
+  let h='<div style="display:flex;flex-direction:column;gap:12px"><div class="lbl">'+lead+'</div>';
+  if(i>=0){const x=plan[i];h+=ideaHtml(tplById(x.id),x.fmt,prof,{i,date:x.date,doneState:x.done,ex})}
+  h+='<div class="lbl" style="margin-top:8px">Precisa de uma ideia extra?</div>';
+  if(extraIdea) h+=ideaHtml(tplById(extraIdea.id),extraIdea.fmt,prof,{extra:true,ex,i:null});
+  else h+='<div class="empty"><button class="btn" type="button" data-another>Dar-me uma ideia extra</button></div>';
+  return h+'</div>';
+}
+function hooksHtml(prof){
+  return '<div class="hooks">'+HOOKS.map((h,i)=>'<div class="hookrow" style="--c:'+PILAR[h[0]].c+'"><p>'+esc(fill(h[1],prof))+'</p><button class="sec" type="button" data-copyhook="'+i+'">Copiar</button></div>').join('')+'</div>';
+}
+function favHtml(prof){
+  if(!S.favs.length) return '<div class="empty">Ainda não guardou nenhuma ideia. Abra uma ideia do calendário e carregue em <b>Guardar</b>.</div>';
+  return '<div class="week">'+S.favs.map((f,k)=>{const t=tplById(f.id);if(!t)return'';const P=PILAR[t.p];
+    return '<button type="button" class="item" style="--c:'+P.c+';grid-template-columns:minmax(0,1fr) auto" data-openfav="'+k+'"><span style="min-width:0"><span class="ttl">'+esc(t.t)+'</span><span class="hook">'+esc(fill(t.g,prof))+'</span></span><span class="meta"><span class="pill">'+P.n+'</span><span class="fmt">'+FMT[f.fmt]+'</span></span></button>'}).join('')+'</div>';
+}
+
+function bindActions(root,prof,ex,rerender){
+  root.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>copyText(b.closest('.card').querySelector('[data-cap]').textContent,b)));
+  root.querySelectorAll('[data-copyhook]').forEach(b=>b.addEventListener('click',()=>copyText(fill(HOOKS[+b.dataset.copyhook][1],prof),b)));
+  root.querySelectorAll('[data-fav]').forEach(b=>b.addEventListener('click',()=>{
+    const [id,fmt]=b.dataset.fav.split('|');const k=S.favs.findIndex(f=>f.id===id&&f.fmt===fmt);
+    k>=0?S.favs.splice(k,1):S.favs.push({id,fmt});save();rerender();
+  }));
+  root.querySelectorAll('[data-done]').forEach(b=>b.addEventListener('click',()=>{const x=S.plan[+b.dataset.done];x.done=!x.done;save();rerender()}));
+  root.querySelectorAll('[data-swap]').forEach(b=>b.addEventListener('click',()=>{
+    const i=+b.dataset.swap,x=S.plan[i],t=tplById(x.id);
+    const inPlan=new Set(S.plan.map(y=>y.id));
+    let pool=TPL.filter(o=>o.p===t.p&&o.id!==t.id&&!inPlan.has(o.id));
+    if(!pool.length) pool=TPL.filter(o=>o.p===t.p&&o.id!==t.id);
+    const n=pool[Math.floor(Math.random()*pool.length)];
+    x.id=n.id;x.fmt=pickFmt(n,S.prof.formatos,Math.random);save();rerender();
+  }));
+  root.querySelectorAll('[data-another]').forEach(b=>b.addEventListener('click',()=>{
+    const pool=TPL.filter(o=>!extraIdea||o.id!==extraIdea.id);const n=pool[Math.floor(Math.random()*pool.length)];
+    extraIdea={id:n.id,fmt:pickFmt(n,prof.formatos||['R'],Math.random)};rerender();
+  }));
+}
+function bindPane(prof,ex){
+  const pane=$('#pane');
+  pane.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openSheet(+b.dataset.open,b)));
+  pane.querySelectorAll('[data-openfav]').forEach(b=>b.addEventListener('click',()=>{const f=S.favs[+b.dataset.openfav];openFree(f,b)}));
+  bindActions(pane,prof,ex,renderDesk);
+  if(tab==='guardar') bindSave();
+}
+
+/* ---------- folha de detalhe ---------- */
+const sheet=$('#sheet'); let lastFocus=null, sheetState=null;
+function openSheet(i,from){lastFocus=from;sheetState={kind:'plan',i};drawSheet()}
+function openFree(f,from){lastFocus=from;sheetState={kind:'free',f};drawSheet()}
+function drawSheet(){
+  const {prof,plan,ex}=curr();
+  let html;
+  if(sheetState.kind==='plan'){const x=plan[sheetState.i];html=ideaHtml(tplById(x.id),x.fmt,prof,{i:sheetState.i,date:x.date,doneState:x.done,ex,sheet:true})}
+  else{const f=sheetState.f;html=ideaHtml(tplById(f.id),f.fmt,prof,{ex,sheet:true,i:null})}
+  sheet.innerHTML=html;sheet.hidden=false;
+  sheet.querySelector('[data-close]').addEventListener('click',closeSheet);
+  bindActions(sheet,prof,ex,()=>{renderDesk();if(sheetState.kind==='free'&&!S.favs.some(f=>f.id===sheetState.f.id&&f.fmt===sheetState.f.fmt)){drawSheet()}else drawSheet()});
+  sheet.querySelector('.card').setAttribute('tabindex','-1');sheet.querySelector('.card').focus({preventScroll:true});
+}
+function closeSheet(){sheet.hidden=true;sheet.innerHTML='';sheetState=null;if(lastFocus&&document.contains(lastFocus))lastFocus.focus()}
+sheet.addEventListener('click',e=>{if(e.target===sheet)closeSheet()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!sheet.hidden)closeSheet()});
+
+/* ---------- copiar ---------- */
+function flash(b,txt){const o=b.textContent;b.textContent=txt;setTimeout(()=>{b.textContent=o},1400)}
+function copyText(txt,b){
+  const fallback=()=>{const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+    let ok=false;try{ok=document.execCommand('copy')}catch(e){}ta.remove();flash(b,ok?'Copiado':'Selecione e copie')};
+  try{navigator.clipboard.writeText(txt).then(()=>flash(b,'Copiado'),fallback)}catch(e){fallback()}
+}
+
+
+/* ---------- guardar, descarregar e instalar ---------- */
+let installEvt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;if(tab==='guardar')renderDesk()});
+window.addEventListener('appinstalled',()=>{installEvt=null;if(tab==='guardar')renderDesk()});
+const isStandalone=()=>{try{return matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}catch(e){return false}};
+const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+function persistStorage(){try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist().catch(()=>{})}catch(e){}}
+if('serviceWorker' in navigator && location.protocol==='https:' && !/claude|anthropic/.test(location.hostname)){
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+
+function saveHtml(ex){
+  let inst;
+  if(isStandalone()) inst='<p class="ok">✓ Já está a usar a Ideias Prontas instalada no seu telemóvel.</p>';
+  else if(installEvt) inst='<p>Instale a Ideias Prontas como uma app: fica com um ícone no ecrã inicial e abre sem barra do navegador.</p><div class="actions"><button class="btn" type="button" id="do-install">Instalar no telemóvel</button></div>';
+  else if(isIOS()) inst='<p>No iPhone, abra este link no <b>Safari</b> e siga estes passos:</p><ol class="steps"><li>Toque no botão <b>Partilhar</b> (o quadrado com a seta para cima).</li><li>Escolha <b>Adicionar ao ecrã principal</b>.</li><li>Toque em <b>Adicionar</b>. A Ideias Prontas fica com ícone próprio, como uma app.</li></ol>';
+  else inst='<p>No Android, abra este link no <b>Chrome</b> e siga estes passos:</p><ol class="steps"><li>Toque nos <b>três pontos</b> no canto superior direito.</li><li>Escolha <b>Instalar app</b> ou <b>Adicionar ao ecrã principal</b>.</li><li>Confirme. A Ideias Prontas fica com ícone próprio, como uma app.</li></ol>';
+  const lock=ex?' disabled':'';
+  return '<div class="savegrid">'+
+   '<article class="card"><div class="lbl">Passo 1</div><h2>Instalar no telemóvel</h2>'+inst+
+   '<p class="tip">No iPhone, a app instalada guarda os dados à parte do Safari. Se já respondeu às perguntas no Safari, guarde primeiro uma cópia (passo 3) e restaure-a dentro da app.</p></article>'+
+   '<article class="card"><div class="lbl">Passo 2</div><h2>Descarregar o calendário em PDF</h2>'+
+   '<p>Fica com as '+(curr().plan.length)+' ideias num PDF: gancho, roteiro e legenda de cada dia, mais os ganchos extra. Pode imprimir ou guardar nos ficheiros do telemóvel.</p>'+
+   '<div class="actions"><button class="btn" type="button" id="do-pdf"'+lock+'>Descarregar PDF</button></div>'+(ex?'<p class="tip">Responda primeiro às perguntas da agente para descarregar o seu calendário.</p>':'')+'</article>'+
+   '<article class="card"><div class="lbl">Passo 3</div><h2>Cópia de segurança</h2>'+
+   '<p>Os seus dados ficam guardados neste telemóvel. Faça uma cópia para não perder nada se limpar o navegador ou mudar de telemóvel.</p>'+
+   '<div class="actions"><button class="btn" type="button" id="do-backup"'+lock+'>Descarregar cópia</button><button class="sec" type="button" id="do-code"'+lock+'>Copiar código de recuperação</button></div>'+
+   '<div class="lbl" style="margin-top:6px">Restaurar</div>'+
+   '<div class="actions"><label class="sec filebtn" for="restore-file">Escolher ficheiro de cópia</label><input type="file" id="restore-file" accept=".json,application/json" hidden></div>'+
+   '<textarea id="restore-code" rows="3" placeholder="Ou cole aqui o código de recuperação"></textarea>'+
+   '<div class="actions"><button class="sec" type="button" id="do-restore">Restaurar com o código</button></div>'+
+   '<p class="msgline" id="save-msg" role="status"></p></article></div>';
+}
+function setMsg(t){const m=$('#save-msg');if(m)m.textContent=t}
+function downloadBlob(name,blob){
+  try{const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);return true}catch(e){return false}
+}
+function backupJson(){return JSON.stringify({app:'ideias-prontas',v:1,savedAt:new Date().toISOString(),data:S})}
+function restoreFrom(text){
+  try{
+    const o=JSON.parse(text);const d=o&&o.data;
+    if(!d||!d.prof||!Array.isArray(d.plan)) throw 0;
+    S={prof:d.prof,plan:d.plan,favs:Array.isArray(d.favs)?d.favs:[]};save();persistStorage();
+    tab='cal';renderDesk();log.innerHTML='';say('Cópia restaurada. O seu calendário voltou, com as publicações marcadas e as ideias guardadas.');welcomeBack(false);
+    return true;
+  }catch(e){setMsg('Este ficheiro ou código não é uma cópia válida da Ideias Prontas. Confirme que copiou o código completo.');return false}
+}
+function bindSave(){
+  const bi=$('#do-install');
+  if(bi) bi.addEventListener('click',async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;renderDesk()});
+  const bp=$('#do-pdf'); if(bp) bp.addEventListener('click',()=>makePdf(bp));
+  const bb=$('#do-backup'); if(bb) bb.addEventListener('click',()=>{
+    const d=new Date();const ok=downloadBlob('ideias-prontas-copia-'+iso(d)+'.json',new Blob([backupJson()],{type:'application/json'}));
+    setMsg(ok?'Cópia descarregada. Guarde o ficheiro num sítio seguro (Ficheiros, Drive ou email).':'Não foi possível descarregar aqui. Use "Copiar código de recuperação".');
+  });
+  const bc=$('#do-code'); if(bc) bc.addEventListener('click',()=>{
+    const code='IDEIAS1:'+btoa(unescape(encodeURIComponent(backupJson())));
+    copyText(code,bc);setMsg('Código copiado. Cole-o numa nota ou envie-o para o seu email para o guardar.');
+  });
+  const rf=$('#restore-file'); if(rf) rf.addEventListener('change',()=>{
+    const f=rf.files&&rf.files[0];if(!f)return;const r=new FileReader();r.onload=()=>restoreFrom(String(r.result));r.readAsText(f);
+  });
+  const br=$('#do-restore'); if(br) br.addEventListener('click',()=>{
+    let v=($('#restore-code').value||'').trim();if(!v){setMsg('Cole primeiro o código de recuperação.');return}
+    try{if(v.startsWith('IDEIAS1:'))v=decodeURIComponent(escape(atob(v.slice(8))))}catch(e){setMsg('O código está incompleto. Copie-o de novo, do início ao fim.');return}
+    restoreFrom(v);
+  });
+}
+
+function pdfSafe(s){return String(s).replace(/✓/g,'-').replace(/[^\x00-\xFF€…–—“”‘’•]/g,'')}
+function makePdf(btn){
+  if(!window.jspdf){setMsg('O gerador de PDF não carregou. Verifique a ligação à internet e tente de novo.');return}
+  const {prof,plan}=curr();
+  const doc=new window.jspdf.jsPDF({unit:'mm',format:'a4'});
+  const W=210,M=16,TW=W-2*M;let y=M;
+  const ensure=h=>{if(y+h>297-M){doc.addPage();y=M}};
+  const text=(s,size,style,color,gap)=>{doc.setFont('helvetica',style||'normal');doc.setFontSize(size);doc.setTextColor(...(color||[22,24,42]));
+    const lines=doc.splitTextToSize(pdfSafe(s),TW);const lh=size*0.42;lines.forEach(l=>{ensure(lh);doc.text(l,M,y);y+=lh});y+=gap||0};
+  const COL={A:[217,43,85],C:[201,119,0],E:[44,102,224],V:[17,144,95]};
+  const A=AREAS[prof.area]||AREAS.outra;
+  text('Ideias Prontas',22,'bold',[217,43,85],1);
+  text('30 dias de conteúdo para '+prof.publico,14,'bold',null,1);
+  text(cap(A.profissao)+(prof.cidade?' · '+prof.cidade:'')+' · '+cap(prof.servico)+' · '+prof.freq+' publicações por semana',10,'normal',[91,95,118],6);
+  plan.forEach((x,i)=>{
+    const t=tplById(x.id),d=parseIso(x.date);ensure(40);
+    doc.setDrawColor(...COL[t.p]);doc.setLineWidth(0.8);doc.line(M,y-1,M,y+6);
+    doc.setFont('helvetica','bold');doc.setFontSize(9);doc.setTextColor(...COL[t.p]);
+    doc.text(pdfSafe(WD[d.getDay()]+' '+d.getDate()+' '+MES[d.getMonth()]+'  ·  '+PILAR[t.p].n.toUpperCase()+'  ·  '+FMT[x.fmt]+(x.done?'  ·  PUBLICADO':'')),M+3,y+1.5);y+=6;
+    text(t.t,13,'bold',null,1);
+    text('Gancho: '+fill(t.g,prof),10.5,'bold',[40,42,60],1.5);
+    t.r.forEach((s,k)=>text((k+1)+'. '+fill(s,prof),10,'normal',null,0.3));y+=1.5;
+    text('Dica de '+FMT[x.fmt]+': '+FMT_TIP[x.fmt],9,'italic',[91,95,118],1.5);
+    text('Legenda:',9.5,'bold',[91,95,118],0.5);
+    text(caption(t,prof,i),10,'normal',null,7);
+  });
+  doc.addPage();y=M;
+  text('Ganchos extra',16,'bold',[217,43,85],3);
+  HOOKS.forEach(h=>text(PILAR[h[0]].n+' — '+fill(h[1],prof),10.5,'normal',null,1.5));
+  const n=doc.internal.getNumberOfPages();
+  for(let p=1;p<=n;p++){doc.setPage(p);doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(150,150,165);doc.text('Ideias Prontas · página '+p+' de '+n,M,297-8)}
+  const ok=downloadBlob('ideias-prontas-calendario-'+iso(new Date())+'.pdf',doc.output('blob'));
+  setMsg(ok?'PDF descarregado. Procure-o nas Transferências ou na app Ficheiros.':'Não foi possível descarregar aqui.');
+}
+
+/* ---------- arranque ---------- */
+$('#restart').addEventListener('click',()=>startChat(S.prof||{}));
+if(S.prof&&S.plan){
+  say('Olá outra vez! O seu calendário está ao lado. Abra uma ideia para ver o roteiro e copiar a legenda.');
+  welcomeBack(false);
+} else startChat();
+renderDesk();
+</script>
