@@ -751,8 +751,8 @@ function saveHtml(ex){
    '<div class="actions"><button class="btn" type="button" id="do-backup"'+lock+'>Guardar cópia</button><button class="sec" type="button" id="do-code"'+lock+'>Copiar código de recuperação</button></div>'+
    '<div class="lbl" style="margin-top:6px">Restaurar</div>'+
    '<div class="actions"><label class="sec filebtn" for="restore-file">Escolher ficheiro de cópia</label><input type="file" id="restore-file" accept=".json,application/json,text/plain" hidden></div>'+
-   '<textarea id="restore-code" rows="3" placeholder="Ou cole aqui o código de recuperação"></textarea>'+
-   '<div class="actions"><button class="sec" type="button" id="do-restore">Restaurar com o código</button></div>'+
+   '<textarea id="restore-code" rows="3" placeholder="Ou cole aqui o código de recuperação, ou o texto da cópia"></textarea>'+
+   '<div class="actions"><button class="sec" type="button" id="do-restore">Restaurar com o código ou texto</button></div>'+
    '<p class="msgline" id="save-msg" role="status"></p></article></div>';
 }
 function setMsg(t){const m=$('#save-msg');if(m)m.textContent=t}
@@ -762,7 +762,8 @@ function downloadBlob(name,blob){
 function backupJson(){return JSON.stringify({app:'ideias-prontas',v:1,savedAt:new Date().toISOString(),data:S})}
 function restoreFrom(text){
   try{
-    const o=JSON.parse(text);const d=o&&o.data;
+    let o;try{o=JSON.parse(text)}catch(_){const a=text.indexOf('{'),b=text.lastIndexOf('}');o=JSON.parse(text.slice(a,b+1))}
+    const d=o&&o.data;
     if(!d||!d.prof||!Array.isArray(d.plan)) throw 0;
     S={prof:d.prof,plan:d.plan,favs:Array.isArray(d.favs)?d.favs:[]};save();persistStorage();
     tab='cal';renderDesk();log.innerHTML='';say('Cópia restaurada. O seu calendário voltou, com as publicações marcadas e as ideias guardadas.');welcomeBack(false);
