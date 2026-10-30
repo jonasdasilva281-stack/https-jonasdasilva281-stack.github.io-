@@ -498,6 +498,30 @@ html{scroll-behavior:auto}
 .dq-cta{white-space:nowrap}
 @media(max-width:900px){.dq-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.dq-grid{grid-template-columns:1fr;gap:12px}.dq{min-height:0;padding:22px 20px}.dq-t{font-size:1.15rem}.dq-res{grid-template-columns:auto 1fr;padding:20px}.dq-cta{grid-column:1/-1;width:100%}.dq-score b{font-size:2.6rem}}
+
+.cta-final .btn-comprar,.hero .cta-row .btn-comprar{width:auto;padding-left:44px;padding-right:44px}
+@media(max-width:820px){.cta-final .btn-comprar,.hero .cta-row .btn-comprar{width:100%}}
+/* ---------- PAGAMENTO ---------- */
+.pagar{max-width:760px;margin:30px auto 0;padding:26px 28px;border-radius:22px;background:linear-gradient(160deg,rgba(18,44,78,.9),rgba(13,36,68,.6));border:1px solid rgba(127,180,238,.25);box-shadow:0 20px 50px rgba(0,0,0,.3);display:grid;gap:20px;text-align:center}
+.pagar-topo{display:flex;align-items:center;justify-content:center;gap:10px;font-family:'Archivo',sans-serif;font-weight:700;font-size:1.05rem;color:#EAF1FA}
+.pagar-topo svg{width:20px;height:20px;fill:none;stroke:#7FB4EE;stroke-width:2;stroke-linecap:round}
+.pagar-metodos{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.pm{height:42px;min-width:84px;padding:0 16px;border-radius:12px;background:#fff;display:inline-flex;align-items:center;justify-content:center;gap:4px;box-shadow:0 6px 18px rgba(0,0,0,.25);transition:transform .25s}
+.pm:hover{transform:translateY(-3px)}
+.pm-visa{font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;font-size:1.25rem;letter-spacing:.02em;color:#1A1F71}
+.pm-mc{position:relative;gap:0}
+.pm-mc i{width:22px;height:22px;border-radius:50%;display:block}
+.pm-mc i:first-child{background:#EB001B}
+.pm-mc i:nth-child(2){background:#F79E1B;margin-left:-9px;mix-blend-mode:multiply}
+.pm-mc em{font-style:normal;font-family:'Inter',sans-serif;font-weight:600;font-size:.72rem;color:#231F20;margin-left:6px}
+.pm-pp{gap:0;font-family:'Archivo',sans-serif;font-weight:900;font-style:italic;font-size:1.15rem;color:#169BD7}
+.pm-pp b{color:#253B80}
+.pagar-garantias{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(174,196,221,.14);border-radius:14px;overflow:hidden;text-align:left}
+.pagar-garantias div{background:#0D2444;padding:14px 16px;display:grid;gap:4px}
+.pagar-garantias b{font-family:'Archivo',sans-serif;font-weight:800;font-size:.95rem;color:#EAF1FA}
+.pagar-garantias span{font-size:.82rem;color:#B8C8DD;line-height:1.45}
+@media(max-width:640px){.pagar{padding:22px 18px}.pagar-garantias{grid-template-columns:1fr}}
+.logo-txt{display:block;font-family:'Archivo',sans-serif;font-weight:800;font-size:1.3rem;color:#EAF1FA;letter-spacing:.02em;margin-bottom:14px}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -524,7 +548,7 @@ fbq('track','PageView');
     <p class="sub-evento">Comunidade Advance · Mentoria em grupo</p>
     <h1>Com <span class="linha2">1€ por dia</span>, construa o sistema do seu negócio e venda mais.</h1>
     <div class="cta-row">
-      <a onclick="return false;" class="btn btn-ouro btn-comprar hotmart-fb hotmart__button-checkout" data-plano="Hero" href="https://pay.hotmart.com/A108229940O?checkoutMode=2">QUERO ENTRAR <small>· 1€ por dia</small></a>
+      <a class="btn btn-ouro btn-comprar" data-plano="Hero" href="https://pay.hotmart.com/A108229940O" rel="noopener">QUERO ENTRAR <small>· 1€ por dia</small></a>
     </div>
   </div>
 </header>
@@ -579,7 +603,7 @@ fbq('track','PageView');
         <p class="dq-msg" id="dqMsg">Toque nos quadros acima para ver o seu diagnóstico.</p>
         <div class="dq-barra"><i id="dqBar"></i></div>
       </div>
-      <a onclick="return false;" class="btn btn-ouro btn-comprar hotmart-fb hotmart__button-checkout dq-cta" id="dqCta" data-plano="Diagnostico" href="https://pay.hotmart.com/A108229940O?checkoutMode=2" hidden>QUERO RESOLVER · 1€ POR DIA</a>
+      <a class="btn btn-ouro btn-comprar dq-cta" id="dqCta" data-plano="Diagnostico" href="https://pay.hotmart.com/A108229940O" rel="noopener" hidden>QUERO RESOLVER · 1€ POR DIA</a>
     </div>
     <p class="verdade reveal">A verdade? <strong>O seu talento não é o problema. O que falta é sistema — construído mês após mês.</strong> É para isso que existe a Comunidade Advance: 12 meses de método e acompanhamento, por 1€ por dia.</p>
   </div>
@@ -696,13 +720,25 @@ fbq('track','PageView');
         <li>Análise ao vivo de casos reais: preços, Instagram, mensagens</li>
         <li>Comunidade de profissionais da beleza a crescer consigo</li>
       </ul>
-      <a onclick="return false;" class="btn btn-ouro btn-comprar hotmart-fb hotmart__button-checkout" data-plano="Oferta" href="https://pay.hotmart.com/A108229940O?checkoutMode=2">QUERO ENTRAR — 1€ POR DIA →</a>
+      <a class="btn btn-ouro btn-comprar" data-plano="Oferta" href="https://pay.hotmart.com/A108229940O" rel="noopener">QUERO ENTRAR — 1€ POR DIA →</a>
     </div>
     <div class="comparar">
       <div class="c"><span class="mono">Mentoria individual</span><b>997€</b><p>Acompanhamento 1 a 1 durante 6 meses.</p></div>
       <div class="c nos"><span class="mono">Mentoria em grupo</span><b>1€ / dia</b><p>O mesmo método, em grupo, durante 12 meses.</p></div>
     </div>
-    <p class="garantia">Pagamento seguro pela Hotmart · Acesso confirmado por email logo após o pagamento · Dúvidas? Fale connosco no WhatsApp.</p>
+    <div class="pagar reveal">
+      <div class="pagar-topo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span>Pagamento 100% seguro pela Hotmart</span></div>
+      <div class="pagar-metodos" aria-label="Meios de pagamento aceites">
+        <span class="pm pm-visa">VISA</span>
+        <span class="pm pm-mc"><i></i><i></i><em>mastercard</em></span>
+        <span class="pm pm-pp"><b>Pay</b>Pal</span>
+      </div>
+      <div class="pagar-garantias">
+        <div><b>Acesso imediato</b><span>Recebe o acesso por email logo após o pagamento</span></div>
+        <div><b>31€ por mês</b><span>Cobrança mensal automática, cerca de 1€ por dia</span></div>
+        <div><b>Dúvidas?</b><span>Respondemos no WhatsApp no próprio dia</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -732,15 +768,11 @@ fbq('track','PageView');
       <div class="seg"><span class="lbl">Encontros</span><span class="val">Quartas · 21h</span></div>
       <div class="seg"><span class="lbl">Investimento</span><span class="val">1€ por dia</span></div>
     </div>
-    <div class="cta-final reveal"><a onclick="return false;" class="btn btn-ouro btn-comprar hotmart-fb hotmart__button-checkout" data-plano="Final" href="https://pay.hotmart.com/A108229940O?checkoutMode=2">QUERO ENTRAR · 1€ POR DIA →</a></div>
+    <div class="cta-final reveal"><a class="btn btn-ouro btn-comprar" data-plano="Final" href="https://pay.hotmart.com/A108229940O" rel="noopener">QUERO ENTRAR · 1€ POR DIA →</a></div>
     <div class="confianca reveal">
       <span><b>—</b> Pagamento seguro pela Hotmart</span>
       <span><b>—</b> Pagamento mensal</span>
       <span><b>—</b> Encontros online, de onde estiver</span>
-    </div>
-    <div class="assinatura-bloco reveal">
-      <img class="simbolo-a" src="img/simbolo.png" alt="" aria-hidden="true">
-      <div class="assinatura">Uma mentoria <b>Hub Advance</b> · Lisboa</div>
     </div>
   </div>
 </section>
@@ -750,9 +782,8 @@ fbq('track','PageView');
     <div class="footer-topo">
       <div class="footer-grid">
         <div class="col">
-          <img class="logo-footer" src="img/logo-hub.png" alt="Hub Advance" loading="lazy">
-          <p class="tagline">Consultoria e mentoria de negócios sediada em Lisboa. Ajudamos empreendedoras a construir sistemas de gestão e vendas previsíveis.</p>
-          <p class="local-linha">Lisboa · Portugal</p>
+          <span class="logo-txt">Hub Advance</span>
+          <p class="tagline">Estrutura e crescimento para negócios. Transformamos empreendedores da beleza em donos de negócios lucrativos.</p>
         </div>
         <div class="col">
           <div class="f-lbl">Navegação</div>
@@ -783,13 +814,13 @@ fbq('track','PageView');
       </div>
     </div>
     <div class="footer-base">
-      <span>© 2026 Hub Advance · Lisboa, Portugal · Todos os direitos reservados</span>
+      <span>© 2026 Hub Advance · Todos os direitos reservados</span>
       <span class="aviso">Desenvolvido por Hub Advance Solutions. Os resultados dependem da aplicação individual do método.</span>
     </div>
   </div>
 </footer>
 
-<div class="cta-fixa"><a onclick="return false;" class="btn btn-ouro btn-comprar hotmart-fb hotmart__button-checkout" data-plano="Fixa" href="https://pay.hotmart.com/A108229940O?checkoutMode=2">QUERO ENTRAR · 1€ POR DIA</a></div>
+<div class="cta-fixa"><a class="btn btn-ouro btn-comprar" data-plano="Fixa" href="https://pay.hotmart.com/A108229940O" rel="noopener">QUERO ENTRAR · 1€ POR DIA</a></div>
 
 <a class="wa-float" href="https://wa.me/351964427068?text=Ol%C3%A1%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20Mentoria%20em%20Grupo%20%E2%80%94%20Comunidade%20Advance." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
   <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.3-2.2c1.9 1 4 1.6 6.2 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm6.6 17c-.3.8-1.6 1.5-2.2 1.6-.6.1-1.3.1-2.1-.1-.5-.2-1.1-.4-1.9-.7-3.4-1.5-5.6-4.9-5.8-5.1-.2-.2-1.4-1.8-1.4-3.5s.9-2.5 1.2-2.8c.3-.3.7-.4.9-.4h.7c.2 0 .5-.1.8.6.3.7 1 2.4 1.1 2.6.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.5-.6.7-.2.2-.4.4-.2.8s1 1.7 2.2 2.7c1.5 1.3 2.8 1.7 3.2 1.9.4.2.6.2.8-.1.2-.2 1-1.1 1.2-1.5.2-.4.5-.3.8-.2.3.1 2.1 1 2.4 1.2.4.2.6.3.7.4.1.3.1 1-.2 1.7z"/></svg>
@@ -886,18 +917,6 @@ addEventListener('scroll', onScroll, {passive:true}); onScroll();
 document.querySelectorAll('.btn-comprar').forEach(b=>{
   b.addEventListener('click', ()=>{ if(typeof fbq==='function'){ fbq('track','InitiateCheckout',{content_name:'Mentoria em Grupo 31 · '+b.dataset.plano, value:31, currency:'EUR'}); } });
 });
-</script>
-<script type="text/javascript">
-function importHotmart(){
-  var imported = document.createElement('script');
-  imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
-  document.head.appendChild(imported);
-  var link = document.createElement('link');
-  link.rel = 'stylesheet'; link.type = 'text/css';
-  link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
-  document.head.appendChild(link);
-}
-importHotmart();
 </script>
 </body>
 </html>
