@@ -472,6 +472,32 @@ html{scroll-behavior:auto}
 @media(max-width:820px){.linha-producao .preenche{left:23px}}
 /* reveal com desfoque */
 @media(prefers-reduced-motion:no-preference){.reveal{filter:blur(6px)}.reveal.on{filter:none}.reveal{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1),filter .8s ease;transition-delay:var(--d,0s)}}
+
+/* ---------- QUADRO INTERATIVO (dor) ---------- */
+.dq-instr{text-align:center;color:#AEC4DD;margin:10px auto 36px;font-size:1.02rem}
+.dq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.dq{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:flex;flex-direction:column;gap:12px;padding:28px 26px 26px;border-radius:20px;background:linear-gradient(165deg,#122C4E,#0D2444);border:1px solid rgba(174,196,221,.16);transition:transform .25s cubic-bezier(.2,.7,.2,1),border-color .25s,background .35s,box-shadow .35s;min-height:190px}
+.dq:hover{transform:translateY(-4px);border-color:rgba(127,180,238,.5);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.dq:focus-visible{outline:2px solid #7FB4EE;outline-offset:3px}
+.dq-t{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.32rem;line-height:1.15;color:#EAF1FA;letter-spacing:-.01em;padding-right:44px;text-wrap:balance}
+.dq-p{font-family:'Inter',sans-serif;font-size:.95rem;line-height:1.55;color:#B8C8DD}
+.dq-check{position:absolute;top:24px;right:22px;width:30px;height:30px;border-radius:50%;border:2px solid rgba(127,180,238,.45);display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s,transform .35s cubic-bezier(.3,1.6,.5,1)}
+.dq-check svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .35s ease .05s}
+.dq[aria-pressed="true"]{background:linear-gradient(150deg,rgba(59,123,200,.55),rgba(91,155,232,.22));border-color:#5B9BE8;box-shadow:0 18px 44px rgba(59,123,200,.35)}
+.dq[aria-pressed="true"] .dq-check{background:#5B9BE8;border-color:#5B9BE8;transform:scale(1.12)}
+.dq[aria-pressed="true"] .dq-check svg{stroke-dashoffset:0}
+.dq[aria-pressed="true"] .dq-p{color:#D5E1EF}
+.dq-res{margin:28px auto 0;max-width:900px;display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center;padding:24px 28px;border-radius:20px;border:1px solid rgba(127,180,238,.3);background:rgba(13,36,68,.75);backdrop-filter:blur(10px)}
+.dq-score{display:flex;align-items:baseline;gap:6px}
+.dq-score b{font-family:'Archivo',sans-serif;font-weight:900;font-size:3.4rem;line-height:1;background:linear-gradient(120deg,#3B7BC8,#7FB4EE);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.dq-score b.pula{transform:scale(1.25)}
+.dq-score span{font-family:'IBM Plex Mono',monospace;color:#8397AF;font-size:1rem}
+.dq-msg{font-family:'Archivo',sans-serif;font-weight:700;font-size:1.12rem;color:#EAF1FA;line-height:1.35;margin-bottom:12px}
+.dq-barra{height:6px;border-radius:99px;background:rgba(174,196,221,.14);overflow:hidden}
+.dq-barra i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#3B7BC8,#7FB4EE);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+.dq-cta{white-space:nowrap}
+@media(max-width:900px){.dq-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.dq-grid{grid-template-columns:1fr;gap:12px}.dq{min-height:0;padding:22px 20px}.dq-t{font-size:1.15rem}.dq-res{grid-template-columns:auto 1fr;padding:20px}.dq-cta{grid-column:1/-1;width:100%}.dq-score b{font-size:2.6rem}}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -510,20 +536,52 @@ fbq('track','PageView');
   </div>
 </div>
 
-<section class="dor">
+<section class="dor" id="diagnostico">
   <div class="wrap">
     <div class="eyebrow mono reveal">O problema real</div>
-    <h2 class="reveal">O seu talento não é o problema.<br>O que falta é <span class="gold">sistema</span> e acompanhamento.</h2>
-    <div class="barra-ouro reveal"></div>
-    <div class="dor-grid">
-      <div class="dor-card reveal"><h3>Agenda vazia nas semanas fracas</h3><p>Uma semana cheia, duas paradas. Sem previsibilidade, nunca sabe quanto vai entrar ao fim do mês.</p></div>
-      <div class="dor-card reveal"><h3>Depende de indicação e sorte</h3><p>As clientes chegam por boca-a-boca quando calha. Se o telefone não toca, não há plano B.</p></div>
-      <div class="dor-card reveal"><h3>Só enche quando faz promoção</h3><p>Baixa o preço, aparece gente; volta ao normal, some tudo. Trabalha mais e ganha menos.</p></div>
-      <div class="dor-card reveal"><h3>Cobra barato com medo de perder</h3><p>Não tem coragem de cobrar o que o seu trabalho vale. Mãos cheias, conta vazia.</p></div>
-      <div class="dor-card reveal"><h3>Aprende sozinha e não aplica</h3><p>Vê vídeos, guarda posts, compra cursos — e o negócio continua igual, porque ninguém a acompanha na execução.</p></div>
-      <div class="dor-card reveal"><h3>A mentoria individual ainda não cabe</h3><p>Sabe que precisa de alguém ao seu lado, mas neste momento não consegue investir numa mentoria individual.</p></div>
+    <h2 class="reveal">Quantas destas são <span class="gold">verdade para si?</span></h2>
+    <p class="dq-instr reveal">Toque em cada situação que reconhece no seu negócio.</p>
+    <div class="dq-grid">
+      <button type="button" class="dq reveal" aria-pressed="false" id="dq1">
+        <span class="dq-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <span class="dq-t">Agenda vazia nas semanas fracas</span>
+        <span class="dq-p">Uma semana cheia, duas paradas. Nunca sabe quanto vai entrar ao fim do mês.</span>
+      </button>
+      <button type="button" class="dq reveal" aria-pressed="false" id="dq2">
+        <span class="dq-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <span class="dq-t">Depende de indicação e sorte</span>
+        <span class="dq-p">As clientes chegam por boca-a-boca quando calha. Se o telefone não toca, não há plano B.</span>
+      </button>
+      <button type="button" class="dq reveal" aria-pressed="false" id="dq3">
+        <span class="dq-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <span class="dq-t">Só enche quando faz promoção</span>
+        <span class="dq-p">Baixa o preço, aparece gente; volta ao normal, some tudo. Trabalha mais e ganha menos.</span>
+      </button>
+      <button type="button" class="dq reveal" aria-pressed="false" id="dq4">
+        <span class="dq-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <span class="dq-t">Cobra barato com medo de perder</span>
+        <span class="dq-p">Não tem coragem de cobrar o que o seu trabalho vale. Mãos cheias, conta vazia.</span>
+      </button>
+      <button type="button" class="dq reveal" aria-pressed="false" id="dq5">
+        <span class="dq-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <span class="dq-t">Aprende sozinha e não aplica</span>
+        <span class="dq-p">Vê vídeos, guarda posts, compra cursos — e o negócio continua igual.</span>
+      </button>
+      <button type="button" class="dq reveal" aria-pressed="false" id="dq6">
+        <span class="dq-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <span class="dq-t">A mentoria individual ainda não cabe</span>
+        <span class="dq-p">Sabe que precisa de alguém ao seu lado, mas agora não consegue investir numa mentoria individual.</span>
+      </button>
     </div>
-    <p class="verdade reveal">A verdade? <strong>Um negócio que dá lucro não é sorte — é sistema, construído mês após mês.</strong> É para isso que existe a Comunidade Advance: 12 meses de método e acompanhamento, por 1€ por dia.</p>
+    <div class="dq-res reveal" aria-live="polite">
+      <div class="dq-score"><b id="dqN">0</b><span>/ 6</span></div>
+      <div class="dq-txt">
+        <p class="dq-msg" id="dqMsg">Toque nos quadros acima para ver o seu diagnóstico.</p>
+        <div class="dq-barra"><i id="dqBar"></i></div>
+      </div>
+      <a onclick="return false;" class="btn btn-ouro btn-comprar hotmart-fb hotmart__button-checkout dq-cta" id="dqCta" data-plano="Diagnostico" href="https://pay.hotmart.com/A108229940O?checkoutMode=2" hidden>QUERO RESOLVER · 1€ POR DIA</a>
+    </div>
+    <p class="verdade reveal">A verdade? <strong>O seu talento não é o problema. O que falta é sistema — construído mês após mês.</strong> É para isso que existe a Comunidade Advance: 12 meses de método e acompanhamento, por 1€ por dia.</p>
   </div>
 </section>
 
@@ -740,6 +798,27 @@ fbq('track','PageView');
 <script>
 
 
+
+// ===== QUADRO INTERATIVO =====
+(function(){
+  const qs=[...document.querySelectorAll('.dq')]; if(!qs.length) return;
+  const N=document.getElementById('dqN'), M=document.getElementById('dqMsg'), B=document.getElementById('dqBar'), C=document.getElementById('dqCta');
+  const msgs=[
+    'Toque nos quadros acima para ver o seu diagnóstico.',
+    'Já há um sinal de que falta sistema. Melhor resolver agora do que quando a agenda apertar.',
+    'Dois sinais claros. O seu talento está lá — falta estrutura à volta dele.',
+    'Três sinais. O problema não é o esforço — é a falta de sistema.',
+    'O seu negócio está a pedir método e acompanhamento. É isto que construímos na Comunidade Advance.',
+    'Quase todas. A Comunidade Advance foi feita exatamente para este momento.',
+    'Todas. Está na hora de construir o sistema do seu negócio — por 1€ por dia.'];
+  const upd=()=>{
+    const n=qs.filter(q=>q.getAttribute('aria-pressed')==='true').length;
+    N.textContent=n; N.classList.add('pula'); setTimeout(()=>N.classList.remove('pula'),220);
+    M.textContent=msgs[n]; B.style.width=(n/6*100)+'%'; C.hidden = n===0;
+  };
+  qs.forEach(q=>q.addEventListener('click',()=>{ q.setAttribute('aria-pressed', q.getAttribute('aria-pressed')==='true'?'false':'true'); upd(); }));
+})();
+
 // ===== EFEITOS =====
 (function(){
   const calmo = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -755,7 +834,7 @@ fbq('track','PageView');
     ban.parentElement.addEventListener('mouseleave', ()=>{ ban.style.transform=''; });
   }
   // luz que segue o rato
-  document.querySelectorAll('.dor-card,.quem-col,.bilhete,.comparar .c,.mentor-linha').forEach(el=>{
+  document.querySelectorAll('.quem-col,.bilhete,.comparar .c,.mentor-linha').forEach(el=>{
     const l = document.createElement('span'); l.className='luz'; el.appendChild(l); el.classList.add('tem-luz');
     el.addEventListener('mousemove', e=>{ const r=el.getBoundingClientRect(); el.style.setProperty('--mx',(e.clientX-r.left)+'px'); el.style.setProperty('--my',(e.clientY-r.top)+'px'); });
   });
@@ -795,7 +874,7 @@ const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
 },{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-document.querySelectorAll('.dor-grid,.quem-grid').forEach(g=>{[...g.children].forEach((el,i)=>el.style.setProperty('--d',(i*0.09)+'s'));});
+document.querySelectorAll('.dq-grid,.quem-grid').forEach(g=>{[...g.children].forEach((el,i)=>el.style.setProperty('--d',(i*0.09)+'s'));});
 
 const prog = document.getElementById('progresso');
 function onScroll(){
