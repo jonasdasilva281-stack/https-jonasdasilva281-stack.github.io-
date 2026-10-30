@@ -581,6 +581,26 @@ html{scroll-behavior:auto}
 .quem-col.tem-luz:hover{border-color:#E3EAF3;transform:translateY(-4px)}
 .quem-col{transition:transform .3s ease}
 @media(max-width:600px){.quem-col{padding:30px 22px}}
+
+/* ---------- ETIQUETAS BRANCAS + OFERTA BRANCA ---------- */
+.eyebrow,.quem .wrap>.eyebrow{background:#FFFFFF!important;color:#0A1E38!important;border-color:#FFFFFF!important;box-shadow:0 10px 30px rgba(3,14,30,.35)}
+.bilhete.plano{background:#FFFFFF;border:1px solid #E3EAF3;box-shadow:0 24px 70px rgba(3,14,30,.5);border-radius:24px}
+.bilhete.plano::after{content:"";position:absolute;left:14px;right:14px;top:0;height:4px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,#3B7BC8,#7FB4EE)}
+.bilhete.plano .badge-topo{background:#FFFFFF;color:#0A1E38;border:1px solid #D6E2F0;box-shadow:0 8px 22px rgba(3,14,30,.3);z-index:2}
+.bilhete.plano .nome{color:#0A1E38;font-size:1.45rem}
+.bilhete.plano .desc{color:#4A5B72}
+.bilhete.plano .b-preco{color:#3B7BC8}
+.bilhete.plano .b-preco small{color:#0A1E38}
+.bilhete.plano .b-vagas{color:#4A5B72}
+.bilhete.plano .b-vagas b{color:#0A1E38}
+.bilhete.plano .contas{background:#E3EAF3;border-color:#E3EAF3}
+.bilhete.plano .contas div{background:#F3F6FA}
+.bilhete.plano .contas b{color:#0A1E38}
+.bilhete.plano .contas span{color:#4A5B72}
+.bilhete.plano li{color:#33445C;font-weight:500}
+.bilhete.plano li::before{color:#3B7BC8}
+.bilhete.plano .luz{display:none}
+.bilhete.plano.tem-luz:hover{border-color:#E3EAF3}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -759,7 +779,7 @@ fbq('track','PageView');
 
 <section class="oferta" id="entrar">
   <div class="wrap">
-    <div class="eyebrow mono reveal" style="justify-content:center;display:flex">Comunidade Advance</div>
+    <div class="eyebrow mono reveal" style="justify-content:center;display:flex">O investimento</div>
     <h2 class="reveal">O seu negócio por <span class="gold">1€ por dia</span></h2>
     <p class="sub reveal">Mentoria em grupo · Online · 2 encontros por mês à quarta, 21h (Lisboa)</p>
     <div class="bilhete destaque plano reveal">
