@@ -522,6 +522,18 @@ html{scroll-behavior:auto}
 .pagar-garantias span{font-size:.82rem;color:#B8C8DD;line-height:1.45}
 @media(max-width:640px){.pagar{padding:22px 18px}.pagar-garantias{grid-template-columns:1fr}}
 .logo-txt{display:block;font-family:'Archivo',sans-serif;font-weight:800;font-size:1.3rem;color:#EAF1FA;letter-spacing:.02em;margin-bottom:14px}
+
+/* ---------- QUADROS BRANCOS ---------- */
+.dq{overflow:hidden;background:#FFFFFF;border:1px solid #E3EAF3;box-shadow:0 10px 30px rgba(3,14,30,.35)}
+.dq::before{content:"";position:absolute;left:0;top:0;right:0;height:5px;background:var(--c)}
+.dq-t{color:#0A1E38}
+.dq-p{color:#4A5B72}
+.dq-check{border-color:color-mix(in srgb,var(--c) 55%,#fff)}
+.dq:hover{border-color:var(--c);box-shadow:0 18px 44px rgba(3,14,30,.45)}
+.dq[aria-pressed="true"]{background:color-mix(in srgb,var(--c) 9%,#fff);border-color:var(--c);box-shadow:0 18px 44px color-mix(in srgb,var(--c) 35%,transparent)}
+.dq[aria-pressed="true"] .dq-check{background:var(--c);border-color:var(--c)}
+.dq[aria-pressed="true"] .dq-p{color:#33445C}
+#dq1{--c:#3B7BC8}#dq2{--c:#E8615A}#dq3{--c:#E89A2C}#dq4{--c:#23A27F}#dq5{--c:#7A5BD0}#dq6{--c:#D9468C}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
