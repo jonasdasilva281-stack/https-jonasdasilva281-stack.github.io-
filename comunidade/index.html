@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentoria em Grupo — Comunidade Advance | 31€/mês · Oferta de aniversário</title>
+<meta name="description" content="Mentoria em grupo para profissionais da beleza: 2 encontros ao vivo por semana com o Jonas e a Rafa. Oferta de aniversário: 31€/mês, só hoje.">
+<meta property="og:title" content="Mentoria em Grupo — Comunidade Advance · 31€/mês">
+<meta property="og:description" content="2 encontros ao vivo por semana, o método da Máquina de Vendas aplicado ao seu negócio de beleza. Oferta de aniversário, só hoje.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_PT">
+<meta property="og:url" content="https://hubadvance.pt/comunidade/">
+<meta property="og:image" content="https://hubadvance.pt/comunidade/img/grupo.jpg">
+<meta name="theme-color" content="#0A0A0B">
+<link rel="icon" type="image/png" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --preto:#0A0A0B;
+  --preto-2:#111113;
+  --preto-3:#17171A;
+  --ouro:#C9A227;
+  --ouro-claro:#E8C766;
+  --esmeralda:#12805C;
+  --esmeralda-claro:#1DA57A;
+  --branco:#F5F2EA;
+  --cinza:#B8B4A9;
+  --linha:rgba(201,162,39,.18);
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--preto);color:var(--branco);font-family:'Manrope',sans-serif;font-size:17px;font-weight:600;line-height:1.65;overflow-x:hidden}
+::selection{background:var(--ouro);color:var(--preto)}
+img{max-width:100%}
+a{color:inherit}
+
+h1,h2,h3,.display{font-family:'Anton',sans-serif;font-weight:400;line-height:1.02;letter-spacing:.015em;text-transform:uppercase;text-wrap:balance}
+p,li,summary{text-wrap:pretty}
+.mono{font-family:'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;font-weight:600}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:68px 0}
+.eyebrow{color:var(--ouro);display:inline-flex;align-items:center;gap:10px;margin-bottom:16px}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ouro)}
+.barra-ouro{width:76px;height:3px;background:linear-gradient(90deg,rgba(201,162,39,0),var(--ouro),rgba(201,162,39,0));margin:18px auto 34px}
+.dor .eyebrow,.maquina .eyebrow,.depoimentos .eyebrow,.agenda .eyebrow,.quem .eyebrow,.faq .eyebrow{width:100%;justify-content:center}
+.dor h2,.maquina h2,.depoimentos h2,.agenda h2,.faq h2{text-align:center;margin-left:auto;margin-right:auto}
+.gold{background:linear-gradient(100deg,#8F6E14 0%,var(--ouro) 25%,#F0D583 50%,var(--ouro) 75%,#8F6E14 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.green{color:var(--esmeralda-claro)}
+
+/* ---------- TOPBAR ---------- */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,11,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--linha)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 24px}
+.brand{font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:.06em;text-transform:uppercase}
+.brand span{color:var(--ouro)}
+.topbar .cta-mini{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;background:linear-gradient(135deg,var(--ouro),var(--ouro-claro));color:var(--preto);padding:11px 20px;border-radius:6px;text-decoration:none;font-weight:600;transition:transform .2s ease,filter .2s ease}
+.topbar .cta-mini:hover{background:var(--ouro-claro);transform:translateY(-1px)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:96px 0 72px;overflow:hidden;background:
+  radial-gradient(ellipse 60% 50% at 8% 92%,rgba(201,162,39,.13),transparent 60%),
+  var(--preto)}
+.hero-fundo{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-fundo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:.30;filter:saturate(.55) contrast(1.08) brightness(.85) sepia(.22)}
+.hero-fundo::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(ellipse 55% 42% at 50% 42%,rgba(201,162,39,.14),transparent 65%),
+  linear-gradient(180deg,rgba(10,10,11,.86) 0%,rgba(10,10,11,.64) 45%,var(--preto) 96%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(245,242,234,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(245,242,234,.02) 1px,transparent 1px);background-size:56px 56px;pointer-events:none;mask-image:radial-gradient(ellipse 70% 70% at 50% 30%,#000 40%,transparent 100%)}
+.hero .wrap{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center}
+.info-luxo{display:inline-flex;align-items:stretch;margin-bottom:26px;border:1px solid rgba(201,162,39,.45);border-radius:12px;background:linear-gradient(135deg,rgba(17,17,19,.82),rgba(23,23,26,.66));backdrop-filter:blur(14px);box-shadow:0 10px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(245,242,234,.06);overflow:hidden}
+.info-luxo .seg{display:flex;flex-direction:column;gap:3px;padding:13px 22px;position:relative}
+.info-luxo .seg+.seg::before{content:"";position:absolute;left:0;top:20%;bottom:20%;width:1px;background:linear-gradient(transparent,rgba(201,162,39,.5),transparent)}
+.info-luxo .lbl{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(201,162,39,.75)}
+.info-luxo .val{font-family:'Manrope',sans-serif;font-weight:800;font-size:.88rem;letter-spacing:.05em;color:var(--branco);white-space:nowrap;display:flex;align-items:center;gap:8px}
+.info-luxo .val .dot{width:7px;height:7px;border-radius:50%;background:var(--esmeralda-claro);box-shadow:0 0 10px var(--esmeralda-claro);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero .sub-evento{font-family:'IBM Plex Mono',monospace;color:var(--ouro-claro);font-size:.82rem;letter-spacing:.42em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:18px}
+.hero .sub-evento::before{content:"";flex:0 0 54px;height:1px;background:linear-gradient(90deg,transparent,var(--ouro))}
+.hero .sub-evento::after{content:"";flex:0 0 54px;height:1px;background:linear-gradient(90deg,var(--ouro),transparent)}
+.hero h1{font-size:clamp(3rem,9vw,7rem);margin-bottom:14px;text-shadow:0 6px 50px rgba(0,0,0,.7)}
+.hero h1 .linha2{display:block;background:linear-gradient(100deg,var(--ouro) 10%,var(--ouro-claro) 45%,#F6E27A 60%,var(--ouro) 90%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 30px rgba(201,162,39,.25))}
+.hero p.lead{max-width:640px;margin-left:auto;margin-right:auto;font-size:clamp(1.05rem,1.6vw,1.2rem);color:#E9E5DA;font-weight:700;margin-bottom:30px;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+.hero p.lead strong{color:var(--branco)}
+.cta-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-weight:600;letter-spacing:.18em;text-transform:uppercase;border-radius:8px;padding:19px 34px;font-size:.82rem;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.btn-ouro{background:linear-gradient(135deg,var(--ouro),var(--ouro-claro));color:var(--preto);box-shadow:0 10px 36px rgba(201,162,39,.45)}
+.btn-ouro:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(201,162,39,.55)}
+.btn-ouro small{font-weight:700;font-size:.78rem;opacity:.75}
+.btn-ghost{border:1px solid rgba(245,242,234,.25);color:var(--branco);background:rgba(17,17,19,.4);backdrop-filter:blur(8px)}
+.btn-ghost:hover{border-color:var(--ouro);color:var(--ouro-claro)}
+.nota-lote{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ouro-claro);margin-bottom:34px}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--cinza);font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;opacity:.7;transition:opacity .2s}
+.scroll-hint:hover{opacity:1;color:var(--ouro-claro)}
+.scroll-hint .seta{width:1px;height:34px;background:linear-gradient(var(--ouro),transparent);position:relative;overflow:hidden}
+.scroll-hint .seta::after{content:"";position:absolute;top:-10px;left:0;width:1px;height:10px;background:var(--ouro-claro);animation:desce 1.8s ease-in-out infinite}
+@keyframes desce{to{top:38px}}
+@media(max-width:820px){
+  .hero{padding:88px 0 60px;min-height:100svh}
+  .hero-fundo img{opacity:.22;object-position:center 35%}
+  .hero h1{font-size:clamp(2.4rem,11.5vw,3.4rem)}
+  .hero p.lead{font-size:1rem}
+  .cta-row{flex-direction:column;align-items:stretch}
+  .cta-row .btn{width:100%;justify-content:center}
+  .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .info-luxo{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .info-luxo .seg{padding:11px 16px}
+  .info-luxo .seg+.seg::before{display:none}
+  .info-luxo .seg:nth-child(even)::before{content:"";display:block;position:absolute;left:0;top:20%;bottom:20%;width:1px;background:linear-gradient(transparent,rgba(201,162,39,.5),transparent)}
+  .info-luxo .seg:nth-child(n+3){border-top:1px solid rgba(201,162,39,.2)}
+  .hero .sub-evento{letter-spacing:.28em}
+  .scroll-hint{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .scroll-hint .seta::after{animation:none}
+}
+
+/* countdown */
+.countdown{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.cd-box{background:rgba(17,17,19,.55);backdrop-filter:blur(10px);border:1px solid rgba(201,162,39,.25);border-radius:var(--radius);padding:16px 20px;min-width:86px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.cd-box .num{font-family:'Anton',sans-serif;font-size:2.1rem;color:var(--ouro-claro);line-height:1}
+.cd-box .lbl{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza);margin-top:8px}
+
+/* faixa deslizante */
+.marquee{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);background:var(--preto-2);overflow:hidden;padding:13px 0}
+.marquee-inner{display:flex;gap:56px;white-space:nowrap;animation:slide 28s linear infinite;font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cinza)}
+.marquee-inner span b{color:var(--ouro)}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- DOR ---------- */
+.dor{background:var(--preto-2)}
+.dor h2{font-size:clamp(1.9rem,4.5vw,3rem);max-width:760px;margin-bottom:0}
+.dor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;counter-reset:dor}
+.dor-card{background:linear-gradient(170deg,#141416,var(--preto-3));border:1px solid rgba(201,162,39,.16);border-radius:10px;padding:34px 30px;position:relative;counter-increment:dor}
+.dor-card::before{content:"—";position:absolute;top:26px;left:30px;color:var(--ouro);font-weight:800}
+.dor-card::after{content:"0" counter(dor);position:absolute;top:20px;right:26px;font-family:'Anton',sans-serif;font-size:1.15rem;color:rgba(201,162,39,.55);letter-spacing:.05em}
+.dor-card h3{font-size:.9rem;margin:20px 0 12px;font-family:'IBM Plex Mono',monospace;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro-claro)}
+.dor-card p{color:var(--cinza);font-size:.95rem;font-weight:600}
+.dor .verdade{margin:48px auto 0;max-width:820px;font-size:1.2rem;line-height:1.65;border-top:1px solid rgba(245,242,234,.12);border-bottom:1px solid rgba(245,242,234,.12);padding:40px 20px 34px;position:relative;font-weight:700;text-align:center}
+.dor .verdade::before{content:"\201D";position:absolute;left:50%;transform:translateX(-50%);top:-2px;font-family:'Anton',sans-serif;font-size:3rem;line-height:1;color:var(--ouro)}
+.dor .verdade strong{color:var(--ouro-claro)}
+
+/* ---------- MÁQUINA (assinatura) ---------- */
+.maquina h2{font-size:clamp(2rem,5vw,3.4rem);margin-bottom:0}
+.maquina .intro{color:var(--cinza);max-width:760px;margin:-14px 0 42px;font-weight:600}
+.linha-producao{position:relative;display:grid;gap:0}
+.linha-producao::before{content:"";position:absolute;left:29px;top:30px;bottom:30px;width:2px;background:linear-gradient(var(--ouro),var(--esmeralda));opacity:.5}
+.etapa{display:grid;grid-template-columns:60px 1fr;gap:28px;padding:24px 0;border-bottom:1px solid rgba(245,242,234,.06)}
+.etapa:last-child{border-bottom:none}
+.etapa .engrenagem{width:60px;height:60px;border-radius:0;border:1px solid rgba(201,162,39,.5);display:flex;align-items:center;justify-content:center;background:var(--preto-2);position:relative;z-index:2;font-family:'Anton',sans-serif;font-size:1.3rem;color:var(--ouro-claro)}
+.etapa h3{font-size:1.3rem;margin-bottom:10px;font-family:'Manrope',sans-serif;font-weight:800}
+.etapa h3 .mono{color:var(--esmeralda-claro);display:block;margin-bottom:6px}
+.etapa p{color:var(--cinza);max-width:760px;font-weight:600}
+
+/* ---------- PARA QUEM ---------- */
+.quem{background:var(--preto-2)}
+.quem-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.quem-col{border-radius:var(--radius);padding:38px 34px}
+.quem-col.sim{background:linear-gradient(160deg,rgba(18,128,92,.15),rgba(18,128,92,.04));border:1px solid rgba(29,165,122,.3)}
+.quem-col.nao{background:var(--preto-3);border:1px solid rgba(245,242,234,.07)}
+.quem-col h3{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.15rem;margin-bottom:24px;display:flex;align-items:center;gap:10px}
+.quem-col ul{list-style:none;display:grid;gap:16px}
+.quem-col li{display:flex;gap:12px;color:var(--cinza);font-size:.98rem;font-weight:600}
+.quem-col li::before{flex-shrink:0;font-weight:800}
+.quem-col.sim li::before{content:"✓";color:var(--esmeralda-claro)}
+.quem-col.nao li::before{content:"✕";color:#8a5a5a}
+
+/* ---------- AGENDA ---------- */
+.agenda h2{font-size:clamp(2rem,5vw,3rem);margin-bottom:0}
+.agenda-item{display:grid;grid-template-columns:130px 1fr;gap:28px;padding:18px 0;border-bottom:1px solid rgba(245,242,234,.07);align-items:start}
+.agenda-item .hora{font-family:'IBM Plex Mono',monospace;color:var(--ouro-claro);font-size:.9rem;font-weight:600;padding-top:3px}
+.agenda-item h3{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.1rem;margin-bottom:6px}
+.agenda-item p{color:var(--cinza);font-size:.95rem;max-width:760px;font-weight:600}
+
+/* ---------- FOTOS DO EVENTO ---------- */
+.foto-solo{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--linha);background:var(--preto-3)}
+.foto-solo img{width:100%;display:block;transition:transform .6s ease}
+.foto-solo:hover img{transform:scale(1.03)}
+.foto-solo .legenda{position:absolute;bottom:0;left:0;right:0;padding:26px 22px 16px;background:linear-gradient(transparent,rgba(10,10,11,.88));font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ouro-claro)}
+.banner-palco{padding:0 0 96px}
+.foto-agenda{margin-bottom:36px}
+.foto-final{max-width:760px;margin:0 auto 34px}
+@media(max-width:820px){.banner-palco{padding:0 0 70px}}
+
+/* ---------- MENTOR ---------- */
+.mentor{background:var(--preto-2)}
+
+.mentor p strong{color:var(--branco)}
+.mentor-stats{display:flex;gap:36px;margin-top:24px;flex-wrap:wrap}
+.mstat .num{font-family:'Anton',sans-serif;font-size:2rem;color:var(--ouro-claro)}
+.mstat .lbl{font-size:.8rem;color:var(--cinza)}
+
+/* ---------- MENTORES ---------- */
+.mentor .eyebrow,.mentor h2{justify-content:center;text-align:center;margin-left:auto;margin-right:auto}
+.mentor-lista{display:flex;flex-direction:column;gap:28px}
+.mentor-linha{display:grid;grid-template-columns:300px 1fr;gap:36px;align-items:center;background:linear-gradient(175deg,#141416,var(--preto-2));border:1px solid rgba(201,162,39,.18);border-radius:14px;padding:28px;overflow:hidden}
+.mentor-linha.invertida{grid-template-columns:1fr 300px}
+.mentor-linha.invertida .mentor-foto{order:2}
+.mentor-foto{position:relative;border-radius:10px;border:1px solid rgba(201,162,39,.4);overflow:hidden;aspect-ratio:4/5}
+.mentor-foto img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;filter:saturate(.9) contrast(1.05) brightness(1.0)}
+.mentor-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(201,162,39,.08),transparent 55%,rgba(10,10,11,.22));pointer-events:none}
+.mentor-info h3{font-family:'Anton',sans-serif;font-size:1.7rem;letter-spacing:.03em;text-transform:uppercase;margin-bottom:6px}
+.mentor-info .m-cargo{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:#D8CBA0;margin-bottom:16px}
+.mentor-info p:not(.m-cargo){color:#E9E5DA;font-size:.96rem;font-weight:500;line-height:1.7}
+@media(max-width:820px){
+  .mentor-linha,.mentor-linha.invertida{grid-template-columns:1fr;gap:22px;padding:22px}
+  .mentor-linha.invertida .mentor-foto{order:0}
+  .mentor-foto{max-width:280px;margin:0 auto;aspect-ratio:4/5}
+}
+
+.mentor-frase{max-width:800px;margin:44px auto 0;text-align:center;border-top:1px solid rgba(201,162,39,.2);padding-top:36px}
+.mentor-frase p{font-size:1.15rem;line-height:1.7;color:#E9E5DA;font-weight:600}
+
+/* ---------- OFERTA (3 bilhetes) ---------- */
+.oferta{position:relative;background:
+  radial-gradient(ellipse 50% 60% at 50% 0%,rgba(201,162,39,.12),transparent 65%),var(--preto)}
+.oferta h2{font-size:clamp(2rem,5vw,3rem);text-align:center;margin-bottom:10px}
+.oferta .sub{text-align:center;color:var(--cinza);margin-bottom:14px;font-weight:600}
+.vagas-totais{text-align:center;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--esmeralda-claro);margin-bottom:38px}
+.bilhetes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.bilhete{background:linear-gradient(175deg,#141416,var(--preto-2));border:1px solid rgba(201,162,39,.18);border-radius:10px;padding:38px 30px;display:flex;flex-direction:column;text-align:center;position:relative;transition:transform .25s ease,border-color .25s ease}
+.bilhete:hover{transform:translateY(-4px)}
+.bilhete.destaque{border-color:var(--ouro);box-shadow:0 24px 70px rgba(201,162,39,.15)}
+.bilhete .badge-topo{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--ouro),var(--ouro-claro));color:var(--preto);font-family:'IBM Plex Mono',monospace;font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border-radius:4px;white-space:nowrap}
+.badge-vip{background:linear-gradient(135deg,var(--esmeralda),var(--esmeralda-claro));color:#fff}
+.bilhete.vip{border-color:rgba(29,165,122,.65);background:linear-gradient(170deg,rgba(18,128,92,.16),var(--preto-2) 50%);box-shadow:0 24px 70px rgba(18,128,92,.18)}
+.bilhete .nome{font-family:'Anton',sans-serif;font-size:1.2rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.bilhete .desc{color:var(--cinza);font-size:.84rem;margin-bottom:20px;font-weight:700}
+.bilhete .b-preco{font-family:'Anton',sans-serif;font-size:3.3rem;color:var(--ouro-claro);line-height:1}
+.bilhete .b-preco small{font-size:1rem;font-family:'Manrope',sans-serif;font-weight:700;color:var(--branco)}
+.bilhete.vip .b-preco{color:var(--esmeralda-claro)}
+.bilhete .b-vagas{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza);margin:12px 0 26px}
+.bilhete .b-vagas b{color:var(--branco)}
+.bilhete ul{list-style:none;text-align:left;display:grid;gap:12px;margin-bottom:30px;flex:1}
+.bilhete li{display:flex;gap:10px;font-size:.9rem;color:var(--cinza);font-weight:600}
+.bilhete li::before{content:"✓";color:var(--ouro);font-weight:800;flex-shrink:0}
+.bilhete.vip li::before{color:var(--esmeralda-claro)}
+.bilhete li.extra{color:var(--branco);font-weight:600}
+.bilhete .btn{justify-content:center;font-size:.92rem;padding:15px 20px}
+.btn-verde{background:linear-gradient(135deg,var(--esmeralda),var(--esmeralda-claro));color:#fff;box-shadow:0 8px 30px rgba(18,128,92,.4)}
+.btn-verde:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(18,128,92,.55)}
+.btn-cinza{border:1px solid var(--linha);color:var(--branco)}
+.btn-cinza:hover{border-color:var(--ouro);color:var(--ouro-claro)}
+.btn-comprar{margin-top:auto;width:100%}
+.garantia-box{max-width:760px;margin:38px auto 0;display:flex;gap:20px;align-items:flex-start;background:linear-gradient(160deg,rgba(18,128,92,.12),rgba(18,128,92,.03));border:1px solid rgba(29,165,122,.35);border-radius:16px;padding:26px 28px;text-align:left}
+.garantia-box .g-selo{flex-shrink:0;width:46px;height:46px;border-radius:50%;border:1px solid var(--esmeralda-claro);display:flex;align-items:center;justify-content:center;color:var(--esmeralda-claro);font-weight:800;font-size:1.25rem;box-shadow:0 0 18px rgba(29,165,122,.25)}
+.garantia-box h3{font-family:'Manrope',sans-serif;font-weight:800;font-size:1rem;margin-bottom:6px;color:var(--esmeralda-claro)}
+.garantia-box p{font-size:.88rem;color:var(--cinza);line-height:1.6;font-weight:600}
+.garantia-box p b{color:var(--branco)}
+@media(max-width:600px){.garantia-box{flex-direction:column;gap:12px;padding:22px 20px}}
+.garantia{margin-top:20px;font-size:.82rem;color:var(--cinza);text-align:center}
+@media(max-width:900px){
+  .bilhetes{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .bilhete.destaque{order:-1}
+}
+
+/* ---------- DEPOIMENTOS ---------- */
+.depoimentos{background:var(--preto-2)}
+.depoimentos h2{font-size:clamp(1.9rem,4.5vw,2.8rem);margin-bottom:38px}
+.depo-intro{color:var(--cinza);max-width:760px;margin:-14px auto 42px;font-weight:600;text-align:center}
+.video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,368px));gap:24px;justify-content:start}
+.video-card{position:relative;border:1px solid rgba(201,162,39,.4);border-radius:12px;overflow:hidden;background:var(--preto-3);box-shadow:0 24px 60px rgba(0,0,0,.45);aspect-ratio:9/15.2}
+.video-card iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.depo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.depo-card{background:var(--preto-3);border:1px solid rgba(245,242,234,.07);border-radius:var(--radius);padding:28px 26px;display:flex;flex-direction:column;gap:18px}
+.depo-card p{color:var(--branco);font-size:.95rem;line-height:1.65;font-style:italic}
+.depo-card p::before{content:"\201C";display:block;font-family:'Archivo Black',sans-serif;font-size:2.2rem;color:var(--ouro);line-height:.6;margin-bottom:10px}
+.depo-autor{margin-top:auto;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro-claro)}
+@media(max-width:820px){.depo-grid{grid-template-columns:1fr}.video-grid{grid-template-columns:minmax(0,360px)}}
+
+/* ---------- FAQ ---------- */
+.faq h2{font-size:clamp(1.9rem,4.5vw,2.8rem);margin-bottom:0}
+.faq details{border-bottom:1px solid rgba(245,242,234,.08);padding:18px 0}
+.faq summary{cursor:pointer;font-weight:800;font-size:1.05rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:'Archivo Black',sans-serif;color:var(--ouro);font-size:1.3rem;transition:transform .25s ease}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--cinza);padding-top:14px;max-width:760px;font-weight:600}
+
+/* ---------- FINAL ---------- */
+.final{text-align:center;background:
+  radial-gradient(ellipse 55% 60% at 50% 100%,rgba(201,162,39,.10),transparent 60%),
+  linear-gradient(180deg,var(--preto-2),var(--preto))}
+.final .divisor{width:64px;height:2px;margin:0 auto 28px;background:linear-gradient(90deg,transparent,var(--ouro),transparent)}
+.final h2{font-size:clamp(2rem,5.5vw,3.2rem);max-width:760px;margin:0 auto 16px}
+.final p{color:var(--cinza);max-width:520px;margin:0 auto 34px;font-weight:600}
+.final .recap{display:inline-flex;align-items:stretch;margin:0 auto 34px;border:1px solid rgba(201,162,39,.4);border-radius:12px;background:rgba(17,17,19,.7);overflow:hidden}
+.final .recap .seg{display:flex;flex-direction:column;gap:3px;padding:13px 26px;position:relative}
+.final .recap .seg+.seg::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:linear-gradient(transparent,rgba(201,162,39,.5),transparent)}
+.final .recap .lbl{font-family:'IBM Plex Mono',monospace;font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(201,162,39,.75)}
+.final .recap .val{font-weight:800;font-size:.9rem;color:var(--branco);white-space:nowrap}
+.final .cta-final{display:flex;justify-content:center;margin-bottom:30px}
+.confianca{display:flex;justify-content:center;gap:34px;flex-wrap:wrap}
+.confianca span{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza);display:inline-flex;align-items:center;gap:8px}
+.confianca span b{color:var(--ouro);font-weight:800}
+.assinatura-bloco{margin-top:44px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.simbolo-a{height:34px;width:auto;opacity:.9;filter:drop-shadow(0 0 14px rgba(201,162,39,.35))}
+.assinatura{margin-top:0;font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cinza);display:flex;align-items:center;justify-content:center;gap:16px}
+.assinatura::before,.assinatura::after{content:"";width:48px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,162,39,.5))}
+.assinatura::after{background:linear-gradient(90deg,rgba(201,162,39,.5),transparent)}
+.assinatura b{color:var(--ouro-claro);font-weight:600}
+footer{background:linear-gradient(180deg,var(--preto),var(--preto-2));border-top:1px solid rgba(201,162,39,.22);padding:0;color:var(--cinza);font-size:.82rem}
+.footer-topo{padding:56px 0 44px;border-bottom:1px solid rgba(245,242,234,.06)}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:44px}
+.footer-grid .col p{line-height:1.7;font-size:.8rem}
+.logo-footer{height:72px;width:auto;margin-bottom:18px;display:block;opacity:.95}
+footer .tagline{font-size:.8rem;line-height:1.7;max-width:280px;font-weight:600}
+footer .local-linha{margin-top:14px;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(155,151,140,.75)}
+footer .f-lbl{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ouro);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(201,162,39,.18);display:inline-block}
+footer ul{list-style:none;display:grid;gap:10px}
+footer a{color:var(--cinza);text-decoration:none;transition:color .2s;font-size:.82rem}
+footer a:hover{color:var(--ouro-claro)}
+footer .destaque-contacto{color:var(--branco);font-weight:700}
+.footer-pagamentos{padding:20px 0;border-bottom:1px solid rgba(245,242,234,.06);display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+.footer-pagamentos .p-lbl{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(155,151,140,.7);margin-right:6px}
+.footer-pagamentos span.metodo{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--branco);border:1px solid rgba(245,242,234,.14);border-radius:6px;padding:6px 13px;background:rgba(23,23,26,.6)}
+.footer-base{padding:22px 0 26px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:.7rem;color:rgba(155,151,140,.75)}
+.footer-base .aviso{max-width:520px;line-height:1.6}
+@media(max-width:900px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:600px){
+  .footer-topo{padding:44px 0 36px}
+  .footer-grid{grid-template-columns:1fr;gap:28px;text-align:left}
+  .logo-footer{margin:0 0 16px}
+  .footer-base{flex-direction:column;text-align:center;align-items:center}
+}
+/* whatsapp flutuante */
+.wa-float{position:fixed;bottom:24px;right:24px;z-index:60;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px rgba(37,211,102,.4);transition:transform .2s ease}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+
+
+/* ---------- DINÂMICA ---------- */
+.progresso{position:fixed;top:0;left:0;height:3px;width:0%;z-index:70;background:linear-gradient(90deg,var(--ouro),var(--ouro-claro));box-shadow:0 0 12px rgba(201,162,39,.6)}
+/* ---------- TRATAMENTO UNIFICADO DE FOTOS ---------- */
+.foto-solo img,.mentor-foto img{filter:saturate(.72) contrast(1.07) brightness(.97) sepia(.18)}
+.foto-solo::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(160deg,rgba(201,162,39,.15),transparent 42%,rgba(10,10,11,.34) 100%);mix-blend-mode:overlay}
+.mentor-foto::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(160deg,rgba(201,162,39,.10),transparent 50%,rgba(10,10,11,.30) 100%);mix-blend-mode:overlay}
+.mentor-foto{position:relative}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .marquee-inner{animation:none}
+  .tag-data .dot{animation:none}
+}
+
+@media(max-width:820px){
+  section{padding:52px 0}
+  .quem-grid,  .mentor-foto{max-width:340px}
+  .agenda-item{grid-template-columns:1fr;gap:6px}
+  .etapa{grid-template-columns:48px 1fr;gap:18px}
+  .etapa .engrenagem{width:48px;height:48px}
+  .linha-producao::before{left:23px}
+  .cd-box{min-width:0;padding:12px 8px}
+  .cd-box .num{font-size:1.45rem}
+  .cd-box .lbl{font-size:.55rem}
+  .dor-grid{grid-template-columns:1fr;gap:14px}
+  .dor-card{padding:24px 20px}
+  .dor .verdade{font-size:1.1rem}
+  .quem-col{padding:28px 22px}
+  .bilhete{padding:32px 24px}
+    .mentor-foto{max-width:340px;margin:0 auto}
+  .mstat .num{font-size:1.5rem}
+  .mentor-stats{gap:24px}
+  .faq summary{font-size:.98rem}
+  .final h2 br{display:none}
+  .maquina h2 br,.agenda h2 br{display:none}
+  .foto-solo .legenda{font-size:.6rem;padding:18px 14px 12px}
+  footer{padding:28px 0}
+}
+@media(max-width:400px){
+  .wrap{padding:0 18px}
+  .hero h1{font-size:2.2rem}
+  .info-luxo .val{font-size:.78rem}
+  .info-luxo .seg{padding:10px 12px}
+  .btn{padding:16px 22px;font-size:.94rem}
+}
+
+/* ---------- COMUNIDADE: extras ---------- */
+.aniv{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--preto);background:linear-gradient(135deg,var(--ouro),var(--ouro-claro));padding:9px 18px;border-radius:4px;font-weight:600}
+.cd-titulo{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cinza);margin-bottom:12px}
+.cd-fim{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ouro-claro)}
+.plano{max-width:520px;margin:0 auto}
+.plano .b-preco{font-size:4.6rem}
+.plano .riscado{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza);margin-bottom:8px}
+.contas{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--linha);border:1px solid var(--linha);border-radius:10px;overflow:hidden;margin:6px 0 26px;text-align:center}
+.contas div{background:var(--preto-2);padding:14px 10px}
+.contas b{display:block;font-family:'Anton',sans-serif;font-weight:400;font-size:1.5rem;color:var(--branco);line-height:1.1}
+.contas span{font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza)}
+.comparar{max-width:760px;margin:38px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.comparar .c{border:1px solid rgba(245,242,234,.08);border-radius:10px;padding:22px 24px;background:var(--preto-3)}
+.comparar .c.nos{border-color:rgba(201,162,39,.45)}
+.comparar .c .mono{color:var(--cinza);display:block;margin-bottom:8px}
+.comparar .c.nos .mono{color:var(--ouro)}
+.comparar .c b{font-family:'Anton',sans-serif;font-weight:400;font-size:1.8rem}
+.comparar .c p{color:var(--cinza);font-size:.88rem;margin-top:6px}
+@media(max-width:600px){.comparar{grid-template-columns:1fr}}
+@media(max-width:820px){.final .recap{display:grid;grid-template-columns:1fr;width:100%}.final .recap .seg+.seg::before{display:none}.final .recap .seg+.seg{border-top:1px solid rgba(201,162,39,.2)}}
+.cta-fixa{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;padding:12px 16px calc(12px + env(safe-area-inset-bottom,0px));background:rgba(10,10,11,.92);backdrop-filter:blur(12px);border-top:1px solid var(--linha)}
+.cta-fixa .btn{width:100%;padding:16px 20px}
+@media(max-width:820px){.cta-fixa{display:block}.wa-float{bottom:96px}body{padding-bottom:84px}}
+</style>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','563224021229888');
+fbq('track','PageView');
+</script>
+</head>
+<body>
+<div class="progresso" id="progresso"></div>
+<nav class="topbar">
+  <div class="wrap">
+    <div class="brand">COMUNIDADE <span>ADVANCE</span></div>
+    <a class="cta-mini" href="#entrar">Entrar · 31€</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-fundo" aria-hidden="true"><img src="img/grupo.jpg" alt=""></div>
+  <div class="wrap">
+    <div class="aniv">Oferta de aniversário · só hoje</div>
+    <div class="info-luxo">
+      <div class="seg"><span class="lbl">Formato</span><span class="val">Online · ao vivo</span></div>
+      <div class="seg"><span class="lbl">Encontros</span><span class="val">2× por semana</span></div>
+      <div class="seg"><span class="lbl">Investimento</span><span class="val">31€ / mês</span></div>
+      <div class="seg"><span class="lbl">Entrada</span><span class="val"><span class="dot"></span>Abertas hoje</span></div>
+    </div>
+    <p class="sub-evento">Mentoria em grupo · Hub Advance</p>
+    <h1>A MÁQUINA DE VENDAS<span class="linha2">EM GRUPO</span></h1>
+    <p class="lead">Duas vezes por semana, ao vivo, com o Jonas e a Rafa. <strong>Para profissionais da beleza que querem a agenda cheia, preços certos e um negócio que dá lucro</strong> — sem ter de pagar uma mentoria individual.</p>
+    <div class="cta-row">
+      <a class="btn btn-ouro btn-comprar" data-plano="Hero" href="https://wa.me/351964427068?text=Ol%C3%A1%20Jonas%21%20Parab%C3%A9ns%21%20%F0%9F%8E%89%20Quero%20entrar%20na%20Mentoria%20em%20Grupo%20%E2%80%94%20Comunidade%20Advance%20com%20o%20pre%C3%A7o%20de%20anivers%C3%A1rio%20de%2031%E2%82%AC/m%C3%AAs." target="_blank" rel="noopener">QUERO ENTRAR <small>· 31€/mês</small></a>
+      <a class="btn btn-ghost" href="#maquina">Ver o que trabalhamos</a>
+    </div>
+    <p class="nota-lote">Hoje é o aniversário do Jonas · 31€/mês só para quem entrar até às 23h59</p>
+    <p class="cd-titulo" id="cd-titulo">A oferta termina em</p>
+    <div class="countdown" id="countdown" aria-label="Tempo até ao fim da oferta">
+      <div class="cd-box"><div class="num" id="cd-h">--</div><div class="lbl">Horas</div></div>
+      <div class="cd-box"><div class="num" id="cd-m">--</div><div class="lbl">Min</div></div>
+      <div class="cd-box"><div class="num" id="cd-s">--</div><div class="lbl">Seg</div></div>
+    </div>
+  </div>
+  <a class="scroll-hint" href="#maquina">Deslize<span class="seta"></span></a>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>2 ENCONTROS POR SEMANA</span><span><b>31€ POR MÊS</b></span><span>AO VIVO COM O JONAS E A RAFA</span><span><b>COMUNIDADE ADVANCE</b></span><span>SISTEMA, NÃO SORTE</span><span><b>OFERTA DE ANIVERSÁRIO</b></span>
+    <span>2 ENCONTROS POR SEMANA</span><span><b>31€ POR MÊS</b></span><span>AO VIVO COM O JONAS E A RAFA</span><span><b>COMUNIDADE ADVANCE</b></span><span>SISTEMA, NÃO SORTE</span><span><b>SÓ HOJE</b></span>
+  </div>
+</div>
+
+<section class="dor">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">O problema real</div>
+    <h2 class="reveal">O seu talento não é o problema.<br>O que falta é <span class="gold">sistema</span> e acompanhamento.</h2>
+    <div class="barra-ouro reveal"></div>
+    <div class="dor-grid">
+      <div class="dor-card reveal"><h3>Agenda vazia nas semanas fracas</h3><p>Uma semana cheia, duas paradas. Sem previsibilidade, nunca sabe quanto vai entrar ao fim do mês.</p></div>
+      <div class="dor-card reveal"><h3>Depende de indicação e sorte</h3><p>As clientes chegam por boca-a-boca quando calha. Se o telefone não toca, não há plano B.</p></div>
+      <div class="dor-card reveal"><h3>Só enche quando faz promoção</h3><p>Baixa o preço, aparece gente; volta ao normal, some tudo. Trabalha mais e ganha menos.</p></div>
+      <div class="dor-card reveal"><h3>Cobra barato com medo de perder</h3><p>Não tem coragem de cobrar o que o seu trabalho vale. Mãos cheias, conta vazia.</p></div>
+      <div class="dor-card reveal"><h3>Aprende sozinha e não aplica</h3><p>Vê vídeos, guarda posts, compra cursos — e o negócio continua igual, porque ninguém a acompanha na execução.</p></div>
+      <div class="dor-card reveal"><h3>A mentoria individual ainda não cabe</h3><p>Sabe que precisa de alguém ao seu lado, mas neste momento não consegue investir numa mentoria individual.</p></div>
+    </div>
+    <p class="verdade reveal">A verdade? <strong>Agenda cheia e lucro não são sorte — são sistema, aplicado semana após semana.</strong> É para isso que existe a mentoria em grupo: o mesmo método da mentoria individual, com encontros todas as semanas, a um preço que cabe no seu mês.</p>
+  </div>
+</section>
+
+<section class="maquina" id="maquina">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">O que vai construir connosco</div>
+    <h2 class="reveal">As 5 engrenagens da<br><span class="gold">Máquina de Vendas</span></h2>
+    <div class="barra-ouro reveal"></div>
+    <p class="intro reveal">Nos encontros trabalhamos o método completo, engrenagem a engrenagem, aplicado ao SEU negócio — e voltamos a cada uma sempre que for preciso.</p>
+    <div class="linha-producao">
+      <div class="etapa reveal"><div class="engrenagem">01</div><div><h3><span class="mono">Engrenagem 01</span>Oferta e Preço Certo</h3><p>Pacotes e combos de serviços que a cliente quer comprar — e o preço que o seu trabalho merece, com margem real.</p></div></div>
+      <div class="etapa reveal"><div class="engrenagem">02</div><div><h3><span class="mono">Engrenagem 02</span>Agenda Sempre Cheia</h3><p>O sistema mínimo de conteúdo e captação que gera interessadas todos os dias, sem viver agarrada ao Instagram.</p></div></div>
+      <div class="etapa reveal"><div class="engrenagem">03</div><div><h3><span class="mono">Engrenagem 03</span>Fecho no Direct e no Balcão</h3><p>O guião que transforma "quanto custa?" em marcação confirmada — no WhatsApp, no direct e no balcão.</p></div></div>
+      <div class="etapa reveal"><div class="engrenagem">04</div><div><h3><span class="mono">Engrenagem 04</span>Fidelização e Retorno</h3><p>Como fazer a mesma cliente voltar todos os meses e trazer amigas, sem gastar mais em anúncios.</p></div></div>
+      <div class="etapa reveal"><div class="engrenagem">05</div><div><h3><span class="mono">Engrenagem 05</span>Painel de Controlo</h3><p>Os números que acompanha todas as semanas para a máquina nunca parar — gestão simples, decisões rápidas.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="agenda">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">Como funciona</div>
+    <h2 class="reveal">A sua semana na mentoria</h2>
+    <div class="barra-ouro reveal"></div>
+    <div class="foto-solo foto-agenda reveal">
+      <img src="img/sala.jpg" alt="Empreendedoras da beleza numa sessão da Hub Advance" loading="lazy">
+      <div class="legenda">Hub Advance · Lisboa</div>
+    </div>
+    <div class="agenda-item reveal"><div class="hora">Encontro 1</div><div><h3>Estratégia da semana</h3><p>Uma engrenagem da Máquina de Vendas, explicada de forma prática, com a tarefa concreta para aplicar no seu negócio.</p></div></div>
+    <div class="agenda-item reveal"><div class="hora">Encontro 2</div><div><h3>Aplicação e análise ao vivo</h3><p>Trazemos casos reais do grupo: preços, perfis de Instagram, mensagens a clientes. Tira as suas dúvidas e sai com o próximo passo.</p></div></div>
+    <div class="agenda-item reveal"><div class="hora">Todos os meses</div><div><h3>8 encontros ao vivo</h3><p>Duas vezes por semana, online, com o Jonas e a Rafa. Pode assistir de casa ou do seu espaço.</p></div></div>
+    <div class="agenda-item reveal"><div class="hora">Sempre</div><div><h3>Grupo de profissionais da beleza</h3><p>Uma comunidade de mulheres da beleza a construir o negócio ao mesmo tempo — trocam ideias, resultados e motivação.</p></div></div>
+  </div>
+</section>
+
+<section class="quem">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">Filtro de entrada</div>
+    <div class="quem-grid">
+      <div class="quem-col sim reveal">
+        <h3><span class="green">✓</span> A mentoria em grupo é para si se…</h3>
+        <ul>
+          <li>É esteticista, cabeleireira, manicure, lash designer ou dona de espaço de beleza</li>
+          <li>Tem talento, mas a agenda e a faturação são uma montanha-russa</li>
+          <li>Está a começar e quer construir o negócio da forma certa desde o início</li>
+          <li>Quer acompanhamento todas as semanas, a um preço que cabe no seu mês</li>
+        </ul>
+      </div>
+      <div class="quem-col nao reveal">
+        <h3>✕ Não é para si se…</h3>
+        <ul>
+          <li>Procura uma fórmula mágica para encher a agenda sem esforço</li>
+          <li>Quer apenas assistir e não aplicar nada no seu negócio</li>
+          <li>Não está disposta a reservar duas horas por semana para o seu negócio</li>
+          <li>Acredita que "cobrar bem é caro" e não quer mudar isso</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="depoimentos">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">Quem já trabalhou connosco</div>
+    <h2 class="reveal">O que dizem as <span class="gold">participantes</span></h2>
+    <div class="barra-ouro reveal"></div>
+    <p class="depo-intro reveal">Depoimentos reais, sem guião e sem edição de conveniência.</p>
+    <div class="video-grid">
+      <div class="video-card reveal"><iframe src="https://www.instagram.com/reel/DZQKVUpKkiT/embed" loading="lazy" allowfullscreen scrolling="no" allow="encrypted-media" title="Depoimento de participante Hub Advance"></iframe></div>
+      <div class="video-card reveal"><iframe src="https://www.instagram.com/reel/DZK92JtKYDx/embed" loading="lazy" allowfullscreen scrolling="no" allow="encrypted-media" title="Depoimento de participante Hub Advance"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<section class="mentor">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">Quem conduz os encontros</div>
+    <h2 class="reveal">Dois percursos, <span class="gold">um só método</span></h2>
+    <div class="barra-ouro reveal"></div>
+    <div class="mentor-lista">
+      <div class="mentor-linha reveal">
+        <div class="mentor-foto"><img src="img/jonas.jpg" alt="Jonas da Silva, mentor de negócios e fundador da Hub Advance"></div>
+        <div class="mentor-info">
+          <h3>Jonas da Silva</h3>
+          <p class="m-cargo">Mentor de Negócios · Fundador da Hub Advance</p>
+          <p>Empreendedor que construiu negócios do zero em Lisboa e os transformou em sistemas que funcionam. Através da Hub Advance, mentora empreendedoras da beleza a organizar preços, vendas e gestão — para que o negócio dê lucro e não lhes roube a vida.</p>
+        </div>
+      </div>
+      <div class="mentor-linha invertida reveal">
+        <div class="mentor-foto"><img src="img/rafa.jpg" alt="Rafaela Mendonça, formadora e mentora da área das unhas" style="object-position:center top"></div>
+        <div class="mentor-info">
+          <h3>Rafaela Mendonça</h3>
+          <p class="m-cargo">Formadora · Mentora · Academy Rafa Mendonça</p>
+          <p>Formadora na área das unhas e empresária da beleza em Portugal. Na mentoria traz o lado de quem está todos os dias na cadeira e no atendimento: como valorizar o serviço, fidelizar clientes e levar a profissional ao próximo nível.</p>
+        </div>
+      </div>
+    </div>
+    <div class="mentor-frase reveal"><p>A Rafa ensina-a a fazer. O Jonas ensina-a a viver disso. Na mentoria em grupo, tem os dois ao seu lado — duas vezes por semana.</p></div>
+  </div>
+</section>
+
+<section class="oferta" id="entrar">
+  <div class="wrap">
+    <div class="eyebrow mono reveal" style="justify-content:center;display:flex">Oferta de aniversário</div>
+    <h2 class="reveal">Entre hoje por <span class="gold">31€ por mês</span></h2>
+    <p class="sub reveal">Mentoria em grupo · Online e ao vivo · 2 encontros por semana</p>
+    <p class="vagas-totais reveal">Preço especial válido só hoje, 30 de outubro, até às 23h59</p>
+    <div class="bilhete destaque plano reveal">
+      <div class="badge-topo">Comunidade Advance</div>
+      <div class="nome">Mentoria em Grupo</div>
+      <p class="desc">O método da mentoria individual, em grupo</p>
+      <div class="b-preco">31<small>€ / mês</small></div>
+      <div class="b-vagas"><b>Pagamento mensal</b></div>
+      <div class="contas">
+        <div><b>8</b><span>encontros por mês</span></div>
+        <div><b>&lt; 4€</b><span>por encontro</span></div>
+      </div>
+      <ul>
+        <li>2 encontros ao vivo por semana com o Jonas e a Rafa</li>
+        <li>As 5 engrenagens da Máquina de Vendas aplicadas ao seu negócio</li>
+        <li>Análise ao vivo de casos reais: preços, Instagram, mensagens</li>
+        <li>Comunidade de profissionais da beleza a crescer consigo</li>
+        <li class="extra">Preço de aniversário: 31€/mês</li>
+      </ul>
+      <a class="btn btn-ouro btn-comprar" data-plano="Oferta" href="https://wa.me/351964427068?text=Ol%C3%A1%20Jonas%21%20Parab%C3%A9ns%21%20%F0%9F%8E%89%20Quero%20entrar%20na%20Mentoria%20em%20Grupo%20%E2%80%94%20Comunidade%20Advance%20com%20o%20pre%C3%A7o%20de%20anivers%C3%A1rio%20de%2031%E2%82%AC/m%C3%AAs." target="_blank" rel="noopener">QUERO ENTRAR — 31€/MÊS →</a>
+    </div>
+    <div class="comparar">
+      <div class="c"><span class="mono">Mentoria individual</span><b>997€</b><p>Acompanhamento 1 a 1 durante 6 meses.</p></div>
+      <div class="c nos"><span class="mono">Mentoria em grupo</span><b>31€/mês</b><p>O mesmo método, 2 vezes por semana, em grupo.</p></div>
+    </div>
+    <p class="garantia">Clique no botão e fale connosco no WhatsApp: enviamos o link de pagamento e o acesso aos encontros. Respondemos no próprio dia.</p>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="eyebrow mono reveal">Dúvidas frequentes</div>
+    <h2 class="reveal">As perguntas que provavelmente<br>está a fazer agora</h2>
+    <div class="barra-ouro reveal"></div>
+    <details class="reveal"><summary>Como funcionam os encontros?</summary><p>São online e ao vivo, duas vezes por semana. Num encontro trabalhamos a estratégia da semana; no outro aplicamos ao vivo em casos reais do grupo e tiramos dúvidas.</p></details>
+    <details class="reveal"><summary>31€ por mês? Qual é a diferença para a mentoria individual?</summary><p>O método é o mesmo. Na mentoria individual o acompanhamento é só seu; na mentoria em grupo é partilhado, e por isso o preço é muito mais acessível. É a forma de ter acompanhamento todas as semanas sem um investimento grande.</p></details>
+    <details class="reveal"><summary>Estou a começar agora. Faz sentido para mim?</summary><p>Faz todo o sentido. Quem está a começar tem a vantagem de construir o negócio certo desde o primeiro dia, sem anos perdidos em tentativa e erro.</p></details>
+    <details class="reveal"><summary>E se eu não conseguir estar num encontro?</summary><p>Fale connosco no WhatsApp e indicamos-lhe como acompanhar o conteúdo desse encontro. O importante é aplicar a tarefa da semana.</p></details>
+    <details class="reveal"><summary>Como faço para entrar e pagar?</summary><p>Clique em "Quero entrar". Abre o WhatsApp com a mensagem já escrita; enviamos o link de pagamento e, assim que estiver confirmado, recebe o acesso aos encontros.</p></details>
+    <details class="reveal"><summary>O preço de 31€ é só hoje?</summary><p>Sim. É a oferta de aniversário do Jonas e vale para quem entrar hoje, 30 de outubro, até às 23h59.</p></details>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div class="divisor reveal"></div>
+    <div class="eyebrow mono reveal" style="justify-content:center;display:flex">A decisão é sua</div>
+    <h2 class="reveal">Daqui a 90 dias: a mesma agenda,<br>ou <span class="gold">um negócio com sistema.</span></h2>
+    <p class="reveal">Duas vezes por semana, ao seu lado. Por 31€ por mês, só hoje.</p>
+    <div class="recap reveal">
+      <div class="seg"><span class="lbl">Formato</span><span class="val">Online · ao vivo</span></div>
+      <div class="seg"><span class="lbl">Encontros</span><span class="val">2× por semana</span></div>
+      <div class="seg"><span class="lbl">Investimento</span><span class="val">31€ / mês</span></div>
+    </div>
+    <div class="cta-final reveal"><a class="btn btn-ouro btn-comprar" data-plano="Final" href="https://wa.me/351964427068?text=Ol%C3%A1%20Jonas%21%20Parab%C3%A9ns%21%20%F0%9F%8E%89%20Quero%20entrar%20na%20Mentoria%20em%20Grupo%20%E2%80%94%20Comunidade%20Advance%20com%20o%20pre%C3%A7o%20de%20anivers%C3%A1rio%20de%2031%E2%82%AC/m%C3%AAs." target="_blank" rel="noopener">QUERO ENTRAR HOJE →</a></div>
+    <div class="confianca reveal">
+      <span><b>—</b> Resposta no próprio dia pelo WhatsApp</span>
+      <span><b>—</b> Pagamento mensal</span>
+      <span><b>—</b> Encontros online, de onde estiver</span>
+    </div>
+    <div class="assinatura-bloco reveal">
+      <img class="simbolo-a" src="img/simbolo.png" alt="" aria-hidden="true">
+      <div class="assinatura">Uma mentoria <b>Hub Advance</b> · Lisboa</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-topo">
+      <div class="footer-grid">
+        <div class="col">
+          <img class="logo-footer" src="img/logo-hub.png" alt="Hub Advance" loading="lazy">
+          <p class="tagline">Consultoria e mentoria de negócios sediada em Lisboa. Ajudamos empreendedoras a construir sistemas de gestão e vendas previsíveis.</p>
+          <p class="local-linha">Lisboa · Portugal</p>
+        </div>
+        <div class="col">
+          <div class="f-lbl">Navegação</div>
+          <ul>
+            <li><a href="#maquina">O método</a></li>
+            <li><a href="#entrar">Entrar na mentoria</a></li>
+            <li><a href="/">Mentoria individual</a></li>
+            <li><a href="/privacidade/">Política de privacidade</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="f-lbl">Contacto</div>
+          <ul>
+            <li><a class="destaque-contacto" href="https://wa.me/351964427068?text=Ol%C3%A1%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20Mentoria%20em%20Grupo%20%E2%80%94%20Comunidade%20Advance." target="_blank" rel="noopener">+351 964 427 068</a></li>
+            <li>WhatsApp · resposta no próprio dia</li>
+            <li>Seg–Sáb · 9h às 19h</li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="f-lbl">A mentoria</div>
+          <ul>
+            <li>Comunidade Advance</li>
+            <li>Mentoria em grupo</li>
+            <li>2 encontros por semana</li>
+            <li>31€ / mês</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-base">
+      <span>© 2026 Hub Advance · Lisboa, Portugal · Todos os direitos reservados</span>
+      <span class="aviso">Desenvolvido por Hub Advance Solutions. Os resultados dependem da aplicação individual do método.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="cta-fixa"><a class="btn btn-ouro btn-comprar" data-plano="Fixa" href="https://wa.me/351964427068?text=Ol%C3%A1%20Jonas%21%20Parab%C3%A9ns%21%20%F0%9F%8E%89%20Quero%20entrar%20na%20Mentoria%20em%20Grupo%20%E2%80%94%20Comunidade%20Advance%20com%20o%20pre%C3%A7o%20de%20anivers%C3%A1rio%20de%2031%E2%82%AC/m%C3%AAs." target="_blank" rel="noopener">QUERO ENTRAR · 31€/MÊS</a></div>
+
+<a class="wa-float" href="https://wa.me/351964427068?text=Ol%C3%A1%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20Mentoria%20em%20Grupo%20%E2%80%94%20Comunidade%20Advance." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.3-2.2c1.9 1 4 1.6 6.2 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm6.6 17c-.3.8-1.6 1.5-2.2 1.6-.6.1-1.3.1-2.1-.1-.5-.2-1.1-.4-1.9-.7-3.4-1.5-5.6-4.9-5.8-5.1-.2-.2-1.4-1.8-1.4-3.5s.9-2.5 1.2-2.8c.3-.3.7-.4.9-.4h.7c.2 0 .5-.1.8.6.3.7 1 2.4 1.1 2.6.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.5-.6.7-.2.2-.4.4-.2.8s1 1.7 2.2 2.7c1.5 1.3 2.8 1.7 3.2 1.9.4.2.6.2.8-.1.2-.2 1-1.1 1.2-1.5.2-.4.5-.3.8-.2.3.1 2.1 1 2.4 1.2.4.2.6.3.7.4.1.3.1 1-.2 1.7z"/></svg>
+</a>
+
+<script>
+// Fim da oferta de aniversário: 30 out 2026, 23:59:59 (Lisboa)
+const alvo = new Date("2026-10-30T23:59:59+00:00").getTime();
+let timer;
+function tick(){
+  let diff = Math.max(0, alvo - Date.now());
+  const h = Math.floor(diff/36e5); diff -= h*36e5;
+  const m = Math.floor(diff/6e4);  diff -= m*6e4;
+  const s = Math.floor(diff/1e3);
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  if(alvo - Date.now() <= 0){
+    clearInterval(timer);
+    document.getElementById('cd-titulo').textContent = 'A oferta de aniversário terminou — fale connosco para saber as condições atuais';
+  }
+}
+tick(); timer = setInterval(tick, 1000);
+
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.dor-grid,.quem-grid').forEach(g=>{[...g.children].forEach((el,i)=>el.style.setProperty('--d',(i*0.09)+'s'));});
+
+const prog = document.getElementById('progresso');
+function onScroll(){
+  const total = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (total>0 ? (scrollY/total)*100 : 0) + '%';
+}
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+document.querySelectorAll('.btn-comprar').forEach(b=>{
+  b.addEventListener('click', ()=>{ if(typeof fbq==='function'){ fbq('track','Lead',{content_name:'Mentoria em Grupo 31 · '+b.dataset.plano, value:31, currency:'EUR'}); } });
+});
+</script>
+</body>
+</html>
