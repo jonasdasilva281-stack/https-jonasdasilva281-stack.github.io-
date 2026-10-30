@@ -562,6 +562,25 @@ html{scroll-behavior:auto}
 .rod-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px 28px;border-top:1px solid rgba(174,196,221,.1);font-family:'Inter',sans-serif;font-size:.8rem;color:#8397AF}
 @media(max-width:960px){.rod-grid{grid-template-columns:1fr 1fr;gap:36px}}
 @media(max-width:600px){.rod-grid{grid-template-columns:1fr;gap:32px;padding-block:48px 36px}.rod-base{flex-direction:column}}
+
+/* ---------- FILTRO DE ENTRADA (branco) ---------- */
+.quem .wrap>.eyebrow{background:#FFFFFF;color:#0A1E38;border-color:#FFFFFF;box-shadow:0 10px 30px rgba(3,14,30,.35)}
+.quem-col{position:relative;overflow:hidden;border-radius:22px;padding:40px 36px}
+.quem-col::before{content:"";position:absolute;left:0;right:0;top:0;height:5px}
+.quem-col.sim{background:#FFFFFF;border:1px solid #E3EAF3;box-shadow:0 14px 40px rgba(3,14,30,.4)}
+.quem-col.sim::before{background:#23A27F}
+.quem-col.nao{background:#F3F6FA;border:1px solid #E3EAF3;box-shadow:0 14px 40px rgba(3,14,30,.4)}
+.quem-col.nao::before{background:#E8615A}
+.quem-col h3{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.3rem;color:#0A1E38;letter-spacing:-.01em}
+.quem-col h3 .green{color:#23A27F}
+.quem-col li{color:#33445C;font-size:1rem;font-weight:500;line-height:1.5;align-items:flex-start}
+.quem-col li::before{width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;margin-top:1px}
+.quem-col.sim li::before{background:rgba(35,162,127,.14);color:#1C8A6B}
+.quem-col.nao li::before{background:rgba(232,97,90,.14);color:#C9463F}
+.quem-col .luz{display:none}
+.quem-col.tem-luz:hover{border-color:#E3EAF3;transform:translateY(-4px)}
+.quem-col{transition:transform .3s ease}
+@media(max-width:600px){.quem-col{padding:30px 22px}}
 </style>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -699,7 +718,7 @@ fbq('track','PageView');
         </ul>
       </div>
       <div class="quem-col nao reveal">
-        <h3>✕ Não é para si se…</h3>
+        <h3><span style="color:#E8615A">✕</span> Não é para si se…</h3>
         <ul>
           <li>Procura uma fórmula mágica para encher a agenda sem esforço</li>
           <li>Quer apenas assistir e não aplicar nada no seu negócio</li>
