@@ -1,0 +1,6 @@
+Coloque aqui capturas reais das páginas (opcional), com estes nomes:
+  debora.jpg   - landing page da Débora
+  atelier.jpg  - atelierdeunhas.com
+  academy.jpg  - academyrafamendonca.com
+Tamanho ideal: 1440 x 936 px (computador), parte de cima da página.
+Se existirem, substituem automaticamente as pré-visualizações no topo do site.
