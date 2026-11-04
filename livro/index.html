@@ -37,7 +37,8 @@ p{margin:0}
 .eyebrow{font-family:var(--ui);font-size:.74rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--sun)}
 
 /* Abertura */
-.hero{background:linear-gradient(180deg,var(--night) 0%,var(--night-2) 100%)}
+.hero{min-height:calc(100vh - 70px);min-height:calc(100svh - 70px);display:flex;align-items:center;background:radial-gradient(circle at 75% 110%,rgba(255,170,60,.22),transparent 50%),linear-gradient(180deg,var(--night) 0%,var(--night-2) 100%)}
+.hero .wrap{width:100%}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,56px);align-items:center;padding-block:clamp(36px,6vw,72px)}
 .copy{display:flex;flex-direction:column;gap:16px;min-width:0}
 .copy h1{font-size:clamp(2rem,4.4vw,3.2rem);font-weight:900;text-transform:uppercase;letter-spacing:-.015em;line-height:1}
@@ -54,72 +55,47 @@ p{margin:0}
 .btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(245,194,20,.85)}
 .btn:focus-visible{outline:3px solid var(--cream);outline-offset:3px}
 
-/* Livro 3D */
-.stage{display:flex;flex-direction:column;align-items:center;gap:18px;min-width:0;user-select:none;-webkit-user-select:none}
-.scene{--w:min(300px,64vw);--d:38px;position:relative;width:var(--w);height:var(--w);perspective:1500px;cursor:grab;touch-action:pan-y;transition:transform 1s cubic-bezier(.6,0,.2,1)}
+/* Leitor digital 3D */
+.stage{display:flex;flex-direction:column;align-items:center;gap:22px;min-width:0;user-select:none;-webkit-user-select:none}
+.scene{--w:min(270px,60vw);--h:calc(var(--w)*1.42);--d:12px;position:relative;width:var(--w);height:var(--h);perspective:1500px;cursor:grab;touch-action:pan-y}
 .scene.drag{cursor:grabbing}
-.scene.open{transform:translateX(24%) scale(.78)}
-.scene:focus-visible{outline:2px dashed var(--sun);outline-offset:14px}
+.scene:focus-visible{outline:2px dashed var(--sun);outline-offset:16px}
 .bk{position:absolute;inset:0;transform-style:preserve-3d;will-change:transform}
 .f{position:absolute;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.f.front{inset:0;transform-style:preserve-3d;transform-origin:left center;transform:translateZ(calc(var(--d)/2));transition:transform 1s cubic-bezier(.6,0,.2,1)}
-.open .f.front{transform:translateZ(calc(var(--d)/2)) rotateY(-155deg)}
-.f.front img{position:absolute;inset:0;width:100%;height:100%;display:block;border-radius:2px 5px 5px 2px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.f.front .gloss{position:absolute;inset:0;border-radius:2px 5px 5px 2px;background:linear-gradient(105deg,rgba(255,255,255,.28) 0%,rgba(255,255,255,0) 28%,rgba(255,255,255,0) 72%,rgba(0,0,0,.18) 100%),linear-gradient(90deg,rgba(0,0,0,.35) 0,rgba(0,0,0,0) 4%);backface-visibility:hidden;-webkit-backface-visibility:hidden;pointer-events:none}
-.f.front .inner{position:absolute;inset:0;background:#f3eee2;transform:rotateY(180deg);backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:5px 2px 2px 5px;display:flex;align-items:center;justify-content:center;font-family:var(--display);color:#0f1b33;font-weight:900;font-size:.9rem;letter-spacing:.2em;text-transform:uppercase}
-.f.page{inset:3px 4px 3px 0;transform:translateZ(calc(var(--d)/2 - 2px));background:#fbf8f1;border-radius:0 4px 4px 0;box-shadow:inset 18px 0 24px -16px rgba(0,0,0,.35);display:flex;flex-direction:column;justify-content:center;gap:14px;padding:12%;color:#0f1b33}
-.f.page q{font-family:var(--body);font-style:italic;font-size:1.2rem;line-height:1.4;quotes:"«" "»"}
-.f.page span{font-family:var(--ui);font-size:.72rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#8a6a00}
-.f.back{inset:0;background:linear-gradient(135deg,#13224a,#0a1328);transform:rotateY(180deg) translateZ(calc(var(--d)/2));border-radius:5px 2px 2px 5px;display:flex;align-items:flex-end;padding:10%;color:var(--sun);font-family:var(--ui);font-weight:800;font-size:.75rem;letter-spacing:.2em}
-.f.spine{top:0;bottom:0;width:var(--d);left:calc(50% - var(--d)/2);transform:rotateY(-90deg) translateZ(calc(var(--w)/2));background:linear-gradient(90deg,#070e1f,#1a2c58 45%,#0d1830);display:flex;align-items:center;justify-content:center}
-.f.spine b{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--display);font-weight:900;font-size:.6rem;letter-spacing:.12em;color:#fff;white-space:nowrap}
-.f.spine b i{font-style:normal;color:var(--sun)}
-.f.edge{top:3px;bottom:3px;width:calc(var(--d) - 4px);left:calc(50% - var(--d)/2 + 2px);transform:rotateY(90deg) translateZ(calc(var(--w)/2 - 4px));background:repeating-linear-gradient(90deg,#f6f1e5 0 2px,#d9d0bd 2px 3px)}
-.f.top,.f.bottom{left:0;right:4px;height:calc(var(--d) - 4px);top:calc(50% - var(--d)/2 + 2px);background:repeating-linear-gradient(0deg,#f6f1e5 0 2px,#d9d0bd 2px 3px)}
-.f.top{transform:rotateX(90deg) translateZ(calc(var(--w)/2 - 3px))}
-.f.bottom{transform:rotateX(-90deg) translateZ(calc(var(--w)/2 - 3px))}
-.floor{position:absolute;left:10%;right:10%;bottom:-12%;height:15%;background:radial-gradient(ellipse at center,rgba(0,0,0,.6),transparent 70%);filter:blur(8px);pointer-events:none}
+.f.front{inset:0;border-radius:18px;transform:translateZ(calc(var(--d)/2));background:linear-gradient(160deg,#2b2f36,#16191e 70%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),inset 0 1px 0 rgba(255,255,255,.12);padding:7% 6.5% 15%}
+.f.front::after{content:"";position:absolute;inset:0;border-radius:18px;background:linear-gradient(115deg,rgba(255,255,255,.14) 0%,rgba(255,255,255,0) 35%);pointer-events:none}
+.screen{position:relative;width:100%;height:100%;border-radius:3px;background:#eeece6;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),inset 0 2px 6px rgba(0,0,0,.25)}
+.screen .s{position:absolute;inset:0;display:flex;flex-direction:column;transition:opacity .25s ease}
+.screen .s1{justify-content:center;gap:8%;padding:8% 7%}
+.screen .s1 img{width:100%;aspect-ratio:1/1;display:block;filter:saturate(.95) contrast(1.02)}
+.screen .s1 small,.screen .s2 small{font-family:var(--ui);font-size:calc(var(--w)*.034);color:#555;letter-spacing:.06em;text-align:center}
+.screen .s2{opacity:0;justify-content:center;gap:10%;padding:12% 11%;color:#1b1b1b}
+.screen .s2 .t{font-family:var(--ui);font-size:calc(var(--w)*.032);font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#666}
+.screen .s2 q{font-family:var(--body);font-size:calc(var(--w)*.068);line-height:1.45;quotes:"«" "»"}
+.screen .s2 p{font-family:var(--body);font-size:calc(var(--w)*.05);line-height:1.55;color:#333}
+.reading .screen .s1{opacity:0}.reading .screen .s2{opacity:1}
+.screen .ink{position:absolute;inset:0;background:#111;opacity:0;pointer-events:none}
+.screen .ink.go{animation:ink .32s steps(2,end)}
+@keyframes ink{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+.f.back{inset:0;border-radius:18px;background:linear-gradient(160deg,#25282e,#121418);transform:rotateY(180deg) translateZ(calc(var(--d)/2));box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.f.side{top:18px;bottom:18px;width:var(--d);left:calc(50% - var(--d)/2);background:linear-gradient(90deg,#0e1013,#2a2e35,#0e1013)}
+.f.side.r{transform:rotateY(90deg) translateZ(calc(var(--w)/2 - 1px))}
+.f.side.l{transform:rotateY(-90deg) translateZ(calc(var(--w)/2 - 1px))}
+.f.cap{left:18px;right:18px;height:var(--d);top:calc(50% - var(--d)/2);background:linear-gradient(0deg,#0e1013,#2a2e35,#0e1013)}
+.f.cap.t{transform:rotateX(90deg) translateZ(calc(var(--h)/2 - 1px))}
+.f.cap.b{transform:rotateX(-90deg) translateZ(calc(var(--h)/2 - 1px))}
+.floor{position:absolute;left:10%;right:10%;bottom:-9%;height:10%;background:radial-gradient(ellipse at center,rgba(0,0,0,.6),transparent 70%);filter:blur(8px);pointer-events:none}
 .hint{font-family:var(--ui);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,247,230,.5)}
-
-/* Folhear com o scroll */
-.flip{position:relative;height:320vh;background:var(--night-2)}
-.flip .pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(16px,3vh,28px);overflow:hidden;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
-.flip h2{text-align:center;font-size:clamp(1.4rem,3.4vw,2.1rem);font-weight:900}
-.spread{--W:min(300px,44vw,46vh);position:relative;width:calc(var(--W)*2);height:var(--W);perspective:2200px}
-.leaf{position:absolute;left:50%;top:0;width:50%;height:100%;transform-style:preserve-3d;transform-origin:left center;will-change:transform}
-.side{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
-.side.b{transform:rotateY(180deg)}
-.pg{background:#fbf8f1;color:#0f1b33;display:flex;flex-direction:column;justify-content:center;gap:calc(var(--W)*.04);padding:calc(var(--W)*.11) calc(var(--W)*.1)}
-.side.a.pg,.base .pg{border-radius:0 4px 4px 0;box-shadow:inset 14px 0 22px -14px rgba(0,0,0,.35)}
-.side.b.pg{border-radius:4px 0 0 4px;box-shadow:inset -14px 0 22px -14px rgba(0,0,0,.35)}
-.pg .k{font-family:var(--ui);font-size:calc(var(--W)*.04);font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#8a6a00}
-.pg h4{font-weight:900;font-size:calc(var(--W)*.088)}
-.pg p{font-family:var(--body);font-size:calc(var(--W)*.052);line-height:1.45;color:#3c4766}
-.pg q{font-family:var(--body);font-style:italic;font-size:calc(var(--W)*.074);line-height:1.35;quotes:"«" "»"}
-.pg .big{font-family:var(--display);font-weight:900;font-size:calc(var(--W)*.26);line-height:.9}
-.pg .num{position:absolute;bottom:calc(var(--W)*.05);font-family:var(--ui);font-size:calc(var(--W)*.036);color:#9aa3b8}
-.side.a .num{right:calc(var(--W)*.07)}.side.b .num{left:calc(var(--W)*.07)}
-.cov img{width:100%;height:100%;display:block;border-radius:2px 5px 5px 2px}
-.cov::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.35),transparent 5%),linear-gradient(105deg,rgba(255,255,255,.25),transparent 30%)}
-.base{position:absolute;left:50%;top:0;width:50%;height:100%}
-.base .pg{height:100%}
-.base .btn{font-size:calc(var(--W)*.048);padding:calc(var(--W)*.045) calc(var(--W)*.06);align-self:flex-start;border-radius:calc(var(--W)*.02)}
-.shadow2{position:absolute;left:8%;right:8%;bottom:-10%;height:12%;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),transparent 70%);filter:blur(8px)}
-.bar{width:min(280px,64vw);height:3px;background:rgba(255,247,230,.15);border-radius:3px;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--sun);transform-origin:left;transform:scaleX(0)}
 
 footer .wrap{padding-block:24px;font-family:var(--ui);font-size:.8rem;color:rgba(255,247,230,.5);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;border-top:1px solid rgba(255,255,255,.08)}
 
 @media (max-width:760px){
   .hero .wrap{grid-template-columns:minmax(0,1fr);text-align:left}
   .stage{order:-1}
-  .scene{--w:min(220px,58vw);--d:28px}
-  .scene.open{transform:translateX(26%) scale(.66)}
-  .spread{--W:min(46vw,40vh)}
+  .scene{--w:min(200px,52vw);--d:10px}
 }
 @media (prefers-reduced-motion:reduce){
-  .scene,.f.front,.btn{transition:none}
-  .flip{height:auto}.flip .pin{position:relative;height:auto;padding-block:56px}
+  .screen .s,.btn{transition:none}
 }
 </style>
 
@@ -138,59 +114,25 @@ footer .wrap{padding-block:24px;font-family:var(--ui);font-size:.8rem;color:rgba
       <p class="safe">Pagamento seguro pela Hotmart · 7 dias de garantia</p>
     </div>
     <div class="stage">
-      <div class="scene" id="scene" role="button" tabindex="0" aria-label="Livro em 3D. Arraste para rodar, toque para abrir a capa.">
+      <div class="scene" id="scene" role="button" tabindex="0" aria-label="Leitor digital com o livro. Arraste para rodar, toque para virar a página.">
         <div class="bk" id="bk">
-          <div class="f page"><q>Trabalhar mais não é o caminho. Trabalhar com inteligência é.</q><span>Jonas Silva</span></div>
-          <div class="f front">
-            <img src="capa.jpg" width="900" height="900" alt="Capa do livro Como Empreender Sem Morrer no Processo, de Jonas Silva" draggable="false">
-            <div class="gloss"></div>
-            <div class="inner">Jonas Silva</div>
-          </div>
-          <div class="f back">HUB ADVANCE</div>
-          <div class="f spine"><b>COMO EMPREENDER <i>SEM MORRER</i> NO PROCESSO · JONAS SILVA</b></div>
-          <div class="f edge"></div>
-          <div class="f top"></div>
-          <div class="f bottom"></div>
+          <div class="f front"><div class="screen">
+            <div class="s s1"><img src="capa.jpg" width="900" height="900" alt="Capa do livro Como Empreender Sem Morrer no Processo, de Jonas Silva" draggable="false"><small>Jonas Silva · 106 páginas</small></div>
+            <div class="s s2"><span class="t">Capítulo 1</span><q>Trabalhar mais não é o caminho. Trabalhar com inteligência é.</q><p>Esta é a história real do que me levou ao limite como empresário e do que mudei para continuar.</p><small>1 de 106</small></div>
+            <div class="ink" id="ink"></div>
+          </div></div>
+          <div class="f back"></div>
+          <div class="f side r"></div><div class="f side l"></div>
+          <div class="f cap t"></div><div class="f cap b"></div>
         </div>
         <div class="floor"></div>
       </div>
-      <span class="hint">Arraste para rodar · toque para abrir</span>
+      <span class="hint">Arraste para rodar · toque para ler</span>
     </div>
   </div>
 </header>
 
-<section class="flip" id="flip" aria-label="Folheie o livro">
-  <div class="pin">
-    <span class="eyebrow">Folheie o livro</span>
-    <h2>Desça a página e veja o que tem lá dentro</h2>
-    <div class="spread" id="spread">
-      <div class="shadow2"></div>
-      <div class="base"><div class="side pg">
-        <span class="k">Lançamento</span>
-        <h4>Leve o livro por <span data-now>5,99 €</span></h4>
-        <p data-until>Até domingo, 15 de novembro. Depois, 9,99 €.</p>
-        <a class="btn buy" href="https://pay.hotmart.com/J108325113F">Quero o meu livro →</a>
-      </div></div>
-      <div class="leaf">
-        <div class="side a cov"><img src="capa.jpg" alt="" width="900" height="900" draggable="false"></div>
-        <div class="side b pg"><span class="k">Jonas Silva</span><h4>Como empreender sem morrer no processo</h4><p>Uma história real sobre desafios, aprendizados e a importância de trabalhar com inteligência.</p></div>
-      </div>
-      <div class="leaf">
-        <div class="side a pg"><q>Trabalhar mais não é o caminho. Trabalhar com inteligência é.</q><span class="k">Jonas Silva</span><span class="num">1</span></div>
-        <div class="side b pg"><span class="k">Para quem é</span><h4>Para quem tem um negócio e sente que o negócio o tem a si.</h4><span class="num">2</span></div>
-      </div>
-      <div class="leaf">
-        <div class="side a pg"><span class="big">10</span><h4>capítulos com método</h4><p>Cada um termina com uma ferramenta pronta a usar no dia seguinte.</p><span class="num">3</span></div>
-        <div class="side b pg"><span class="big">6</span><h4>As Seis Mudanças</h4><p>As mudanças que separam quem cresce de quem se esgota.</p><span class="num">4</span></div>
-      </div>
-      <div class="leaf">
-        <div class="side a pg"><span class="big">106</span><h4>páginas diretas</h4><p>Lê-se num fim de semana e consulta-se durante anos.</p><span class="num">5</span></div>
-        <div class="side b pg"><span class="k">Garantia</span><h4>7 dias para ler sem risco</h4><p>Se não for para si, devolvemos o valor total pela Hotmart.</p><span class="num">6</span></div>
-      </div>
-    </div>
-    <div class="bar"><i id="flipbar"></i></div>
-  </div>
-</section>
+
 
 <footer>
   <div class="wrap">
@@ -222,7 +164,7 @@ var FIM_LANCAMENTO = "2026-11-15T23:59:59Z";               // fim do preço de 5
       ry+=vy;rx+=vx;vy*=.94;vx*=.9;
       if(Math.abs(vy)<.05&&Math.abs(vx)<.05){
         var target=-28+Math.sin((ts-t0)/1600)*10,tx=8+Math.sin((ts-t0)/2300)*3;
-        if(!scene.classList.contains("open")){ry+=(target-((ry%360+540)%360-180))*.02;}
+        ry+=(target-((ry%360+540)%360-180))*.02;
         rx+=(tx-rx)*.04;
       }
     }
@@ -234,25 +176,9 @@ var FIM_LANCAMENTO = "2026-11-15T23:59:59Z";               // fim do preço de 5
   scene.addEventListener("pointermove",function(e){if(!dragging)return;var dx=e.clientX-lx,dy=e.clientY-ly;lx=e.clientX;ly=e.clientY;moved+=Math.abs(dx)+Math.abs(dy);vy=dx*.45;vx=-dy*.25;ry+=vy;rx+=vx;render();});
   scene.addEventListener("pointerup",function(){if(!dragging)return;dragging=false;scene.classList.remove("drag");if(moved<6)toggle();});
   scene.addEventListener("pointercancel",function(){dragging=false;scene.classList.remove("drag");});
-  function toggle(){if(scene.classList.toggle("open")){ry=-18;vy=0;}render();}
+  var ink=document.getElementById("ink");function toggle(){if(!reduce){ink.classList.remove("go");void ink.offsetWidth;ink.classList.add("go");}setTimeout(function(){scene.classList.toggle("reading");},reduce?0:110);}
   scene.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle();}});
 
-  /* Folhear o livro com o scroll */
-  var flip=document.getElementById("flip"),spread=document.getElementById("spread"),leaves=$$(".flip .leaf"),fbar=document.getElementById("flipbar"),N=leaves.length;
-  function onFlip(){
-    var r=flip.getBoundingClientRect(),span=r.height-innerHeight;
-    var p=reduce?1:(span>0?Math.min(Math.max(-r.top/span,0),1):1);
-    var q=Math.min(p*1.12,1)*N;
-    leaves.forEach(function(l,i){
-      var t=Math.min(Math.max(q-i,0),1);t=t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
-      l.style.transform="rotateY("+(-180*t)+"deg)";
-      l.style.zIndex=t>.5?(10+i):(10+N-i);
-    });
-    var o=Math.min(Math.max(q,0),1);
-    spread.style.transform="translateX("+(-25*(1-o))+"%) rotateX("+(10*(1-p))+"deg)";
-    fbar.style.transform="scaleX("+p+")";
-  }
-  addEventListener("scroll",onFlip,{passive:true});addEventListener("resize",onFlip);onFlip();
 })();
 </script>
 
