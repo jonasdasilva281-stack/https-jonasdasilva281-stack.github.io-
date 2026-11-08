@@ -462,6 +462,111 @@ footer.foot .foot-bottom{display:flex;justify-content:space-between;align-items:
 @property --ty{syntax:'<length>';inherits:false;initial-value:0px}
 .sc[data-pos="0"]:hover .live iframe{animation-play-state:paused}
 </style>
+<style id="skin-tech">
+/* ===== Visual tecnológico: escuro, luzes, vidro, gradientes ===== */
+:root{
+  --navy:#FFFFFF; --navy-2:#C9D6EA; --ink:#E8EEF8; --slate:#9FB0C8; --mute:#7385A0;
+  --line:rgba(148,178,230,.14); --soft:#0A1122; --white:#060A14; --accent:#5B9BFF; --accent-2:#3B82F6;
+  --cy:#22D3EE; --vi:#8B5CF6; --grad:linear-gradient(100deg,#5B9BFF 0%,#22D3EE 55%,#A78BFA 100%);
+}
+html{background:#060A14}
+body{background:#060A14;color:var(--ink)}
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(40% 35% at 12% 8%,rgba(59,130,246,.22),transparent 70%),
+             radial-gradient(35% 30% at 92% 22%,rgba(139,92,246,.18),transparent 70%),
+             radial-gradient(45% 35% at 50% 100%,rgba(34,211,238,.10),transparent 70%),#060A14}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(148,178,230,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(148,178,230,.05) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(80% 70% at 50% 30%,#000,transparent);-webkit-mask-image:radial-gradient(80% 70% at 50% 30%,#000,transparent)}
+.spot{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:-1;left:0;top:0;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(91,155,255,.13),transparent 60%);transition:opacity .3s}
+section,.bg-soft,.bg-navy{background:transparent!important}
+.bg-soft{background:linear-gradient(180deg,rgba(255,255,255,.015),rgba(255,255,255,.035))!important}
+h1,h2,h3,h4,.brand b{color:#fff}
+.top{background:rgba(6,10,20,.72)!important;border-bottom:1px solid var(--line)}
+.top.scrolled{box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
+.nav a{color:var(--slate)} .nav a:hover,.nav a.on{color:#fff}
+.progress{background:var(--grad)!important}
+.eyebrow{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.lead{color:var(--slate)!important}
+.hero h1,.h2{letter-spacing:-.035em}
+.hero h1{font-size:clamp(40px,5.6vw,72px)!important;line-height:1.02}
+.hero h1 .w:nth-last-child(-n+3){background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* botões */
+.btn{position:relative;overflow:hidden;border-radius:12px;transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s,border-color .25s}
+.btn-p{background:linear-gradient(100deg,#3B82F6,#22D3EE)!important;color:#04101F!important;font-weight:700;box-shadow:0 10px 30px -10px rgba(34,211,238,.6),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-p::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .6s}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 18px 44px -12px rgba(34,211,238,.75),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-p:hover::after{left:130%}
+.btn-g,.btn-o{background:rgba(255,255,255,.04)!important;border:1px solid rgba(148,178,230,.28)!important;color:#fff!important;backdrop-filter:blur(8px)}
+.btn-g:hover,.btn-o:hover{border-color:#5B9BFF!important;background:rgba(91,155,255,.12)!important;transform:translateY(-3px);box-shadow:0 12px 30px -14px rgba(91,155,255,.7)}
+.btn .arr{display:inline-block;transition:transform .25s}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* cartões de vidro com borda em gradiente e luz que segue o rato */
+.pair,.svc article,.case,.price-card,.faq details,.tst-card,.cta-band .box{
+  position:relative;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02))!important;
+  border:1px solid var(--line)!important;border-radius:18px!important;backdrop-filter:blur(10px);
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s;overflow:hidden}
+.pair::before,.svc article::before,.case::before,.price-card::before,.tst-card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:radial-gradient(420px circle at var(--x,50%) var(--y,0%),rgba(91,155,255,.18),transparent 45%)}
+.pair:hover,.svc article:hover,.case:hover,.tst-card:hover{transform:translateY(-6px);border-color:rgba(91,155,255,.45)!important;box-shadow:0 30px 60px -30px rgba(34,211,238,.45)}
+.pair:hover::before,.svc article:hover::before,.case:hover::before,.price-card:hover::before,.tst-card:hover::before{opacity:1}
+.pair .q{color:#7FA9DA!important}
+.svc .for{color:#22D3EE!important}
+.svc article li,.offer li{color:var(--slate)!important}
+.svc article:nth-child(2){border-color:rgba(91,155,255,.5)!important;box-shadow:0 0 0 1px rgba(91,155,255,.25),0 30px 70px -30px rgba(91,155,255,.55)}
+.svc article:nth-child(2)::after{content:"Mais pedido";position:absolute;top:16px;right:16px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#04101F;background:var(--grad);padding:5px 10px;border-radius:999px}
+.price-card{box-shadow:0 0 0 1px rgba(34,211,238,.25),0 40px 90px -40px rgba(34,211,238,.5)!important}
+.price-card .val{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.case .cv,.case [class*="shot"],.case .bar{background:#0B1326!important}
+.faq details{padding:20px 24px!important}
+.faq summary{color:#fff}
+.proc{border-top-color:var(--line)!important}
+.proc div{position:relative}
+.proc b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.stats b{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent!important}
+.stats{border-top-color:var(--line)!important}
+.final{position:relative}
+.final .row{padding:48px;border-radius:24px;border:1px solid rgba(91,155,255,.35);background:radial-gradient(60% 120% at 100% 0%,rgba(34,211,238,.18),transparent 60%),radial-gradient(60% 120% at 0% 100%,rgba(139,92,246,.2),transparent 60%),rgba(255,255,255,.03)}
+footer,.foot{background:#04070F!important;border-top:1px solid var(--line)!important}
+.pill{background:rgba(255,255,255,.04)!important;border-color:var(--line)!important;color:var(--slate)!important}
+.pill:hover{color:#fff!important;border-color:#5B9BFF!important}
+.mcta{background:rgba(6,10,20,.88)!important;border-top:1px solid var(--line)!important;backdrop-filter:blur(12px)}
+
+/* entradas mais suaves (complementa as que já existem) */
+.rv{transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s!important;filter:blur(6px)}
+.rv.in{filter:none}
+
+/* novas secções: faixa de CTA e testemunhos */
+.cta-band{padding:24px 0 96px}
+.cta-band .box{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:32px 36px}
+.cta-band h3{font-size:clamp(22px,2.6vw,30px)}
+.cta-band p{color:var(--slate);margin-top:6px}
+.tst{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tst-card{padding:28px;display:flex;flex-direction:column;gap:14px}
+.tst-card .stars{color:#FBBF24;letter-spacing:2px}
+.tst-card blockquote{color:var(--ink);font-size:16px;line-height:1.6}
+.tst-card .res{align-self:flex-start;font-size:12px;font-weight:700;color:#04101F;background:var(--grad);border-radius:999px;padding:5px 12px}
+.tst-card .who{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.tst-card .av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:700;color:#04101F;background:var(--grad);overflow:hidden;flex:none}
+.tst-card .av img{width:100%;height:100%;object-fit:cover}
+.tst-card .who small{display:block;color:var(--mute);font-size:13px}
+@media(max-width:860px){.tst{grid-template-columns:1fr}.final .row{padding:28px}}
+@media(prefers-reduced-motion:reduce){.rv{filter:none!important}.btn-p::after{display:none}}
+/* correções do tema escuro */
+.mark .m-box{fill:#2563EB}
+.brand:hover .mark .m-box{fill:#22D3EE}
+.intro{background:#060A14!important}
+.shot .ph{background:#0B1326!important}
+.filters button{background:rgba(255,255,255,.04);color:var(--slate);border-color:var(--line)}
+.filters button.on{background:var(--grad)!important;border-color:transparent!important;color:#04101F!important}
+.svc .from b{color:#fff}
+h1,h2,h3,h4,.faq summary,.svc .from b,.price-card .val,.pill,.brand b{font-family:'Inter Tight','Inter',system-ui,sans-serif}
+</style>
+
 </head>
 <body id="topo">
 <div class="intro" id="intro" aria-hidden="true"><div class="intro-in"><svg class="mark big" viewBox="0 0 36 36" aria-hidden="true"><rect class="m-box" x="1" y="1" width="34" height="34" rx="9"/><path class="m-a" d="M10.5 26.5 L18 9.5 L25.5 26.5"/><path class="m-bar" d="M13.6 20 H22.4"/></svg><div class="intro-word"><b>Hub Advance</b><span>Solutions</span></div></div></div>
@@ -629,6 +734,12 @@ footer.foot .foot-bottom{display:flex;justify-content:space-between;align-items:
     </div>
   </div>
 </section>
+<section class="cta-band">
+  <div class="wrap"><div class="box">
+    <div><h3>Não sabe qual escolher? <span class="grad">Nós ajudamos.</span></h3><p>Diagnóstico gratuito: percebemos onde está a perder clientes e dizemos o que faz sentido para si.</p></div>
+    <a class="btn btn-p" data-wa="Olá! Não sei qual serviço escolher. Quero o diagnóstico gratuito." data-int="Diagnóstico gratuito" href="#">Quero o diagnóstico grátis <span class="arr">→</span></a>
+  </div></div>
+</section>
 
 <section class="bg-soft">
   <div class="wrap">
@@ -640,6 +751,13 @@ footer.foot .foot-bottom{display:flex;justify-content:space-between;align-items:
       <a class="btn btn-o" href="portfolio/">Ver portefólio completo</a>
     </div>
     <div class="cases" id="featured"></div>
+  </div>
+</section>
+
+<section id="testemunhos" hidden>
+  <div class="wrap">
+    <div class="head"><p class="eyebrow">Prova social</p><h2 class="h2">O que dizem os nossos <span class="grad">clientes</span></h2></div>
+    <div class="tst" data-tst></div>
   </div>
 </section>
 
@@ -1102,6 +1220,34 @@ document.querySelectorAll('.foot .brand[href="#topo"]').forEach(function(b){ b.a
     var io = new IntersectionObserver(function(e){ if (e[0].isIntersecting) { load(); io.disconnect(); } });
     io.observe(document.getElementById('show'));
   } else load();
+})();
+</script>
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  /* luz que segue o rato no fundo e dentro dos cartões */
+  if (fine && !reduce) {
+    var spot = document.createElement('div'); spot.className = 'spot'; document.body.appendChild(spot);
+    window.addEventListener('pointermove', function(e){ spot.style.left = e.clientX + 'px'; spot.style.top = e.clientY + 'px'; }, {passive:true});
+    document.addEventListener('pointermove', function(e){
+      var c = e.target.closest && e.target.closest('.pair,.svc article,.case,.price-card,.tst-card'); if (!c) return;
+      var r = c.getBoundingClientRect(); c.style.setProperty('--x', (e.clientX - r.left) + 'px'); c.style.setProperty('--y', (e.clientY - r.top) + 'px');
+    }, {passive:true});
+  }
+  /* Testemunhos reais: preencher com depoimentos autorizados. A secção só aparece com pelo menos 1. */
+  var TESTEMUNHOS = [
+    // { nome: "Nome", negocio: "Negócio · Cidade", texto: "O que disse, nas palavras do cliente.", resultado: "Resultado em poucas palavras", foto: "" },
+  ];
+  if (TESTEMUNHOS.length) {
+    var esc = function(t){ return String(t||'').replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
+    document.querySelector('[data-tst]').innerHTML = TESTEMUNHOS.map(function(t){
+      return '<figure class="tst-card" style="margin:0"><span class="stars" aria-label="5 estrelas">★★★★★</span><blockquote>“' + esc(t.texto) + '”</blockquote>' +
+        (t.resultado ? '<span class="res">' + esc(t.resultado) + '</span>' : '') +
+        '<figcaption class="who"><span class="av">' + (t.foto ? '<img src="' + esc(t.foto) + '" alt="">' : esc((t.nome||'?').charAt(0))) + '</span><span><b>' + esc(t.nome) + '</b><small>' + esc(t.negocio) + '</small></span></figcaption></figure>';
+    }).join('');
+    document.getElementById('testemunhos').hidden = false;
+  }
 })();
 </script>
 </body>
