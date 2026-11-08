@@ -443,6 +443,21 @@ body{background:#0B0909}
 .duo.photo figcaption{position:absolute;left:16px;right:16px;bottom:14px;z-index:1;text-align:left}
 .duo.photo figcaption b{font-size:clamp(1rem,2.4vw,1.25rem);letter-spacing:-.02em;color:#fff;display:block;line-height:1.2}
 .duo.photo figcaption span{margin-top:2px;font-size:clamp(.75rem,1.6vw,.85rem);color:#F3D9A4}
+
+.gline{display:flex;align-items:center;justify-content:center;gap:8px;margin:10px 0 0;font-size:.88rem;color:#F3D9A4;text-align:left}
+.gline svg{width:18px;height:18px;flex:none;fill:none;stroke:#D5A54A;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.guar-sec{padding-top:0}
+.guar{display:grid;grid-template-columns:220px 1fr;gap:clamp(24px,4vw,48px);align-items:center;padding:clamp(28px,4vw,48px);border-radius:28px;border-color:rgba(213,165,74,.5)!important;
+  background:radial-gradient(60% 120% at 0% 50%,rgba(213,165,74,.16),transparent 60%),linear-gradient(180deg,#1E181A,#151112)!important}
+.guar .seal{width:100%;max-width:220px;filter:drop-shadow(0 24px 50px rgba(213,165,74,.35))}
+.guar .seal svg{width:100%;height:auto;display:block}
+.guar .seal .ring{transform-origin:100px 100px;animation:sealspin 40s linear infinite}
+@keyframes sealspin{to{transform:rotate(360deg)}}
+.guar h2{font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.12;letter-spacing:-.03em;margin:8px 0 14px;text-wrap:balance}
+.guar p{color:var(--soft)}
+.guar .gsig{margin-top:14px;color:var(--soft)}
+.guar .gsig b{color:var(--ink)}
+@media (max-width:760px){.guar{grid-template-columns:1fr;text-align:center}.guar .seal{max-width:170px;margin:0 auto}}
 </style>
 </head>
 <body>
@@ -513,6 +528,7 @@ body{background:#0B0909}
           <div class="price"><span class="now" data-price>17€</span><s data-old>27€</s><span class="tag" data-tag>Lançamento</span></div>
           <a class="btn" data-cta href="#preco">Quero o meu lugar <span class="arr">→</span></a>
           <p class="count" data-count>&nbsp;</p>
+          <p class="gline"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Garantia de 7 dias: sai com os preços calculados ou devolvemos o dinheiro.</p>
         </div>
       </div>
     </div>
@@ -705,8 +721,32 @@ body{background:#0B0909}
         <div class="buy">
           <div class="price"><span class="now" data-price>17€</span><s data-old>27€</s><span class="tag" data-tag>Lançamento</span></div>
           <a class="btn" data-cta href="#preco">Garantir o meu lugar <span class="arr">→</span></a>
-          <div class="secure"><span>Pagamento seguro Stripe</span><span>Acesso imediato ao grupo</span><span>Gravação incluída</span></div>
+          <div class="secure"><span>Garantia de 7 dias</span><span>Pagamento seguro Stripe</span><span>Acesso imediato ao grupo</span><span>Gravação incluída</span></div>
           <div class="clockbox"><p class="t" data-clock-title>O preço sobe para 27€ em</p><div class="clock" data-clock><div><b>0</b><span>dias</span></div><div><b>00</b><span>horas</span></div><div><b>00</b><span>min</span></div><div><b>00</b><span>seg</span></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="guar-sec">
+    <div class="wrap">
+      <div class="guar glass rv">
+        <div class="seal" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <defs><linearGradient id="sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF3D6"/><stop offset=".5" stop-color="#D5A54A"/><stop offset="1" stop-color="#F3D9A4"/></linearGradient>
+            <path id="sc" d="M 30 100 A 70 70 0 1 1 170 100 A 70 70 0 1 1 30 100"/></defs>
+            <circle cx="100" cy="100" r="96" fill="#0B0909" stroke="url(#sg)" stroke-width="3"/>
+            <circle cx="100" cy="100" r="58" fill="none" stroke="url(#sg)" stroke-width="1.2" stroke-dasharray="2 4"/>
+            <g class="ring"><text font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="13" font-weight="700" letter-spacing="4.6" fill="url(#sg)"><textPath href="#sc">GARANTIA PREÇO CERTO · RISCO ZERO ·</textPath></text></g>
+            <text x="100" y="98" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="44" font-weight="800" fill="url(#sg)">7</text>
+            <text x="100" y="122" text-anchor="middle" font-family="Plus Jakarta Sans,system-ui,sans-serif" font-size="15" font-weight="700" letter-spacing="3" fill="#F3D9A4">DIAS</text>
+          </svg>
+        </div>
+        <div>
+          <p class="label">Garantia Preço Certo</p>
+          <h2>Ou sai com os preços calculados, <span class="gold">ou devolvemos o dinheiro.</span></h2>
+          <p>Participe no workshop. Se no fim não tiver os preços dos seus serviços calculados, ou se achar que não valeu o que pagou, envie-nos uma mensagem até 7 dias depois e devolvemos 100% do valor. Sem perguntas e sem complicações.</p>
+          <p class="gsig">O risco é todo nosso. <b>Jonas &amp; Rafa</b></p>
         </div>
       </div>
     </div>
@@ -718,6 +758,7 @@ body{background:#0B0909}
       <h2 class="sec-h rv d1">Antes de se inscrever</h2>
       <div class="faq">
         <details class="rv"><summary>Tenho medo de subir o preço e perder clientes.</summary><p>É o medo mais comum, e é por isso que um bloco inteiro é sobre isso: quando avisar, como avisar e o que responder. Sai com a mensagem pronta. No nosso atelier, as clientes que valorizam o seu trabalho ficaram.</p></details>
+        <details class="rv"><summary>E se não gostar?</summary><p>Tem a Garantia Preço Certo: se no fim não sair com os preços calculados, ou achar que não valeu, envie-nos uma mensagem até 7 dias depois do workshop e devolvemos 100% do valor.</p></details>
         <details class="rv"><summary>Estou no Brasil. A que horas é?</summary><p>Começa às 10h de Lisboa, que são 7h em Brasília. Se não conseguir estar, recebe a gravação completa.</p></details>
         <details class="rv"><summary>E se não puder assistir ao vivo?</summary><p>Todas as inscritas recebem a gravação e os materiais. Ao vivo tem a vantagem de calcular os seus serviços comigo.</p></details>
         <details class="rv"><summary>Preciso de saber Excel ou de ser boa com números?</summary><p>Não. Usamos a calculadora Agenda Lucrativa, onde só preenche os seus valores. As contas são feitas por ela.</p></details>
