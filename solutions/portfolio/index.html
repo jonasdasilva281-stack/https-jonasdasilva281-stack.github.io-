@@ -503,6 +503,7 @@ footer.foot .foot-bottom{display:flex;justify-content:space-between;align-items:
       <button class="on" data-f="all">Todos</button>
       <button data-f="site">Sites</button>
       <button data-f="landing">Landing pages</button>
+      <button data-f="loja">Lojas online</button>
       <button data-f="sistema">Sistemas</button>
       <button data-f="app">Apps</button>
       <button data-f="ferramenta">Ferramentas</button>
@@ -648,8 +649,28 @@ var CASES = [
    desc:'Página de vendas de um evento presencial de um dia para profissionais da beleza.',
    chal:'Encher um evento presencial com uma decisão de compra por lotes e três níveis de bilhete.',
    sol:'Página com contagem decrescente, três opções de bilhete com pagamento integrado, testemunhos em vídeo e pixel de anúncios.'},
-  {id:'nortefin', cat:'app', type:'App', featured:false,
-   title:'Nortefin', url:'https://jonasdasilva281-stack.github.io/nortefin/', show:'Nortefin',
+  {id:'urbanpaws', cat:'loja', type:'Loja online', featured:false, maint:true,
+   title:'UrbanPaws', url:'', show:'urbanpaws.pt',
+   desc:'Loja online de produtos para cães e gatos que vivem em apartamento, com envio para a Europa.',
+   chal:'Criar uma marca de loja do zero, com uma promessa clara para um público específico.',
+   sol:'Loja Shopify com coleções para cães e gatos, página de devoluções, envio com seguimento e identidade própria.'},
+  {id:'livro', cat:'landing', type:'Página de venda de livro', featured:false,
+   title:'Como Empreender Sem Morrer no Processo', url:'https://hubadvance.pt/livrodigital/', show:'hubadvance.pt/livrodigital',
+   desc:'Página de pré-lançamento de um ebook, com preço de lançamento e pagamento seguro.',
+   chal:'Vender um livro digital a quem acompanha o autor, com urgência e confiança.',
+   sol:'Página com o livro em 3D, preço de pré-lançamento com data limite, garantia de 7 dias e pagamento integrado.'},
+  {id:'mentoria', cat:'landing', type:'Página de mentoria', featured:false,
+   title:'Mentoria Advance', url:'https://hubadvance.pt/mentoria/', show:'hubadvance.pt/mentoria',
+   desc:'Página de candidatura a uma mentoria para donos de negócios de beleza.',
+   chal:'Passar de seguidores a candidaturas qualificadas para um serviço de valor mais alto.',
+   sol:'Página que explica o método, o acompanhamento e as vagas limitadas, com candidatura direta.'},
+  {id:'comunidade', cat:'landing', type:'Página de comunidade', featured:false,
+   title:'Comunidade Advance', url:'https://hubadvance.pt/comunidade/', show:'hubadvance.pt/comunidade',
+   desc:'Página de entrada numa comunidade de mentoria em grupo, a 1€ por dia.',
+   chal:'Dar uma porta de entrada acessível a quem ainda não está pronto para a mentoria individual.',
+   sol:'Página com oferta simples, preço diário e botão de entrada direto.'},
+  {id:'nortefin', cat:'app', type:'App', featured:false, maint:true,
+   title:'Nortefin', url:'', show:'Nortefin',
    desc:'App de finanças pessoais com contas de utilizador e notificações no telemóvel.',
    chal:'Controlar gastos, contas a pagar, poupança e investimento sem folhas de cálculo.',
    sol:'App instalável no telemóvel, com orçamento por categoria, contas a pagar, objetivos e resumos diários por notificação.'},
@@ -668,6 +689,11 @@ var CASES = [
    desc:'Calculadora que mostra quanto cobrar por cada serviço para ter lucro.',
    chal:'Profissionais de beleza a cobrar sem saber os custos reais de cada serviço.',
    sol:'Ferramenta em 10 minutos com custos fixos, tempo e margem por serviço, e relatório final.'},
+  {id:'ideias', cat:'ferramenta', type:'Ferramenta com IA', featured:false,
+   title:'Ideias Prontas', url:'https://hubadvance.pt/ideias-prontas/', show:'hubadvance.pt/ideias-prontas',
+   desc:'Agente que gera 30 dias de ideias de conteúdo para o Instagram, com gancho e legenda prontos.',
+   chal:'Profissionais de beleza sem tempo nem ideias para publicar com regularidade.',
+   sol:'Agente que faz 9 perguntas rápidas e entrega um calendário de 30 dias, instalável como app.'},
   {id:'agenda', cat:'landing', type:'Página de produto', featured:false,
    title:'Kit Agenda Cheia', url:'https://hubadvance.pt/agenda-cheia/', show:'hubadvance.pt/agenda-cheia',
    desc:'Página de venda de um produto digital para profissionais de estética.',
@@ -680,7 +706,7 @@ var CASES = [
    sol:'Aplicação com login, base de dados, histórico por cliente, lembretes por WhatsApp e ligação ao Google Calendar.'}
 ];
 
-var IMGS={imersao:1,workshop:1,calculadora:1,'sistema-atelier':1,'sistema-academy':1,crm:1,nortefin:1,debora:1,atelier:1,academy:1,manicure:1,navi:1,raiox:1,agenda:1};
+var IMGS={urbanpaws:1,livro:1,mentoria:1,comunidade:1,ideias:1,imersao:1,workshop:1,calculadora:1,'sistema-atelier':1,'sistema-academy':1,crm:1,nortefin:1,debora:1,atelier:1,academy:1,manicure:1,navi:1,raiox:1,agenda:1};
 var IMGBASE='../capturas/';
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
@@ -694,7 +720,9 @@ function renderCases(el, list, detail){
     var more = detail === 'full'
       ? '<dl><div><dt>O desafio</dt><dd>' + esc(c.chal) + '</dd></div><div><dt>A solução</dt><dd>' + esc(c.sol) + '</dd></div></dl>'
       : '';
-    var go = c.url
+    var go = c.maint
+      ? '<span class="go priv">Projeto em manutenção</span>'
+      : c.url
       ? '<a class="go" href="' + c.url + '" target="_blank" rel="noopener">Ver projeto ao vivo →</a>'
       : c.ig ? '<a class="go" href="' + c.ig + '" target="_blank" rel="noopener">Ver o negócio no Instagram →</a>'
       : '<span class="go priv">Projeto privado</span>';
@@ -709,6 +737,7 @@ function renderCases(el, list, detail){
 var GROUPS=[
   {k:'site',t:'Sites',d:'Presença profissional de um negócio, para ser encontrado e escolhido.'},
   {k:'landing',t:'Landing pages',d:'Páginas dedicadas a um produto, feitas para vender.'},
+  {k:'loja',t:'Lojas online',d:'Lojas completas para vender produtos online, com pagamento e envio.'},
   {k:'sistema',t:'Sistemas',d:'Gestão à medida do negócio: clientes, agenda, financeiro e equipa.'},
   {k:'app',t:'Apps',d:'Aplicações para usar no telemóvel e no computador.'},
   {k:'ferramenta',t:'Ferramentas',d:'Ferramentas com inteligência artificial que trabalham pelo negócio.'}
