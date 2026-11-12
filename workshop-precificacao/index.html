@@ -470,6 +470,24 @@ body{background:#0B0909}
 .recline b{color:#F3D9A4}
 .recline svg{width:22px;height:22px;flex:none;fill:none;stroke:#D5A54A;stroke-width:1.8;stroke-linejoin:round}
 .recline svg path{fill:#D5A54A;stroke:none}
+
+.build{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:center}
+.build h2{font-size:clamp(2rem,4.2vw,3.2rem)}
+.build p.t{color:var(--soft);margin-top:18px;max-width:32em}
+.stack-build{padding:clamp(22px,3vw,34px);border-radius:24px;border:1px solid rgba(213,165,74,.35)!important}
+.stack-build .layers{display:flex;flex-direction:column;gap:8px;margin-top:18px}
+.ly{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-radius:14px;border:1px solid rgba(213,165,74,.22);background:rgba(255,255,255,.03);font-size:.98rem;color:var(--soft);
+  opacity:0;transform:translateY(26px) scale(.97);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
+.ly b{color:var(--ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ly5{background:linear-gradient(90deg,rgba(213,165,74,.28),rgba(213,165,74,.10));border-color:rgba(213,165,74,.6);color:#F3D9A4;font-weight:700}
+.ly5 b{color:#F3D9A4}
+.stack-build.on .ly{opacity:1;transform:none}
+.stack-build.on .ly2{transition-delay:.1s}.stack-build.on .ly3{transition-delay:.45s}.stack-build.on .ly4{transition-delay:.8s}.stack-build.on .ly5{transition-delay:1.25s}
+.ptotal{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:16px;border-top:1px solid rgba(213,165,74,.3);font-weight:700}
+.ptotal b{font-size:2.4rem;letter-spacing:-.03em;background:var(--goldgrad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stack-build .hint{margin:8px 0 0;color:var(--muted);font-size:.9rem}
+@media (max-width:860px){.build{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){.ly{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
@@ -587,6 +605,30 @@ body{background:#0B0909}
         </div>
         <p class="verdict">Com as mesmas contas, o preço para dar lucro seria <b>32€</b>.</p>
       </aside>
+    </div>
+    <div class="wrap"><div class="bridge rv"><span>Então, como se chega <b>ao preço certo?</b></span><span class="down" aria-hidden="true">↓</span></div></div>
+  </section>
+
+  <section>
+    <div class="wrap build">
+      <div class="rv">
+        <p class="label">O que vai aprender</p>
+        <h2 style="margin-top:14px">Um preço não se escolhe. <span class="gold">Constrói-se.</span></h2>
+        <p class="t">A maioria das profissionais põe o preço a olho: vê quanto cobra a colega, tira um ou dois euros e pronto. Mas por trás de um preço certo há contas: o material, o espaço, o seu tempo, os impostos e, no fim, o lucro.</p>
+        <p class="t">No workshop constrói o preço de cada serviço, camada a camada. E vai ter surpresas: às vezes um serviço mais barato dá-lhe mais margem do que o mais caro.</p>
+        <div class="callout"><small>O objetivo é um só</small>Que no fim de cada serviço <span class="gold">sobre lucro.</span></div>
+      </div>
+      <div class="stack-build glass rv d1" data-build aria-label="Como se constrói o preço de um serviço">
+        <p class="label">Manicure com verniz gel · o mesmo exemplo</p>
+        <div class="layers">
+          <div class="ly ly5"><span>Lucro</span><b>+11,30€</b></div>
+          <div class="ly ly4"><span>Impostos e Segurança Social</span><b>5,00€</b></div>
+          <div class="ly ly3"><span>Espaço: renda, luz, água (1h15)</span><b>12,50€</b></div>
+          <div class="ly ly2"><span>Material</span><b>3,20€</b></div>
+        </div>
+        <div class="ptotal"><span>Preço construído</span><b>32€</b></div>
+        <p class="hint">Primeiro os custos, depois o lucro. Nunca ao contrário.</p>
+      </div>
     </div>
     <div class="wrap"><div class="bridge rv"><span>Sabemos isto porque <b>já estivemos aí.</b></span><span class="down" aria-hidden="true">↓</span></div></div>
   </section>
@@ -1032,6 +1074,15 @@ body{background:#0B0909}
   }, {passive:true});
 })();
 </script>
+<script>
+(function(){
+  var b=document.querySelector('[data-build]'); if(!b) return;
+  if(!('IntersectionObserver' in window)){ b.classList.add('on'); return; }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ b.classList.add('on'); io.disconnect(); } }); },{threshold:.35});
+  io.observe(b);
+})();
+</script>
+
 
 
 </body>
