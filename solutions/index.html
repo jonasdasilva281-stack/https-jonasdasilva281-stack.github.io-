@@ -590,7 +590,7 @@ h1,h2,h3,h4,.faq summary,.svc .from b,.price-card .val,.pill,.brand b{font-famil
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <h1 data-words>O seu negócio já é bom. Agora precisa de ser encontrado e escolhido.</h1>
+        <h1 data-words aria-label="O seu negócio já é bom. Agora precisa de ser encontrado e escolhido.">O seu negócio já || é bom. Agora precisa de ser encontrado e escolhido.</h1>
         <p class="lead">Criamos sites, landing pages e sistemas a partir do problema que está a travar as suas vendas, não a partir de um modelo pronto.</p>
         <div class="ctas">
           <a class="btn btn-p" data-wa="Olá! Quero perceber que solução faz sentido para o meu negócio." data-int="Diagnóstico / ainda não sei o que preciso" href="#">Falar no WhatsApp <span class="arr">→</span></a>
@@ -995,7 +995,7 @@ function renderCases(el, list, detail){
   /* Título palavra a palavra */
   document.querySelectorAll('[data-words]').forEach(function(el){
     var words = el.textContent.trim().split(/\s+/);
-    el.innerHTML = words.map(function(w, i){ return '<span class="w" style="--i:' + i + '">' + w + '</span>'; }).join(' ');
+    el.innerHTML = words.map(function(w, i){ return w === '||' ? '<br>' : '<span class="w" style="--i:' + i + '">' + w + '</span>'; }).join(' ');
     el.classList.add('words');
   });
 
