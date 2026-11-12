@@ -919,11 +919,11 @@ var CASES = [
    desc:'Sistema de gestão de uma escola de formação: turmas, vendas, comissões e dossiê pedagógico.',
    chal:'Controlar turmas, alunas, vendedores e custos de cada formação sem perder informação.',
    sol:'Sistema com login, fecho de lucro por turma, comissões calculadas na venda e documentação para certificação.'},
-  {id:'primeiro', cat:'landing', type:'Página de vendas', featured:false,
-   title:'O Meu Primeiro Negócio', url:'https://empreendedorinteligente.online', show:'empreendedorinteligente.online',
-   desc:'Página de vendas de um curso para quem quer começar o primeiro negócio.',
-   chal:'Convencer quem tem medo de arriscar a dar o primeiro passo.',
-   sol:'Página com promessa clara, conteúdo do curso e domínio próprio.'},
+  {id:'workshop', cat:'landing', type:'Página de vendas', featured:false,
+   title:'Workshop Precificação Inteligente', url:'https://hubadvance.pt/workshop-precificacao/', show:'hubadvance.pt/workshop-precificacao',
+   desc:'Página de vendas de um workshop ao vivo sobre preços para negócios de beleza.',
+   chal:'Vender um evento online com data marcada e uma decisão rápida de compra.',
+   sol:'Página com promessa clara, data e horário, gravação incluída e pagamento integrado.'},
   {id:'nortefin', cat:'app', type:'App', featured:false,
    title:'Nortefin', url:'https://jonasdasilva281-stack.github.io/nortefin/', show:'Nortefin',
    desc:'App de finanças pessoais com contas de utilizador e notificações no telemóvel.',
@@ -939,6 +939,11 @@ var CASES = [
    desc:'Ferramenta que analisa perfis de Instagram com inteligência artificial e capta contactos.',
    chal:'Gerar contactos qualificados de profissionais de beleza de forma automática.',
    sol:'Análise por IA a partir de capturas do perfil, relatório em imagem e contactos guardados numa base de dados.'},
+  {id:'calculadora', cat:'ferramenta', type:'Ferramenta', featured:false,
+   title:'Agenda Lucrativa', url:'https://hubadvance.pt/calculadora/', show:'hubadvance.pt/calculadora',
+   desc:'Calculadora que mostra quanto cobrar por cada serviço para ter lucro.',
+   chal:'Profissionais de beleza a cobrar sem saber os custos reais de cada serviço.',
+   sol:'Ferramenta em 10 minutos com custos fixos, tempo e margem por serviço, e relatório final.'},
   {id:'agenda', cat:'landing', type:'Página de produto', featured:false,
    title:'Kit Agenda Cheia', url:'https://hubadvance.pt/agenda-cheia/', show:'hubadvance.pt/agenda-cheia',
    desc:'Página de venda de um produto digital para profissionais de estética.',
@@ -951,7 +956,7 @@ var CASES = [
    sol:'Aplicação com login, base de dados, histórico por cliente, lembretes por WhatsApp e ligação ao Google Calendar.'}
 ];
 
-var IMGS={'sistema-atelier':1,'sistema-academy':1,crm:1,nortefin:1,debora:1,atelier:1,academy:1,manicure:1,navi:1,raiox:1,agenda:1};
+var IMGS={workshop:1,calculadora:1,'sistema-atelier':1,'sistema-academy':1,crm:1,nortefin:1,debora:1,atelier:1,academy:1,manicure:1,navi:1,raiox:1,agenda:1};
 var IMGBASE='capturas/';
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
