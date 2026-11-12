@@ -119,6 +119,11 @@ section{padding:96px 0}
 @media(max-width:960px){.svc{grid-template-columns:1fr}}
 
 /* Cases */
+.grp{margin-bottom:56px}
+.grp-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.grp-h h2{font-size:clamp(22px,2.4vw,28px);color:var(--navy)}
+.grp-h p{font-size:15px;color:var(--slate)}
+.grp-h .n{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
 .cases{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 @media(max-width:960px){.cases{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.cases{grid-template-columns:1fr}}
@@ -502,7 +507,7 @@ footer.foot .foot-bottom{display:flex;justify-content:space-between;align-items:
       <button data-f="app">Apps</button>
       <button data-f="ferramenta">Ferramentas</button>
     </div>
-    <div class="cases" id="all"></div>
+    <div id="all"></div>
   </div>
 </section>
 
@@ -665,15 +670,17 @@ var CASES = [
    sol:'Aplicação com login, base de dados, histórico por cliente, lembretes por WhatsApp e ligação ao Google Calendar.'}
 ];
 
+var IMGS={debora:1,atelier:1,academy:1,manicure:1,navi:1,raiox:1,agenda:1};
+var IMGBASE='../capturas/';
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
 function renderCases(el, list, detail){
   var html = '';
   list.forEach(function(c){
-    var shot = c.url
-      ? '<img loading="lazy" alt="Página inicial de ' + esc(c.title) + '" src="https://s0.wp.com/mshots/v1/' + encodeURIComponent(c.url) + '?w=1280&h=800" onerror="this.style.display=\'none\'">'
+    var shot = IMGS[c.id]
+      ? '<img loading="lazy" width="960" height="576" alt="Página inicial de ' + esc(c.title) + '" src="' + IMGBASE + c.id + '.jpg" onerror="this.style.display=\'none\'">'
       : '';
-    var ph = '<div class="ph"' + (c.url ? ' style="z-index:-1"' : '') + '><b>' + esc(c.title) + '</b><span>' + (c.url || c.ig ? esc(c.show) : 'Projeto privado · demonstração mediante pedido') + '</span></div>';
+    var ph = '<div class="ph"' + (IMGS[c.id] ? ' style="z-index:-1"' : '') + '><b>' + esc(c.title) + '</b><span>' + (c.url || c.ig ? esc(c.show) : 'Projeto privado · demonstração mediante pedido') + '</span></div>';
     var more = detail === 'full'
       ? '<dl><div><dt>O desafio</dt><dd>' + esc(c.chal) + '</dd></div><div><dt>A solução</dt><dd>' + esc(c.sol) + '</dd></div></dl>'
       : '';
@@ -688,9 +695,26 @@ function renderCases(el, list, detail){
   });
   el.innerHTML = html;
 }
+
+var GROUPS=[
+  {k:'site',t:'Sites',d:'Presença profissional completa, para ser encontrado e escolhido.'},
+  {k:'landing',t:'Landing pages',d:'Uma página com um só objetivo: vender, captar contactos ou inscrições.'},
+  {k:'sistema',t:'Sistemas',d:'Gestão à medida do negócio: clientes, agenda, financeiro e equipa.'},
+  {k:'app',t:'Apps',d:'Aplicações para usar no telemóvel e no computador.'},
+  {k:'ferramenta',t:'Ferramentas',d:'Ferramentas com inteligência artificial que trabalham pelo negócio.'}
+];
+function renderGroups(el, list, detail){
+  var html='';
+  GROUPS.forEach(function(g){
+    var items=list.filter(function(c){return c.cat===g.k}); if(!items.length) return;
+    var tmp=document.createElement('div'); renderCases(tmp, items, detail);
+    html+='<section class="grp" data-cat="'+g.k+'" id="g-'+g.k+'"><div class="grp-h"><h2>'+g.t+'</h2><span class="n">'+items.length+(items.length>1?' projetos':' projeto')+'</span><p>'+g.d+'</p></div><div class="cases">'+tmp.innerHTML+'</div></section>';
+  });
+  el.innerHTML=html;
+}
 </script>
 <script>
-renderCases(document.getElementById('all'), CASES, 'full');
+renderGroups(document.getElementById('all'), CASES, 'full');
 </script>
 <script>(function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -812,7 +836,7 @@ renderCases(document.getElementById('all'), CASES, 'full');
     fbtns.forEach(function(b){
       b.onclick = function(){
         fbtns.forEach(function(x){ x.classList.remove('on'); }); b.classList.add('on');
-        var f = b.getAttribute('data-f'), cards = document.querySelectorAll('#all .case');
+        var f = b.getAttribute('data-f'), cards = document.querySelectorAll('#all .grp');
         cards.forEach(function(c){ if (c.style.display !== 'none') c.classList.add('hide-anim'); });
         setTimeout(function(){
           var k = 0;

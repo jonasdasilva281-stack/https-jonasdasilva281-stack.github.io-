@@ -601,15 +601,15 @@ h1,h2,h3,h4,.faq summary,.svc .from b,.price-card .val,.pill,.brand b{font-famil
         <div class="show-stage">
           <article class="sc" data-i="0" data-href="https://academyrafamendonca.com" data-name="Academy Rafa Mendonça" data-type="Landing page de cursos">
             <div class="sc-bar"><i></i><i></i><i></i><em>academyrafamendonca.com</em></div>
-            <div class="sc-body"><div class="live"><iframe data-src="https://academyrafamendonca.com" title="Academy Rafa Mendonça" tabindex="-1" scrolling="no" loading="lazy"></iframe></div></div>
+            <div class="sc-body"><img class="real" src="capturas/academy.jpg" width="960" height="576" alt="Academy Rafa Mendonça" fetchpriority="high"></div>
           </article>
           <article class="sc" data-i="1" data-href="https://atelierdeunhas.com" data-name="Atelier Rafa Mendonça" data-type="Site em 4 idiomas">
             <div class="sc-bar"><i></i><i></i><i></i><em>atelierdeunhas.com</em></div>
-            <div class="sc-body"><div class="live"><iframe data-src="https://atelierdeunhas.com" title="Atelier Rafa Mendonça" tabindex="-1" scrolling="no" loading="lazy"></iframe></div></div>
+            <div class="sc-body"><img class="real" src="capturas/atelier.jpg" width="960" height="576" alt="Atelier Rafa Mendonça" loading="lazy"></div>
           </article>
           <article class="sc" data-i="2" data-href="https://manicureperfeita.online" data-name="Método Manicure Perfeita" data-type="Página de vendas">
             <div class="sc-bar"><i></i><i></i><i></i><em>manicureperfeita.online</em></div>
-            <div class="sc-body"><div class="live"><iframe data-src="https://manicureperfeita.online" title="Método Manicure Perfeita" tabindex="-1" scrolling="no" loading="lazy"></iframe></div></div>
+            <div class="sc-body"><img class="real" src="capturas/manicure.jpg" width="960" height="576" alt="Método Manicure Perfeita" loading="lazy"></div>
           </article>
           </div>
         <div class="show-cap">
@@ -951,15 +951,17 @@ var CASES = [
    sol:'Aplicação com login, base de dados, histórico por cliente, lembretes por WhatsApp e ligação ao Google Calendar.'}
 ];
 
+var IMGS={debora:1,atelier:1,academy:1,manicure:1,navi:1,raiox:1,agenda:1};
+var IMGBASE='capturas/';
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
 function renderCases(el, list, detail){
   var html = '';
   list.forEach(function(c){
-    var shot = c.url
-      ? '<img loading="lazy" alt="Página inicial de ' + esc(c.title) + '" src="https://s0.wp.com/mshots/v1/' + encodeURIComponent(c.url) + '?w=1280&h=800" onerror="this.style.display=\'none\'">'
+    var shot = IMGS[c.id]
+      ? '<img loading="lazy" width="960" height="576" alt="Página inicial de ' + esc(c.title) + '" src="' + IMGBASE + c.id + '.jpg" onerror="this.style.display=\'none\'">'
       : '';
-    var ph = '<div class="ph"' + (c.url ? ' style="z-index:-1"' : '') + '><b>' + esc(c.title) + '</b><span>' + (c.url || c.ig ? esc(c.show) : 'Projeto privado · demonstração mediante pedido') + '</span></div>';
+    var ph = '<div class="ph"' + (IMGS[c.id] ? ' style="z-index:-1"' : '') + '><b>' + esc(c.title) + '</b><span>' + (c.url || c.ig ? esc(c.show) : 'Projeto privado · demonstração mediante pedido') + '</span></div>';
     var more = detail === 'full'
       ? '<dl><div><dt>O desafio</dt><dd>' + esc(c.chal) + '</dd></div><div><dt>A solução</dt><dd>' + esc(c.sol) + '</dd></div></dl>'
       : '';
