@@ -92,3 +92,4 @@ body.claro{
 .claro .tarefa .caixa{background:#fff;border-color:#B7C3D4}
 .claro .tarefa .txt a{color:var(--blue)}
 .claro .dia .n{display:inline-block;align-self:start;background:rgba(31,99,201,.09);color:var(--blue);padding:5px 10px;border-radius:999px;width:max-content;height:max-content}
+.claro .brand img{filter:brightness(0) opacity(.88)}
