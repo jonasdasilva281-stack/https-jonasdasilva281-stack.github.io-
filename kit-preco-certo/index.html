@@ -139,6 +139,8 @@
   .fecho::before{content:"";position:absolute;left:50%;top:-100px;width:1000px;height:560px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(255,160,30,.28),rgba(59,123,200,.12) 60%,transparent);pointer-events:none}
   .fecho > .wrap{position:relative}
   .fecho h2{font-family:var(--display);font-weight:900;font-size:clamp(30px,5vw,54px);line-height:1.08;letter-spacing:-.02em;max-width:820px;margin:16px auto 14px}
+  .fecho h2.duas-linhas{max-width:none;font-size:clamp(19px,4.8vw,52px)}
+  .fecho h2 .l{display:block;white-space:nowrap}
   .fecho h2 em{font-style:normal;background:linear-gradient(120deg,#FFE08A,#FFA81F);-webkit-background-clip:text;background-clip:text;color:transparent}
   .fecho .lead{color:var(--soft);font-size:18px;max-width:600px;margin:0 auto 44px}
   .oferta{position:relative;max-width:760px;margin:0 auto;text-align:left;border-radius:28px;padding:44px 40px 36px;background:linear-gradient(180deg,#121823,#06080C);border:1px solid rgba(255,200,80,.5);box-shadow:0 0 120px rgba(255,160,30,.25),inset 0 1px 0 rgba(255,255,255,.1)}
@@ -415,7 +417,7 @@
   <section class="fecho" id="fecho">
     <div class="wrap">
       <span class="tag rv"><i></i>Última oportunidade</span>
-      <h2 class="rv">Sete produtos. 230 € de desconto.<br><em>17 €</em> até 30 de novembro.</h2>
+      <h2 class="rv duas-linhas"><span class="l">Sete produtos. 230 € de desconto.</span><span class="l"><em>17 €</em> até 30 de novembro.</span></h2>
       <p class="lead rv">Depois disto, o preço volta ao normal. Hoje pode ter o caminho completo para cobrar o que o seu trabalho vale, pelo preço de um almoço.</p>
 
       <div class="oferta rv">
