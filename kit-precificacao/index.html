@@ -68,6 +68,17 @@
   .tool .btn{margin-top:4px}
   .dica{margin-top:14px;font-size:13px;color:var(--text-dim)}
 
+  /* sem vídeo ainda: a calculadora passa a ser o foco, em largura total */
+  .grid.sem-video{grid-template-columns:1fr}
+  .grid.sem-video > div:first-child{display:none}
+  .grid.sem-video .tool{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;padding:32px 36px}
+  .grid.sem-video .tool .tool-txt{flex:1 1 320px}
+  .grid.sem-video .tool .tool-txt h2{font-size:22px}
+  .grid.sem-video .tool .tool-cta{flex:0 0 320px;max-width:100%}
+  .grid.sem-video .tool .btn{margin-top:0}
+
+  /* menos molduras: índice e bónus em linhas finas */
+  .card.indice{background:none;border:0;border-radius:0;padding:0}
   .indice{margin-top:18px}
   .indice h3{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);margin-bottom:10px;font-weight:700}
   .indice ol{list-style:none}
@@ -79,6 +90,7 @@
   .sec > h2{font-family:var(--display);font-size:24px;margin-bottom:6px;font-weight:800}
   .sec > p{color:var(--text-soft);margin-bottom:18px}
   .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .card.item{background:none;border:0;border-top:1px solid var(--line);border-radius:0;padding:22px 0 0}
   .item{display:flex;flex-direction:column;justify-content:space-between}
   .item p{font-size:15px;color:var(--text-soft);margin-bottom:16px}
   .item .btn{margin-top:0}
@@ -116,6 +128,7 @@
 
   @media (max-width:860px){
     .grid{grid-template-columns:1fr}
+    .grid.sem-video .tool{padding:24px 22px}
     .duo{grid-template-columns:1fr}
     .opts{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
@@ -156,12 +169,12 @@
   <div class="wrap">
 
     <div class="hero">
-      <div class="eyebrow">Kit Precificação Inteligente</div>
+      <div class="eyebrow">Advance Lab · Kit Precificação Inteligente</div>
       <h1>Descubra o preço certo de cada serviço e quanto lucra por hora.</h1>
-      <p>Veja a gravação do workshop e preencha a sua calculadora ao mesmo tempo. Abra-a num separador ao lado e acompanhe passo a passo.</p>
+      <p id="hero-p">Veja a gravação do workshop e preencha a sua calculadora ao mesmo tempo. Abra-a num separador ao lado e acompanhe passo a passo.</p>
     </div>
 
-    <div class="grid">
+    <div class="grid" id="grid">
       <div>
         <div class="player" id="player"></div>
 
@@ -173,10 +186,14 @@
 
       <aside>
         <div class="card tool">
-          <h2>A sua calculadora</h2>
-          <div class="sub">Agenda Lucrativa. Abre direto, sem criar conta.</div>
-          <a class="btn" id="btn-ferramenta" href="#" target="_blank" rel="noopener">Abrir a minha calculadora</a>
-          <div class="dica">Dica: abra num separador ao lado e preencha enquanto assiste.</div>
+          <div class="tool-txt">
+            <h2>A sua calculadora</h2>
+            <div class="sub">Agenda Lucrativa. Abre direto, sem criar conta.</div>
+          </div>
+          <div class="tool-cta">
+            <a class="btn" id="btn-ferramenta" href="#" target="_blank" rel="noopener">Abrir a minha calculadora</a>
+            <div class="dica" id="dica-tool">Dica: abra num separador ao lado e preencha enquanto assiste.</div>
+          </div>
         </div>
       </aside>
     </div>
@@ -204,7 +221,7 @@
 
     <section class="sec">
       <div class="pitch">
-        <div class="eyebrow">O próximo passo</div>
+        <div class="eyebrow">O próximo passo no Advance Lab</div>
         <h2>Já sabe quanto cobrar. Agora falta quem pague esse preço.</h2>
         <p class="lead">Preços certos só dão resultado quando há clientes a chegar todas as semanas. Escolha como quer continuar.</p>
         <div class="opts">
@@ -240,7 +257,7 @@
       <div class="foot-brand">
         <img src="/logo-advance.png" alt="Advance" width="38" height="38">
         <div class="nome">Advance Lab</div>
-        <p>Mentoria, comunidade e formação para profissionais de beleza que querem cobrar o preço certo e ter a agenda cheia.</p>
+        <p>O Advance Lab é o espaço onde profissionais de beleza aprendem, testam e aplicam o que faz o negócio crescer, com mentoria, comunidade e cursos feitos para a prática.</p>
       </div>
       <div class="col">
         <h4>Continuar</h4>
@@ -340,7 +357,10 @@ var CONFIG = {
       f.title = "Gravação do workshop Precificação Inteligente";
       p.appendChild(f);
     } else {
-      p.innerHTML = '<div class="vazio">O vídeo aparece aqui assim que o link for colocado.</div>';
+      // ainda sem gravação: esconde o leitor e o índice, a calculadora fica em destaque
+      document.getElementById("grid").classList.add("sem-video");
+      document.getElementById("hero-p").textContent = "Preencha a sua calculadora ao seu ritmo. A gravação do workshop fica disponível aqui logo a seguir à sessão de 23 de novembro.";
+      document.getElementById("dica-tool").textContent = "Abre num novo separador. Pode guardar esta página para voltar quando quiser.";
     }
     // índice
     var ol = document.getElementById("indice");
