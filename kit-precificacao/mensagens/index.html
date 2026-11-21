@@ -139,7 +139,7 @@
     return esc(m).replace(/\{(\w+)\}/g, function(_, k){
       var v = (valores[k] || "").trim();
       return v ? esc(v) : "<mark>[" + esc(rotulo[k]) + "]</mark>";
-    });
+    }).replace(/ €/g, "&nbsp;€");
   }
 
   function copiar(texto, btn){

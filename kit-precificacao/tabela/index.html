@@ -236,6 +236,8 @@
     var x = c.getContext("2d");
     var ac = CORES[estado.cor] || CORES.azul, tinta = "#151B26";
     x.fillStyle = "#FAF7F2"; x.fillRect(0,0,W,H);
+    // centra o conteúdo na vertical quando a tabela é curta
+    x.translate(0, Math.max(0, Math.round((H - (topo + linhas.length * rowH + (temCont ? 150 : 80))) / 2.4)));
     // nome
     var nome = estado.nome.trim() || "O seu nome ou negócio", fs = 84;
     x.font = "800 " + fs + "px Archivo, Inter, sans-serif";
