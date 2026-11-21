@@ -603,15 +603,7 @@ html{scroll-behavior:auto}
 .bilhete.plano.tem-luz:hover{border-color:#E3EAF3}
 @media(max-width:820px){.quem-grid{grid-template-columns:1fr!important;gap:18px;max-width:100%!important}.quem-col{max-width:100%!important}}
 </style>
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','563224021229888');
-fbq('track','PageView');
-</script>
+<script src="/tracking.js" defer></script>
 </head>
 <body>
 <div class="progresso" id="progresso"></div>
@@ -966,7 +958,7 @@ function onScroll(){
 addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
 document.querySelectorAll('.btn-comprar').forEach(b=>{
-  b.addEventListener('click', ()=>{ if(typeof fbq==='function'){ fbq('track','InitiateCheckout',{content_name:'Mentoria em Grupo 31 · '+b.dataset.plano, value:31, currency:'EUR'}); } });
+  b.addEventListener('click', ()=>{ if(window.track){ window.track('InitiateCheckout',{content_name:'Mentoria em Grupo 31 · '+b.dataset.plano, value:31, currency:'EUR'}); } });
 });
 </script>
 </body>
