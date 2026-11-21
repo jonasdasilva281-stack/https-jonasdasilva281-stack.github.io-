@@ -1,0 +1,48 @@
+/* Estilo partilhado das ferramentas do Kit Preço Certo (Advance Lab) */
+:root{
+  --black:#0A1E38; --coal:#0D2444; --coal-2:#071834; --card:#122C4E;
+  --blue:#5B9BE8; --blue-light:#7FB4EE; --blue-deep:#3B7BC8;
+  --line:rgba(174,196,221,.16); --line-soft:rgba(174,196,221,.1);
+  --text:#EAF1FA; --text-soft:#B8C8DD; --text-dim:#8397AF;
+  --display:"Archivo","Inter",Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Inter",Helvetica,Arial,sans-serif;background:var(--black);color:var(--text);line-height:1.55}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+header{border-bottom:1px solid var(--line);background:var(--coal-2)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.04em;color:var(--text);text-decoration:none}
+.brand img{height:30px;width:auto;display:block}
+.voltar{font-size:13px;color:var(--text-soft);text-decoration:none}
+.voltar:hover{color:#fff}
+
+main{padding:44px 0 80px}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:12px}
+.hero h1{font-family:var(--display);font-size:36px;line-height:1.12;font-weight:800;max-width:780px}
+.hero p{margin-top:14px;color:var(--text-soft);font-size:17px;max-width:680px}
+
+.btn{display:inline-block;padding:14px 20px;font-size:15px;font-weight:600;font-family:inherit;border:0;border-radius:12px;background:var(--blue);color:var(--black);cursor:pointer;text-align:center;text-decoration:none}
+.btn:hover{background:var(--blue-light)}
+.btn.ghost{background:transparent;color:var(--blue-light);border:1px solid rgba(127,180,238,.45)}
+.btn.ghost:hover{background:var(--blue);color:var(--black);border-color:var(--blue)}
+.btn.small{padding:8px 14px;font-size:13px;border-radius:10px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+label{display:block;font-size:13px;font-weight:600;color:var(--text-soft);margin-bottom:6px}
+input[type=text]{width:100%;padding:12px 14px;font-size:15px;font-family:inherit;border:1px solid var(--line);border-radius:10px;background:var(--coal-2);color:var(--text)}
+input[type=text]::placeholder{color:var(--text-dim)}
+input[type=text]:focus{outline:2px solid var(--blue);border-color:var(--blue)}
+.nota{font-size:13px;color:var(--text-dim)}
+
+footer{border-top:1px solid var(--line);background:var(--coal-2);padding:28px 0;color:var(--text-dim);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:inherit;text-decoration:underline}
+footer a:hover{color:#fff}
+
+@media (max-width:860px){
+  .hero h1{font-size:28px}
+  main{padding:32px 0 60px}
+}

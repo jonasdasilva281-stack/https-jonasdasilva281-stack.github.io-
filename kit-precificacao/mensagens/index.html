@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="/tracking.js" defer></script>
+<title>Mensagens para comunicar o novo preço · Kit Preço Certo</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/kit-precificacao/kit.css">
+<meta name="theme-color" content="#0A1E38">
+<style>
+  .campos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:32px}
+  .campos .nota{grid-column:1/-1;margin-top:2px}
+  label{margin-bottom:6px}
+
+  .sit{margin-top:48px}
+  .sit h2{font-family:var(--display);font-size:24px;font-weight:800;margin-bottom:6px}
+  .sit .quando{color:var(--text-soft);font-size:15px;margin-bottom:18px;max-width:640px}
+  .balao{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:16px 0;border-top:1px solid var(--line)}
+  .balao:last-child{border-bottom:1px solid var(--line)}
+  .balao p{font-size:16px;color:var(--text);max-width:640px}
+  .balao mark{background:rgba(91,155,232,.22);color:#fff;border-radius:4px;padding:0 4px}
+  .copiar{min-width:96px}
+  .copiar.feito{background:#2E8B57;border-color:#2E8B57;color:#fff}
+
+  .dica-topo{margin-top:22px;padding:16px 20px;border-left:3px solid var(--blue);background:rgba(91,155,232,.08);border-radius:0 10px 10px 0;color:var(--text-soft);font-size:15px;max-width:780px}
+
+  @media (max-width:860px){
+    .campos{grid-template-columns:1fr 1fr}
+    .balao{grid-template-columns:1fr;gap:10px}
+    .copiar{justify-self:start}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="https://hubadvance.pt/"><img src="/logo-advance.png" alt="Advance" width="30" height="30"><span>Advance Lab</span></a>
+    <a class="voltar" href="/kit-precificacao/">&larr; Voltar ao Kit</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Kit Preço Certo · Mensagens</div>
+      <h1>Como comunicar o novo preço sem medo.</h1>
+      <p>Mensagens prontas para cada situação: avisar as clientes, responder a quem acha caro e a quem pede desconto. Preencha os campos e copie.</p>
+    </div>
+
+    <div class="dica-topo">Envie cada bloco como uma mensagem separada. No WhatsApp soa mais natural e menos a texto decorado. Ajuste o género (obrigada/obrigado) e o tom ao seu jeito.</div>
+
+    <div class="campos">
+      <div><label for="c-nome">Nome da cliente</label><input type="text" id="c-nome" autocomplete="off" placeholder="Ex.: Ana"></div>
+      <div><label for="c-servico">Serviço</label><input type="text" id="c-servico" autocomplete="off" placeholder="Ex.: gelinho"></div>
+      <div><label for="c-atual">Preço atual (€)</label><input type="text" id="c-atual" autocomplete="off" placeholder="Ex.: 25"></div>
+      <div><label for="c-novo">Preço novo (€)</label><input type="text" id="c-novo" autocomplete="off" placeholder="Ex.: 30"></div>
+      <div><label for="c-data">Data de início</label><input type="text" id="c-data" autocomplete="off" placeholder="Ex.: 1 de dezembro"></div>
+      <p class="nota">O que escreve fica só neste aparelho. Onde estiver [entre parênteses retos], escreva o seu.</p>
+    </div>
+
+    <div id="lista"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="ano"></span> Advance Lab · Jonas da Silva e Rafa Mendonça</span>
+    <span>Desenvolvido por <a href="https://hubadvance.pt/solutions/">Hub Advance Solutions</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY = "kit_mensagens_v1";
+  var campos = { nome:"c-nome", servico:"c-servico", atual:"c-atual", novo:"c-novo", data:"c-data" };
+  var rotulo = { nome:"nome", servico:"serviço", atual:"preço atual", novo:"preço novo", data:"data" };
+  var valores = { nome:"", servico:"", atual:"", novo:"", data:"" };
+  try{ var g = JSON.parse(localStorage.getItem(KEY) || "null"); if(g){ Object.keys(valores).forEach(function(k){ if(typeof g[k] === "string") valores[k] = g[k]; }); } }catch(e){}
+
+  var SITUACOES = [
+    { t: "Avisar as clientes habituais",
+      q: "Envie 2 a 4 semanas antes da data. Comece pelas mais fiéis.",
+      m: [
+        "Olá, {nome}! Tudo bem consigo?",
+        "Queria avisá-la com tempo: a partir de {data}, o {servico} passa a custar {novo} €.",
+        "Ajustei os preços para continuar a dar-lhe o mesmo cuidado e a mesma qualidade. Até lá, mantém-se em {atual} €.",
+        "Se tiver alguma dúvida, diga-me. Obrigada pela confiança de sempre!"
+      ] },
+    { t: "Cliente que já tinha marcação",
+      q: "Para quem marcou antes da data de início. Honra o combinado e deixa o novo valor claro.",
+      m: [
+        "Olá, {nome}! Como já tinha a sua marcação, mantenho o valor combinado de {atual} € nesta sessão.",
+        "A partir da próxima, o {servico} passa a custar {novo} €. Qualquer dúvida, estou por aqui."
+      ] },
+    { t: "Cliente nova pergunta quanto custa",
+      q: "Responda sempre com o valor, o tempo e o que inclui. Quem só vê um número compara só pelo número.",
+      m: [
+        "Olá! Obrigada pelo seu contacto.",
+        "O {servico} custa {novo} € e demora cerca de [tempo]. Inclui [o que inclui].",
+        "Quer que veja um horário para si esta semana?"
+      ] },
+    { t: "Cliente diz que ficou mais caro",
+      q: "Não justifique demais nem peça desculpa. Reconheça, explique o valor e ofereça escolha.",
+      m: [
+        "Compreendo, {nome}, e agradeço a sua sinceridade.",
+        "O novo valor reflete o tempo, os produtos e a formação que coloco em cada atendimento.",
+        "Se preferir, diga-me o que é mais importante para si e vejo a melhor opção para o seu orçamento."
+      ] },
+    { t: "Cliente pede desconto",
+      q: "Mantenha o preço e ofereça outra coisa em troca, como garantir o horário preferido.",
+      m: [
+        "Percebo, {nome}. Mantenho os meus preços iguais para todas as clientes, porque o resultado e o tempo dedicado são os mesmos.",
+        "O que posso fazer é [ex.: reservar já a sua próxima manutenção, para garantir o horário que prefere].",
+        "Quer que lhe reserve?"
+      ] },
+    { t: "Aviso nos stories e no Instagram",
+      q: "Publique depois de avisar as clientes mais fiéis, para ninguém saber por aqui primeiro.",
+      m: [
+        "Novos preços a partir de {data}.",
+        "Ajustei os valores para continuar a oferecer o melhor atendimento. As marcações já feitas mantêm o preço combinado.",
+        "Para ver a tabela completa ou marcar, envie-me mensagem."
+      ] }
+  ];
+
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  // texto simples (para copiar): valores ou [rótulo] quando vazio
+  function aTexto(m){
+    return m.replace(/\{(\w+)\}/g, function(_, k){ var v = (valores[k] || "").trim(); return v ? v : "[" + rotulo[k] + "]"; });
+  }
+  // HTML (para mostrar): campos vazios ficam destacados
+  function aHtml(m){
+    return esc(m).replace(/\{(\w+)\}/g, function(_, k){
+      var v = (valores[k] || "").trim();
+      return v ? esc(v) : "<mark>[" + esc(rotulo[k]) + "]</mark>";
+    });
+  }
+
+  function copiar(texto, btn){
+    function ok(){ btn.textContent = "Copiado"; btn.classList.add("feito"); setTimeout(function(){ btn.textContent = "Copiar"; btn.classList.remove("feito"); }, 1600); }
+    function plano(){
+      var t = document.createElement("textarea"); t.value = texto; t.setAttribute("readonly",""); t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select();
+      try{ document.execCommand("copy"); ok(); }catch(e){}
+      t.remove();
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(texto).then(ok, plano); } else { plano(); }
+  }
+
+  var lista = document.getElementById("lista");
+  var baloes = [];
+  SITUACOES.forEach(function(s){
+    var sec = document.createElement("section"); sec.className = "sit";
+    var h = document.createElement("h2"); h.textContent = s.t; sec.appendChild(h);
+    var q = document.createElement("p"); q.className = "quando"; q.textContent = s.q; sec.appendChild(q);
+    s.m.forEach(function(m){
+      var b = document.createElement("div"); b.className = "balao";
+      var p = document.createElement("p");
+      var bt = document.createElement("button"); bt.type = "button"; bt.className = "btn ghost small copiar"; bt.textContent = "Copiar";
+      bt.addEventListener("click", function(){ copiar(aTexto(m), bt); });
+      b.appendChild(p); b.appendChild(bt); sec.appendChild(b);
+      baloes.push({ p: p, m: m });
+    });
+    lista.appendChild(sec);
+  });
+
+  function desenhar(){
+    baloes.forEach(function(b){ b.p.innerHTML = aHtml(b.m); });
+    try{ localStorage.setItem(KEY, JSON.stringify(valores)); }catch(e){}
+  }
+  Object.keys(campos).forEach(function(k){
+    var i = document.getElementById(campos[k]);
+    i.value = valores[k];
+    i.addEventListener("input", function(){ valores[k] = i.value; desenhar(); });
+  });
+
+  document.getElementById("ano").textContent = new Date().getFullYear();
+  desenhar();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="/tracking.js" defer></script>
+<title>Plano de 7 dias · Kit Preço Certo</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/kit-precificacao/kit.css">
+<meta name="theme-color" content="#0A1E38">
+<style>
+  .prog{margin-top:30px;max-width:780px}
+  .prog .topo{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:10px;font-size:14px;color:var(--text-soft)}
+  .prog .topo b{font-family:var(--display);font-size:22px;color:var(--text)}
+  .barra{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+  .barra i{display:block;height:100%;width:0;background:var(--blue);border-radius:3px;transition:width .25s}
+  .recomecar{background:none;border:0;color:var(--text-dim);font-size:13px;font-family:inherit;text-decoration:underline;cursor:pointer;margin-top:12px;padding:0}
+  .recomecar:hover{color:#fff}
+
+  .dias{max-width:780px;margin-top:20px}
+  .dia{display:grid;grid-template-columns:96px minmax(0,1fr);gap:20px;padding:26px 0;border-top:1px solid var(--line)}
+  .dia:last-child{border-bottom:1px solid var(--line)}
+  .dia .n{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  .dia h2{font-family:var(--display);font-size:22px;font-weight:800;margin-bottom:12px}
+  .tarefa{display:flex;gap:14px;align-items:flex-start;padding:8px 0;cursor:pointer}
+  .tarefa input{position:absolute;opacity:0}
+  .tarefa .caixa{flex:0 0 22px;height:22px;border:1.5px solid rgba(174,196,221,.5);border-radius:6px;margin-top:2px;position:relative}
+  .tarefa input:checked + .caixa{background:var(--blue);border-color:var(--blue)}
+  .tarefa input:checked + .caixa::after{content:"";position:absolute;left:6px;top:2px;width:6px;height:11px;border:solid var(--black);border-width:0 2px 2px 0;transform:rotate(45deg)}
+  .tarefa input:focus-visible + .caixa{outline:2px solid var(--blue);outline-offset:2px}
+  .tarefa .txt{font-size:16px;color:var(--text)}
+  .tarefa input:checked ~ .txt{color:var(--text-dim);text-decoration:line-through}
+  .tarefa .txt a{color:var(--blue-light)}
+
+  @media (max-width:860px){
+    .dia{grid-template-columns:1fr;gap:6px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="https://hubadvance.pt/"><img src="/logo-advance.png" alt="Advance" width="30" height="30"><span>Advance Lab</span></a>
+    <a class="voltar" href="/kit-precificacao/">&larr; Voltar ao Kit</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Kit Preço Certo · Plano de 7 dias</div>
+      <h1>Do cálculo ao primeiro cliente a pagar o preço novo.</h1>
+      <p>Um passo de cada vez, durante 7 dias. Marque o que for fazendo. O seu progresso fica guardado neste aparelho.</p>
+    </div>
+
+    <div class="prog">
+      <div class="topo"><span><b id="feitos">0</b> de <span id="total">14</span> passos feitos</span><span id="pct">0%</span></div>
+      <div class="barra" aria-hidden="true"><i id="barra"></i></div>
+      <button class="recomecar" type="button" id="reset">Recomeçar</button>
+    </div>
+
+    <div class="dias" id="dias"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="ano"></span> Advance Lab · Jonas da Silva e Rafa Mendonça</span>
+    <span>Desenvolvido por <a href="https://hubadvance.pt/solutions/">Hub Advance Solutions</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY = "kit_plano_v1";
+  var CALC = '<a href="https://hubadvance.pt/calculadora/" target="_blank" rel="noopener">calculadora</a>';
+  var TAB = '<a href="/kit-precificacao/tabela/">tabela de preços</a>';
+  var MSG = '<a href="/kit-precificacao/mensagens/">mensagens prontas</a>';
+
+  var DIAS = [
+    { n: 1, t: "Calcular", tarefas: [
+      "Abra a " + CALC + " e preencha os seus custos fixos.",
+      "Calcule os 3 serviços que mais vende e anote o lucro por hora de cada um."
+    ] },
+    { n: 2, t: "Decidir", tarefas: [
+      "Escolha o preço novo de cada serviço: mínimo, ideal ou premium.",
+      "Defina a data de início (sugestão: daqui a 2 a 4 semanas) e o que acontece às marcações já feitas."
+    ] },
+    { n: 3, t: "Preparar", tarefas: [
+      "Crie a sua " + TAB + " com os preços novos.",
+      "Escreva o que cada serviço inclui (tempo, produtos, extras). Vai ajudá-la a responder a “porquê este valor?”."
+    ] },
+    { n: 4, t: "Avisar as mais fiéis", tarefas: [
+      "Envie o aviso às 5 clientes mais fiéis, com as " + MSG + ".",
+      "Responda a cada reação com calma, usando as respostas prontas."
+    ] },
+    { n: 5, t: "Avisar as restantes", tarefas: [
+      "Publique o aviso nos stories (o texto está nas " + MSG + ").",
+      "Envie a mensagem às restantes clientes habituais."
+    ] },
+    { n: 6, t: "Atualizar tudo", tarefas: [
+      "Atualize a bio, o destaque de preços do Instagram e o catálogo do WhatsApp com a tabela nova.",
+      "Confirme que as marcações já feitas ficam com o preço combinado."
+    ] },
+    { n: 7, t: "Rever", tarefas: [
+      "Anote como as clientes reagiram e se alguma desistiu.",
+      "Marque no calendário, daqui a 30 dias, rever o lucro por hora na " + CALC + "."
+    ] }
+  ];
+
+  var feitos = {};
+  try{ feitos = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; }catch(e){ feitos = {}; }
+  function guardar(){ try{ localStorage.setItem(KEY, JSON.stringify(feitos)); }catch(e){} }
+
+  var total = 0;
+  var box = document.getElementById("dias");
+  var caixas = [];
+  DIAS.forEach(function(d){
+    var sec = document.createElement("section"); sec.className = "dia";
+    var n = document.createElement("div"); n.className = "n"; n.textContent = "Dia " + d.n;
+    var corpo = document.createElement("div");
+    var h = document.createElement("h2"); h.textContent = d.t; corpo.appendChild(h);
+    d.tarefas.forEach(function(t, i){
+      var id = "d" + d.n + "t" + (i+1);
+      var lab = document.createElement("label"); lab.className = "tarefa";
+      var inp = document.createElement("input"); inp.type = "checkbox"; inp.id = id; inp.checked = !!feitos[id];
+      var cx = document.createElement("span"); cx.className = "caixa"; cx.setAttribute("aria-hidden","true");
+      var tx = document.createElement("span"); tx.className = "txt"; tx.innerHTML = t;
+      inp.addEventListener("change", function(){ if(inp.checked){ feitos[id] = 1; } else { delete feitos[id]; } guardar(); contar(); });
+      lab.appendChild(inp); lab.appendChild(cx); lab.appendChild(tx); corpo.appendChild(lab);
+      caixas.push(inp); total++;
+    });
+    sec.appendChild(n); sec.appendChild(corpo); box.appendChild(sec);
+  });
+
+  function contar(){
+    var f = caixas.filter(function(c){ return c.checked; }).length;
+    document.getElementById("feitos").textContent = f;
+    document.getElementById("total").textContent = total;
+    var p = total ? Math.round(f / total * 100) : 0;
+    document.getElementById("pct").textContent = p + "%";
+    document.getElementById("barra").style.width = p + "%";
+  }
+  document.getElementById("reset").addEventListener("click", function(){
+    feitos = {}; caixas.forEach(function(c){ c.checked = false; }); guardar(); contar();
+  });
+
+  document.getElementById("ano").textContent = new Date().getFullYear();
+  contar();
+})();
+</script>
+</body>
+</html>

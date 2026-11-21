@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="/tracking.js" defer></script>
+<title>Tabela de preços · Kit Preço Certo</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/kit-precificacao/kit.css">
+<meta name="theme-color" content="#0A1E38">
+<style>
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:32px;align-items:start;margin-top:32px}
+  .form .campo{margin-bottom:18px}
+  .cores{display:flex;gap:10px;flex-wrap:wrap}
+  .cor{position:relative;margin:0}
+  .cor input{position:absolute;opacity:0;inset:0;cursor:pointer}
+  .cor span{display:block;padding:9px 16px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--text-soft)}
+  .cor input:checked + span{border-color:var(--blue);color:#fff;background:rgba(91,155,232,.18)}
+  .cor input:focus-visible + span{outline:2px solid var(--blue)}
+  .cor i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:-1px}
+
+  .linhas{margin-top:4px}
+  .linha{display:grid;grid-template-columns:minmax(0,1fr) 110px auto;gap:10px;align-items:center;margin-bottom:10px}
+  .linha button{background:none;border:0;color:var(--text-dim);font-size:13px;font-family:inherit;cursor:pointer;text-decoration:underline;padding:6px}
+  .linha button:hover{color:#fff}
+  .acoes{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+
+  /* a folha (pré-visualização e impressão) */
+  .preview{position:sticky;top:20px}
+  .sheet{--ac:#1B4A86;background:#FAF7F2;color:#151B26;border-radius:14px;padding:44px 44px 40px}
+  .sheet .s-nome{font-family:var(--display);font-weight:800;font-size:34px;line-height:1.1;overflow-wrap:anywhere}
+  .sheet .s-rule{width:56px;height:4px;background:var(--ac);margin:18px 0 14px;border-radius:2px}
+  .sheet .s-sub{font-size:15px;color:#5B6577}
+  .sheet .s-lista{list-style:none;margin-top:30px}
+  .sheet .s-lista li{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-top:1px solid #E2DCD1;font-size:17px}
+  .sheet .s-lista li:last-child{border-bottom:1px solid #E2DCD1}
+  .sheet .s-s{font-weight:600}
+  .sheet .s-p{font-family:var(--display);font-weight:800;color:var(--ac);white-space:nowrap}
+  .sheet .s-contacto{margin-top:26px;font-size:15px;font-weight:600;color:var(--ac)}
+  .sheet .s-contacto:empty{display:none}
+
+  @media (max-width:860px){
+    .layout{grid-template-columns:1fr}
+    .preview{position:static}
+    .sheet{padding:30px 24px}
+    .sheet .s-nome{font-size:28px}
+    .linha{grid-template-columns:minmax(0,1fr) 90px auto}
+  }
+
+  @media print{
+    @page{margin:0}
+    html,body{background:#FAF7F2 !important}
+    body *{visibility:hidden}
+    .sheet,.sheet *{visibility:visible}
+    .sheet{position:absolute;left:0;top:0;width:100%;min-height:100vh;border-radius:0;padding:22mm 20mm;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .sheet .s-nome{font-size:40px}
+    .sheet .s-lista li{font-size:19px}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="https://hubadvance.pt/"><img src="/logo-advance.png" alt="Advance" width="30" height="30"><span>Advance Lab</span></a>
+    <a class="voltar" href="/kit-precificacao/">&larr; Voltar ao Kit</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Kit Preço Certo · Tabela de preços</div>
+      <h1>A sua tabela de preços, pronta a partilhar.</h1>
+      <p>Escreva os seus serviços e os preços que calculou, escolha a cor e guarde em imagem ou PDF. Fica pronta para o Instagram, para o WhatsApp ou para imprimir.</p>
+    </div>
+
+    <div class="layout">
+      <section class="form card" aria-label="Editar a tabela">
+        <div class="campo">
+          <label for="f-nome">O seu nome ou negócio</label>
+          <input type="text" id="f-nome" maxlength="60" autocomplete="off">
+        </div>
+        <div class="campo">
+          <label for="f-sub">Frase por baixo do nome (opcional)</label>
+          <input type="text" id="f-sub" maxlength="80" autocomplete="off" placeholder="Ex.: Preços válidos a partir de 1 de dezembro">
+        </div>
+        <div class="campo">
+          <label>Cor</label>
+          <div class="cores" id="cores">
+            <label class="cor"><input type="radio" name="cor" value="azul"><span><i style="background:#1B4A86"></i>Azul</span></label>
+            <label class="cor"><input type="radio" name="cor" value="ameixa"><span><i style="background:#5B2A6B"></i>Ameixa</span></label>
+            <label class="cor"><input type="radio" name="cor" value="dourado"><span><i style="background:#A97B2C"></i>Dourado</span></label>
+            <label class="cor"><input type="radio" name="cor" value="grafite"><span><i style="background:#1F2430"></i>Grafite</span></label>
+          </div>
+        </div>
+        <div class="campo">
+          <label>Serviços e preços</label>
+          <div class="linhas" id="linhas"></div>
+          <button class="btn ghost small" type="button" id="add">Adicionar serviço</button>
+        </div>
+        <div class="campo">
+          <label for="f-contacto">Contacto para marcações (opcional)</label>
+          <input type="text" id="f-contacto" maxlength="80" autocomplete="off" placeholder="Ex.: WhatsApp 912 345 678 · @oseuinstagram">
+        </div>
+        <div class="acoes">
+          <button class="btn" type="button" id="b-png">Descarregar imagem (PNG)</button>
+          <button class="btn ghost" type="button" id="b-pdf">Guardar como PDF</button>
+        </div>
+        <p class="nota" style="margin-top:16px">Os valores de exemplo vêm da calculadora. Troque-os pelos seus. O que escreve fica só neste aparelho.</p>
+      </section>
+
+      <aside class="preview" aria-label="Pré-visualização">
+        <div class="sheet" id="sheet">
+          <div class="s-nome" id="p-nome"></div>
+          <div class="s-rule"></div>
+          <div class="s-sub" id="p-sub"></div>
+          <ul class="s-lista" id="p-lista"></ul>
+          <div class="s-contacto" id="p-contacto"></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="ano"></span> Advance Lab · Jonas da Silva e Rafa Mendonça</span>
+    <span>Desenvolvido por <a href="https://hubadvance.pt/solutions/">Hub Advance Solutions</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY = "kit_tabela_v1";
+  var CORES = { azul:"#1B4A86", ameixa:"#5B2A6B", dourado:"#A97B2C", grafite:"#1F2430" };
+  var estado = {
+    nome: "O seu nome ou negócio",
+    sub: "Preços válidos a partir de 1 de dezembro",
+    contacto: "",
+    cor: "azul",
+    linhas: [
+      { s: "Pedicure + gelinho", p: "29,65" },
+      { s: "Manutenção", p: "35" },
+      { s: "Alongamento em gel", p: "45,96" }
+    ]
+  };
+  try{ var g = JSON.parse(localStorage.getItem(KEY) || "null"); if(g && g.linhas && g.linhas.length){ estado = g; } }catch(e){}
+  function guardar(){ try{ localStorage.setItem(KEY, JSON.stringify(estado)); }catch(e){} }
+
+  function el(id){ return document.getElementById(id); }
+
+  // "29,65" ou "30" -> "29,65 €" / "30 €"; texto livre fica como está
+  function preco(v){
+    v = (v || "").trim();
+    if(!v) return "";
+    var n = v.replace(/\s*€\s*/g,"").replace(",",".");
+    if(/^\d+(\.\d+)?$/.test(n)){
+      var x = parseFloat(n);
+      return (Math.round(x*100)%100===0 ? String(Math.round(x)) : x.toFixed(2).replace(".",",")) + " €";
+    }
+    return v;
+  }
+  function linhasValidas(){ return estado.linhas.filter(function(l){ return l.s.trim() || l.p.trim(); }); }
+
+  function desenhar(){
+    el("sheet").style.setProperty("--ac", CORES[estado.cor] || CORES.azul);
+    el("p-nome").textContent = estado.nome.trim() || "O seu nome ou negócio";
+    el("p-sub").textContent = estado.sub.trim();
+    el("p-sub").style.display = estado.sub.trim() ? "" : "none";
+    var ul = el("p-lista"); ul.innerHTML = "";
+    linhasValidas().forEach(function(l){
+      var li = document.createElement("li");
+      var a = document.createElement("span"); a.className = "s-s"; a.textContent = l.s.trim();
+      var b = document.createElement("span"); b.className = "s-p"; b.textContent = preco(l.p);
+      li.appendChild(a); li.appendChild(b); ul.appendChild(li);
+    });
+    el("p-contacto").textContent = estado.contacto.trim();
+    guardar();
+  }
+
+  function montarLinhas(){
+    var box = el("linhas"); box.innerHTML = "";
+    estado.linhas.forEach(function(l, i){
+      var row = document.createElement("div"); row.className = "linha";
+      var s = document.createElement("input"); s.type = "text"; s.placeholder = "Serviço"; s.value = l.s; s.maxLength = 60; s.setAttribute("aria-label","Serviço " + (i+1));
+      var p = document.createElement("input"); p.type = "text"; p.placeholder = "Preço"; p.value = l.p; p.maxLength = 20; p.inputMode = "decimal"; p.setAttribute("aria-label","Preço do serviço " + (i+1));
+      var r = document.createElement("button"); r.type = "button"; r.textContent = "Remover";
+      s.addEventListener("input", function(){ estado.linhas[i].s = s.value; desenhar(); });
+      p.addEventListener("input", function(){ estado.linhas[i].p = p.value; desenhar(); });
+      r.addEventListener("click", function(){ estado.linhas.splice(i,1); if(!estado.linhas.length){ estado.linhas.push({s:"",p:""}); } montarLinhas(); desenhar(); });
+      row.appendChild(s); row.appendChild(p); row.appendChild(r); box.appendChild(row);
+    });
+  }
+
+  // campos
+  el("f-nome").value = estado.nome;
+  el("f-sub").value = estado.sub;
+  el("f-contacto").value = estado.contacto;
+  el("f-nome").addEventListener("input", function(e){ estado.nome = e.target.value; desenhar(); });
+  el("f-sub").addEventListener("input", function(e){ estado.sub = e.target.value; desenhar(); });
+  el("f-contacto").addEventListener("input", function(e){ estado.contacto = e.target.value; desenhar(); });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="cor"]'), function(r){
+    r.checked = (r.value === estado.cor);
+    r.addEventListener("change", function(){ estado.cor = r.value; desenhar(); });
+  });
+  el("add").addEventListener("click", function(){
+    estado.linhas.push({ s:"", p:"" }); montarLinhas(); desenhar();
+    var ins = el("linhas").querySelectorAll("input"); if(ins.length >= 2){ ins[ins.length-2].focus(); }
+  });
+  el("b-pdf").addEventListener("click", function(){ window.print(); });
+
+  // ---------- imagem PNG (1080 de largura, formato de Instagram) ----------
+  function cortar(ctx, texto, max){
+    if(ctx.measureText(texto).width <= max) return texto;
+    while(texto.length > 1 && ctx.measureText(texto + "…").width > max){ texto = texto.slice(0,-1); }
+    return texto + "…";
+  }
+  async function imagem(){
+    try{
+      await Promise.all([
+        document.fonts.load("800 80px Archivo"), document.fonts.load("600 36px Inter"), document.fonts.load("500 32px Inter")
+      ]);
+    }catch(e){}
+    var W = 1080, pad = 96, rowH = 104;
+    var linhas = linhasValidas();
+    var temSub = estado.sub.trim(), temCont = estado.contacto.trim();
+    var topo = pad + 84 + 36 + (temSub ? 84 : 28) + 56;
+    var H = Math.max(1350, topo + linhas.length * rowH + (temCont ? 190 : 120));
+    var c = document.createElement("canvas"); c.width = W; c.height = H;
+    var x = c.getContext("2d");
+    var ac = CORES[estado.cor] || CORES.azul, tinta = "#151B26";
+    x.fillStyle = "#FAF7F2"; x.fillRect(0,0,W,H);
+    // nome
+    var nome = estado.nome.trim() || "O seu nome ou negócio", fs = 84;
+    x.font = "800 " + fs + "px Archivo, Inter, sans-serif";
+    while(x.measureText(nome).width > W - 2*pad && fs > 40){ fs -= 4; x.font = "800 " + fs + "px Archivo, Inter, sans-serif"; }
+    x.fillStyle = tinta; x.textBaseline = "alphabetic";
+    var y = pad + fs;
+    x.fillText(cortar(x, nome, W - 2*pad), pad, y);
+    // barra
+    x.fillStyle = ac; x.fillRect(pad, y + 36, 112, 8);
+    y += 36 + 8;
+    if(temSub){
+      x.font = "500 34px Inter, sans-serif"; x.fillStyle = "#5B6577";
+      x.fillText(cortar(x, estado.sub.trim(), W - 2*pad), pad, y + 56);
+      y += 84;
+    } else { y += 28; }
+    y += 56;
+    // linhas
+    linhas.forEach(function(l, i){
+      var top = y + i*rowH;
+      x.fillStyle = "#E2DCD1"; x.fillRect(pad, top, W - 2*pad, 2);
+      var base = top + rowH/2 + 14;
+      x.font = "800 44px Archivo, Inter, sans-serif"; x.fillStyle = ac;
+      var pr = preco(l.p), pw = x.measureText(pr).width;
+      x.textAlign = "right"; x.fillText(pr, W - pad, base); x.textAlign = "left";
+      x.font = "600 38px Inter, sans-serif"; x.fillStyle = tinta;
+      x.fillText(cortar(x, l.s.trim(), W - 2*pad - pw - 40), pad, base - 2);
+    });
+    var fim = y + linhas.length*rowH;
+    x.fillStyle = "#E2DCD1"; x.fillRect(pad, fim, W - 2*pad, 2);
+    if(temCont){
+      x.font = "600 34px Inter, sans-serif"; x.fillStyle = ac;
+      x.fillText(cortar(x, estado.contacto.trim(), W - 2*pad), pad, fim + 84);
+    }
+    c.toBlob(function(b){
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(b); a.download = "tabela-de-precos.png";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+    }, "image/png");
+  }
+  el("b-png").addEventListener("click", imagem);
+
+  document.getElementById("ano").textContent = new Date().getFullYear();
+  montarLinhas(); desenhar();
+})();
+</script>
+</body>
+</html>

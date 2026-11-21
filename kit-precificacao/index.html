@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <script src="/tracking.js" defer></script>
-<title>Kit Precificação Inteligente · Acesso</title>
+<title>Kit Preço Certo · Acesso</title>
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -87,6 +87,14 @@
   .pts li{padding:10px 0;border-top:1px solid rgba(255,255,255,.18);font-size:14px;color:#D7E6F7}
   .opt.main .pts li{border-top-color:#DDE5EF;color:#3A4F69}
 
+  /* ferramentas para pôr os preços em prática */
+  .ferr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:22px 0;border-top:1px solid var(--line);text-decoration:none}
+  .ferr:last-child{border-bottom:1px solid var(--line)}
+  .ferr h3{font-family:var(--display);font-size:19px;font-weight:700;margin-bottom:4px}
+  .ferr p{font-size:15px;color:var(--text-soft);max-width:620px}
+  .ferr .btn{width:auto;margin-top:0;padding:10px 24px}
+  .ferr:hover h3{color:var(--blue-light)}
+
   /* menos molduras: índice e bónus em linhas finas */
   .card.indice{background:none;border:0;border-radius:0;padding:0}
   .indice{margin-top:18px}
@@ -140,6 +148,8 @@
     .grid{grid-template-columns:1fr}
     .tool{padding:24px 22px;grid-template-columns:1fr;gap:24px}
     .duo{grid-template-columns:1fr}
+    .ferr{grid-template-columns:1fr;gap:12px}
+    .ferr .btn{justify-self:start}
     .opts{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
     .foot-brand{grid-column:1/-1}
@@ -163,7 +173,7 @@
 <!-- ===== PORTA DE ENTRADA ===== -->
 <section id="gate">
   <div class="gate-card">
-    <h1>Bem-vinda ao seu Kit</h1>
+    <h1>Bem-vinda ao Kit Preço Certo</h1>
     <p>Escreva a senha de acesso para entrar.</p>
     <form id="form" autocomplete="off">
       <input id="senha" type="text" inputmode="text" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Senha de acesso" aria-label="Senha de acesso">
@@ -179,7 +189,7 @@
   <div class="wrap">
 
     <div class="hero">
-      <div class="eyebrow">Advance Lab · Kit Precificação Inteligente</div>
+      <div class="eyebrow">Advance Lab · Kit Preço Certo</div>
       <h1>Descubra o preço certo de cada serviço e quanto lucra por hora.</h1>
       <p id="hero-p">Veja a gravação do workshop e preencha a sua calculadora ao mesmo tempo. Abra-a num separador ao lado e acompanhe passo a passo.</p>
     </div>
@@ -210,6 +220,23 @@
         </div>
       </aside>
     </div>
+
+    <section class="sec">
+      <h2>Para pôr os preços em prática</h2>
+      <p>Três ferramentas para passar do cálculo ao cliente a pagar o preço novo.</p>
+      <a class="ferr" href="/kit-precificacao/tabela/">
+        <div><h3>Tabela de preços pronta</h3><p>Escreva os seus serviços e preços e guarde uma tabela limpa, em imagem ou PDF, pronta para o Instagram e o WhatsApp.</p></div>
+        <span class="btn ghost">Abrir</span>
+      </a>
+      <a class="ferr" href="/kit-precificacao/mensagens/">
+        <div><h3>Mensagens para comunicar o novo preço</h3><p>Avisar as clientes, responder a quem acha caro e a quem pede desconto, em blocos curtos prontos a copiar.</p></div>
+        <span class="btn ghost">Abrir</span>
+      </a>
+      <a class="ferr" href="/kit-precificacao/plano/">
+        <div><h3>Plano de 7 dias</h3><p>Passo a passo, do cálculo ao primeiro cliente a pagar o preço novo. Marque o que for fazendo.</p></div>
+        <span class="btn ghost">Abrir</span>
+      </a>
+    </section>
 
     <section class="sec">
       <h2>Os seus bónus</h2>
@@ -292,12 +319,15 @@
       <div class="col">
         <h4>O seu Kit</h4>
         <a href="https://hubadvance.pt/calculadora/" target="_blank" rel="noopener">Calculadora</a>
+        <a href="/kit-precificacao/tabela/">Tabela de preços</a>
+        <a href="/kit-precificacao/mensagens/">Mensagens</a>
+        <a href="/kit-precificacao/plano/">Plano de 7 dias</a>
         <a href="https://hubadvance.pt/agenda-cheia/" target="_blank" rel="noopener">Kit Agenda Cheia</a>
         <a href="https://hubadvance.pt/ideias-prontas/" target="_blank" rel="noopener">Ideias Prontas</a>
       </div>
       <div class="col">
         <h4>Contacto</h4>
-        <a href="https://wa.me/351964427068?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20o%20Kit%20Precifica%C3%A7%C3%A3o%20Inteligente." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://wa.me/351964427068?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20o%20Kit%20Pre%C3%A7o%20Certo." target="_blank" rel="noopener">WhatsApp</a>
         <a href="https://instagram.com/jonassilva.pt" target="_blank" rel="noopener">Instagram</a>
         <a href="https://hubadvance.pt/privacidade/">Privacidade</a>
       </div>
@@ -398,7 +428,7 @@ var CONFIG = {
     ligar("btn-kit", CONFIG.KIT_AGENDA_CHEIA_URL);
     ligar("btn-ideias", CONFIG.IDEIAS_PRONTAS_URL);
     var wa = CONFIG.WHATSAPP ? "https://wa.me/" + CONFIG.WHATSAPP : "";
-    ligar("btn-mentoria", wa ? wa + "?text=" + encodeURIComponent("Olá! Comprei o Kit Precificação Inteligente e quero saber mais sobre a Mentoria.") : "");
+    ligar("btn-mentoria", wa ? wa + "?text=" + encodeURIComponent("Olá! Comprei o Kit Preço Certo e quero saber mais sobre a Mentoria.") : "");
   }
 
   function entrar(){
@@ -411,7 +441,7 @@ var CONFIG = {
   // ajuda no WhatsApp
   var aj = document.getElementById("ajuda");
   if(CONFIG.WHATSAPP){
-    aj.href = "https://wa.me/" + CONFIG.WHATSAPP + "?text=" + encodeURIComponent("Olá! Comprei o Kit Precificação Inteligente e não consigo entrar.");
+    aj.href = "https://wa.me/" + CONFIG.WHATSAPP + "?text=" + encodeURIComponent("Olá! Comprei o Kit Preço Certo e não consigo entrar.");
     aj.target = "_blank";
   } else { aj.removeAttribute("href"); }
 
