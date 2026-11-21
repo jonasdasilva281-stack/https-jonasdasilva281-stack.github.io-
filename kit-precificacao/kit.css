@@ -46,3 +46,49 @@ footer a:hover{color:#fff}
   .hero h1{font-size:28px}
   main{padding:32px 0 60px}
 }
+
+/* Tema claro (fundo branco) das ferramentas: tabela, mensagens e plano */
+body.claro{
+  --black:#FFFFFF; --coal:#F4F7FB; --coal-2:#FFFFFF; --card:#F7F9FC;
+  --blue:#1F63C9; --blue-light:#1F63C9; --blue-deep:#174EA0;
+  --line:#DCE3EC; --line-soft:#E8EDF4;
+  --text:#0E1A2B; --text-soft:#47566B; --text-dim:#76849A;
+  -webkit-font-smoothing:antialiased;
+}
+.claro header{background:#fff;box-shadow:0 1px 0 var(--line),0 6px 24px rgba(15,30,60,.04)}
+.claro .brand{color:#0A1E38}
+.claro .voltar{font-weight:600}
+.claro .voltar:hover{color:#0A1E38}
+.claro main{background:linear-gradient(180deg,#F3F7FD 0,#fff 360px)}
+.claro .hero h1{color:#0A1E38;letter-spacing:-.015em}
+.claro .eyebrow{color:var(--blue)}
+.claro .btn{color:#fff;box-shadow:0 6px 18px rgba(31,99,201,.28);transition:transform .15s,box-shadow .15s,background .15s}
+.claro .btn:hover{background:var(--blue-deep);transform:translateY(-1px);box-shadow:0 10px 24px rgba(31,99,201,.34)}
+.claro .btn.ghost{background:#fff;color:var(--blue);border:1px solid rgba(31,99,201,.4);box-shadow:none}
+.claro .btn.ghost:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.claro .card{background:#fff;border:1px solid var(--line);box-shadow:0 1px 2px rgba(15,30,60,.04),0 14px 36px rgba(15,30,60,.07)}
+.claro input[type=text]{background:#fff;border:1px solid #CBD5E2}
+.claro input[type=text]:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(31,99,201,.15)}
+.claro label{color:#2B3A50}
+.claro footer{background:#F6F8FB}
+.claro footer a:hover{color:#0A1E38}
+
+/* tabela */
+.claro .cor span{background:#fff;border:1px solid #CBD5E2;color:var(--text-soft)}
+.claro .cor input:checked + span{color:var(--blue-deep);background:rgba(31,99,201,.08);border-color:var(--blue)}
+.claro .linha button:hover,.claro .recomecar:hover{color:#0A1E38}
+.claro .sheet{border:1px solid #E7E0D4;box-shadow:0 2px 4px rgba(15,30,60,.05),0 24px 60px rgba(15,30,60,.16)}
+
+/* mensagens */
+.claro .balao{padding:18px 0}
+.claro .balao mark{background:rgba(31,99,201,.12);color:var(--blue-deep)}
+.claro .dica-topo{background:rgba(31,99,201,.06);border-left-color:var(--blue)}
+.claro .sit h2{color:#0A1E38}
+
+/* plano */
+.claro .barra{background:#E4EAF2;height:8px;border-radius:4px}
+.claro .barra i{background:linear-gradient(90deg,#1F63C9,#4C8BE6);border-radius:4px}
+.claro .dia h2{color:#0A1E38}
+.claro .tarefa .caixa{background:#fff;border-color:#B7C3D4}
+.claro .tarefa .txt a{color:var(--blue)}
+.claro .dia .n{display:inline-block;align-self:start;background:rgba(31,99,201,.09);color:var(--blue);padding:5px 10px;border-radius:999px;width:max-content;height:max-content}
