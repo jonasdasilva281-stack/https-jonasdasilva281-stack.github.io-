@@ -57,10 +57,13 @@
   .hero h1{font-family:var(--display);font-size:36px;line-height:1.12;font-weight:800;max-width:780px}
   .hero p{margin-top:14px;color:var(--text-soft);font-size:17px;max-width:680px}
 
-  .grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:28px;align-items:start}
+  .grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;align-items:start}
   .player{background:var(--coal-2);border:1px solid var(--line);border-radius:16px;overflow:hidden;aspect-ratio:16/9;position:relative}
   .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .player .vazio{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:15px;padding:24px;text-align:center}
+  .player .vazio{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center;background:linear-gradient(160deg,#0F2A4D,#071834)}
+  .vazio .v-eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);font-weight:700}
+  .vazio .v-titulo{font-family:var(--display);font-size:30px;font-weight:800;color:var(--text);line-height:1.15}
+  .vazio .v-nota{font-size:15px;color:var(--text-soft)}
 
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
   .card h2{font-family:var(--display);font-size:18px;margin-bottom:6px;font-weight:700}
@@ -69,15 +72,11 @@
   .dica{margin-top:14px;font-size:13px;color:var(--text-dim)}
 
   /* sem vídeo ainda: a calculadora passa a ser o foco, em largura total */
-  .grid.sem-video{grid-template-columns:1fr}
-  .grid.sem-video > div:first-child{display:none}
-  .tool-img{display:none}
   .tool-img img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
-  .grid.sem-video .tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:36px;align-items:center;padding:32px 36px}
-  .grid.sem-video .tool-img{display:block}
-  .grid.sem-video .tool .tool-txt h2{font-size:24px}
-  .grid.sem-video .tool .tool-cta{margin-top:20px}
-  .grid.sem-video .tool .btn{margin-top:0}
+  .tool{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:36px;align-items:center;padding:32px 36px}
+  .tool .tool-txt h2{font-size:24px}
+  .tool .tool-cta{margin-top:20px}
+  .tool .btn{margin-top:0}
 
   /* miniaturas dos bónus */
   .thumb{margin-bottom:18px;border-radius:12px;overflow:hidden;border:1px solid var(--line);aspect-ratio:16/10;background:var(--coal-2)}
@@ -139,7 +138,7 @@
 
   @media (max-width:860px){
     .grid{grid-template-columns:1fr}
-    .grid.sem-video .tool{padding:24px 22px;grid-template-columns:1fr;gap:24px}
+    .tool{padding:24px 22px;grid-template-columns:1fr;gap:24px}
     .duo{grid-template-columns:1fr}
     .opts{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
@@ -383,10 +382,9 @@ var CONFIG = {
       f.title = "Gravação do workshop Precificação Inteligente";
       p.appendChild(f);
     } else {
-      // ainda sem gravação: esconde o leitor e o índice, a calculadora fica em destaque
-      document.getElementById("grid").classList.add("sem-video");
-      document.getElementById("hero-p").textContent = "Preencha a sua calculadora ao seu ritmo. A gravação do workshop fica disponível aqui logo a seguir à sessão de 23 de novembro.";
-      document.getElementById("dica-tool").textContent = "Abre num novo separador. Pode guardar esta página para voltar quando quiser.";
+      // ainda sem gravação: mostra o quadro do vídeo com a data e esconde o índice
+      p.innerHTML = '<div class="vazio"><div class="v-eyebrow">Gravação do workshop</div><div class="v-titulo">Precificação Inteligente</div><div class="v-nota">Disponível aqui a partir de 23 de novembro</div></div>';
+      document.querySelector(".card.indice").style.display = "none";
     }
     // índice
     var ol = document.getElementById("indice");
