@@ -81,14 +81,25 @@
   .item p{font-size:15px;color:var(--text-soft);margin-bottom:16px}
   .item .btn{margin-top:0}
 
-  .next{background:linear-gradient(135deg,var(--blue-deep),#0D2444 85%);border:1px solid rgba(127,180,238,.3)}
-  .next h2{font-size:24px;font-weight:800}
-  .next .sub{color:#D7E6F7;font-size:16px;max-width:620px;margin-bottom:20px}
-  .next .row{display:flex;gap:14px;flex-wrap:wrap}
-  .next .btn{width:auto;margin-top:0;padding:13px 22px;background:#fff;color:var(--black)}
-  .next .btn:hover{background:#EAF1FA}
-  .next .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
-  .next .btn.ghost:hover{background:rgba(255,255,255,.14);color:#fff}
+  .pitch{background:linear-gradient(135deg,#1B4A86,#0D2444 80%);border:1px solid rgba(127,180,238,.3);border-radius:20px;padding:44px 40px}
+  .pitch .eyebrow{color:var(--blue-light)}
+  .pitch h2{font-family:var(--display);font-size:32px;line-height:1.15;font-weight:800;max-width:700px;color:#fff}
+  .pitch .lead{margin-top:14px;color:#D7E6F7;font-size:17px;max-width:620px}
+  .opts{display:grid;grid-template-columns:1.15fr 1fr;gap:20px;margin-top:32px}
+  .opt{display:flex;flex-direction:column;justify-content:space-between;border-radius:16px;padding:28px;border:1px solid rgba(255,255,255,.22);background:rgba(7,24,52,.35)}
+  .opt.main{background:#fff;border-color:#fff;color:var(--black)}
+  .opt .kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--blue-light);margin-bottom:10px}
+  .opt.main .kicker{color:var(--blue-deep)}
+  .opt h3{font-family:var(--display);font-size:24px;font-weight:800;margin-bottom:10px}
+  .opt p{font-size:15px;color:#D7E6F7;margin-bottom:22px}
+  .opt.main p{color:#3A4F69}
+  .opt .preco{font-family:var(--display);font-size:28px;font-weight:800;margin-bottom:16px}
+  .opt .preco small{font-family:"Inter",sans-serif;font-size:14px;font-weight:500;color:#5C6F88}
+  .opt .btn{width:100%;margin-top:0}
+  .opt.main .btn{background:var(--blue-deep);color:#fff}
+  .opt.main .btn:hover{background:var(--black)}
+  .opt .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6)}
+  .opt .btn.ghost:hover{background:rgba(255,255,255,.14);color:#fff}
 
   footer{border-top:1px solid var(--line);padding:26px 0;color:var(--text-dim);font-size:13px}
   footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -96,6 +107,9 @@
   @media (max-width:860px){
     .grid{grid-template-columns:1fr}
     .duo{grid-template-columns:1fr}
+    .opts{grid-template-columns:1fr}
+    .pitch{padding:32px 22px}
+    .pitch h2{font-size:26px}
     .hero h1{font-size:28px}
     .gate-card{padding:32px 24px}
   }
@@ -177,12 +191,30 @@
     </section>
 
     <section class="sec">
-      <div class="card next">
-        <h2>E agora? O próximo passo.</h2>
-        <div class="sub">Preços certos são o primeiro passo. Para construir o sistema de vendas por trás deles, entre na Comunidade ou fale connosco sobre a Mentoria.</div>
-        <div class="row">
-          <a class="btn" id="btn-comunidade" href="https://hubadvance.pt/comunidade/" target="_blank" rel="noopener">Conhecer a Comunidade</a>
-          <a class="btn ghost" id="btn-mentoria" href="#" target="_blank" rel="noopener">Falar sobre a Mentoria</a>
+      <div class="pitch">
+        <div class="eyebrow">O próximo passo</div>
+        <h2>Já sabe quanto cobrar. Agora falta quem pague esse preço.</h2>
+        <p class="lead">Preços certos só dão resultado quando há clientes a chegar todas as semanas. Escolha como quer continuar.</p>
+        <div class="opts">
+          <div class="opt main">
+            <div>
+              <div class="kicker">Para começar</div>
+              <h3>Comunidade</h3>
+              <p>Aula todas as quartas, com o Jonas e a Rafa, para construir o sistema de vendas do seu negócio de beleza. Aprende, aplica e tira as dúvidas com quem já fez.</p>
+            </div>
+            <div>
+              <div class="preco">31 €<small> / mês</small></div>
+              <a class="btn" id="btn-comunidade" href="https://hubadvance.pt/comunidade/" target="_blank" rel="noopener">Entrar na Comunidade</a>
+            </div>
+          </div>
+          <div class="opt">
+            <div>
+              <div class="kicker">Para ir mais longe</div>
+              <h3>Mentoria</h3>
+              <p>Acompanhamento de perto, com o seu negócio como ponto de partida. Para quem quer decidir em conjunto e chegar mais depressa ao resultado.</p>
+            </div>
+            <a class="btn ghost" id="btn-mentoria" href="#" target="_blank" rel="noopener">Falar sobre a Mentoria</a>
+          </div>
         </div>
       </div>
     </section>
