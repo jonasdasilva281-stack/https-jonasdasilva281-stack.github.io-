@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<script src="/tracking.js" defer></script>
+<title>Kit Precificação Inteligente · Acesso</title>
+<style>
+  :root{
+    --ink:#16181d; --muted:#5d636e; --line:#e4e1da; --bg:#f7f5f0; --card:#ffffff;
+    --accent:#1f4d3a; --accent-2:#173a2c; --gold:#b08a3e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+  /* topo */
+  header{border-bottom:1px solid var(--line);background:var(--card)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+  .brand span{color:var(--gold)}
+  .tag{font-size:13px;color:var(--muted)}
+
+  /* porta de entrada */
+  #gate{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:32px 24px}
+  .gate-card{width:100%;max-width:440px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:40px 36px;text-align:center}
+  .gate-card h1{font-size:24px;line-height:1.25;margin-bottom:10px;font-weight:700}
+  .gate-card p{color:var(--muted);font-size:15px;margin-bottom:26px}
+  .gate-card input{width:100%;padding:14px 16px;font-size:16px;border:1px solid #cfcbc1;border-radius:10px;background:#fff;text-align:center;letter-spacing:.04em}
+  .gate-card input:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+  .btn{display:inline-block;width:100%;margin-top:12px;padding:14px 18px;font-size:16px;font-weight:600;border:0;border-radius:10px;background:var(--accent);color:#fff;cursor:pointer;text-decoration:none;text-align:center}
+  .btn:hover{background:var(--accent-2)}
+  .btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+  .btn.ghost:hover{background:var(--accent);color:#fff}
+  #erro{color:#a33a2f;font-size:14px;min-height:20px;margin-top:10px}
+  .help{margin-top:22px;font-size:13px;color:var(--muted)}
+  .help a{color:var(--accent)}
+
+  /* conteúdo */
+  #conteudo{display:none;padding:40px 0 72px}
+  .hero{margin-bottom:28px}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:10px}
+  .hero h1{font-size:34px;line-height:1.15;font-weight:700;max-width:760px}
+  .hero p{margin-top:12px;color:var(--muted);font-size:17px;max-width:680px}
+
+  .grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:28px;align-items:start}
+  .player{background:#0f1115;border-radius:14px;overflow:hidden;aspect-ratio:16/9;position:relative}
+  .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .player .vazio{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9aa0aa;font-size:15px;padding:24px;text-align:center}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px}
+  .card h2{font-size:17px;margin-bottom:6px;font-weight:700}
+  .card .sub{font-size:14px;color:var(--muted);margin-bottom:16px}
+  .tool .btn{margin-top:4px}
+  .dica{margin-top:14px;font-size:13px;color:var(--muted)}
+
+  .indice{margin-top:18px}
+  .indice h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:700}
+  .indice ol{list-style:none}
+  .indice li{display:flex;gap:14px;padding:11px 0;border-top:1px solid var(--line);font-size:15px}
+  .indice li:first-child{border-top:0}
+  .indice time{flex:0 0 64px;color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+
+  .sec{margin-top:44px}
+  .sec > h2{font-size:22px;margin-bottom:6px;font-weight:700}
+  .sec > p{color:var(--muted);margin-bottom:18px}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .item{display:flex;flex-direction:column;justify-content:space-between}
+  .item p{font-size:15px;color:var(--muted);margin-bottom:16px}
+  .item .btn{margin-top:0}
+
+  .next{background:var(--accent);color:#fff;border:0}
+  .next h2{color:#fff;font-size:22px}
+  .next .sub{color:#d4e3da;font-size:16px;max-width:620px;margin-bottom:20px}
+  .next .row{display:flex;gap:14px;flex-wrap:wrap}
+  .next .btn{width:auto;margin-top:0;padding:13px 22px;background:#fff;color:var(--accent)}
+  .next .btn:hover{background:#eef3ef}
+  .next .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.55)}
+  .next .btn.ghost:hover{background:rgba(255,255,255,.12)}
+
+  footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+  @media (max-width:860px){
+    .grid{grid-template-columns:1fr}
+    .duo{grid-template-columns:1fr}
+    .hero h1{font-size:27px}
+    .gate-card{padding:32px 24px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">Precificação <span>Inteligente</span></div>
+    <div class="tag">Área do Kit</div>
+  </div>
+</header>
+
+<!-- ===== PORTA DE ENTRADA ===== -->
+<section id="gate">
+  <div class="gate-card">
+    <h1>Bem-vinda ao seu Kit</h1>
+    <p>Escreva a senha de acesso para entrar.</p>
+    <form id="form" autocomplete="off">
+      <input id="senha" type="text" inputmode="text" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Senha de acesso" aria-label="Senha de acesso">
+      <button class="btn" type="submit">Entrar</button>
+      <div id="erro" role="alert"></div>
+    </form>
+    <div class="help">Acabou de comprar e não consegue entrar?<br><a id="ajuda" href="#">Fale connosco no WhatsApp</a></div>
+  </div>
+</section>
+
+<!-- ===== CONTEÚDO ===== -->
+<main id="conteudo">
+  <div class="wrap">
+
+    <div class="hero">
+      <div class="eyebrow">Kit Precificação Inteligente</div>
+      <h1>Descubra o preço certo de cada serviço e quanto lucra por hora.</h1>
+      <p>Veja a gravação do workshop e preencha a sua calculadora ao mesmo tempo. Abra-a num separador ao lado e acompanhe passo a passo.</p>
+    </div>
+
+    <div class="grid">
+      <div>
+        <div class="player" id="player"></div>
+
+        <div class="card indice" style="margin-top:20px">
+          <h3>Índice da gravação</h3>
+          <ol id="indice"></ol>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card tool">
+          <h2>A sua calculadora</h2>
+          <div class="sub">Agenda Lucrativa. Abre direto, sem criar conta.</div>
+          <a class="btn" id="btn-ferramenta" href="#" target="_blank" rel="noopener">Abrir a minha calculadora</a>
+          <div class="dica">Dica: abra num separador ao lado e preencha enquanto assiste.</div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="sec">
+      <h2>Os seus bónus</h2>
+      <p>Incluídos no Kit, sem custo extra.</p>
+      <div class="duo">
+        <div class="card item">
+          <div>
+            <h2>Kit Agenda Cheia</h2>
+            <p>Para encher a agenda enquanto acerta os preços.</p>
+          </div>
+          <a class="btn ghost" id="btn-kit" href="#" target="_blank" rel="noopener">Abrir o Kit Agenda Cheia</a>
+        </div>
+        <div class="card item">
+          <div>
+            <h2>Ideias Prontas</h2>
+            <p>Ideias de conteúdo para o Instagram, sem ter de pensar no que publicar.</p>
+          </div>
+          <a class="btn ghost" id="btn-ideias" href="#" target="_blank" rel="noopener">Abrir as Ideias Prontas</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="card next">
+        <h2>E agora? O próximo passo.</h2>
+        <div class="sub">Preços certos são o primeiro passo. Para construir o sistema de vendas por trás deles, entre na Comunidade ou fale connosco sobre a Mentoria.</div>
+        <div class="row">
+          <a class="btn" id="btn-comunidade" href="https://hubadvance.pt/comunidade/" target="_blank" rel="noopener">Conhecer a Comunidade</a>
+          <a class="btn ghost" id="btn-mentoria" href="#" target="_blank" rel="noopener">Falar sobre a Mentoria</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Jonas da Silva · Rafa Mendonça</span>
+    <span>Acesso pessoal. Por favor, não partilhe a senha.</span>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   CONFIGURAÇÃO — só precisa de mexer aqui (entre aspas)
+   ===================================================================== */
+var CONFIG = {
+  // Senha única, igual para todos (não distingue maiúsculas/minúsculas)
+  SENHA: "precificacao27",
+
+  // Valor da compra, em euros (para a Meta e o Google contarem a venda)
+  VALOR: 27,
+
+  // Link do vídeo para INCORPORAR. Exemplos:
+  //   YouTube não listado:  https://www.youtube.com/embed/CODIGO_DO_VIDEO
+  //   Vimeo:                https://player.vimeo.com/video/NUMERO
+  //   Google Drive:         https://drive.google.com/file/d/ID_DO_FICHEIRO/preview
+  VIDEO_EMBED: "",
+
+  // Ferramenta (versão que abre direto, sem login)
+  FERRAMENTA_URL: "",
+
+  // Bónus
+  KIT_AGENDA_CHEIA_URL: "",
+  IDEIAS_PRONTAS_URL: "",
+
+  // WhatsApp de negócio (só números, com indicativo. Ex.: 351912345678)
+  WHATSAPP: "",
+
+  // Índice da gravação — acerte os minutos depois de ver o vídeo
+  INDICE: [
+    { t: "00:00", titulo: "Mentalidade: porque é que cobra de menos" },
+    { t: "00:30", titulo: "Preencher os seus custos fixos" },
+    { t: "01:00", titulo: "Calcular o custo e o lucro de cada serviço" },
+    { t: "01:45", titulo: "Definir o preço mínimo, ideal e premium" },
+    { t: "02:30", titulo: "Como aplicar e comunicar os novos preços" }
+  ]
+};
+
+/* =====================================================================
+   NÃO PRECISA DE MEXER DAQUI PARA BAIXO
+   ===================================================================== */
+(function(){
+  var KEY = "pi_kit_ok";
+  var gate = document.getElementById("gate");
+  var conteudo = document.getElementById("conteudo");
+  var form = document.getElementById("form");
+  var input = document.getElementById("senha");
+  var erro = document.getElementById("erro");
+
+  function limpar(s){ return (s || "").replace(/\s+/g,"").toLowerCase(); }
+  function certa(s){ return limpar(s) !== "" && limpar(s) === limpar(CONFIG.SENHA); }
+
+  function guardar(){ try{ localStorage.setItem(KEY,"1"); }catch(e){} }
+  function jaEntrou(){ try{ return localStorage.getItem(KEY) === "1"; }catch(e){ return false; } }
+
+  function ligar(id, url, extra){
+    var el = document.getElementById(id);
+    if(!el) return;
+    if(url){ el.href = url; }
+    else { el.removeAttribute("href"); el.style.opacity = ".45"; el.style.pointerEvents = "none"; }
+  }
+
+  function montar(){
+    // vídeo
+    var p = document.getElementById("player");
+    if(CONFIG.VIDEO_EMBED){
+      var f = document.createElement("iframe");
+      f.src = CONFIG.VIDEO_EMBED;
+      f.allow = "autoplay; fullscreen; picture-in-picture";
+      f.allowFullscreen = true;
+      f.title = "Gravação do workshop Precificação Inteligente";
+      p.appendChild(f);
+    } else {
+      p.innerHTML = '<div class="vazio">O vídeo aparece aqui assim que o link for colocado.</div>';
+    }
+    // índice
+    var ol = document.getElementById("indice");
+    CONFIG.INDICE.forEach(function(i){
+      var li = document.createElement("li");
+      li.innerHTML = "<time>" + i.t + "</time><span>" + i.titulo + "</span>";
+      ol.appendChild(li);
+    });
+    // botões
+    ligar("btn-ferramenta", CONFIG.FERRAMENTA_URL);
+    ligar("btn-kit", CONFIG.KIT_AGENDA_CHEIA_URL);
+    ligar("btn-ideias", CONFIG.IDEIAS_PRONTAS_URL);
+    var wa = CONFIG.WHATSAPP ? "https://wa.me/" + CONFIG.WHATSAPP : "";
+    ligar("btn-mentoria", wa ? wa + "?text=" + encodeURIComponent("Olá! Comprei o Kit Precificação Inteligente e quero saber mais sobre a Mentoria.") : "");
+  }
+
+  function entrar(){
+    gate.style.display = "none";
+    conteudo.style.display = "block";
+    montar();
+    window.scrollTo(0,0);
+  }
+
+  // ajuda no WhatsApp
+  var aj = document.getElementById("ajuda");
+  if(CONFIG.WHATSAPP){
+    aj.href = "https://wa.me/" + CONFIG.WHATSAPP + "?text=" + encodeURIComponent("Olá! Comprei o Kit Precificação Inteligente e não consigo entrar.");
+    aj.target = "_blank";
+  } else { aj.removeAttribute("href"); }
+
+  // 1) vem do pagamento com a senha no link (?s=SENHA) → entra sozinha e conta como COMPRA
+  var params = new URLSearchParams(location.search);
+  var s = params.get("s");
+  if(s && certa(s)){
+    guardar();
+    // regista a compra (Meta + GA4) assim que o tracking.js estiver pronto; só acontece uma vez, porque o ?s= sai do endereço
+    document.addEventListener("DOMContentLoaded", function(){
+      if(window.track){ window.track("Purchase", { value: CONFIG.VALOR, currency: "EUR" }); }
+    });
+    try{ history.replaceState(null,"",location.pathname); }catch(e){}
+    entrar();
+    return;
+  }
+  // 2) já tinha entrado neste aparelho
+  if(jaEntrou()){ entrar(); return; }
+
+  // 3) escreve a senha
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(certa(input.value)){ guardar(); entrar(); }
+    else { erro.textContent = "Senha incorreta. Confira o recibo ou fale connosco no WhatsApp."; input.select(); }
+  });
+})();
+</script>
+</body>
+</html>
