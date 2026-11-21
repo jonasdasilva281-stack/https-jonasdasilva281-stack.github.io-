@@ -29,7 +29,9 @@
   /* topo */
   header{border-bottom:1px solid var(--line);background:var(--coal-2)}
   header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.04em;color:var(--text)}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.04em;color:var(--text);text-decoration:none}
+  .brand img{height:30px;width:auto;display:block}
+  .foot-brand img{height:38px;width:auto;display:block;margin-bottom:14px}
   .tag{font-size:13px;color:var(--text-dim)}
 
   /* porta de entrada */
@@ -130,7 +132,7 @@
 
 <header>
   <div class="wrap">
-    <div class="brand">Hub Advance</div>
+    <a class="brand" href="https://hubadvance.pt/"><img src="/logo-advance.png" alt="Advance" width="30" height="30"><span>Advance Academy</span></a>
     <div class="tag">Área do Kit</div>
   </div>
 </header>
@@ -236,6 +238,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
+        <img src="/logo-advance.png" alt="Advance" width="38" height="38">
         <div class="nome">Advance Academy</div>
         <p>Mentoria, comunidade e formação para profissionais de beleza que querem cobrar o preço certo e ter a agenda cheia.</p>
       </div>
