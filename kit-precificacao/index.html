@@ -101,13 +101,23 @@
   .opt .btn.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.6)}
   .opt .btn.ghost:hover{background:rgba(255,255,255,.14);color:#fff}
 
-  footer{border-top:1px solid var(--line);padding:26px 0;color:var(--text-dim);font-size:13px}
-  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer{border-top:1px solid var(--line);background:var(--coal-2);padding:56px 0 28px;margin-top:40px;color:var(--text-dim);font-size:14px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px}
+  .foot-brand .nome{font-family:var(--display);font-weight:800;font-size:1.2rem;letter-spacing:.02em;color:var(--text)}
+  .foot-brand p{margin-top:12px;max-width:320px;color:var(--text-soft);font-size:14px;line-height:1.6}
+  footer h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);font-weight:700;margin-bottom:14px}
+  footer .col a{display:block;color:var(--text-soft);text-decoration:none;margin-bottom:10px;font-size:14px}
+  footer .col a:hover{color:#fff}
+  .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1px solid var(--line-soft);font-size:13px}
+  .foot-bottom a{color:inherit;text-decoration:underline}
+  .foot-bottom a:hover{color:#fff}
 
   @media (max-width:860px){
     .grid{grid-template-columns:1fr}
     .duo{grid-template-columns:1fr}
     .opts{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
+    .foot-brand{grid-column:1/-1}
     .pitch{padding:32px 22px}
     .pitch h2{font-size:26px}
     .hero h1{font-size:28px}
@@ -224,9 +234,35 @@
 
 <footer>
   <div class="wrap">
-    <span>Jonas da Silva · Rafa Mendonça</span>
-    <span>Acesso pessoal. Por favor, não partilhe a senha.</span>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="nome">Advance Academy</div>
+        <p>Mentoria, comunidade e formação para profissionais de beleza que querem cobrar o preço certo e ter a agenda cheia.</p>
+      </div>
+      <div class="col">
+        <h4>Continuar</h4>
+        <a href="https://hubadvance.pt/comunidade/" target="_blank" rel="noopener">Comunidade Advance</a>
+        <a href="https://hubadvance.pt/mentoria/" target="_blank" rel="noopener">Mentoria Advance</a>
+      </div>
+      <div class="col">
+        <h4>O seu Kit</h4>
+        <a href="https://hubadvance.pt/calculadora/" target="_blank" rel="noopener">Calculadora</a>
+        <a href="https://hubadvance.pt/agenda-cheia/" target="_blank" rel="noopener">Kit Agenda Cheia</a>
+        <a href="https://hubadvance.pt/ideias-prontas/" target="_blank" rel="noopener">Ideias Prontas</a>
+      </div>
+      <div class="col">
+        <h4>Contacto</h4>
+        <a href="https://wa.me/351964427068?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20o%20Kit%20Precifica%C3%A7%C3%A3o%20Inteligente." target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://instagram.com/jonassilva.pt" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://hubadvance.pt/privacidade/">Privacidade</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="ano"></span> Advance Academy · Jonas da Silva e Rafa Mendonça. Acesso pessoal, por favor não partilhe a senha.</span>
+      <span>Desenvolvido por <a href="https://hubadvance.pt/solutions/">Hub Advance Solutions</a></span>
+    </div>
   </div>
+  <script>document.getElementById("ano").textContent=new Date().getFullYear();</script>
 </footer>
 
 <script>
