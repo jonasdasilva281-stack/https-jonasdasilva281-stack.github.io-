@@ -93,3 +93,6 @@ body.claro{
 .claro .tarefa .txt a{color:var(--blue)}
 .claro .dia .n{display:inline-block;align-self:start;background:rgba(31,99,201,.09);color:var(--blue);padding:5px 10px;border-radius:999px;width:max-content;height:max-content}
 .claro .brand img{filter:brightness(0) opacity(.88)}
+.claro .hero{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:34px 38px 32px;box-shadow:0 1px 2px rgba(15,30,60,.04),0 16px 40px rgba(15,30,60,.07);overflow:hidden}
+.claro .hero::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#1F63C9,#4C8BE6)}
+@media (max-width:860px){.claro .hero{padding:26px 22px 24px;border-radius:16px}}
