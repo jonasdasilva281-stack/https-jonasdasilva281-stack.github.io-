@@ -71,6 +71,12 @@
   .hero h1 em{font-style:normal;background:linear-gradient(120deg,#FFE08A,#FFA81F);-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero .lead{color:var(--soft);font-size:20px;max-width:520px}
   .hero .lead strong{color:#fff}
+  .hero .pts{list-style:none;display:grid;gap:12px;margin:26px 0 22px;max-width:540px}
+  .hero .pts li{display:flex;gap:12px;align-items:flex-start;color:var(--text);font-size:16.5px;line-height:1.45}
+  .hero .pts li::before{content:"✓";flex:none;margin-top:2px;width:22px;height:22px;border-radius:50%;background:rgba(255,200,60,.15);border:1px solid rgba(255,200,80,.6);color:var(--gold);font-weight:900;font-size:12px;display:grid;place-items:center}
+  .hero .inclui{max-width:540px;font-size:16.5px;color:var(--soft);padding-top:18px;border-top:1px dashed var(--line)}
+  .hero .inclui b{color:#fff}
+  .hero .inclui b:last-child{color:var(--gold)}
   .hero .mini{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:26px;font-size:14px;color:var(--soft)}
   .hero .mini span::before{content:"✓";color:var(--blue-light);font-weight:800;margin-right:8px}
 
@@ -257,6 +263,13 @@
       <div>
         <h1>7 produtos para acertar nos preços. <em>Por 17 €</em>, só até 30 de novembro.</h1>
         <p class="lead"><strong>Quem cobra bem não trabalha mais, trabalha com mais clareza.</strong> O próximo passo é o seu.</p>
+        <ul class="pts">
+          <li>Descubra o preço certo de cada serviço, em vez de cobrar o que as outras cobram</li>
+          <li>Saiba quanto vale a sua hora e quanto sobra no fim do mês</li>
+          <li>Suba os preços sem medo de perder clientes</li>
+          <li>Responda ao "está caro" e aos pedidos de desconto sem perder dinheiro</li>
+        </ul>
+        <p class="inclui">Tudo num só Kit: <b>7 produtos</b> e <b>3 h de workshop gravado</b>, no valor de <b>247 €</b>, por apenas <b>17 €</b>.</p>
       </div>
 
       <aside class="painel" id="painel">
@@ -283,21 +296,6 @@
 
 
   <div class="wrap">
-    <section class="sec">
-      <div class="kick rv">Reconhece-se nisto?</div>
-      <h2 class="rv">Não saber precificar custa caro</h2>
-      <p class="sub rv">A maioria das profissionais de beleza trabalha muito e ganha pouco, não por falta de talento, mas por não saber quanto cobrar.</p>
-      <div class="dores">
-        <div class="dor rv"><h3>"Cobro o que as outras cobram"</h3><p>Copia o preço da concorrência sem saber se os seus custos e o seu tempo ficam cobertos.</p></div>
-        <div class="dor rv"><h3>"Trabalho o mês todo e não sei quanto sobrou"</h3><p>A agenda enche, mas no fim do mês o dinheiro não aparece e ninguém explica porquê.</p></div>
-        <div class="dor rv"><h3>"Tenho medo de subir os preços"</h3><p>Adia o aumento anos a fio porque acha que as clientes vão embora.</p></div>
-        <div class="dor rv"><h3>"Quando dizem que é caro, faço desconto"</h3><p>Cede à primeira objeção e passa a trabalhar por menos do que vale.</p></div>
-        <div class="dor rv"><h3>"Não sei quanto vale a minha hora"</h3><p>Sem esse número, cada serviço é um palpite, e há serviços que dão prejuízo sem se notar.</p></div>
-        <div class="dor rv"><h3>"Não sei o que dizer às clientes"</h3><p>Sabe que devia rever os preços, mas não sabe como avisar sem criar mal-estar.</p></div>
-      </div>
-      <div class="ponte rv">Tudo isto tem solução. O Kit Preço Certo dá-lhe os números, as palavras e o plano, em <em>7 dias</em>.</div>
-    </section>
-
     <section class="sec">
       <div class="kick rv">O que recebe</div>
       <h2 class="rv">Tudo o que está no Kit</h2>
