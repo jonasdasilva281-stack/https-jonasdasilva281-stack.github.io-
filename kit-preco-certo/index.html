@@ -71,6 +71,8 @@
   .hero h1 em{font-style:normal;background:linear-gradient(120deg,#FFE08A,#FFA81F);-webkit-background-clip:text;background-clip:text;color:transparent}
   .hero .lead{color:var(--soft);font-size:20px;max-width:520px}
   .hero .lead strong{color:#fff}
+  .hero .mini-lista{list-style:none;display:grid;grid-template-columns:repeat(2,max-content);gap:6px 28px;margin-top:22px;font-size:13px;color:var(--soft)}
+  .hero .mini-lista li::before{content:"✓";color:var(--gold);font-weight:800;margin-right:8px}
   .hero .pts{list-style:none;display:grid;gap:12px;margin:26px 0 22px;max-width:540px}
   .hero .pts li{display:flex;gap:12px;align-items:flex-start;color:var(--text);font-size:16.5px;line-height:1.45}
   .hero .pts li::before{content:"✓";flex:none;margin-top:2px;width:22px;height:22px;border-radius:50%;background:rgba(255,200,60,.15);border:1px solid rgba(255,200,80,.6);color:var(--gold);font-weight:900;font-size:12px;display:grid;place-items:center}
@@ -262,6 +264,16 @@
     <section class="hero" id="topo">
       <div>
         <h1>7 produtos para acertar nos preços. <em>Por 17 €</em>, só até 30 de novembro.</h1>
+        <p class="lead"><strong>Quem cobra bem não trabalha mais, trabalha com mais clareza.</strong> O próximo passo é o seu.</p>
+        <ul class="mini-lista">
+          <li>Workshop Precificação Inteligente</li>
+          <li>Calculadora Agenda Lucrativa</li>
+          <li>Tabela de preços pronta</li>
+          <li>Mensagens para o novo preço</li>
+          <li>Plano de 7 dias</li>
+          <li>Bónus: Kit Agenda Cheia</li>
+          <li>Bónus: Ideias Prontas</li>
+        </ul>
       </div>
 
       <aside class="painel" id="painel">
