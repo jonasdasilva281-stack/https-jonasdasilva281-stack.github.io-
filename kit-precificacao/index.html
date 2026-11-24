@@ -119,7 +119,11 @@
   .pitch h2{font-family:var(--display);font-size:38px;line-height:1.12;font-weight:800;max-width:720px;margin:10px auto 0;color:#fff}
   .pitch .lead{margin:16px auto 0;color:var(--text-soft);font-size:17px;max-width:600px}
   .opts{display:grid;grid-template-columns:1.1fr 1fr;gap:24px;margin-top:44px;text-align:left;align-items:stretch}
-  .opt{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:28px;border-radius:20px;padding:36px 34px;border:1px solid var(--line);background:#0B0D10}
+  .opt{--px:34px;--py:36px;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;gap:28px;border-radius:20px;padding:var(--py) var(--px);border:1px solid var(--line);background:#0B0D10}
+  .opt-foto{position:relative;margin:calc(var(--py) * -1) calc(var(--px) * -1) 0;height:210px;overflow:hidden}
+  .opt-foto img{display:block;width:100%;height:100%;object-fit:cover}
+  .opt-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(11,13,16,.55) 60%,#0B0D10 100%)}
+  .opt.main .opt-foto::after{background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(15,32,54,.55) 60%,#0D1A2B 100%)}
   .opt.main{border-color:rgba(127,180,238,.55);background:linear-gradient(180deg,#0F2036 0%,#0B0D10 55%);box-shadow:0 0 0 1px rgba(127,180,238,.12),0 24px 60px -24px rgba(91,155,232,.35)}
   .opt .kicker{display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--blue-light);padding:6px 12px;border:1px solid rgba(127,180,238,.4);border-radius:999px;margin-bottom:18px}
   .opt h3{font-family:var(--display);font-size:30px;font-weight:800;margin-bottom:12px;color:#fff}
@@ -161,7 +165,8 @@
     .pitch{padding:36px 20px}
     .pitch h2{font-size:28px}
     .opts{grid-template-columns:1fr}
-    .opt{padding:28px 24px}
+    .opt{--px:24px;--py:28px}
+    .opt-foto{height:170px}
     .hero h1{font-size:28px}
     .gate-card{padding:32px 24px}
   }
@@ -250,6 +255,7 @@
         <p class="lead">Preços certos só dão resultado quando há clientes a chegar todas as semanas. Escolha como quer continuar.</p>
         <div class="opts">
           <div class="opt main">
+            <div class="opt-foto"><img src="/kit-precificacao/img/oferta-comunidade.jpg" alt="Mulher a acompanhar uma aula ao portátil" loading="lazy"></div>
             <div>
               <div class="kicker">Para começar</div>
               <h3>Comunidade</h3>
@@ -267,6 +273,7 @@
             </div>
           </div>
           <div class="opt">
+            <div class="opt-foto"><img src="/kit-precificacao/img/oferta-mentoria.jpg" alt="Duas mulheres a conversar numa sessão de acompanhamento" loading="lazy"></div>
             <div>
               <div class="kicker">Para ir mais longe · Vagas limitadas</div>
               <h3>Mentoria</h3>
