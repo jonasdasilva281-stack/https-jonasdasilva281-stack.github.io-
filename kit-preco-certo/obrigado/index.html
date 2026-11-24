@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pagamento confirmado · Kit Preço Certo</title>
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#5B9BE8;--blue-light:#7FB4EE;--line:#1F242B;--text:#F2F5F9;--soft:#A9B4C3;--dim:#7C8796;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#000;color:var(--text);font:400 17px/1.6 "Inter",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+.top{border-bottom:1px solid var(--line);padding:16px 24px;display:flex;align-items:center;gap:10px;font-weight:700}
+.top img{width:28px;height:28px}
+.wrap{max-width:640px;margin:0 auto;padding:64px 20px 72px;text-align:center}
+.ok{width:72px;height:72px;margin:0 auto 24px;border-radius:50%;border:1.5px solid var(--blue);display:grid;place-items:center;background:rgba(91,155,232,.08)}
+.ok svg{width:34px;height:34px;fill:none;stroke:var(--blue-light);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-light)}
+h1{font-family:"Archivo","Inter",sans-serif;font-size:clamp(30px,6vw,42px);line-height:1.1;font-weight:800;margin:10px 0 0}
+.lead{color:var(--soft);margin:16px auto 0;max-width:30em}
+.card{margin-top:36px;padding:32px 28px;border-radius:20px;border:1px solid rgba(127,180,238,.5);background:linear-gradient(180deg,#0F2036 0%,#0B0D10 70%);box-shadow:0 24px 60px -28px rgba(91,155,232,.4)}
+.card h2{font-family:"Archivo","Inter",sans-serif;font-size:22px;margin:0 0 6px}
+.card p{margin:0;color:var(--soft);font-size:15px}
+.btn{display:block;width:100%;margin-top:22px;padding:17px 18px;border-radius:12px;background:var(--blue);color:#04101F;font-weight:700;font-size:17px;text-decoration:none;transition:background .2s}
+.btn:hover{background:var(--blue-light)}
+.sep{margin:28px 0 0;padding-top:24px;border-top:1px solid var(--line)}
+.lab{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
+.senha{display:flex;gap:10px;margin-top:10px}
+.senha code{flex:1;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:#000;font:600 20px/1 "Inter",monospace;letter-spacing:.04em;color:#fff;user-select:all}
+.senha button{padding:0 18px;border-radius:12px;border:1px solid rgba(255,255,255,.45);background:transparent;color:#fff;font:600 15px "Inter",sans-serif;cursor:pointer}
+.senha button:hover{background:#fff;color:#000}
+.nota{margin-top:12px!important;font-size:14px!important;color:var(--dim)!important}
+.passos{margin-top:36px;text-align:left;padding:24px 26px;border-radius:18px;border:1px solid var(--line);background:#0B0D10}
+.passos h3{margin:0 0 12px;font-size:17px}
+.passos ol{margin:0;padding-left:20px;color:var(--soft);font-size:15px}
+.passos li{margin:6px 0}
+.passos b{color:var(--text)}
+.sig{margin-top:32px;color:var(--soft)}
+.sig b{color:var(--text)}
+.foot{margin-top:28px;font-size:13px;color:var(--dim)}
+.foot a{color:var(--blue-light)}
+</style>
+<script src="/tracking.js" defer></script>
+</head>
+<body>
+<div class="top"><img src="/logo-advance.png" alt="" onerror="this.style.display='none'"><span>Advance Lab</span></div>
+<main class="wrap">
+  <div class="ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+  <div class="eyebrow">Pagamento confirmado</div>
+  <h1>Obrigado! O seu Kit Preço Certo já está disponível.</h1>
+  <p class="lead">Clique no botão abaixo para entrar. O acesso abre logo, sem precisar de escrever nada.</p>
+
+  <section class="card">
+    <h2>Aceda ao seu Kit</h2>
+    <p>Vídeo do workshop, calculadora, tabela de preços, mensagens, plano de 7 dias e bónus, tudo num só sítio.</p>
+    <a class="btn" id="acesso" href="/kit-precificacao/?s=precificacao27">Entrar no Kit Preço Certo</a>
+    <div class="sep">
+      <div class="lab">A sua senha de acesso</div>
+      <div class="senha"><code id="senha">precificacao27</code><button type="button" id="copiar">Copiar</button></div>
+      <p class="nota">Guarde esta senha. Se mudar de telemóvel ou computador, vai precisar dela para voltar a entrar em hubadvance.pt/kit-precificacao</p>
+    </div>
+  </section>
+
+  <section class="passos">
+    <h3>O que fazer agora</h3>
+    <ol>
+      <li><b>Entre no Kit</b> com o botão acima.</li>
+      <li><b>Veja a gravação</b> e preencha a calculadora ao mesmo tempo, num separador ao lado.</li>
+      <li><b>Guarde a sua tabela de preços</b> e use as mensagens prontas para avisar as clientes.</li>
+    </ol>
+  </section>
+
+  <p class="sig">Bom trabalho,<br><b>Jonas &amp; Rafa</b></p>
+  <p class="foot">Não consegue entrar? Escreva-nos no <a href="https://wa.me/351964427068?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20o%20Kit%20Pre%C3%A7o%20Certo." target="_blank" rel="noopener">WhatsApp</a>.</p>
+</main>
+<script>
+(function(){
+  var b=document.getElementById("copiar"), t=document.getElementById("senha");
+  b.addEventListener("click",function(){
+    try{ navigator.clipboard.writeText(t.textContent).then(function(){ b.textContent="Copiada"; setTimeout(function(){b.textContent="Copiar";},1800); }); }
+    catch(e){ var r=document.createRange(); r.selectNodeContents(t); var s=getSelection(); s.removeAllRanges(); s.addRange(r); }
+  });
+})();
+</script>
+</body>
+</html>
