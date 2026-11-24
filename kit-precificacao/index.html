@@ -89,14 +89,12 @@
   .opt.main .pts li{border-top-color:#DDE5EF;color:#3A4F69}
 
   /* ferramentas para pôr os preços em prática */
-  .ferr-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-  .ferr{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:20px;aspect-ratio:1/1;padding:30px 28px;background:var(--card);border:1px solid var(--line);border-radius:18px;text-decoration:none;transition:border-color .2s,transform .2s}
-  .ferr:hover{border-color:var(--blue);transform:translateY(-2px)}
-  .ferr h3{font-family:var(--display);font-size:21px;line-height:1.25;font-weight:700;margin-bottom:10px}
-  .ferr p{font-size:15px;color:var(--text-soft)}
+  .ferr-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .ferr{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;text-decoration:none}
+  .ferr .capa{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:18px;border:1px solid var(--line);transition:border-color .2s,transform .2s}
+  .ferr:hover .capa{border-color:var(--blue);transform:translateY(-2px)}
+  .ferr p{font-size:15px;color:var(--text-soft);max-width:300px}
   .ferr .btn{width:auto;margin-top:0;padding:10px 24px}
-  .ferr:hover h3{color:var(--blue-light)}
-  .ferr-tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--blue);margin-bottom:12px}
 
   /* menos molduras: índice e bónus em linhas finas */
   .card.indice{background:none;border:0;border-radius:0;padding:0}
@@ -152,7 +150,6 @@
     .tool{padding:24px 22px;grid-template-columns:1fr;gap:24px}
     .duo{grid-template-columns:1fr}
     .ferr-grid{grid-template-columns:1fr}
-    .ferr{aspect-ratio:auto;gap:18px}
     .opts{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
     .foot-brand{grid-column:1/-1}
@@ -213,27 +210,27 @@
       <p>Tudo o que está incluído no Kit, num só sítio.</p>
       <div class="ferr-grid">
         <a class="ferr" id="btn-ferramenta" href="#" target="_blank" rel="noopener">
-          <div><div class="ferr-tag">Calculadora</div><h3>A sua calculadora</h3><p>Agenda Lucrativa. Abre direto, sem criar conta. Abra num separador ao lado e preencha enquanto assiste.</p></div>
+          <img class="capa" src="/kit-precificacao/img/capas/capa-calculadora.jpg" alt="A sua calculadora" loading="lazy"><p>Agenda Lucrativa. Abre direto, sem criar conta. Abra num separador ao lado e preencha enquanto assiste.</p>
           <span class="btn ghost">Abrir</span>
         </a>
         <a class="ferr" href="/kit-precificacao/tabela/">
-          <div><div class="ferr-tag">Ferramenta</div><h3>Tabela de preços pronta</h3><p>Escreva os seus serviços e preços e guarde uma tabela limpa, em imagem ou PDF, pronta para o Instagram e o WhatsApp.</p></div>
+          <img class="capa" src="/kit-precificacao/img/capas/capa-tabela-de-precos.jpg" alt="Tabela de preços pronta" loading="lazy"><p>Escreva os seus serviços e preços e guarde uma tabela limpa, em imagem ou PDF, pronta para o Instagram e o WhatsApp.</p>
           <span class="btn ghost">Abrir</span>
         </a>
         <a class="ferr" href="/kit-precificacao/mensagens/">
-          <div><div class="ferr-tag">Ferramenta</div><h3>Mensagens para comunicar o novo preço</h3><p>Avisar as clientes, responder a quem acha caro e a quem pede desconto, em blocos curtos prontos a copiar.</p></div>
+          <img class="capa" src="/kit-precificacao/img/capas/capa-mensagens.jpg" alt="Mensagens para comunicar o novo preço" loading="lazy"><p>Avisar as clientes, responder a quem acha caro e a quem pede desconto, em blocos curtos prontos a copiar.</p>
           <span class="btn ghost">Abrir</span>
         </a>
         <a class="ferr" href="/kit-precificacao/plano/">
-          <div><div class="ferr-tag">Ferramenta</div><h3>Plano de 7 dias</h3><p>Passo a passo, do cálculo ao primeiro cliente a pagar o preço novo. Marque o que for fazendo.</p></div>
+          <img class="capa" src="/kit-precificacao/img/capas/capa-plano-7-dias.jpg" alt="Plano de 7 dias" loading="lazy"><p>Passo a passo, do cálculo ao primeiro cliente a pagar o preço novo. Marque o que for fazendo.</p>
           <span class="btn ghost">Abrir</span>
         </a>
         <a class="ferr" id="btn-kit" href="#" target="_blank" rel="noopener">
-          <div><div class="ferr-tag">Bónus</div><h3>Kit Agenda Cheia</h3><p>Para encher a agenda enquanto acerta os preços.</p></div>
+          <img class="capa" src="/kit-precificacao/img/capas/capa-kit-agenda-cheia.jpg" alt="Kit Agenda Cheia" loading="lazy"><p>Para encher a agenda enquanto acerta os preços.</p>
           <span class="btn ghost">Abrir</span>
         </a>
         <a class="ferr" id="btn-ideias" href="#" target="_blank" rel="noopener">
-          <div><div class="ferr-tag">Bónus</div><h3>Ideias Prontas</h3><p>Ideias de conteúdo para o Instagram, sem ter de pensar no que publicar.</p></div>
+          <img class="capa" src="/kit-precificacao/img/capas/capa-ideias-prontas.jpg" alt="Ideias Prontas" loading="lazy"><p>Ideias de conteúdo para o Instagram, sem ter de pensar no que publicar.</p>
           <span class="btn ghost">Abrir</span>
         </a>
       </div>
