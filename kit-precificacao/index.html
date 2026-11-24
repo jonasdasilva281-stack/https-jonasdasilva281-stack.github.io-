@@ -155,6 +155,7 @@
   footer h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);font-weight:700;margin-bottom:14px}
   footer .col a{display:block;color:var(--text-soft);text-decoration:none;margin-bottom:10px;font-size:14px}
   footer .col a:hover{color:#fff}
+  footer .col .resp{display:block;margin:-4px 0 12px;font-size:12.5px;color:var(--text-dim)}
   .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1px solid var(--line-soft);font-size:13px}
   .foot-bottom a{color:inherit;text-decoration:underline}
   .foot-bottom a:hover{color:#fff}
@@ -197,7 +198,7 @@
       <button class="btn" type="submit">Entrar</button>
       <div id="erro" role="alert"></div>
     </form>
-    <div class="help">Acabou de comprar e não consegue entrar?<br><a id="ajuda" href="#">Fale connosco no WhatsApp</a></div>
+    <div class="help">Acabou de comprar e não consegue entrar?<br><a id="ajuda" href="#">Fale connosco no WhatsApp</a><br>Respondemos em 24 h, de segunda a sexta.</div>
   </div>
 </section>
 
@@ -221,37 +222,6 @@
         </div>
       </div>
     </div>
-
-    <section class="sec">
-      <h2>Os seus produtos</h2>
-      <p>Tudo o que está incluído no Kit, num só sítio.</p>
-      <div class="ferr-grid">
-        <a class="ferr" id="btn-ferramenta" href="#" target="_blank" rel="noopener">
-          <img class="capa" src="/kit-precificacao/img/capas/capa-calculadora.jpg" alt="A sua calculadora" loading="lazy"><p>Agenda Lucrativa. Abre direto, sem criar conta. Abra num separador ao lado e preencha enquanto assiste.</p>
-          <span class="btn ghost">Abrir</span>
-        </a>
-        <a class="ferr" href="/kit-precificacao/tabela/">
-          <img class="capa" src="/kit-precificacao/img/capas/capa-tabela-de-precos.jpg" alt="Tabela de preços pronta" loading="lazy"><p>Escreva os seus serviços e preços e guarde uma tabela limpa, em imagem ou PDF, pronta para o Instagram e o WhatsApp.</p>
-          <span class="btn ghost">Abrir</span>
-        </a>
-        <a class="ferr" href="/kit-precificacao/mensagens/">
-          <img class="capa" src="/kit-precificacao/img/capas/capa-mensagens.jpg" alt="Mensagens para comunicar o novo preço" loading="lazy"><p>Avisar as clientes, responder a quem acha caro e a quem pede desconto, em blocos curtos prontos a copiar.</p>
-          <span class="btn ghost">Abrir</span>
-        </a>
-        <a class="ferr" href="/kit-precificacao/plano/">
-          <img class="capa" src="/kit-precificacao/img/capas/capa-plano-7-dias.jpg" alt="Plano de 7 dias" loading="lazy"><p>Passo a passo, do cálculo ao primeiro cliente a pagar o preço novo. Marque o que for fazendo.</p>
-          <span class="btn ghost">Abrir</span>
-        </a>
-        <a class="ferr" id="btn-kit" href="#" target="_blank" rel="noopener">
-          <img class="capa" src="/kit-precificacao/img/capas/capa-kit-agenda-cheia.jpg" alt="Kit Agenda Cheia" loading="lazy"><p>Para encher a agenda enquanto acerta os preços.</p>
-          <span class="btn ghost">Abrir</span>
-        </a>
-        <a class="ferr" id="btn-ideias" href="#" target="_blank" rel="noopener">
-          <img class="capa" src="/kit-precificacao/img/capas/capa-ideias-prontas.jpg" alt="Ideias Prontas" loading="lazy"><p>Ideias de conteúdo para o Instagram, sem ter de pensar no que publicar.</p>
-          <span class="btn ghost">Abrir</span>
-        </a>
-      </div>
-    </section>
 
     <section class="sec">
       <div class="pitch">
@@ -295,6 +265,37 @@
       </div>
     </section>
 
+    <section class="sec">
+      <h2>Os seus produtos</h2>
+      <p>Tudo o que está incluído no Kit, num só sítio.</p>
+      <div class="ferr-grid">
+        <a class="ferr" id="btn-ferramenta" href="#" target="_blank" rel="noopener">
+          <img class="capa" src="/kit-precificacao/img/capas/capa-calculadora.jpg" alt="A sua calculadora" loading="lazy"><p>Agenda Lucrativa. Abre direto, sem criar conta. Abra num separador ao lado e preencha enquanto assiste.</p>
+          <span class="btn ghost">Abrir</span>
+        </a>
+        <a class="ferr" href="/kit-precificacao/tabela/">
+          <img class="capa" src="/kit-precificacao/img/capas/capa-tabela-de-precos.jpg" alt="Tabela de preços pronta" loading="lazy"><p>Escreva os seus serviços e preços e guarde uma tabela limpa, em imagem ou PDF, pronta para o Instagram e o WhatsApp.</p>
+          <span class="btn ghost">Abrir</span>
+        </a>
+        <a class="ferr" href="/kit-precificacao/mensagens/">
+          <img class="capa" src="/kit-precificacao/img/capas/capa-mensagens.jpg" alt="Mensagens para comunicar o novo preço" loading="lazy"><p>Avisar as clientes, responder a quem acha caro e a quem pede desconto, em blocos curtos prontos a copiar.</p>
+          <span class="btn ghost">Abrir</span>
+        </a>
+        <a class="ferr" href="/kit-precificacao/plano/">
+          <img class="capa" src="/kit-precificacao/img/capas/capa-plano-7-dias.jpg" alt="Plano de 7 dias" loading="lazy"><p>Passo a passo, do cálculo ao primeiro cliente a pagar o preço novo. Marque o que for fazendo.</p>
+          <span class="btn ghost">Abrir</span>
+        </a>
+        <a class="ferr" id="btn-kit" href="#" target="_blank" rel="noopener">
+          <img class="capa" src="/kit-precificacao/img/capas/capa-kit-agenda-cheia.jpg" alt="Kit Agenda Cheia" loading="lazy"><p>Para encher a agenda enquanto acerta os preços.</p>
+          <span class="btn ghost">Abrir</span>
+        </a>
+        <a class="ferr" id="btn-ideias" href="#" target="_blank" rel="noopener">
+          <img class="capa" src="/kit-precificacao/img/capas/capa-ideias-prontas.jpg" alt="Ideias Prontas" loading="lazy"><p>Ideias de conteúdo para o Instagram, sem ter de pensar no que publicar.</p>
+          <span class="btn ghost">Abrir</span>
+        </a>
+      </div>
+    </section>
+
   </div>
 </main>
 
@@ -323,6 +324,7 @@
       <div class="col">
         <h4>Contacto</h4>
         <a href="https://wa.me/351964427068?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20o%20Kit%20Pre%C3%A7o%20Certo." target="_blank" rel="noopener">WhatsApp</a>
+        <span class="resp">Respondemos em 24 h, de segunda a sexta.</span>
         <a href="https://instagram.com/jonassilva.pt" target="_blank" rel="noopener">Instagram</a>
         <a href="https://hubadvance.pt/privacidade/">Privacidade</a>
       </div>
