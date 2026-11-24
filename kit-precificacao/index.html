@@ -125,6 +125,14 @@
   .opt-foto img{display:block;width:100%;height:100%;object-fit:cover}
   .opt-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(11,13,16,.55) 60%,#0B0D10 100%)}
   .opt.main .opt-foto::after{background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(15,32,54,.55) 60%,#0D1A2B 100%)}
+  .opts{grid-template-columns:1fr 1.15fr;gap:24px;align-items:center}
+  .opts-col{display:flex;flex-direction:column;gap:24px}
+  .opts-foto{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#0B0D10;align-self:center;aspect-ratio:1000/898}
+  .opts-foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block}
+  .opts-foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.75) 100%)}
+  .opt{text-align:center}
+  .opt .pts{text-align:left}
+  .opt .preco{justify-content:center}
   .opt.main{border-color:rgba(127,180,238,.55);background:linear-gradient(180deg,#0F2036 0%,#0B0D10 55%);box-shadow:0 0 0 1px rgba(127,180,238,.12),0 24px 60px -24px rgba(91,155,232,.35)}
   .opt .kicker{display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--blue-light);padding:6px 12px;border:1px solid rgba(127,180,238,.4);border-radius:999px;margin-bottom:18px}
   .opt h3{font-family:var(--display);font-size:30px;font-weight:800;margin-bottom:12px;color:#fff}
@@ -161,6 +169,7 @@
     .duo{grid-template-columns:1fr}
     .ferr-grid{grid-template-columns:1fr}
     .opts{grid-template-columns:1fr}
+    .opts-foto{order:-1;align-self:stretch}
     .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
     .foot-brand{grid-column:1/-1}
     .pitch{padding:36px 20px}
@@ -255,8 +264,8 @@
         <h2>Já sabe quanto cobrar. Agora falta quem pague esse preço.</h2>
         <p class="lead">Preços certos só dão resultado quando há clientes a chegar todas as semanas. Escolha como quer continuar.</p>
         <div class="opts">
+          <div class="opts-col">
           <div class="opt main">
-            <div class="opt-foto"><img src="/kit-precificacao/img/oferta-comunidade.jpg" alt="Jonas e Rafa, mentores do Advance Lab" loading="lazy"></div>
             <div>
               <div class="kicker">Para começar</div>
               <h3>Comunidade</h3>
@@ -274,7 +283,6 @@
             </div>
           </div>
           <div class="opt">
-            <div class="opt-foto"><img src="/kit-precificacao/img/oferta-mentoria.jpg" alt="Jonas e Rafa, mentores do Advance Lab" loading="lazy"></div>
             <div>
               <div class="kicker">Para ir mais longe · Vagas limitadas</div>
               <h3>Mentoria</h3>
@@ -289,6 +297,8 @@
               <a class="btn ghost" id="btn-mentoria" href="#" target="_blank" rel="noopener">Falar sobre a Mentoria</a>
             </div>
           </div>
+          </div>
+          <div class="opts-foto"><img src="/kit-precificacao/img/oferta-jonas-rafa.jpg" alt="Jonas e Rafa, mentores do Advance Lab" loading="lazy"></div>
         </div>
       </div>
     </section>
