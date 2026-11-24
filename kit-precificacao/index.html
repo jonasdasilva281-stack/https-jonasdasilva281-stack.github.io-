@@ -88,10 +88,11 @@
   .opt.main .pts li{border-top-color:#DDE5EF;color:#3A4F69}
 
   /* ferramentas para pôr os preços em prática */
-  .ferr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;padding:22px 0;border-top:1px solid var(--line);text-decoration:none}
-  .ferr:last-child{border-bottom:1px solid var(--line)}
-  .ferr h3{font-family:var(--display);font-size:19px;font-weight:700;margin-bottom:4px}
-  .ferr p{font-size:15px;color:var(--text-soft);max-width:620px}
+  .ferr-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .ferr{display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;gap:20px;aspect-ratio:1/1;padding:30px 28px;background:var(--card);border:1px solid var(--line);border-radius:18px;text-decoration:none;transition:border-color .2s,transform .2s}
+  .ferr:hover{border-color:var(--blue);transform:translateY(-2px)}
+  .ferr h3{font-family:var(--display);font-size:21px;line-height:1.25;font-weight:700;margin-bottom:10px}
+  .ferr p{font-size:15px;color:var(--text-soft)}
   .ferr .btn{width:auto;margin-top:0;padding:10px 24px}
   .ferr:hover h3{color:var(--blue-light)}
 
@@ -148,8 +149,8 @@
     .grid{grid-template-columns:1fr}
     .tool{padding:24px 22px;grid-template-columns:1fr;gap:24px}
     .duo{grid-template-columns:1fr}
-    .ferr{grid-template-columns:1fr;gap:12px}
-    .ferr .btn{justify-self:start}
+    .ferr-grid{grid-template-columns:1fr}
+    .ferr{aspect-ratio:auto;gap:18px}
     .opts{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
     .foot-brand{grid-column:1/-1}
@@ -224,6 +225,7 @@
     <section class="sec">
       <h2>Para pôr os preços em prática</h2>
       <p>Três ferramentas para passar do cálculo ao cliente a pagar o preço novo.</p>
+      <div class="ferr-grid">
       <a class="ferr" href="/kit-precificacao/tabela/">
         <div><h3>Tabela de preços pronta</h3><p>Escreva os seus serviços e preços e guarde uma tabela limpa, em imagem ou PDF, pronta para o Instagram e o WhatsApp.</p></div>
         <span class="btn ghost">Abrir</span>
@@ -236,6 +238,7 @@
         <div><h3>Plano de 7 dias</h3><p>Passo a passo, do cálculo ao primeiro cliente a pagar o preço novo. Marque o que for fazendo.</p></div>
         <span class="btn ghost">Abrir</span>
       </a>
+      </div>
     </section>
 
     <section class="sec">
