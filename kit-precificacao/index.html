@@ -221,11 +221,6 @@
     <div class="grid" id="grid">
       <div>
         <div class="player" id="player"></div>
-
-        <div class="card indice" style="margin-top:20px">
-          <h3>Índice da gravação</h3>
-          <ol id="indice"></ol>
-        </div>
       </div>
     </div>
 
@@ -425,15 +420,7 @@ var CONFIG = {
     } else {
       // ainda sem gravação: mostra o quadro do vídeo com a data e esconde o índice
       p.innerHTML = '<div class="vazio"><div class="v-eyebrow">Advance Lab</div><div class="v-titulo">Kit Preço Certo</div><div class="v-sub">Gravação do workshop · Precificação Inteligente</div><div class="v-nota">Disponível aqui a partir de 23 de novembro</div></div>';
-      document.querySelector(".card.indice").style.display = "none";
     }
-    // índice
-    var ol = document.getElementById("indice");
-    CONFIG.INDICE.forEach(function(i){
-      var li = document.createElement("li");
-      li.innerHTML = "<time>" + i.t + "</time><span>" + i.titulo + "</span>";
-      ol.appendChild(li);
-    });
     // botões
     ligar("btn-ferramenta", CONFIG.FERRAMENTA_URL);
     ligar("btn-kit", CONFIG.KIT_AGENDA_CHEIA_URL);
