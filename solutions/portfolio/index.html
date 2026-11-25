@@ -730,7 +730,7 @@ function renderCases(el, list, detail){
   var html = '';
   list.forEach(function(c){
     var shot = IMGS[c.id]
-      ? '<img loading="lazy" width="960" height="576" alt="Página inicial de ' + esc(c.title) + '" src="' + IMGBASE + c.id + '.jpg" onerror="this.style.display=\'none\'">'
+      ? '<img loading="lazy" width="960" height="576" alt="Página inicial de ' + esc(c.title) + '" src="' + IMGBASE + c.id + '.jpg' + (c.id.indexOf('thalia')===0 ? '?v=2' : '') + '" onerror="this.style.display=\'none\'">'
       : '';
     var ph = '<div class="ph"' + (IMGS[c.id] ? ' style="z-index:-1"' : '') + '><b>' + esc(c.title) + '</b><span>' + (c.url || c.ig ? esc(c.show) : 'Projeto privado · demonstração mediante pedido') + '</span></div>';
     var more = detail === 'full'
